@@ -1,0 +1,18 @@
+<template>
+	<div style="box-flex: 1" class="view" v-transition>
+    	<app-header msg='123'></app-header>
+  		<app-pane side="left" msg="1123" name="{{leftName}}"></app-	pane>
+    <index-tab></index-tab>
+	</div>
+</template>
+
+<script>
+	module.exports = {
+  replace: true,
+  
+  components: {
+    'app-pane': require('../components/pane'),
+    'app-tab': require('../components/IndexTab.vue')
+  }
+}
+</script>H

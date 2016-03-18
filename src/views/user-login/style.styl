@@ -1,0 +1,37 @@
+// px2px(name,px)
+// 	name: round(@px / 2) * 1px; 
+// 		if data-dpr="2"
+//         	@{name}: @px * 1px; 
+//     // for mx3 
+//     	if data-dpr="2.5"
+//         	@{name}: round(@px * 2.5 / 2) * 1px; 
+//     // for 小米note 
+//     	if data-dpr="2.75"
+//         	@{name}: round(@px * 2.75 / 2) * 1px; 
+//     	if data-dpr="3"
+//         	@{name}: round(@px / 2 * 3) * 1px 
+//     // for 三星note4 
+//     	if data-dpr="4"
+//         	@{name}: @px * 2px; 
+// px2rem(name, px){ 
+//     name: px / 75 * 1rem; 
+// } 
+.login-container
+	font-size:.5rem
+	test(20,20)
+#password:before
+	// content:url('../../asset/images/user-green.png')
+	width:30px
+#account:before
+	// content:url('../../asset/images/user-green.png')
+	width:30px
+// .input-item:after
+// 	content: close-quote;
+// 	font-size: 24pt;
+// 	text-align: center;
+// 	line-height: 42px;
+// 	color: #fff;
+// 	background: #ddd;
+// 	float: right;
+// 	position: relative;
+// 	bottom: 40px;

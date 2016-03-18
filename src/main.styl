@@ -1,0 +1,84 @@
+html, body
+  font-family Helvetica, Arial, sans-serif
+
+app-green = rgb(85,182,111)
+text-gray = rgb(160,160,160)
+line-gray = rgb(219,219,219)
+app-yellow = rgb(247,181,43)
+app-white = rgb(253,253,253)
+line-color = rgb(229,229,229)
+input-height = 90px
+buttom-tab-height = 90px
+
+li
+  list-style:none;
+ul
+  padding-left:0
+
+.view
+  transition all .4s ease
+  position absolute
+  &.v-enter
+    opacity 0
+    -webkit-transform translate3d(100px, 0, 0)
+    transform translate3d(100px, 0, 0)
+  &.v-leave
+    opacity 0
+    -webkit-transform translate3d(-100px, 0, 0)
+    transform translate3d(-100px, 0, 0)
+
+.poem-btn-green
+  font-size:22px
+  background-color:app-green
+  border-radius:3px
+  height:50px
+  line-height:50px
+  width:8rem
+  margin:30px auto
+  text-align: center;
+  color:white
+  
+.poem-input-box
+  margin:0 auto;
+  width:8rem;
+  background-color:#fff
+  border:line-gray 1px solid
+  color:text-gray
+  
+.poem-input-box>div
+  height:input-height
+  line-height:input-height
+  border-bottom:solid 1px line-gray
+  
+.poem-input-box input
+  outline:none !important
+  height:(input-height)
+  border:none
+  
+.poem-hidden
+  display:none
+  
+.poem-mask
+  position: fixed
+  bottom: 0
+  width: 100%
+  height:100%
+  width: 100%
+  background-color:grey
+  opacity:0.5
+  animation:showMask 0.2s;
+  -moz-animation:showMask 0.2s; /* Firefox */
+  -webkit-animation:showMask 0.2s; /* Safari and Chrome */
+  -o-animation:showMask 0.2s; /* Opera */
+
+@keyframes showMask
+  from 
+    background:#ffffff
+  to 
+    background:grey
+
+@-moz-keyframes showMask /* Firefox */
+  from 
+    background:#ffffff
+  to 
+    background:grey

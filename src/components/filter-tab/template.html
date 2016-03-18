@@ -1,0 +1,18 @@
+<div style="position: fixed;bottom: 0;width: 100%;width: 100%;">
+	<div id="tab-mask" class="tab-mask poem-hidden" v-on="click:hiddenMask">
+	</div>
+	<div style="position:absolute;bottom:0;width: 100%;">
+		<ul class="item-list poem-hidden">
+			<li v-on="click:itemClick" v-repeat="item in items">{{item}}</li>
+		</ul>
+		<footer class="text-center col-xs-12 filter-tab">
+    		<a v-on="click:showAll" class="col-xs-4"><img src="../../asset/images/all.png"><span>全部</span></a>
+    		<a v-on="click:showOrder" class="col-xs-4"><img src="../../asset/images/sort.png"><span>排序</span></a>
+    		<a v-on="click:showFilter" class="col-xs-4">
+    			<img src="../../asset/images/filter.png">
+    		<span>筛选</span>
+    		</a> 
+		</footer>
+	</div>
+	
+</div>

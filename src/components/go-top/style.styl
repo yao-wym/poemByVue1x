@@ -1,0 +1,44 @@
+@import "../../main.styl"
+// px2rem(name, px){
+//     name: px/75 
+// }
+app-header
+  color #bada55
+.filter-tab
+	background-color:black
+	opacity:0.9
+	padding:3px 0
+.poem-green
+	background-color:poem-green
+.filter-tab img
+	width: 50px
+	display: block
+	margin:0 auto
+.filter-tab a
+	font-size:0.3rem
+	color:rgb(88,88,88)
+.item-list
+	padding-left:0
+	margin:0
+	list-style: none;
+	text-align:center;
+	background-color:white;
+	color:gray
+	& li
+		height:0.8rem
+		line-height:0.8rem
+		color:text-gray
+		list-style:none
+		font-size:16px
+		transition-property: opacity, left;
+		transition-duration: 3s, 5s;
+	& li:after
+		background-color: line-color
+		bottom: 0
+		content: "";  
+		display: block
+		height:1px
+	& li:hover
+		cursor:pointer
+		background-color:grey
+
