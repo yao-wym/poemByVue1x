@@ -1,17 +1,5 @@
 <template>
   <div id="wrapper">
-    <!-- header -->
-    <div id ="header">
-      <a id="yc" href="http://www.ycombinator.com">
-        <img src="https://news.ycombinator.com/y18.gif">
-      </a>
-      <h1><a href="#/">Hacker News</a></h1>
-      <span class="source">
-        Built with <a href="http://vuejs.org" target="_blank">Vue.js</a> |
-        <a href="https://github.com/yyx990803/vue-hackernews" target="_blank">Source</a>
-      </span>
-    </div>
-    <!-- main view -->
     <router-view
       class="view"
       keep-alive
@@ -20,6 +8,16 @@
     </router-view>
   <!-- </div> -->
 </template>
+
+<script type="text/javascript">
+    module.exports = {
+  replace: true,
+  
+  components: {
+    'app-header': require('./components/CommonHeader.vue'),
+  }
+}
+</script>
 
 <style lang="stylus">
 @import "./variables.styl"
@@ -42,9 +40,10 @@ a
 #wrapper
   background-color $bg
   position relative
-  width 85%
+  width 100%
   min-height 80px
   margin 0 auto
+  height:100%
 
 #header
   background-color #f60
@@ -81,7 +80,7 @@ a
   width 100%
   transition opacity .2s ease
   box-sizing border-box
-  padding 8px 20px
+  //padding 8px 20px
   &.v-enter, &.v-leave
     opacity 0
 

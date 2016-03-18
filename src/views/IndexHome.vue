@@ -1,18 +1,26 @@
 <template>
-	<div style="box-flex: 1" class="view" v-transition>
+	<div class="flex-view" v-transition>
     	<app-header msg='123'></app-header>
-  		<app-pane side="left" msg="1123" name="{{leftName}}"></app-	pane>
-    <index-tab></index-tab>
+      <flex-scroll-view>
+          <app-pane side="left" msg="1123" name="{{leftName}}"></app-pane>
+      </flex-scroll-view>
+      <index-tab></index-tab>
 	</div>
 </template>
 
 <script>
+
 	module.exports = {
   replace: true,
-  
   components: {
-    'app-pane': require('../components/pane'),
-    'app-tab': require('../components/IndexTab.vue')
+    'app-header': require('../components/CommonHeader.vue'),
+    'app-pane': require('../components/IndexHomePane.vue'),
+    'index-tab': require('../components/IndexTab.vue'),
+    'flex-scroll-view': require('../components/FlexScrollView.vue'),
   }
 }
-</script>H
+</script>
+
+<style lang="stylus">
+  @import "../main.styl"
+</style>

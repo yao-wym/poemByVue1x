@@ -1,5 +1,7 @@
 html, body
   font-family Helvetica, Arial, sans-serif
+  padding:0;
+  margin:0
 
 app-green = rgb(85,182,111)
 text-gray = rgb(160,160,160)
@@ -9,7 +11,14 @@ app-white = rgb(253,253,253)
 line-color = rgb(229,229,229)
 input-height = 90px
 buttom-tab-height = 90px
-
+tab-color = #efefef
+poem-green = #bada55
+poem-yellow = yellow
+poem-gray = gray 
+poem-white = white
+poem-line-color = grey
+poem-text-gray = gray
+poem-text-black = black
 li
   list-style:none;
 ul
@@ -71,6 +80,19 @@ ul
   -webkit-animation:showMask 0.2s; /* Safari and Chrome */
   -o-animation:showMask 0.2s; /* Opera */
 
+.flex-view
+  -webkit-box-orient:vertical
+  -webkit-box-direction:normal
+  flex-direction:column;
+  height:100%
+  display: flex
+.scroll-wrap
+  -moz-box-flex: 1
+  -webkit-box-flex: 1
+  box-flex: 1
+  flex:1
+  overflow: scroll
+  
 @keyframes showMask
   from 
     background:#ffffff

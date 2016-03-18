@@ -18,15 +18,13 @@
 <script>
 import store from '../store'
 import Item from './Item.vue'
-import IndexTab from './indexTab.vue'
 
 export default {
 
   name: 'NewsView',
 
   components: {
-    Item,
-    IndexTab
+    Item
   },
 
   data () {

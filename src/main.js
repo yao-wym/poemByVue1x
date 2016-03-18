@@ -6,6 +6,7 @@ import NewsView from './components/NewsView.vue'
 import ItemView from './components/ItemView.vue'
 import UserView from './components/UserView.vue'
 import IndexHome from './views/IndexHome.vue'
+import HotelListView from './views/HotelList.vue'
 
 
 
@@ -38,11 +39,11 @@ router.map({
   '/reg': {
     component: ItemView
   },
-  '/index-home': {
+  '/IndexHome': {
     component: IndexHome
   },
-  '/hotel_list': {
-    component: ItemView
+  '/HotelList': {
+    component: HotelListView
   },
   '/app_header': {
     component: ItemView
@@ -59,5 +60,9 @@ router.beforeEach(function () {
 // router.redirect({
 //   '*': '/news/1'
 // })
+var appView = document.getElementById("poem-body");
+var height = document.body.clientHeight;
+var width = document.body.clientWidth;
+appView.setAttribute('style','height:'+height+"px;width:"+width+"px;overflow:hidden")
 
 router.start(App, '#app')

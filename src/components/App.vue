@@ -28,6 +28,8 @@ html, body
   font-family Verdana
   font-size 13px
   height 100%
+  margin:0
+  padding:0
 
 ul
   list-style-type none
