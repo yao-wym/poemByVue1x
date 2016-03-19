@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper">
+  <div id="app-container">
     <router-view
       class="view"
       keep-alive
@@ -37,7 +37,7 @@ a
   cursor pointer
   text-decoration none
   
-#wrapper
+#app-container
   background-color $bg
   position relative
   width 100%
@@ -87,6 +87,6 @@ a
 @media screen and (max-width: 700px)
   html, body
     margin 0
-  #wrapper
+  #app-container
     width 100%
 </style>

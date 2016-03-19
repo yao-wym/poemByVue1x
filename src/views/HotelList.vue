@@ -8,7 +8,7 @@
   <!-- <li v-repeat="hotel in hotelItems"> -->
       <hotel-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></hotel-list-item>
     </ul>
-    <return-top></return-top>
+<!--     <return-top></return-top> -->
   </flex-scroll-view>
 
 	<filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['默认排序','传统酒店','牧家乐']"></filter-tab>

@@ -85,6 +85,7 @@ header-height = 1rem
   display:inline-block
 
 .index-header
+  z-index:2
   background-color:app-green
   height:header-height
   color:white
