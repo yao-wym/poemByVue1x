@@ -4,9 +4,15 @@ import { domain, fromNow } from './filters'
 import App from './App.vue'
 import NewsView from './components/NewsView.vue'
 import ItemView from './components/ItemView.vue'
-import UserView from './components/UserView.vue'
+import UserView from './views/User.vue'
 import IndexHome from './views/IndexHome.vue'
 import HotelListView from './views/HotelList.vue'
+import UserRegView from './views/UserReg.vue'
+import UserLoginView from './views/UserLogin.vue'
+import FindPwdView from './views/UserFindPwd.vue'
+import IndexView from './views/Index.vue'
+import IndexArticle from './views/IndexArticle.vue'
+import IndexUcenter from './views/IndexUcenter.vue'
 
 
 
@@ -24,8 +30,25 @@ router.map({
   '/news/:page': {
     component: NewsView
   },
-  '/user/:id': {
-    component: UserView
+  '/user': {
+    component: UserView,
+    subRoutes:{
+      '/login':{
+        name:'login',
+        component:UserLoginView
+      },
+      '/reg':{
+        name:'reg',
+        component:UserRegView
+      },
+      '/findpwd':{
+        name:'findpwd',
+        component:FindPwdView
+      },
+      '/:id':{
+        component:UserView
+      }
+    }
   },
   '/item/:id': {
     component: ItemView
@@ -34,13 +57,37 @@ router.map({
     component: ItemView
   },
   '/login': {
-    component: ItemView
+    component: UserLoginView
   },
   '/reg': {
-    component: ItemView
+    component: UserRegView
+  },
+  '/findpwd': {
+    component: FindPwdView
   },
   '/IndexHome': {
     component: IndexHome
+  },
+  '/index': {
+    component: IndexView,
+    subRoutes:{
+      '/home':{
+        component:IndexHome
+      },
+      '/cart':{
+        component:function (resolve) {
+          setTimeout(function(){require(['./Views/IndexCart.vue'], resolve)}, 1000);
+          
+        }
+
+      },
+      '/article':{
+        component:IndexArticle
+      },
+      '/ucenter':{
+        component:IndexUcenter
+      }
+    }
   },
   '/HotelList': {
     component: HotelListView
@@ -57,9 +104,9 @@ router.beforeEach(function () {
   window.scrollTo(0, 0)
 })
 
-// router.redirect({
-//   '*': '/news/1'
-// })
+router.redirect({
+  '/': '/index/home'
+})
 var appView = document.getElementById("poem-body");
 var height = document.body.clientHeight;
 var width = document.body.clientWidth;

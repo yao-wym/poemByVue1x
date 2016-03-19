@@ -1,21 +1,21 @@
 {
   "name": "vue-hackernews",
   "version": "1.0.0",
-  "description": "HN clone with Vue.js using HN API",
+  "description": "project of PoemAndTravel",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --no-info",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yyx990803/vue-hackernews.git"
+    "url": "https://github.com/yao-wym/poemByVue1x.git"
   },
   "author": "Evan You",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yyx990803/vue-hackernews/issues"
+    "url": "https://github.com/yao-wym/poemByVue1x/issues"
   },
-  "homepage": "https://github.com/yyx990803/vue-hackernews",
+  "homepage": "https://github.com/yao-wym/poemByVue1x",
   "devDependencies": {
     "babel-core": "^6.1.21",
     "babel-loader": "^6.1.0",
@@ -39,7 +39,7 @@
   "dependencies": {
     "es6-promise": "^3.0.2",
     "firebase": "^2.3.1",
-    "vue": "^1.0.8",
-    "vue-router": "^0.7.5"
+    "vue": "^1.0.17",
+    "vue-router": "^0.7.11"
   }
 }

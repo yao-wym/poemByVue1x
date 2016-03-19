@@ -1,7 +1,6 @@
 <template>
-    	<app-header title='购物车'></app-header>
       <flex-scroll-view>
-          
+          <app-pane side="left" msg="1123" name="{{leftName}}"></app-pane>
       </flex-scroll-view>
 </template>
 

@@ -1,11 +1,8 @@
 <template>
-	<div class="flex-view" v-transition>
-    	<app-header msg='123'></app-header>
+    	<app-header search='找美食.找酒店' left-icon='qrcode-icon' left-link='#QrcodeView' right-icon='user-icon' right-link="#reg"></app-header>
       <flex-scroll-view>
           <app-pane side="left" msg="1123" name="{{leftName}}"></app-pane>
       </flex-scroll-view>
-      <index-tab></index-tab>
-	</div>
 </template>
 
 <script>

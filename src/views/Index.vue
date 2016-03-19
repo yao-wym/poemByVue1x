@@ -1,8 +1,8 @@
 <template>
-    	<app-header title='购物车'></app-header>
-      <flex-scroll-view>
-          
-      </flex-scroll-view>
+	<div class="flex-view" v-transition>
+    	<router-view></router-view>
+      <index-tab></index-tab>
+	</div>
 </template>
 
 <script>

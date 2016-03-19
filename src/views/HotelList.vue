@@ -26,7 +26,7 @@ module.exports = {
       require(['../components/FlexScrollView.vue'], resolve);
     },
     'return-top':function(resolve){
-    	require(['../components/go-top'], resolve);
+    	require(['../components/returnTop.vue'], resolve);
     },
     'filter-tab':function(resolve){
     	require(['../components/FilterTab.vue'], resolve);

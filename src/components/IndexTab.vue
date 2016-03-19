@@ -1,9 +1,9 @@
 <template>
 <footer class="text-center index-tab" style="bottom: 0;">
-    <a href="#index-home"><img src="../asset/images/store-white.png"><span>首页</span></a>
-    <a href="#index-cart"><img src="../asset/images/cart-white.png"><span>购物车</span></a>
-    <a href="#index-article"><img src="../asset/images/jounry.png"><span>游记</span></a> 
-    <a href="#index-ucenter"><img src="../asset/images/my.png"><span>我的</span></a>
+    <a href="#index/home"><img src="../asset/images/store-white.png"><span>首页</span></a>
+    <a href="#index/cart"><img src="../asset/images/cart-white.png"><span>购物车</span></a>
+    <a href="#index/article"><img src="../asset/images/jounry.png"><span>游记</span></a> 
+    <a href="#index/ucenter"><img src="../asset/images/my.png"><span>我的</span></a>
 </footer> 
 </template>
 <script>

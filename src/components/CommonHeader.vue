@@ -1,61 +1,121 @@
 <template>
 	<header class="index-header">
-    <div class="header-left">
-      <span class="input-group-btn">
-        <img style="width:.6rem;margin-right:10px" class="back-icon" src="/src/asset/images/fanhui.png">
-      </span>
-      <span>
-        {{leftLabel}}
-      </span>
+    <div @click='leftClick()' class="header-left">
+      <a>
+        <span class='{{leftIcon}}' v-if="leftIcon"></span>
+        <span class="back-icon" v-else></span>
+      </a>
     </div>
-    <div class="header-right" style="float: right">
-        <a href="#user-reg" class="right-icon">
-          <img style="width:.8rem;" src="/src/asset/images/user-white.png"/>
-          <span>
+    <div class="header-left-label" v-if="leftLabel">
+        {{leftLabel}}
+    </div>
+    <div class="header-center">
+      <input id="search-input" placeholder="{{search}}" v-if="search"/>
+      <span v-if="title">{{title}}</span>
+    </div>
+
+    <div @click='rightClick()' class="header-right">
+        <a>
+          <span v-if="rightLabel">
             {{rightLabel}}
+          </span>
+          <span class="{{rightIcon}}" v-if="rightIcon">
           </span>
         </a>
     </div> 
-    <div class="header-center">
-      <h1 v-if="title">{{title}}</h1>
-      <input id="search-input" v-else=""/>
-    </div>
 </header>
 </template>
 
 <script type="text/javascript">
-
 module.exports = {
 	data:function () {
     return { test: 123 }
   },
-	props: ['title','leftLabel','rightLabel']
-} 
+	props: ['title','leftLabel','rightLabel','leftLink','rightLink','leftIcon','rightIcon','search'],
+  methods:{
+    rightClick:function(){
+      this.eventHandle(this.rightLink)
+    },
+    leftClick:function(){
+      if(this.leftLink == undefined || this.leftLink==""){
+        history.go(-1);
+      }else{
+        this.eventHandle(this.leftLink)
+      }
+    },
+    eventHandle:function(eventTarget){
+      if(eventTarget.slice(0,1)=='#'){
+        location.href = eventTarget
+      }else{
+        this.$dispatch(eventTarget)
+      }
+    }
+  }
+}
 </script>
 
 <style lang="stylus">
 
 @import "../main.styl"
+header-btn-width = 1.5rem
+header-img-width = 0.5rem
+header-height = 1rem
+.icon-left
+  width:header-img-width
+  height:@width
+  background-size:100%
+  display:inline-block
+.user-icon
+  background-image:url("../asset/images/user-white.png")
+  width:header-img-width
+  height:@width
+  background-size:100%
+  display:inline-block
+.back-icon
+  background-image:url("../asset/images/fanhui.png")
+  width:header-img-width
+  height:@width
+  background-size:100%
+  display:inline-block
+.qrcode-icon
+  background-image:url("../asset/images/qr_code.png")
+  width:header-img-width
+  height:@width
+  background-size:100%
+  display:inline-block
+
 .index-header
   background-color:app-green
-	color:white
-	font-size:.7rem
-  height:1rem
-  line-height:1rem
-  padding:5px
-	text-align:center
+  height:header-height
+  color:white
+  font-size:.5rem
+  display:flex
+  display: -webkit-flex; /* Safari */
+  flex-direction:row
+  align-items:center
 .header-center
-  display:inline-block
-  margin:0 auto
-  width:6rem
+  flex-grow: 1;
+  height:0.8rem
+  line-height:@height
+  text-align:center
+.header-left-label{
+  width:auto
+}
 .header-left
-  float:left
-  width:.6rem
-#search-input
-  border-radius:3px
-  height:1rem
-  width:5rem
+  text-align:center
+  width:header-btn-width
+  & img
+    width:header-img-width
 .header-right
-  float:right
-	 width:.6rem
+  text-align:center
+  width:header-btn-width
+  & img
+    width:header-img-width
+#search-input
+  border-radius:10px
+  font-size:0.3rem
+  height:0.7rem
+  width:100%
+  display:block
+  padding-left:5px
 </style>
