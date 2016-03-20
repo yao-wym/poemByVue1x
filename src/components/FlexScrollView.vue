@@ -60,7 +60,7 @@ export default {
 	created:function(){
 	},
 	ready:function(){
-		this.myScroll = new IScroll('#wrapper', { mouseWheel: true ,bounceEasing: 'elastic', bounceTime: 1200 ,desktopCompatibility:true,click:true});
+		this.myScroll = new IScroll('#wrapper', { mouseWheel: true ,click:true});
 	},
 	events:{
 		'refresh':function(msg){
