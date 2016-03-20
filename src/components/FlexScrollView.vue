@@ -50,6 +50,7 @@
 </style>
 
 <script>
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 export default {
 	data:function(){
 		return {
@@ -59,7 +60,6 @@ export default {
 	created:function(){
 	},
 	ready:function(){
-		document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 		this.myScroll = new IScroll('#wrapper', { mouseWheel: true ,bounceEasing: 'elastic', bounceTime: 1200 ,desktopCompatibility:true,click:true});
 	},
 	events:{
