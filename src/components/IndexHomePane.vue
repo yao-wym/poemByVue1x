@@ -1,5 +1,5 @@
 <template>
-	<div class="index-home-container" style="overflow: scroll;"> 
+	<div class="index-home-container"> 
   <div style="height:4rem;width: 100%">
   <!-- Indicators -->
   <!-- Wrapper for slides -->
@@ -11,7 +11,7 @@
         <img src="../asset/images/store-white.png">
       </div>
     </a>
-    <a href="#HotelList">
+    <a @tap="alert(2)">
       <div style="background-color: rgb(127,204,229)">
         <img src="../asset/images/location.png">
       </div>

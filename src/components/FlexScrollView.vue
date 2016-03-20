@@ -1,6 +1,6 @@
 <template>
 	<div class="scroll-wrap">
-        <div id="wrapper" class="scroll-wrap">
+        <div id="wrapper">
         <div id="scroller" class="scroll-content">
         	<slot></slot>
         </div>
@@ -8,15 +8,21 @@
     </div>
 </template>
 <style lang="stylus">
-#wrapper {
-	bottom: 48px;
+.scroll-wrap
+	position:relative
+	display:block
+
+#wrapper
+	top: 0px;
 	left: 0;
 	width: 100%;
+	height:100%
 	background: #ccc;
 	overflow: hidden;
-}
+	display:block
+	position:absolute
 
-#scroller {
+#scroller
 	position: absolute;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 	width: 100%;
@@ -35,7 +41,12 @@
 	-ms-text-size-adjust: none;
 	-o-text-size-adjust: none;
 	text-size-adjust: none;
-}
+.scroll-wrap
+	-moz-box-flex: 1
+	-webkit-box-flex: 1
+	box-flex: 1
+	flex:1
+	position:relative
 </style>
 
 <script>
@@ -49,8 +60,13 @@ export default {
 	created:function(){
 	},
 	ready:function(){
-		this.myScroll = new IScroll('#wrapper', { mouseWheel: true });
-		alert(2);
+		this.myScroll = new IScroll('#wrapper', { mouseWheel: true ,bounceEasing: 'elastic', bounceTime: 1200 ,desktopCompatibility:true,click:true});
+	},
+	events:{
+		'refresh':function(msg){
+			this.myScroll.refresh();
+		}
 	}
+
 }
 </script>

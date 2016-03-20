@@ -36,7 +36,6 @@ module.exports = {
     }
   },
   data: function(){
-  	this.getHotelList();
   	var hotelList = [];
   	var curpage = 1; 
   	return {
@@ -53,14 +52,19 @@ module.exports = {
       if(!isEmpty(res.datas.store_list)){
         this.hotelList = this.hotelList.concat(res.datas.store_list);
         this.curpage++;
+        this.$broadcast('refresh');
       }
   	},
   },
   created: function() {
     this.$on('conditionChange', function() {
+      //此处需要清空数组，但是为了调试方便～暂时不清空
       $.getJSON(SHOP_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
     })
   },
+  ready:function(){
+    this.getHotelList();
+  }
 }
 </script>
 

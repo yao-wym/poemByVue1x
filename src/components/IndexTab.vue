@@ -14,6 +14,7 @@ export default {
 <style lang="stylus">
 @import "../main.styl"
 .index-tab
+  z-index:2
   background-color:tab-color
   padding:5px 0 10px 0
   margin:0
@@ -21,12 +22,12 @@ export default {
   & a
     display:inline-block
     width:25%
-    font-size:.5rem
+    font-size:.4rem
     color:rgb(88,88,88)
     text-align:center
     margin-left:-3px
   & img
-    width: 1rem
+    width: .6rem
     margin:0 auto
     display: block
 .poem-green
