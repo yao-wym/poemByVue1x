@@ -1,11 +1,8 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header icon-left="{{iconleft}}" msg="{{msg}}"></app-header>
-	<!-- <app-pane side="left" name="{{leftName}}"></app-pane>
--->
+	<app-header search="找酒店" right-icon="user-icon"></app-header>
   <flex-scroll-view>
         <ul id="hotel-list-view" style="font-size: 0.3rem">
-  <!-- <li v-repeat="hotel in hotelItems"> -->
       <hotel-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></hotel-list-item>
     </ul>
 <!--     <return-top></return-top> -->
@@ -52,18 +49,32 @@ module.exports = {
       if(!isEmpty(res.datas.store_list)){
         this.hotelList = this.hotelList.concat(res.datas.store_list);
         this.curpage++;
-        this.$broadcast('refresh');
+        // this.$broadcast('refresh')
+        this.$nextTick(function(){
+          this.$broadcast('refresh');
+        });
+        // setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),50)
       }
   	},
   },
   created: function() {
     this.$on('conditionChange', function() {
+        
       //此处需要清空数组，但是为了调试方便～暂时不清空
       $.getJSON(SHOP_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
-    })
+    });
+    // this.$on('scrollViewLoaded', function() {
+    //     this.$broadcast('scrollViewLoaded');
+    // })
   },
   ready:function(){
     this.getHotelList();
+  },
+  attached:function(){
+   // alert(2);
+  },
+  compiled:function(){
+    // alert(2);
   }
 }
 </script>

@@ -64,19 +64,19 @@ module.exports = {
 .filter-tab
 	flex-direction:row;
 	background-color:black
-	opacity:0.9
+	opacity:0.5
 	padding:3px 0
 	display:flex
 	display: -webkit-flex; /* Safari */
 	width:100%
-	justify-content:space-around
 	& a
 		-webkit-box-flex: 1
+		flex:1
 		text-align:center
 		font-size:0.4rem
-		color:rgb(88,88,88)
+		color:rgb(148,148,148)
 	& img
-		width: 1rem
+		width: .6rem
 		display: block
 		margin:0 auto
 .poem-green
@@ -88,15 +88,13 @@ module.exports = {
 	list-style: none;
 	text-align:center;
 	background-color:white;
-	color:gray
+	color:app-green
 	& li
-		height:1rem
-		line-height:1rem
+		height:1.5rem
+		line-height:1.5rem
 		color:text-gray
 		list-style:none
-		font-size:.5rem
-		transition-property: opacity, left;
-		transition-duration: 3s, 5s;
+		font-size:.4rem
 	& li:after
 		background-color: line-color
 		bottom: 0
@@ -105,7 +103,7 @@ module.exports = {
 		height:1px
 	& li:hover
 		cursor:pointer
-		background-color:grey
+		color:app-green
 
 
 </style>

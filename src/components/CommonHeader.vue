@@ -60,6 +60,7 @@ module.exports = {
 header-btn-width = 1.5rem
 header-img-width = 0.5rem
 header-height = 1rem
+header-text-color = #fff
 .icon-left
   width:header-img-width
   height:@width
@@ -88,7 +89,7 @@ header-height = 1rem
   z-index:2
   background-color:app-green
   height:header-height
-  color:white
+  color:header-text-color
   font-size:.5rem
   display:flex
   display: -webkit-flex; /* Safari */
@@ -114,8 +115,8 @@ header-height = 1rem
     width:header-img-width
 #search-input
   border-radius:10px
-  font-size:0.3rem
-  height:0.7rem
+  font-size:0.4rem
+  height:0.6rem
   width:100%
   display:block
   padding-left:5px

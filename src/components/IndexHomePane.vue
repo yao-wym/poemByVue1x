@@ -11,7 +11,7 @@
         <img src="../asset/images/store-white.png">
       </div>
     </a>
-    <a @tap="alert(2)">
+    <a @tap="#HotelList">
       <div style="background-color: rgb(127,204,229)">
         <img src="../asset/images/location.png">
       </div>
@@ -36,7 +36,10 @@
 <script type="text/javascript">
 module.exports = {
   replace: true,
-  props: ['side', 'name','leftName']
+  props: ['side', 'name','leftName'],
+  ready:function(){
+    this.$dispatch('scrollViewLoaded')
+  }
 }
 </script>
 

@@ -1,5 +1,4 @@
 var webpack = require('webpack')
-
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -33,7 +32,6 @@ module.exports = {
     plugins: ['transform-runtime']
   }
 }
-
 if (process.env.NODE_ENV === 'production') {
   module.exports.plugins = [
     new webpack.DefinePlugin({

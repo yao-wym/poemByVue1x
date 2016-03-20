@@ -19,7 +19,7 @@
 			</div>
 		</div>
 		<div style="display: block;width: 80%;margin:0 auto">
-			<div class="poem-btn-green" v-on="click:login()">登陆</div>
+			<div class="poem-btn-green" v-on="click:login()">注册</div>
 			<a style="float: left">我已阅读xxx</a>
 		</div>
 	</div>
@@ -47,9 +47,13 @@ module.exports = {
     	'app-header': require('../components/CommonHeader.vue'),
   	},
   	created:function(){
-  		this.title="立即注册"
+
   	},
-  	props: ['title','leftLabel','rightLabel','leftLink','rightLink','leftIcon','rightIcon','search']
+  	props: ['title','leftLabel','rightLabel','leftLink','rightLink','leftIcon','rightIcon','search'],
+  	ready:function(){
+  		this.$dispatch('pageLoaded');
+  		this.title="立即注册"
+  	}
 }
 function register(){
 	$.post(LOGIN_API).done(registerDone).fail(registerFail);

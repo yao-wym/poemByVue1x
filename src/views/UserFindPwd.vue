@@ -19,13 +19,13 @@
 				<input style="width:7rem display:inline-block;" placeholder='请填写密码' />
 			</div>
 		</div>
-		<div style="display: block;width: 80%;margin:0 auto">
+<!-- 		<div style="display: block;width: 80%;margin:0 auto">
 			<div class="poem-btn-green" @click="login()">登陆</div>
 			<a style="float: left">我已阅读xxx</a>
-		</div>
+		</div> -->
 	</div>
     </flex-scroll-view>
-	<yellow-bottom>
+	<yellow-bottom href="#user/login">
 		<span>下一步</span>
 	</yellow-bottom>
 </div>
@@ -48,12 +48,10 @@ module.exports = {
 	methods: {
 		goNextStep: goNextStep
 	},
-	created: function() {
+	ready: function() {
+		this.$dispatch('pageLoaded');
 		this.leftLabel = '找回密码';
 		this.title = '';
-		this.$on('goNextStep', function(child) {
-			location.href='#user-login'
-		})
 	},
 	components: {
 		'yellow-bottom': require('../components/YellowBottom.vue'),

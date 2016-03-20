@@ -1,21 +1,21 @@
 <template>
 <div class="view" v-transition>
-		<div style="margin-top:2rem;text-align:center" class="login-container">
+		<div style="margin-top:3rem;text-align:center" class="login-container">
 		<div class="poem-input-box">
 			<div class="input-item">
-				<img src='../asset/images/user-green.png' style="width:30px;height: 30px"/>
-				<label style="width:1.5rem display:inline-block">账号</label>
-				<input style="border:0;heigth:50px;display:inline-block;" placeholder='手机号'/>
+				<img src='../asset/images/user-green.png'/>
+				<label style="font-size:.4rem;;width:1.5rem display:inline-block">账号</label>
+				<input placeholder='手机号'/>
 			</div>
 			<div>
-				<img src='../asset/images/lock-white.png' style="width:30px;height: 30px"/>
-				<label id="password" style="width:1.5rem display:inline-block">密码</label>
-				<input style="width:7rem display:inline-block;" placeholder='请填写密码' />
+				<img src='../asset/images/lock-white.png'/>
+				<label id="password" style="font-size:.4rem;width:1.5rem display:inline-block">密码</label>
+				<input placeholder='请填写密码' />
 			</div>
 		</div>
-		<div style="display: block;width: 80%;margin:0 auto">
+		<div style="display: block;width: 80%;margin:1rem auto">
 			<div class="poem-btn-green" @click="login()">登陆</div>
-			<a href="#/user/findpwd" style="float: left">忘记密码</a>
+			<a href="#/user/findpwd" style="margin-top:0.5rem;float: left;color:green;font-size:.3rem">忘记密码?</a>
 		</div>
 	</div>
 </div>
@@ -25,6 +25,14 @@
 .login-container
 	font-size:.5rem
 	test(20,20)
+	& input
+		font-size:.4rem
+		display:inline-block
+		width:6.5rem
+		height:.4rem
+	& img
+		width:.4rem
+		height:.4rem
 #password:before
 	width:30px
 #account:before
@@ -36,14 +44,21 @@
 module.exports = {
   	replace: true,
   	data:function(){
-  		return {};
+  		return {
+
+  		};
   	},
   	 methods: {
   	 	login:login
   	 },
-  	 props:['title'],
+  	 props:['rightLabel','rightLink'],
   	 created:function(){
-  	 	this.title = '登陆';
+
+  	 },
+  	 ready:function(){
+  	 	this.$dispatch('pageLoaded');
+  	 	this.rightLabel = '注册';
+  	 	this.rightLink = '#/user/reg'
   	 }
 }
 function login(){

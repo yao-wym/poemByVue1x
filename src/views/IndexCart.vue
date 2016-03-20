@@ -1,4 +1,4 @@
-<template>
+<template v-transition>
     	<app-header title='购物车'></app-header>
       <flex-scroll-view>
           

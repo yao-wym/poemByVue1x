@@ -17,7 +17,7 @@
 	left: 0;
 	width: 100%;
 	height:100%
-	background: #ccc;
+	background: #fafafa;
 	overflow: hidden;
 	display:block
 	position:absolute
@@ -65,7 +65,11 @@ export default {
 	events:{
 		'refresh':function(msg){
 			this.myScroll.refresh();
-		}
+		},
+		'scrollViewLoaded':function(msg){
+			// this.myScroll.refresh();
+			// this.myScroll.refresh();
+		},
 	}
 
 }

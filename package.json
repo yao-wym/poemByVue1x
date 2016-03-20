@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "project of PoemAndTravel",
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --no-info",
+    "dev": "webpack-dev-server --inline --hot --no-info --host 0.0.0.0",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
@@ -22,18 +22,18 @@
     "babel-plugin-transform-runtime": "^6.1.18",
     "babel-preset-es2015": "^6.1.18",
     "babel-runtime": "^5.8.0",
-    "html-loader": "^0.3.0",
     "cross-env": "^1.0.5",
     "css-loader": "^0.21.0",
+    "file-loader": "^0.8.5",
+    "html-loader": "^0.3.0",
     "style-loader": "^0.12.3",
     "stylus-loader": "^1.4.0",
+    "url-loader": "^0.5.6",
     "vue-hot-reload-api": "^1.2.0",
     "vue-html-loader": "^1.0.0",
     "vue-loader": "^8.0.0",
     "vue-style-loader": "^1.0.0",
-    "webpack": "^1.12.2",
-    "file-loader": "^0.8.5",
-    "url-loader": "^0.5.6",
+    "webpack": "^1.12.14",
     "webpack-dev-server": "^1.12.0"
   },
   "dependencies": {

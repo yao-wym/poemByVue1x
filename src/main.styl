@@ -9,8 +9,7 @@ line-gray = rgb(219,219,219)
 app-yellow = rgb(247,181,43)
 app-white = rgb(253,253,253)
 line-color = rgb(229,229,229)
-input-height = 90px
-buttom-tab-height = 90px
+input-height = 1.1rem
 tab-color = #efefef
 poem-green = #bada55
 poem-yellow = yellow
@@ -37,11 +36,11 @@ ul
     transform translate3d(-100px, 0, 0)
 
 .poem-btn-green
-  font-size:22px
+  font-size:.4rem
   background-color:app-green
-  border-radius:3px
-  height:50px
-  line-height:50px
+  border-radius:10px
+  height:1rem
+  line-height:1rem
   width:8rem
   margin:30px auto
   text-align: center;
@@ -49,20 +48,20 @@ ul
   
 .poem-input-box
   margin:0 auto;
-  width:8rem;
+  width:9.5rem;
   background-color:#fff
   border:line-gray 1px solid
   color:text-gray
-  
-.poem-input-box>div
-  height:input-height
-  line-height:input-height
-  border-bottom:solid 1px line-gray
-  
-.poem-input-box input
-  outline:none !important
-  height:(input-height)
-  border:none
+  &>div
+    height:input-height+0.2rem
+    line-height:input-height+0.2rem
+    border-bottom:solid 1px line-gray
+  & input
+    outline:none !important
+    height:(input-height)
+    border:none
+    font-size:.4rem
+    height:input-height
   
 .poem-hidden
   display:none

@@ -33,7 +33,6 @@ ul
   margin 0
 
 a
-  color #000
   cursor pointer
   text-decoration none
   
