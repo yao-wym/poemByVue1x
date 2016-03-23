@@ -1,6 +1,6 @@
 <template>
       <flex-scroll-view>
-          <app-pane side="left" msg="1123" name="{{leftName}}"></app-pane>
+          <!-- <app-pane side="left" msg="1123" name="{{leftName}}"></app-pane> -->
       </flex-scroll-view>
 </template>
 

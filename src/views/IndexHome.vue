@@ -14,6 +14,14 @@
     'app-pane': require('../components/IndexHomePane.vue'),
     'index-tab': require('../components/IndexTab.vue'),
     'flex-scroll-view': require('../components/FlexScrollView.vue'),
+  },  
+  events:{
+    'refresh':function(msg){
+    },
+    'scrollViewLoaded':function(msg){
+      // this.myScroll.refresh();
+      this.$broadcast('refresh');
+    },
   }
 }
 </script>

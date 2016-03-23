@@ -1,8 +1,7 @@
 <template>
 	<div class="index-home-container"> 
-  <div style="height:4rem;width: 100%">
-  <!-- Indicators -->
-  <!-- Wrapper for slides -->
+  <div style="height:auto;width: 100%">
+    <banner></banner>
 </div>
 <div class="pane">
   <div class="pane-left">
@@ -37,12 +36,18 @@
 module.exports = {
   replace: true,
   props: ['side', 'name','leftName'],
+  components: {
+    'banner': require('../components/BannerView.vue'),
+  },
   ready:function(){
-    this.$dispatch('scrollViewLoaded')
+    // this.$nextTick(function(){
+    //   this.$dispatch('refresh');
+    // });
+    setTimeout((function(that){return function(){that.$dispatch('refresh');}})(this),1000)
   }
 }
 </script>
-
+<!--  -->
 <style lang="stylus">
 .pane
 	overflow:hidden

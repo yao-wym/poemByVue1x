@@ -1,7 +1,7 @@
 <template v-transition>
     	<app-header title='游记'></app-header>
       <flex-scroll-view transition="bounce">
-          <app-pane side="left" msg="1123" name="{{leftName}}"></app-pane>
+          <!-- <app-pane side="left" msg="1123" name="{{leftName}}"></app-pane> -->
       </flex-scroll-view>
 </template>
 

@@ -61,6 +61,7 @@ export default {
 	},
 	ready:function(){
 		this.myScroll = new IScroll('#wrapper', { mouseWheel: true ,click:true});
+		// setTimeout((function(that){return function(){that.myScroll.refresh();}})(this),5000)
 	},
 	events:{
 		'refresh':function(msg){
@@ -68,7 +69,7 @@ export default {
 		},
 		'scrollViewLoaded':function(msg){
 			// this.myScroll.refresh();
-			// this.myScroll.refresh();
+			this.myScroll.refresh();
 		},
 	}
 
