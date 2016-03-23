@@ -19,13 +19,18 @@ export default {
   padding:5px 0 10px 0
   margin:0
   height:auto
+  flex-direction:row;
+  display: box
+  display:flex
+  display: block
+  display: -webkit-flex; /* Safari */
   & a
     display:inline-block
-    width:25%
     font-size:.4rem
+    -webkit-box-flex: 1
+    flex:1
     color:rgb(88,88,88)
     text-align:center
-    margin-left:-3px
   & img
     width: .6rem
     margin:0 auto

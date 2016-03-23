@@ -64,10 +64,10 @@ module.exports = {
 .filter-tab
 	flex-direction:row;
 	background-color:black
-	opacity:0.5
-	padding:3px 0
 	display:flex
 	display: -webkit-flex; /* Safari */
+	opacity:0.5
+	padding:3px 0
 	width:100%
 	& a
 		-webkit-box-flex: 1
