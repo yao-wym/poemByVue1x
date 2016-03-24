@@ -17,8 +17,10 @@ import IndexUcenter from './views/IndexUcenter.vue'
 
 
 // install router
+// VueValidator = require('vue-validator')
+var client = 'ios';
 Vue.use(Router)
-
+// Vue.use(VueValidator)
 // register filters globally
 Vue.filter('fromNow', fromNow)
 Vue.filter('domain', domain)
