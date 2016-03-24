@@ -60,7 +60,19 @@ export default {
 	created:function(){
 	},
 	ready:function(){
-		this.myScroll = new IScroll('#wrapper', { mouseWheel: true ,click:true});
+		this.myScroll = new IScroll('#wrapper', { 
+			mouseWheel:true,
+			click:true,
+			onRefresh:function(){alert(1)},
+		});
+		this.myScroll.on('scrollEnd', (function(that){
+			return function(){
+				console.log('加载更多');
+				that.$dispatch('scrollEnd');
+				that.$broadcast('scrollEnd');
+			}
+		})(this)
+			);
 		// setTimeout((function(that){return function(){that.myScroll.refresh();}})(this),5000)
 	},
 	events:{

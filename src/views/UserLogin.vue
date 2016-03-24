@@ -7,14 +7,13 @@
 			<div class="input-item">
 				<img src='../asset/images/user-green.png'/>
 				<label style="font-size:.4rem;;width:1.5rem display:inline-block">账号</label>
-				<input placeholder='手机号'/>
+				<input v-model="mobile" placeholder='手机号'/>
 			</div>
 			<div>
 				<img src='../asset/images/lock-white.png'/>
 				<label id="password" style="font-size:.4rem;width:1.5rem display:inline-block">密码</label>
-				<input id="password" v-validate:password="{minlength:6}" placeholder='请填写密码' />
+				<input v-model="password" id="password" v-validate:password="{minlength:6}" placeholder='请填写密码' />
 				<p v-if="$validation1.password.required">Your comment is too long.</p>
-
 			</div>
 		</div>
 		<div style="display: block;width: 80%;margin:1rem auto">
@@ -51,18 +50,24 @@ module.exports = {
   	replace: true,
   	data:function(){
   		return {
-
+  			mobile:'',
+  			password:''
   		};
   	},
   	 methods: {
   	 	login:function(){
-  	 		$.post(LOGIN_API,{username:this.mobile,password:this.password,client:client}).done(this.loginDone).fail(this.loginFail);
+  	 		// $.post(LOGIN_API,{username:this.mobile,password:this.password,client:client}).done(this.loginDone).fail(this.loginFail);
+  	 	 $.fn.poemPost(LOGIN_API,{username:this.mobile,password:this.password,client:window.poem.client}).done(this.loginDone).fail();
   	 	},
-  	 	loginDone:function(){
-			localStorage.setItem('isLogin',1);
-  	 	},
-  	 	loginFail:function(){
-
+  	 	loginDone:function(res){
+  	 		console.log(JSON.stringify(res));
+  	 		if(res.error){
+  	 			poemUI.toast(res.error)
+  	 		}else{
+  	 			poem.saveItem('username',res.username);
+  	 			poem.saveItem('key',res.key);
+  	 			this.$route.router.go('/index/ucenter');
+  	 		}
   	 	}
   	 },
   	 props:['rightLabel','rightLink'],
@@ -74,6 +79,5 @@ module.exports = {
   	 	this.rightLabel = '注册';
   	 	this.rightLink = '#/user/reg'
   	 }
-}ert(3);
-}
+};
 </script>

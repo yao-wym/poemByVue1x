@@ -1,8 +1,7 @@
 <template>
-		<li class="goods-item">
-			<img src="../asset/images/about.png" class="goods-img">
-			<!-- <p>{{cartGoods}}</p>
-		-->
+	<li class="goods-item">
+		<a style="overflow: hidden" v-link="{path:'/HotelDetail',params:{store_id:123}}">
+			<img v-bind:src="hotel.store_label" class="goods-img">
 			<div class="goods-info">
 				<div class="goods-name">{{hotel.store_name}}</div>
 				<div>
@@ -12,10 +11,11 @@
 						<p>{{hotel.store_address}}</p>
 					</div>
 					<div style="float:right;margin-right: 10px">
-						298元起
+						{{hotel.min_price}}起
 					</div>
 				</div>
 			</div>
+		</a>
 	</li>
 </template>
 

@@ -19,3 +19,4 @@ var poemUI = {
 		}
 	}
 }
+var client = 'ios'

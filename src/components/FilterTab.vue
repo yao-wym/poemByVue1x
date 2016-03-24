@@ -67,7 +67,6 @@ module.exports = {
 	display:flex
 	display: -webkit-flex; /* Safari */
 	opacity:0.5
-	padding:3px 0
 	width:100%
 	& a
 		-webkit-box-flex: 1
@@ -79,8 +78,6 @@ module.exports = {
 		width: .6rem
 		display: block
 		margin:0 auto
-.poem-green
-	background-color:poem-green
 
 .item-list
 	padding-left:0

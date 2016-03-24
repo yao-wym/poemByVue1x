@@ -19,9 +19,6 @@ module.exports = {
     'hotel-list-item': function(resolve) {
     	require(['../components/HotelListItem.vue'], resolve);
     },
-    'list-view': function(resolve) {
-      require(['../components/ListView.vue'], resolve);
-    },
     'flex-scroll-view': function(resolve) {
       require(['../components/FlexScrollView.vue'], resolve);
     },
@@ -58,27 +55,26 @@ module.exports = {
         });
         // setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),50)
       }
-      if(res.hasmore == false){
-        this.$off('scrollEnd')
-      }
   	},
   },
   created: function() {
+    this.$on('conditionChange', function() {
+        
+      //此处需要清空数组，但是为了调试方便～暂时不清空
+      $.getJSON(SHOP_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+    });
+    // this.$on('scrollViewLoaded', function() {
+    //     this.$broadcast('scrollViewLoaded');
+    // })
   },
   ready:function(){
     this.getHotelList();
   },
   attached:function(){
+   // alert(2);
   },
   compiled:function(){
-  },
-  events:{
-    'scrollEnd':function(msg){
-      this.getHotelList();
-    },
-    'conditionChange':function(msg){
-      $.getJSON(SHOP_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
-    }
+    // alert(2);
   }
 }
 </script>

@@ -13,6 +13,7 @@ import FindPwdView from './views/UserFindPwd.vue'
 import IndexView from './views/Index.vue'
 import IndexArticle from './views/IndexArticle.vue'
 import IndexUcenter from './views/IndexUcenter.vue'
+import HotelDetailView from './views/HotelDetail.vue'
 
 
 
@@ -93,6 +94,9 @@ router.map({
   },
   '/HotelList': {
     component: HotelListView
+  },
+  '/HotelDetail': {
+    component: HotelDetailView
   },
   '/app_header': {
     component: ItemView
