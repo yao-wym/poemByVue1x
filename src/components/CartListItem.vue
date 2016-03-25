@@ -2,7 +2,7 @@
 	<li class="goods-item">
 		<div>
 			<div style="float:left">
-				
+				<input type="checkbox">
 			</div>
 			<div style="float:right">
 				<span>删除</span>
