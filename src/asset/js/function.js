@@ -41,6 +41,39 @@ window.poem = {};
 		};
 		return deferredObj;
 	};
+	$.fn.poemGet = function(url,data){
+		var deferredObj = $.getJSON(url,data,'');
+		var doneObj = deferredObj.done;
+		var failObj = deferredObj.fail;
+		deferredObj.done = function(func){
+			var func2 = function(res){
+				if(res.code != 200){
+					poemUI.toast('请求错误');
+				}else{
+					if(typeof func == 'function'){
+						func(res.datas);
+					}else{
+						console.log('参数错误');
+					}
+				}
+			};
+			doneObj(func2);
+			return deferredObj;
+		};
+		deferredObj.fail = function(func){
+			var func2 = function(res){
+				poemUI.toast('网络错误');
+				if(typeof func == 'function'){
+					func(res.datas);
+				}else{
+					console.log('参数错误');
+				}
+			};
+			failObj(func2);
+			return deferredObj;
+		};
+		return deferredObj;
+	};
 	poem.saveItem = function(itemName,itemVal){
 		localStorage.setItem(itemName,itemVal);
 	};

@@ -1,6 +1,6 @@
 <template>
 	<li class="goods-item">
-		<a style="overflow: hidden" v-link="{path:'/HotelDetail',params:{store_id:123}}">
+		<a style="overflow: hidden" v-link="{name:'hoteldetail',params:{hotelId:hotel.store_id}}">
 			<img v-bind:src="hotel.store_label" class="goods-img">
 			<div class="goods-info">
 				<div class="goods-name">{{hotel.store_name}}</div>

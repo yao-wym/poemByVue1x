@@ -95,7 +95,8 @@ router.map({
   '/HotelList': {
     component: HotelListView
   },
-  '/HotelDetail': {
+  '/HotelDetail/:hotelId': {
+    name:'hoteldetail',
     component: HotelDetailView
   },
   '/app_header': {

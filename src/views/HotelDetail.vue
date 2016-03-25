@@ -1,10 +1,11 @@
 <template>
-      <flex-scroll-view>
+  <div class="flex-view" v-transition>
+    <flex-scroll-view>
       <div id="uc-container">
         <header class="uc-header">
           <div>
             <img src="../asset/images/user-white.png">
-            <p>18782950298</p>
+            <p></p>
           </div>
         </header>
         <section class="li-section">
@@ -12,7 +13,7 @@
               <div class="icon">
                 <img src="../asset/images/star-red-full.png">
               </div>
-              <div class="title">我的订单</div>
+              <div class="title">{{hotelName}}</div>
               <div clase="arrow">
               </div>
             </a></div>
@@ -61,43 +62,48 @@
         </section>
       </div>
     </flex-scroll-view>
+  </div>
 </template>
 
 <script>
 
 	module.exports = {
   replace: true,
-  components: {
-    'app-header': require('../components/CommonHeader.vue'),
-    'app-pane': require('../components/IndexHomePane.vue'),
-    'index-tab': require('../components/IndexTab.vue'),
-    'flex-scroll-view': require('../components/FlexScrollView.vue'),
-  },
-    route: {
-    data ({ to }) {
-      // This is the route data hook. It gets called every time the route
-      // changes while this component is active.
-      // 
-      // What we are doing:
-      // 
-      // 1. Get the `to` route using ES2015 argument destructuring;
-      // 2. Get the `page` param and cast it to a Number;
-      // 3. Fetch the items from the store, which returns a Promise containing
-      //    the fetched items;
-      // 4. Chain the Promise and return the final data for the component.
-      //    Note we are waiting until the items are resolved before resolving
-      //    the entire object, because we don't want to update the page before
-      //    the items are fetched.
-      const page = +to.params.page
-      document.title = 'Vue.js HN Clone'
-      return store.fetchItemsByPage(page).then(items => ({
-        page,
-        items
-      }))
+  data:function(){
+    return {
+      'hotelName':'123'
     }
   },
+  methods:{
+    getHotelDetail:function(){
+      $.fn.poemGet(HOTEL_DETAIL_API,{'store_id':this.$route.params.hotelId}).done(this.initPage)
+    },
+    initPage:function(res){
+      if(res.store_info){
+        this.hotelName = res.store_info.store_name
+      }
+    }
+  },
+  components: {
+    'flex-scroll-view': function(resolve) {
+      require(['../components/FlexScrollView.vue'], resolve);
+    },
+  },
+    route: {
+      data: function (transition) {
+        // alert(JSON.stringify(this.$route.params));
+        transition.next({
+            // 'hotelName':'111'
+        })
+          this.getHotelDetail();
+    },
+      canReuse:function(transition){
+        //判断是否可以重用，可以则为返回true，不能重用则返回false，会实例化一个新的vue对象
+      }
+  },
   ready:function(){
-    alert(JSON.stringify(this.$route.params));
+    
+    this.$broadcast('refresh');
   }
 }
 </script>
