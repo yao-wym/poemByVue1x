@@ -1,14 +1,12 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header search="找酒店" right-icon="user-icon"></app-header>
+	<app-header title="吃喝玩乐"></app-header>
   <flex-scroll-view>
         <ul id="hotel-list-view" style="font-size: 0.3rem">
-      <hotel-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></hotel-list-item>
+      <food-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></food-list-item>
     </ul>
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
-
-	<filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['默认排序','传统酒店','牧家乐']"></filter-tab>
 </div>
 </template>
 
@@ -16,17 +14,14 @@
 module.exports = {
   replace: true,
   components: {
-    'hotel-list-item': function(resolve) {
-    	require(['../components/HotelListItem.vue'], resolve);
+    'food-list-item': function(resolve) {
+    	require(['../components/FoodListItem.vue'], resolve);
     },
     'flex-scroll-view': function(resolve) {
       require(['../components/FlexScrollView.vue'], resolve);
     },
     'return-top':function(resolve){
     	require(['../components/returnTop.vue'], resolve);
-    },
-    'filter-tab':function(resolve){
-    	require(['../components/FilterTab.vue'], resolve);
     },
     'app-header':function(resolve){
     	require(['../components/CommonHeader.vue'], resolve);

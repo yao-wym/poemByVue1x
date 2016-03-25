@@ -2,11 +2,11 @@
 	<div class="flex-view" v-transition>
 	<app-header search="找酒店" right-icon="user-icon"></app-header>
   <flex-scroll-view>
-        <!-- <ul id="hotel-list-view" style="font-size: 0.3rem"> -->
-        <list-view>
+        <ul id="hotel-list-view" style="font-size: 0.3rem">
+      <!-- <list-view> -->
       <hotel-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></hotel-list-item>
-      </list-view>
-    <!-- </ul> -->
+      <!-- </list-view> -->
+    </ul>
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 

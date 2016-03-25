@@ -7,6 +7,8 @@ import ItemView from './components/ItemView.vue'
 import UserView from './views/User.vue'
 import IndexHome from './views/IndexHome.vue'
 import HotelListView from './views/HotelList.vue'
+import ScenicListView from './views/ScenicList.vue'
+import FoodListView from './views/FoodList.vue'
 import UserRegView from './views/UserReg.vue'
 import UserLoginView from './views/UserLogin.vue'
 import FindPwdView from './views/UserFindPwd.vue'
@@ -94,6 +96,12 @@ router.map({
   },
   '/HotelList': {
     component: HotelListView
+  },
+  '/FoodList': {
+    component: FoodListView
+  },
+  '/ScenicList': {
+    component: ScenicListView
   },
   '/HotelDetail/:hotelId': {
     name:'hoteldetail',

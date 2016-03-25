@@ -5,24 +5,24 @@
 </div>
 <div class="pane">
   <div class="pane-left">
-    <a href="#HotelList">
+    <a v-link="{path:'/HotelList'}">
       <div v-on="click:location.href='#hotel-list'" style="background-color: rgb(234,99,94)">
         <img src="../asset/images/store-white.png">
       </div>
     </a>
-    <a @tap="#HotelList">
+    <a v-link="{path:'/ScenicList'}">
       <div style="background-color: rgb(127,204,229)">
         <img src="../asset/images/location.png">
       </div>
     </a>
   </div>
   <div class="pane-right">
-    <a href="#HotelList">
+    <a v-link="{path:'/ScenicList'}">
       <div style="background-color: rgb(141,194,30)">
         <img src="../asset/images/ticket-white.png">
       </div>
     </a>
-    <a href="#HotelList">
+    <a v-link="{path:'/FoodList'}">
       <div style="background-color: rgb(242,150,0)">
         <img src="../asset/images/techan.png">
       </div>

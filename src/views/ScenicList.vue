@@ -1,9 +1,9 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header search="找酒店" right-icon="user-icon"></app-header>
+	<app-header search="找景点" right-icon="user-icon"></app-header>
   <flex-scroll-view>
-        <ul id="hotel-list-view" style="font-size: 0.3rem">
-      <hotel-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></hotel-list-item>
+        <ul id="scienic-list-view" style="font-size: 0.3rem">
+      <scienic-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></scienic-list-item>
     </ul>
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
@@ -16,8 +16,8 @@
 module.exports = {
   replace: true,
   components: {
-    'hotel-list-item': function(resolve) {
-    	require(['../components/HotelListItem.vue'], resolve);
+    'scenic-list-item': function(resolve) {
+    	require(['../components/ScenicListItem.vue'], resolve);
     },
     'flex-scroll-view': function(resolve) {
       require(['../components/FlexScrollView.vue'], resolve);
