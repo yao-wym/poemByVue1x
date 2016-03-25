@@ -18,7 +18,7 @@ import IndexView from './views/Index.vue'
 import IndexArticle from './views/IndexArticle.vue'
 import IndexUcenter from './views/IndexUcenter.vue'
 import HotelDetailView from './views/HotelDetail.vue'
-
+import HotelDeepDetail from './views/HotelDeepDetail.vue'
 
 
 // install router
@@ -115,7 +115,10 @@ router.map({
   },
   '/HotelDetail/:hotelId': {
     name:'hoteldetail',
-    component: HotelDetailView
+    component: HotelDetailView,
+  },
+  '/HotelDeepDetail/:hotelId': {
+    component: HotelDeepDetail
   },
   '/app_header': {
     component: ItemView

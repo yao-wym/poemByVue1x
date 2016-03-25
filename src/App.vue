@@ -24,6 +24,7 @@
 
 html, body
   font-family Verdana
+  font-size 30px
   height 100%
   color:text-gray
 
