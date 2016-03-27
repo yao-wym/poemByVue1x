@@ -57,7 +57,7 @@ module.exports = {
   	 methods: {
   	 	login:function(){
   	 		// $.post(LOGIN_API,{username:this.mobile,password:this.password,client:client}).done(this.loginDone).fail(this.loginFail);
-  	 	 $.fn.poemPost(LOGIN_API,{username:this.mobile,password:this.password,client:window.poem.client}).done(this.loginDone).fail();
+  	 	 $.poemPost(LOGIN_API,{username:this.mobile,password:this.password,client:poem.client}).done(this.loginDone).fail();
   	 	},
   	 	loginDone:function(res){
   	 		console.log(JSON.stringify(res));

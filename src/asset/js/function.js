@@ -8,40 +8,8 @@ function isEmpty(obj){
 }
 window.poem = {};
 (function($,poem){
-	$.fn.poemPost = function(url,data){
-		var deferredObj = $.post(url,data,'','json');
-		var doneObj = deferredObj.done;
-		var failObj = deferredObj.fail;
-		deferredObj.done = function(func){
-			var func2 = function(res){
-				if(res.code != 200){
-					poemUI.toast('请求错误');
-				}else{
-					if(typeof func == 'function'){
-						func(res.datas);
-					}else{
-						console.log('参数错误');
-					}
-				}
-			};
-			doneObj(func2);
-			return deferredObj;
-		};
-		deferredObj.fail = function(func){
-			var func2 = function(res){
-				poemUI.toast('网络错误');
-				if(typeof func == 'function'){
-					func(res.datas);
-				}else{
-					console.log('参数错误');
-				}
-			};
-			failObj(func2);
-			return deferredObj;
-		};
-		return deferredObj;
-	};
-	$.fn.poemGet = function(url,data){
+	$.extend({
+		poemGet : function(url,data){
 		var deferredObj = $.getJSON(url,data,'');
 		var doneObj = deferredObj.done;
 		var failObj = deferredObj.fail;
@@ -51,6 +19,7 @@ window.poem = {};
 					poemUI.toast('请求错误');
 				}else{
 					if(typeof func == 'function'){
+						console.log(JSON.stringify(res.datas));
 						func(res.datas);
 					}else{
 						console.log('参数错误');
@@ -64,6 +33,7 @@ window.poem = {};
 			var func2 = function(res){
 				poemUI.toast('网络错误');
 				if(typeof func == 'function'){
+					console.log(JSON.stringify(res.datas));
 					func(res.datas);
 				}else{
 					console.log('参数错误');
@@ -73,7 +43,43 @@ window.poem = {};
 			return deferredObj;
 		};
 		return deferredObj;
-	};
+	},
+	poemPost : function(url,data){
+		var deferredObj = $.post(url,data,'','json');
+		var doneObj = deferredObj.done;
+		var failObj = deferredObj.fail;
+		deferredObj.done = function(func){
+			var func2 = function(res){
+				if(res.code != 200){
+					poemUI.toast('请求错误');
+				}else{
+					if(typeof func == 'function'){
+						console.log(JSON.stringify(res.datas));
+						func(res.datas);
+					}else{
+						console.log('参数错误');
+					}
+				}
+			};
+			doneObj(func2);
+			return deferredObj;
+		};
+		deferredObj.fail = function(func){
+			var func2 = function(res){
+				poemUI.toast('网络错误');
+				if(typeof func == 'function'){
+					console.log(JSON.stringify(res.datas));
+					func(res.datas);
+				}else{
+					console.log('参数错误');
+				}
+			};
+			failObj(func2);
+			return deferredObj;
+		};
+		return deferredObj;
+	}
+});
 	poem.saveItem = function(itemName,itemVal){
 		localStorage.setItem(itemName,itemVal);
 	};

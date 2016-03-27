@@ -12,6 +12,8 @@ import FoodListView from './views/FoodList.vue'
 import UserRegView from './views/UserReg.vue'
 import UserLoginView from './views/UserLogin.vue'
 import FindPwdView from './views/UserFindPwd.vue'
+import ChangePwdView from './views/UserChangePwd.vue'
+import AddressListView from './views/AddressList.vue'
 import IndexView from './views/Index.vue'
 import IndexArticle from './views/IndexArticle.vue'
 import IndexUcenter from './views/IndexUcenter.vue'
@@ -49,6 +51,14 @@ router.map({
       '/findpwd':{
         name:'findpwd',
         component:FindPwdView
+      },
+      '/changepwd':{
+        name:'changepwd',
+        component:ChangePwdView
+      },
+      '/addresslist':{
+        name:'addresslist',
+        component:AddressListView
       },
       '/:id':{
         component:UserView

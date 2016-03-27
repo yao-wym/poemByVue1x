@@ -2,17 +2,8 @@
 	<div class="banner-wrap">
         <div id="b-wrapper">
         <div id="banner" class="banner-content">
-        	<div class="slide">
-				<div class="painting giotto"></div>
-			</div>
-			<div class="slide">
-				<div class="painting leonardo"></div>
-			</div>
-			<div class="slide">
-				<div class="painting gaugin"></div>
-			</div>
-			<div class="slide">
-				<div class="painting warhol"></div>
+        	<div v-for="item in slideList" class="slide">
+				<div style="background-image:url({{item.image}})" class="painting giotto"></div>
 			</div>
         </div>
     </div>
@@ -69,29 +60,12 @@ imgWidth = 9rem
 }
 
 .painting {
-	width: 9rem;
-	height: bannerHeight;
-	border-radius: 10px;
-	margin: 20px auto;
+	width: 100%;
+	height: bannerHeight+0.5rem;
+	margin: 0;
 	background-size:100%
 	border: 1px solid #000;
 
-}
-
-.giotto {
-	background: url(../asset/images/app_1.png);
-}
-
-.leonardo {
-	background: url(../asset/images/app_1.png);
-}
-
-.gaugin {
-	background: url(../asset/images/app_1.png);
-}
-
-.warhol {
-	background: url(../asset/images/app_1.png);
 }
 
 #indicator {
@@ -135,12 +109,19 @@ function loaded () {
 export default {
 	data:function(){
 		return {
-			myScroll:''
+			myScroll:'',
+			slideList:[]
+		}
+	},
+	methods:{
+		initPage:function(res){
+			this.slideList = res.adv_list.item
 		}
 	},
 	created:function(){
 	},
 	ready:function(){
+		$.poemGet(ADV_API).done(this.initPage);
 		loaded();
 	},
 	events:{

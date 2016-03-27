@@ -1,6 +1,6 @@
 <template>
-	<li class="goods-item">
-		<div>
+	<li class="cart-item">
+		<div style="overflow:hidden">
 			<div style="float:left">
 				<input type="checkbox">
 			</div>
@@ -9,25 +9,25 @@
 				<span>编辑</span>
 			</div>
 		</div>
-		<a style="overflow: hidden" v-link="{name:'hoteldetail',params:{hotelId:hotel.store_id}}">
-			<img v-bind:src="hotel.store_label" class="goods-img">
-			<div class="goods-info">
-				<div class="goods-name">{{hotel.store_name}}</div>
-				<div>
-					<div style="float: left">
-						<p>{{hotel.store_star}}</p>
-						<p>{{hotel.store_star}}</p>
-						<p>{{hotel.store_address}}</p>
-					</div>
-					<div style="float:right;margin-right: 10px">
-						{{hotel.min_price}}起
-					</div>
-				</div>
+		<div class="cart-goods-list">
+			<div class="cart-goods-item">
+				<a style="overflow: hidden;padding-top:20px">
+			<img class="cart-goods-img"/>
+			<div class="cart-goods-info">
+				123
 			</div>
-		</a>
-		<div>
+			<div class="cart-goods-price">
+				<p>123</p>
+				<p>x1</p>
+			</div>
+			</a>
+			</div>
 		</div>
-		<div>
+		<div style="overflow:hidden">
+			<span style="float:right">总共xx件合计。。。</span>
+		</div>
+		<div style="overflow:hidden">
+			<button style="float:right">联系卖家</button>
 		</div>
 	</li>
 </template>
@@ -41,16 +41,16 @@ module.exports = {
 
 <style lang="stylus">
 	@import "../main.styl"
-.goods-img
-	width:2rem
-	height:2rem
-	float:left
-	margin-right:0.3rem
-
-.goods-info
-	overflow:hidden
-.goods-item
-	 background-color: #eee; 
-	 overflow:auto; 
-	 resize:horizontal;
+.cart-goods-list
+	background-color:rgb(240,240,240)
+.cart-goods-item a
+	display:flex
+	& .cart-goods-img
+		width:2rem
+		height:2rem
+		margin-right:0.3rem
+	& .cart-goods-info
+		flex:1
+	& .cart-goods-price
+		width:1.4rem
 </style>

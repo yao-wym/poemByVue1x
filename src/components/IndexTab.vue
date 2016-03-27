@@ -16,7 +16,6 @@ export default {
 .index-tab
   z-index:2
   background-color:tab-color
-  padding:5px 0 10px 0
   margin:0
   height:auto
   flex-direction:row;
@@ -31,6 +30,7 @@ export default {
     flex:1
     color:rgb(88,88,88)
     text-align:center
+    padding:5px 0 10px 0
   & img
     width: .6rem
     margin:0 auto

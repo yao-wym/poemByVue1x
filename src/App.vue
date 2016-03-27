@@ -24,10 +24,11 @@
 
 html, body
   font-family Verdana
-  font-size 13px
   height 100%
+  color:text-gray
 
 ul
+  color:text-gray
   list-style-type none
   padding 0
   margin 0
@@ -35,6 +36,7 @@ ul
 a
   cursor pointer
   text-decoration none
+  color:text-gray
   
 #app-container
   background-color $bg

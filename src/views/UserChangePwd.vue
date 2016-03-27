@@ -25,7 +25,7 @@
 		</div> -->
 	</div>
     </flex-scroll-view>
-	<yellow-bottom v-link="{name:'changepwd'}">
+	<yellow-bottom href="#user/login">
 		<span>下一步</span>
 	</yellow-bottom>
 </div>
@@ -46,11 +46,11 @@
 module.exports = {
 	replace: true,
 	methods: {
-		// goNextStep: goNextStep
+		goNextStep: goNextStep
 	},
 	ready: function() {
 		this.$dispatch('pageLoaded');
-		this.leftLabel = '找回密码';
+		this.leftLabel = '修改密码';
 	},
 	components: {
 		'yellow-bottom': require('../components/YellowBottom.vue'),
@@ -58,5 +58,10 @@ module.exports = {
 		'flex-scroll-view': require('../components/FlexScrollView.vue'),
 	},
 	props:['title','leftLabel']
+}
+
+function goNextStep() {
+	alert(2);
+	$.post(LOGIN_API).done(registerDone).fail(registerFail);
 }
 </script>

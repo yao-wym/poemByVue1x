@@ -1,36 +1,60 @@
 <template>
   <div class="flex-view" v-transition>
     <flex-scroll-view>
-      <div id="uc-container">
-        <header class="uc-header">
-          <div>
-            <img src="../asset/images/user-white.png">
-            <p></p>
+      <div id="hotel-container">
+        <div class="hotel-header" style="background-image:url({{bgImg}})">
+          <header>
+            <i style="float:left">
+              <img src="../asset/images/fanhui.png">
+            </i>
+            <div style="float:right">
+                <img src="../asset/images/star-red.png">
+                <img style="margin:0 5px" src="../asset/images/share-white.png">
+            </div>
+          </header>
+          <div style="position:absolute;bottom:0;padding-left:10px;font-size:.3rem">
+            <p>{{hotelName}}</p>
           </div>
-        </header>
+        </div>
         <section class="li-section">
+
           <div class="li-label"><a href="">
               <div class="icon">
                 <img src="../asset/images/star-red-full.png">
               </div>
-              <div class="title">{{hotelName}}</div>
-              <div clase="arrow">
-              </div>
-            </a></div>
-          <div class="li-label"><a href="">
-              <div class="icon">
-                <img src="../asset/images/star-red-full.png">
-              </div>
-              <div class="title">我的订单</div>
-              <div clase="arrow">
+              <div class="title">评论</div>
+                           <div class="arrow">
+                <i></i>
               </div>
             </a></div>
             <div class="li-label"><a href="">
               <div class="icon">
                 <img src="../asset/images/star-red-full.png">
               </div>
-              <div class="title">我的订单</div>
-              <div clase="arrow">
+              <div class="title">
+                <span style="margin-right:20px">地图</span>
+                <span>{{hotelLoc}}</span>
+              </div>
+                <div class="arrow">
+                <i></i>
+              </div>
+            </a></div>
+            <div class="li-label"><a href="">
+              <div class="icon">
+                <img src="../asset/images/star-red-full.png">
+              </div>
+              <div class="title">详情</div>
+                <div class="arrow">
+                <i></i>
+              </div>
+            </a></div>
+              <div class="li-label"><a href="">
+              <div class="icon">
+                <img src="../asset/images/star-red-full.png">
+              </div>
+              <div class="title">吃喝玩乐</div>
+                <div class="arrow">
+                <i></i>
               </div>
             </a></div>
         </section>
@@ -39,26 +63,40 @@
               <div class="icon">
                 <img src="../asset/images/star-red-full.png">
               </div>
-              <div class="title">我的订单</div>
-              <div clase="arrow">
+              <div class="title"><span>3月10日入住－3月20日离店</span><span>共一晚</span></div>
+                <div class="arrow">
+                <i></i>
               </div>
             </a></div>
-          <div class="li-label"><a href="">
-              <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+            <ul class="hotel-room-list">
+             
+          <div class="li-room" v-for="room in roomList">
+              <a>
+                <div class="room-img">
+                  <img src="{{room.goods_image_url}}">
+                </div>
+                <div class="room-info">
+                  <p>{{room.goods_name}}</p>
+                  <p>{{room.goods_jingle}}</p>
+                </div>
+                <div class="room-price">
+                  <span>¥</span><span style="color:red;font-size:.4rem">{{room.goods_salenum}}</span><span>起</span>
+                </div>
+                  <div class="arrow">
+                  <i></i>
+                </div>
+              </a>
+              <div class="room-detail">
+                <div class="hotel-room-img-list">
+                <div v-for="photo in room.goods_photo" class="room-img-item">
+                  <img src="{{photo}}">
+                </div>
               </div>
-              <div class="title">我的订单</div>
-              <div clase="arrow">
+              <div style="overflow:hidden">
+                <button class="book-btn" style="float:right">预定</button>
               </div>
-            </a></div>
-            <div class="li-label"><a href="">
-              <div class="icon">
-                <img src="../asset/images/star-red-full.png">
-              </div>
-              <div class="title">我的订单</div>
-              <div clase="arrow">
-              </div>
-            </a></div>
+              </div> 
+            </ul>
         </section>
       </div>
     </flex-scroll-view>
@@ -71,16 +109,22 @@
   replace: true,
   data:function(){
     return {
-      'hotelName':'123'
+      'hotelName':'123',
+      'bgImg':'',
+      'hotelLoc':'',
+      'roomList':[]
     }
   },
   methods:{
     getHotelDetail:function(){
-      $.fn.poemGet(HOTEL_DETAIL_API,{'store_id':this.$route.params.hotelId}).done(this.initPage)
+      $.poemGet(HOTEL_DETAIL_API,{'store_id':this.$route.params.hotelId}).done(this.initPage)
     },
     initPage:function(res){
       if(res.store_info){
-        this.hotelName = res.store_info.store_name
+        this.hotelName = res.store_info.store_name;
+        this.hotelLoc = res.store_info.store_location_lat+','+res.store_info.store_location_lng;
+        this.bgImg = res.store_info.store_label;
+        this.roomList = res.good_list;
       }
     }
   },
@@ -95,7 +139,7 @@
         transition.next({
             // 'hotelName':'111'
         })
-          this.getHotelDetail();
+        this.getHotelDetail();
     },
       canReuse:function(transition){
         //判断是否可以重用，可以则为返回true，不能重用则返回false，会实例化一个新的vue对象
@@ -110,16 +154,24 @@
 
 <style lang="stylus">
   @import "../main.styl"
-  #uc-container
+room-item-height=1.5rem
+
+  #hotel-container
     background-color:rgb(238,238,238)
-  .uc-header
-    background:url(../asset/images/news.png)
-    text-align:center
-    padding-top:1rem
-    padding-bottom:.6rem
-    color:white
-  .arrow
-    background:url(../asset/images/right_icon.png)
+    & a
+      color:text-gray
+    & .hotel-header
+      background:url(../asset/images/news.png)
+      background-size:100% 100%
+      text-align:center
+      height:6rem
+      padding-bottom:.6rem
+      color:white
+      position:relative
+      & header
+        padding:10px
+        & img
+          height:0.5rem
   .li-section
     background-color:white
   .li-section .li-label
@@ -138,6 +190,7 @@
       & .title
         -webkit-box-flex: 1
         flex:1
+        border-bottom:solid 1px line-gray
       & .icon
         width:.3rem
         height:.3rem
@@ -145,8 +198,78 @@
         & img
           width:100%
       & .arrow
-        width:.5rem
-        height:.5rem
-
-
+        border-bottom:solid 1px line-gray
+        height:1rem
+        background:none
+        & i
+          margin-top:.3rem
+          line-height:1rem
+          display:block
+          width:.3rem
+          height:@width
+          background-size:100%
+          background-image:url(../asset/images/right_icon.png)
+  .hotel-room-list
+    & .li-room
+      border-bottom:solid 1px line-gray
+    & .li-room a
+      font-size: .25rem
+      padding:0 10px
+      height:room-item-heigth
+      display:flex
+      & .room-img
+        width:room-item-height
+        height:room-item-height
+        line-height:room-item-height
+        text-align:center
+        padding:3px
+        & img
+          margin:0 auto
+          width:1.4rem
+          height:@width
+      & .room-info
+        flex:1
+      & .room-price
+        height:room-item-height
+        line-height:room-item-height
+        margin-right:10px
+        font-size:.3rem
+      & .arrow
+        height:room-item-height
+        background:none
+        width:0.5rem
+        & i
+          margin-top:.6rem
+          line-height:room-item-height
+          display:block
+          width:.3rem
+          height:@width
+          background-size:100%
+          background-image:url(../asset/images/right_icon.png)
+  .room-detail
+    background-color:rgb(250,250,250)
+    & .hotel-room-img-list
+      display:inline-block
+      padding 10px 0
+      height :2.2rem
+      overflow hidden
+      & div
+        width:25%
+        margin-left:-3px
+        float:left
+        padding 10px
+        text-align:center
+        & img
+          width:2rem
+          height:@width
+          margin:3px auto
+          border-radius:5px
+    & .book-btn
+      font-size:.3rem
+      background:app-yellow
+      color:white
+      border:none
+      border-radius:5px
+      padding:10px 15px
+      margin:10px 20px
 </style>

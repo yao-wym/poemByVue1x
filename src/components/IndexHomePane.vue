@@ -39,6 +39,7 @@ module.exports = {
   components: {
     'banner': require('../components/BannerView.vue'),
   },
+
   ready:function(){
     // this.$nextTick(function(){
     //   this.$dispatch('refresh');

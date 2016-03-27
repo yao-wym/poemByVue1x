@@ -1,0 +1,109 @@
+<template>
+	<div class="flex-view" v-transition>
+	<!-- <app-header search="找酒店" right-icon="user-icon"></app-header> -->
+  <flex-scroll-view>
+        <ul id="hotel-list-view" style="font-size: 0.3rem">
+      <!-- <list-view> -->
+      <hotel-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></hotel-list-item>
+      <!-- </list-view> -->
+    </ul>
+<!--     <return-top></return-top> -->
+  </flex-scroll-view>
+</div>
+</template>
+
+<script type="text/javascript">
+module.exports = {
+  replace: true,
+  components: {
+    'hotel-list-item': function(resolve) {
+    	require(['../components/HotelListItem.vue'], resolve);
+    },
+    'list-view': function(resolve) {
+      require(['../components/ListView.vue'], resolve);
+    },
+    'flex-scroll-view': function(resolve) {
+      require(['../components/FlexScrollView.vue'], resolve);
+    },
+    'return-top':function(resolve){
+    	require(['../components/returnTop.vue'], resolve);
+    },
+    'filter-tab':function(resolve){
+    	require(['../components/FilterTab.vue'], resolve);
+    },
+    'app-header':function(resolve){
+    	require(['../components/CommonHeader.vue'], resolve);
+    }
+  },
+  data: function(){
+  	var hotelList = [];
+  	var curpage = 1; 
+  	return {
+  		curpage : curpage,
+  		hotelList:hotelList
+  	}
+  },
+  methods:{
+  	getHotelList:function(){
+  		$.getJSON(HOTEL_LIST_API,{order:"asc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+  	},
+  	getHotelListDone:function(res){
+  		console.log(JSON.stringify(res));
+      if(!isEmpty(res.datas.store_list)){
+        this.hotelList = this.hotelList.concat(res.datas.store_list);
+        this.curpage++;
+        // this.$broadcast('refresh')
+        this.$nextTick(function(){
+          this.$broadcast('refresh');
+        });
+        // setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),50)
+      }
+      if(res.hasmore == false){
+        this.$off('scrollEnd')
+      }
+  	},
+  },
+  created: function() {
+  },
+  ready:function(){
+    this.getHotelList();
+    this.$dispatch('pageLoaded');
+    this.title = '我的地址';
+  },
+  attached:function(){
+  },
+  compiled:function(){
+  },
+  props:['title','leftLabel'],
+  events:{
+    'scrollEnd':function(msg){
+      this.getHotelList();
+    },
+    'conditionChange':function(msg){
+      $.getJSON(SHOP_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+    }
+  }
+}
+</script>
+
+<style lang="stylus">
+	@import "../main.styl"
+// px2rem(name, px){
+//     name: px/75 
+// }
+.goods-img
+	width:2rem
+	height:2rem
+	float:left
+	margin-right:0.3rem
+
+.goods-info
+	overflow:hidden
+.goods-item
+	 background-color: #eee; 
+	 overflow:auto; 
+	 resize:horizontal;
+	
+
+
+</style>

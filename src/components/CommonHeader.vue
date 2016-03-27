@@ -116,7 +116,7 @@ header-text-color = #fff
 #search-input
   border-radius:10px
   font-size:0.4rem
-  height:0.6rem
+  height:0.8rem
   width:100%
   display:block
   padding-left:5px

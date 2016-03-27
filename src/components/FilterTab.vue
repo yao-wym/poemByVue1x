@@ -65,19 +65,19 @@ module.exports = {
 	flex-direction:row;
 	background-color:black
 	display:flex
-	display: -webkit-flex; /* Safari */
-	opacity:0.5
+	opacity:0.7
 	width:100%
 	& a
+		padding-top:5px
 		-webkit-box-flex: 1
 		flex:1
 		text-align:center
-		font-size:0.4rem
+		font-size:0.3rem
 		color:rgb(148,148,148)
 	& img
 		width: .6rem
 		display: block
-		margin:0 auto
+		margin:3px auto
 
 .item-list
 	padding-left:0
