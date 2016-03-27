@@ -51,6 +51,9 @@
 <script>
   module.exports = {
     components: {
+      'flex-scroll-view': function(resolve) {
+        require(['../components/FlexScrollView.vue'], resolve);
+      },
       'app-header': function(resolve){
         require(['../components/CommonHeader.vue'], resolve);
       }
@@ -66,7 +69,7 @@
   }
 </script>
 
-<style lang="stylus">
+<style scoped lang="stylus">
   @import "../main.styl"
   p
     color: text-gray

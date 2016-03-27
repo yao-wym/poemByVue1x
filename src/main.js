@@ -19,7 +19,8 @@ import IndexArticle from './views/IndexArticle.vue'
 import IndexUcenter from './views/IndexUcenter.vue'
 import HotelDetailView from './views/HotelDetail.vue'
 import HotelDeepDetail from './views/HotelDeepDetail.vue'
-
+import HotelOrderForm from './views/HotelOrderForm.vue'
+import ScenicDetailView from './views/ScenicDetail.vue'
 
 // install router
 // VueValidator = require('vue-validator')
@@ -120,11 +121,17 @@ router.map({
   '/HotelDeepDetail/:hotelId': {
     component: HotelDeepDetail
   },
+  '/ScenicDetail/:ScenicId': {
+    component: ScenicDetailView
+  },
   '/app_header': {
     component: ItemView
   },
   '/app_header': {
     component: ItemView
+  },
+  '/HotelOrderForm/:id': {
+    component: HotelOrderForm
   }
 })
 
