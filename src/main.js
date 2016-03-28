@@ -21,7 +21,7 @@ import HotelDetailView from './views/HotelDetail.vue'
 import HotelDeepDetail from './views/HotelDeepDetail.vue'
 import HotelOrderForm from './views/HotelOrderForm.vue'
 import ScenicDetailView from './views/ScenicDetail.vue'
-
+import ScenicOrderForm from './views/ScenicOrderForm.vue'
 // install router
 // VueValidator = require('vue-validator')
 var client = 'ios';
@@ -132,6 +132,9 @@ router.map({
   },
   '/HotelOrderForm/:id': {
     component: HotelOrderForm
+  },
+  'ScenicOrderForm/:id': {
+    component: ScenicOrderForm
   }
 })
 
