@@ -20,7 +20,7 @@
             兑换方式：{{ exchangeWay }}
           </div>
         </div>
-        <h2><img class="small-icon" src="../asset/images/user-green.png" alt="">取票人信息</h2>
+        <h2 class="person-info"><img class="small-icon" src="../asset/images/user-green.png" alt="">取票人信息</h2>
         <div class="section">
           <div>姓名
             <input type="text">
@@ -108,7 +108,7 @@
       overflow: hidden
       & img
         width: 100%
-    h2
+    .person-info
       padding: section-padding
       font-size: .5rem
       font-weight: normal
