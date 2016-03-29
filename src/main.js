@@ -34,6 +34,9 @@ import ScenicOrderForm from './views/ScenicOrderForm.vue'
 import FoodDetail from './views/FoodDetail.vue'
 import TechanListView from './views/TechanList.vue'
 import SettingView from './views/Setting.vue'
+import SelfInfo from './views/SelfInfo.vue'
+import FeedBack from './views/FeedBack.vue'
+import PointsDetail from './views/PointsDetail.vue'
 // install router
 // VueValidator = require('vue-validator')
 var client = 'ios';
@@ -172,6 +175,15 @@ router.map({
   },
   'Setting': {
     component: SettingView
+  },
+  'SelfInfo': {
+    component: SelfInfo
+  },
+  'FeedBack': {
+    component: FeedBack
+  },
+  'PointsDetail': {
+    component: PointsDetail
   }
 })
 
