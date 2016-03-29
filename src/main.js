@@ -33,6 +33,7 @@ import ScenicDetailView from './views/ScenicDetail.vue'
 import ScenicOrderForm from './views/ScenicOrderForm.vue'
 import FoodDetail from './views/FoodDetail.vue'
 import TechanListView from './views/TechanList.vue'
+import SettingView from './views/Setting.vue'
 // install router
 // VueValidator = require('vue-validator')
 var client = 'ios';
@@ -168,6 +169,9 @@ router.map({
   },
   'FoodDetail/:id': {
     component: FoodDetail
+  },
+  'Setting': {
+    component: SettingView
   }
 })
 
