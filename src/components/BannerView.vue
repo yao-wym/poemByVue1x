@@ -110,7 +110,13 @@ export default {
 	data:function(){
 		return {
 			myScroll:'',
-			slideList:[]
+			slideList:[],
+			pageType:{
+				'scenic':'scenicdetail',
+				'hotel':'hoteldetail',
+				'goods':'goodsdetail',
+				'url':'',
+			}
 		}
 	},
 	methods:{
@@ -118,8 +124,8 @@ export default {
 			this.slideList = res.adv_list.item
 		},
 		showDetail:function(index){
-
-			alert(JSON.stringify(this.slideList[index]));
+			this.$route.router.go({name:this.pageType['scenic'],params:{'id':this.slideList[index].data}});
+			// alert(JSON.stringify(this.slideList[index]));
 		}
 	},
 	created:function(){

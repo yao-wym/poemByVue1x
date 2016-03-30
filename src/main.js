@@ -108,8 +108,8 @@ router.map({
       },
       '/cart':{
         component:function (resolve) {
-          setTimeout(function(){require(['./Views/IndexCart.vue'], resolve)}, 1000);
-          
+          // setTimeout(function(){require(['./Views/IndexCart.vue'], resolve)}, 1000);
+          require(['./Views/IndexCart.vue'], resolve)
         }
 
       },
@@ -134,10 +134,11 @@ router.map({
     name:'hoteldetail',
     component: HotelDetailView,
   },
-  '/HotelDeepDetail/:hotelId': {
+  '/HotelDeepDetail/:id': {
     component: HotelDeepDetail
   },
-  '/ScenicDetail/:ScenicId': {
+  '/ScenicDetail/:id': {
+    name:"scenicdetail",
     component: ScenicDetailView
   },
   '/app_header': {
