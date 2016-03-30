@@ -2,11 +2,10 @@
 	<li class="cart-item">
 		<div class="cart-item-header" style="overflow:hidden">
 			<div style="float:left">
-				<input type="checkbox">
+				特产
 			</div>
 			<div style="float:right">
-				<span style="margin-right:15px">删除</span>
-				<span>编辑</span>
+				<span style="color:red;margin-right:15px">待收货</span>
 			</div>
 		</div>
 		<div class="cart-goods-list">
@@ -105,8 +104,8 @@ module.exports = {
 	overflow: hidden;
 	display:flex
 	& .cart-goods-img
-		width:2rem
-		height:2rem
+		width:1.5rem
+		height:@width
 		margin-right:0.3rem
 	& .cart-goods-info
 		flex:1

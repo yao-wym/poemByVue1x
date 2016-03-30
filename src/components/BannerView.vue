@@ -2,7 +2,7 @@
 	<div class="banner-wrap">
         <div id="b-wrapper">
         <div id="banner" class="banner-content">
-        	<div v-for="item in slideList" class="slide">
+        	<div v-for="item in slideList" @click='showDetail({{item}})' class="slide">
 				<div style="background-image:url({{item.image}})" class="painting giotto"></div>
 			</div>
         </div>
@@ -116,6 +116,9 @@ export default {
 	methods:{
 		initPage:function(res){
 			this.slideList = res.adv_list.item
+		},
+		showDetail:function(item){
+			alert(JSON.stringify(item));
 		}
 	},
 	created:function(){

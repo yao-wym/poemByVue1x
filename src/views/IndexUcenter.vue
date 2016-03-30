@@ -16,7 +16,7 @@
               <div clase="arrow">
               </div>
             </a></div>
-          <div class="li-label"><a v-link="{path:'/user/hotelOrder'}">
+          <div class="li-label"><a v-link="{name:'orderhotel'}">
               <div class="icon">
                 <img src="../asset/images/star-red-full.png">
               </div>
@@ -24,7 +24,7 @@
               <div clase="arrow">
               </div>
             </a></div>
-            <div class="li-label"><a v-link="{path:'/user/techanOrder'}">
+            <div class="li-label"><a v-link="{name:'ordertechan'}">
               <div class="icon">
                 <img src="../asset/images/star-red-full.png">
               </div>

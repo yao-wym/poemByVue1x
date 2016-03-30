@@ -1,7 +1,7 @@
 <template>
   <div class="flex-view" v-transition>
     <flex-scroll-view>
-      <div id="hotel-container">
+      <div id="hotel-container"\>
         <div class="hotel-header" style="background-image:url({{bgImg}})">
           <header>
             <i style="float:left">

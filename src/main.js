@@ -19,6 +19,10 @@ import IndexArticle from './views/IndexArticle.vue'
 import IndexUcenter from './views/IndexUcenter.vue'
 import HotelDetailView from './views/HotelDetail.vue'
 
+import OrderHotelView from './views/OrderHotel.vue'
+
+import OrderTechanView from './views/OrderTechan.vue'
+
 
 
 // install router
@@ -59,6 +63,14 @@ router.map({
       '/addresslist':{
         name:'addresslist',
         component:AddressListView
+      },
+      '/OrderHotel':{
+        name:'orderhotel',
+        component:OrderHotelView
+      },
+      '/OrderTechan':{
+        name:'ordertechan',
+        component:OrderTechanView
       },
       '/:id':{
         component:UserView

@@ -2,9 +2,9 @@
 	<div class="flex-view" v-transition>
 	<!-- <app-header search="找酒店" right-icon="user-icon"></app-header> -->
   <flex-scroll-view>
-        <ul id="hotel-list-view" style="font-size: 0.3rem">
+        <ul id="addr-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
-      <hotel-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></hotel-list-item>
+      <addr-list-item v-for="addr in addrlList" :addr="addr" :index="$index"></addr-list-item>
       <!-- </list-view> -->
     </ul>
 <!--     <return-top></return-top> -->
@@ -16,57 +16,44 @@
 module.exports = {
   replace: true,
   components: {
-    'hotel-list-item': function(resolve) {
-    	require(['../components/HotelListItem.vue'], resolve);
+    'addr-list-item': function(resolve) {
+    	require(['../components/AddrListItem.vue'], resolve);
     },
-    'list-view': function(resolve) {
-      require(['../components/ListView.vue'], resolve);
-    },
+    // 'list-view': function(resolve) {
+    //   require(['../components/ListView.vue'], resolve);
+    // },
     'flex-scroll-view': function(resolve) {
       require(['../components/FlexScrollView.vue'], resolve);
     },
     'return-top':function(resolve){
     	require(['../components/returnTop.vue'], resolve);
     },
-    'filter-tab':function(resolve){
-    	require(['../components/FilterTab.vue'], resolve);
-    },
     'app-header':function(resolve){
     	require(['../components/CommonHeader.vue'], resolve);
     }
   },
   data: function(){
-  	var hotelList = [];
-  	var curpage = 1; 
+  	var addrlList = [];
   	return {
-  		curpage : curpage,
-  		hotelList:hotelList
+  		addrlList:addrlList
   	}
   },
   methods:{
-  	getHotelList:function(){
-  		$.getJSON(HOTEL_LIST_API,{order:"asc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+  	getAddrList:function(){
+  		$.poemPost(ADDR_LIST_API,{key:"60669c1838e2613754ea9a466d50b89f"}).done(this.getAddrListDone);
   	},
-  	getHotelListDone:function(res){
-  		console.log(JSON.stringify(res));
-      if(!isEmpty(res.datas.store_list)){
-        this.hotelList = this.hotelList.concat(res.datas.store_list);
-        this.curpage++;
-        // this.$broadcast('refresh')
+  	getAddrListDone:function(res){
+        this.addrlList = res.address_list;
         this.$nextTick(function(){
           this.$broadcast('refresh');
         });
-        // setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),50)
-      }
-      if(res.hasmore == false){
         this.$off('scrollEnd')
-      }
   	},
   },
   created: function() {
   },
   ready:function(){
-    this.getHotelList();
+    this.getAddrList();
     this.$dispatch('pageLoaded');
     this.title = '我的地址';
   },
@@ -77,33 +64,11 @@ module.exports = {
   props:['title','leftLabel'],
   events:{
     'scrollEnd':function(msg){
-      this.getHotelList();
+      this.getAddrList();
     },
-    'conditionChange':function(msg){
-      $.getJSON(SHOP_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
-    }
   }
 }
 </script>
 
 <style lang="stylus">
-	@import "../main.styl"
-// px2rem(name, px){
-//     name: px/75 
-// }
-.goods-img
-	width:2rem
-	height:2rem
-	float:left
-	margin-right:0.3rem
-
-.goods-info
-	overflow:hidden
-.goods-item
-	 background-color: #eee; 
-	 overflow:auto; 
-	 resize:horizontal;
-	
-
-
 </style>

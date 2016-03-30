@@ -1,17 +1,24 @@
 <template>
-	<li class="goods-item">
-		<a style="overflow: hidden" v-link="{name:'hoteldetail',params:{hotelId:hotel.store_id}}">
-			<img v-bind:src="hotel.store_label" class="goods-img">
-			<div class="goods-info">
-				<div class="goods-name">{{hotel.store_name}}</div>
-				<div>
-					<div style="float: left">
-						<p>{{hotel.store_star}}</p>
-						<p>{{hotel.store_star}}</p>
-						<p>{{hotel.store_address}}</p>
+	<li class="scenic-item">
+		<a style="overflow: hidden" v-link="{name:'hoteldetail',params:{scenicId:scenic.goods_id}}">
+			<img v-bind:src="scenic.goods_image_url" class="scenic-img">
+			<div class="scenic-info">
+				<div class="scenic-name">
+					<p>{{scenic.goods_name}}</p>
+					<p style="margin-top:6px">
+					<span style="color:red">{{scenic.store_star}}</span>
+					<span>/{{scenic.eval_num}}条评论</span>
+					</p>
+				</div>
+				<div style="margin-top:0.2rem">
+					<div style="float: left;font-size:0.28rem">
+						<p><span>{{scenic.evaluation_good_star}}</span>星级</p>
+						<p style="margin-top:10px">{{scenic.store_address}}</p>
 					</div>
 					<div style="float:right;margin-right: 10px">
-						{{hotel.min_price}}起
+						<span style='font-size:0.4rem;color:orangered'>¥</span>
+						<span style='font-size:0.4rem;color:orangered'>{{scenic.min_price}}</span>
+						<span>起</span>
 					</div>
 				</div>
 			</div>
@@ -22,22 +29,35 @@
 <script type="text/javascript">
 module.exports = {
 	replace: true,
-	props: ['hotel']
+	props: ['scenic']
 }
 </script>
 
 <style lang="stylus">
 	@import "../main.styl"
-.goods-img
-	width:2rem
-	height:2rem
-	float:left
-	margin-right:0.3rem
-
-.goods-info
-	overflow:hidden
-.goods-item
-	 background-color: #eee; 
-	 overflow:auto; 
-	 resize:horizontal;
+.scenic-item
+	height:2.2rm
+	color:text-gray
+	background-color: #fff; 
+	overflow:auto; 
+	resize:horizontal;
+	padding:0.2rem
+	border-bottom:solid 1px line-gray
+	& .scenic-img
+		width:2.3rem
+		height:2.3rem
+		float:left
+		margin-right:0.3rem
+	& .scenic-info
+		overflow:hidden
+		height:2.3rem
+		display:flex
+		flex-direction:column
+	& p,span
+		color:text-gray
+		margin:0
+	& .scenic-name
+		color:text-gray
+		font-size:0.35rem
+		flex:1
 </style>

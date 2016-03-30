@@ -9,6 +9,11 @@ var SEND_SMS_API = HOST_API+'act=index&op=send_sms';
 var HOTEL_DETAIL_API = HOST_API+'act=store&op=store_detail';
 var ADV_API = HOST_API+'act=index&op=index_adv_list';
 
+var ADDR_LIST_API = HOST_API+'act=member_address&op=address_list';
+
+var ADDR_DEL_API = HOST_API+'act=member_address&op=address_del';
+
+var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list';
 
 var poemUI = {
 	toast:function(msg){

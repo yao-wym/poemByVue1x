@@ -105,8 +105,8 @@ module.exports = {
 	overflow: hidden;
 	display:flex
 	& .cart-goods-img
-		width:2rem
-		height:2rem
+		width:1.5rem
+		height:@width
 		margin-right:0.3rem
 	& .cart-goods-info
 		flex:1
