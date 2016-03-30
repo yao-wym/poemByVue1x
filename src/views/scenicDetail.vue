@@ -31,7 +31,7 @@
           <p class="price-kind">{{ ticketPrice.name }} <button @click="ctrlOrderDetail($index)">></button> <span>{{ ticketPrice.price }}</span></p>
           <div v-show="orderDetailShow[$index]" class="order-detail">
             <div class="gallery"></div>
-            <button class="order-button">预定</button>
+            <button @click="bookTicket($index)" class="order-button">预定</button>
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@
           },
         ],
         gallery: [],
-        orderDetailShow: [0, 0, 0]
+        orderDetailShow: [1, 1, 1]
       }
     },
     methods: {
@@ -94,6 +94,9 @@
           result[i] = arr[i];
         }
         return result;
+      },
+      bookTicket(index){
+        this.$route.router.go({path:'/ScenicOrderForm/123'})
       }
     }
   }

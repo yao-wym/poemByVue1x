@@ -1,6 +1,6 @@
 <template>
 	<li class="scenic-item">
-		<a style="overflow: hidden" v-link="{name:'hoteldetail',params:{scenicId:scenic.goods_id}}">
+		<a style="overflow: hidden" v-link="{path:'ScenicDetail/'+scenic.goods_id}">
 			<img v-bind:src="scenic.goods_image_url" class="scenic-img">
 			<div class="scenic-info">
 				<div class="scenic-name">

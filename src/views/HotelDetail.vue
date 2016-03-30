@@ -93,7 +93,7 @@
                 </div>
               </div>
               <div style="overflow:hidden">
-                <button class="book-btn" style="float:right">预定</button>
+                <button @click="bookRoom($index)" class="book-btn" style="float:right">预定</button>
               </div>
               </div> 
             </ul>
@@ -126,7 +126,10 @@
         this.bgImg = res.store_info.store_label;
         this.roomList = res.good_list;
       }
-    }
+    },
+    bookRoom:function(key){
+      this.$route.router.go('/HotelOrderForm/'+this.roomList[key].goods_id);
+    },
   },
   components: {
     'flex-scroll-view': function(resolve) {

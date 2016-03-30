@@ -8,28 +8,28 @@
           </div>
         </header>
         <section class="li-section">
-          <div class="li-label"><a href="">
+          <div class="li-label"><a>
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/order-yellow.png">
               </div>
               <div class="title">我的订单</div>
-              <div clase="arrow">
-              </div>
             </a></div>
           <div class="li-label"><a v-link="{name:'orderhotel'}">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/hotel-blue.png">
               </div>
               <div class="title">酒店景点订单</div>
-              <div clase="arrow">
+              <div class="arrow">
+              <i></i>
               </div>
             </a></div>
             <div class="li-label"><a v-link="{name:'ordertechan'}">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/techan.png">
               </div>
               <div class="title">特产订单</div>
-              <div clase="arrow">
+              <div class="arrow">
+              <i></i>
               </div>
             </a></div>
         </section>
@@ -39,67 +39,75 @@
                 <img src="../asset/images/star-red-full.png">
               </div>
               <div class="title">我的地址</div>
-              <div clase="arrow">
+              <div class="arrow">
+              <i></i>
               </div>
             </a></div>
           <div class="li-label"><a href="">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/collect-red.png">
               </div>
               <div class="title">收藏商品</div>
-              <div clase="arrow">
+              <div class="arrow">
+              <i></i>
               </div>
             </a></div>
           <div class="li-label"><a href="">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/invite-friends.png">
               </div>
               <div class="title">邀请好友</div>
-              <div clase="arrow">
+              <div class="arrow">
+              <i></i>
               </div>
             </a></div>
             <div class="li-label"><a href="">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/score-detail.png">
               </div>
               <div class="title">积分详情</div>
-              <div clase="arrow">
+              <div class="arrow">
+              <i></i>
               </div>
             </a></div>
             <div class="li-label"><a href="">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/score-exchange.png">
               </div>
               <div class="title">积分兑换</div>
-              <div clase="arrow">
+              <div class="arrow">
+              <i></i>
               </div>
             </a></div>
         </section>
         <section class="li-section" style="margin-top: 10px">
           <div class="li-label"><a href="">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/about-us.png">
               </div>
               <div class="title">关于我们</div>
-              <div clase="arrow">
+              <div class="arrow">
+              <i></i>
               </div>
             </a></div>
           <div class="li-label"><a href="">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/help-suggest.png">
               </div>
               <div class="title">客服帮助</div>
-              <div clase="arrow">
+              <div class="arrow">
+              <i></i>
               </div>
             </a></div>
         </section>
         <section class="li-section" style="margin-top: 10px">
           <div class="li-label"><a href="">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/setting-yellow.png">
               </div>
               <div class="title">设置</div>
-              <div clase="arrow">
+              <div class="arrow">
+              <i></i>
               </div>
             </a></div>
         </section>
@@ -121,7 +129,7 @@
 </script>
 
 <style lang="stylus">
-  @import "../main.styl"
+@import "../main.styl"
   #uc-container
     background-color:rgb(238,238,238)
   .uc-header
@@ -155,7 +163,15 @@
         & img
           width:100%
       & .arrow
-        width:.5rem
         height:.5rem
-        background:url(../asset/images/right_icon.png)
+        background:none
+        width:0.5rem
+        & i
+          margin-top:.6rem
+          line-height:room-item-height
+          display:block
+          width:.3rem
+          height:@width
+          background-size:100%
+          background-image:url(../asset/images/right_icon.png)
 </style>

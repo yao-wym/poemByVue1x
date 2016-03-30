@@ -20,7 +20,7 @@
 </script>
 
 <style lang="stylus">
-@import "./variables.styl"
+@import "./main.styl"
 
 html, body
   font-family Verdana
