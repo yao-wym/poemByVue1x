@@ -77,6 +77,7 @@ export default {
 	},
 	events:{
 		'refresh':function(msg){
+			// alert(2);
 			this.myScroll.refresh();
 		},
 		'scrollViewLoaded':function(msg){

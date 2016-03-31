@@ -132,47 +132,47 @@
 @import "../main.styl"
   #uc-container
     background-color:rgb(238,238,238)
-  .uc-header
-    background:url(../asset/images/news.png)
-    text-align:center
-    padding-top:1rem
-    padding-bottom:.6rem
-    color:white
-  .li-section
-    background-color:white
-  .li-section .li-label
-    height:1rem
-    padding:0 10px
-    line-height:1rem
-    width:100%
-    display:-webkit-box
-    display: -webkit-box; /* Safari */
-    font-size: .3rem
-    color:poem-text-gray
-    & a
+    .uc-header
+      background:url(../asset/images/news.png)
+      text-align:center
+      padding-top:1rem
+      padding-bottom:.6rem
+      color:white
+    .li-section
+      background-color:white
+    .li-section .li-label
+      height:1rem
+      padding:0 10px
+      line-height:1rem
       width:100%
       display:-webkit-box
       display: -webkit-box; /* Safari */
-      & .title
-        -webkit-box-flex: 1
-        flex:1
-        border-bottom:none
-      & .icon
-        width:.3rem
-        height:.3rem
-        margin-right:10px
-        & img
-          width:100%
-      & .arrow
-        height:.5rem
-        background:none
-        width:0.5rem
-        & i
-          margin-top:.6rem
-          line-height:room-item-height
-          display:block
+      font-size: .4rem
+      color:poem-text-gray
+      & a
+        width:100%
+        display:-webkit-box
+        display: -webkit-box; /* Safari */
+        & .title
+          -webkit-box-flex: 1
+          flex:1
+        & .icon
           width:.3rem
-          height:@width
-          background-size:100%
-          background-image:url(../asset/images/right_icon.png)
+          height:.3rem
+          margin-right:10px
+          & img
+            width:100%
+        & .arrow
+          height:.5rem
+          background:none
+          width:0.5rem
+          border-bottom:none
+          & i
+            margin-top:.3rem
+            line-height:room-item-height
+            display:block
+            width:.3rem
+            height:@width
+            background-size:100%
+            background-image:url(../asset/images/right_icon.png)
 </style>

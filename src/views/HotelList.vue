@@ -56,13 +56,13 @@ module.exports = {
         this.curpage++;
         // this.$broadcast('refresh')
         this.$nextTick(function(){
-          this.$broadcast('refresh');
+          //this.$broadcast('refresh');
         });
-        // setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),50)
+        setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),50)
       }
-      if(res.hasmore == false){
-        this.$off('scrollEnd')
-      }
+      // if(res.hasmore == false){
+      //   this.$off('scrollEnd')
+      // }
   	},
   },
   created: function() {

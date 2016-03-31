@@ -50,6 +50,7 @@ module.exports = {
         this.$nextTick(function(){
           this.$broadcast('refresh');
         });
+      setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),1000)
   	},
   },
   created: function() {
@@ -61,6 +62,14 @@ module.exports = {
     // this.$on('scrollViewLoaded', function() {
     //     this.$broadcast('scrollViewLoaded');
     // })
+  },
+  events:{
+    'scrollEnd':function(msg){
+      this.getScenicList();
+    },
+    'conditionChange':function(msg){
+      this.getScenicList();
+    }
   },
   ready:function(){
     this.getScenicList();
