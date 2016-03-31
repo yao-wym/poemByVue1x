@@ -156,6 +156,7 @@
       & .title
         -webkit-box-flex: 1
         flex:1
+        border-bottom:none
       & .icon
         width:.3rem
         height:.3rem

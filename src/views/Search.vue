@@ -1,10 +1,10 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header search="找酒店" right-icon="user-icon"></app-header>
+	<app-header search="搜索" :value="keyword" right-icon="user-icon"></app-header>
   <flex-scroll-view>
-        <ul id="hotel-list-view" style="font-size: 0.3rem">
+    <ul id="search-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
-      <hotel-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></hotel-list-item>
+      <scenic-list-item v-for="scenic in searchList" :scenic="scenic" :index="$index"></scenic-list-item>
       <!-- </list-view> -->
     </ul>
 <!--     <return-top></return-top> -->
@@ -16,8 +16,8 @@
 module.exports = {
   replace: true,
   components: {
-    'hotel-list-item': function(resolve) {
-    	require(['../components/HotelListItem.vue'], resolve);
+    'scenic-list-item': function(resolve) {
+    	require(['../components/ScenicListItem.vue'], resolve);
     },
     'list-view': function(resolve) {
       require(['../components/ListView.vue'], resolve);
@@ -32,22 +32,30 @@ module.exports = {
     	require(['../components/CommonHeader.vue'], resolve);
     }
   },
+  route: {
+    data: function (transition) {
+        transition.next({
+          'keyword':this.$route.params.keyword
+        })
+        this.getSearchList();
+      }
+  },
   data: function(){
-  	var hotelList = [];
+  	var searchList = [];
   	var curpage = 1; 
   	return {
   		curpage : curpage,
-  		hotelList:hotelList
+  		searchList:searchList,
+      keyword:""
   	}
   },
   methods:{
-  	getHotelList:function(){
-  		$.getJSON(HOTEL_LIST_API,{order:"asc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+  	getSearchList:function(){
+  		$.getJSON(GOODS_SEARCH_API,{keyword:this.keyword,page:10,curpage:this.curpage}).done(this.getSearchListDone);
   	},
-  	getHotelListDone:function(res){
-  		console.log(JSON.stringify(res));
-      if(!isEmpty(res.datas.store_list)){
-        this.hotelList = this.hotelList.concat(res.datas.store_list);
+  	getSearchListDone:function(res){
+      if(!isEmpty(res.datas.goods_list)){
+        this.searchList = this.searchList.concat(res.datas.goods_list);
         this.curpage++;
         // this.$broadcast('refresh')
         this.$nextTick(function(){
@@ -61,10 +69,8 @@ module.exports = {
   	},
   },
   created: function() {
-    alert(this.$route.params.key)
   },
-  ready:function(){
-    this.getHotelList();
+  ready:function(){ 
   },
   attached:function(){
   },
@@ -72,10 +78,10 @@ module.exports = {
   },
   events:{
     'scrollEnd':function(msg){
-      this.getHotelList();
+      this.getSearchList();
     },
     'conditionChange':function(msg){
-      $.getJSON(SHOP_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+      $.getJSON(GOODS_SEARCH_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getSearchListDone);
     }
   }
 }

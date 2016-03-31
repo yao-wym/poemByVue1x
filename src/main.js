@@ -98,7 +98,7 @@ router.map({
   '/findpwd': {
     component: FindPwdView
   },
-  '/search': {
+  '/search/:keyword': {
     name:'search',
     component: SearchView
   },

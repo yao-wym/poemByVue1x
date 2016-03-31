@@ -15,6 +15,8 @@ var ADDR_DEL_API = HOST_API+'act=member_address&op=address_del';
 
 var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list';
 
+var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';
+
 var poemUI = {
 	toast:function(msg){
 		alert(msg);

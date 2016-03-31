@@ -10,7 +10,7 @@
         {{leftLabel}}
     </div>
     <div class="header-center">
-      <input id="search-input" placeholder="{{search}}" v-if="search"/>
+      <input type="text" value="{{value}}" v-model="keyword" @keyup.13="showSearch" id="search-input" placeholder="{{search}}" v-if="search"/>
       <span v-if="title">{{title}}</span>
     </div>
 
@@ -29,13 +29,22 @@
 <script type="text/javascript">
 module.exports = {
 	data:function () {
-    return { test: 123 }
+    return { 
+      test: 123,
+      keyword:'',
+      value:''
+     }
   },
-	props: ['title','leftLabel','rightLabel','leftLink','rightLink','leftIcon','rightIcon','search'],
+	props: ['title','leftLabel','rightLabel','leftLink','rightLink','leftIcon','rightIcon','search','value'],
   methods:{
     showSearch:function(){
-      this.$route.router.go({name:'search'});
+      // this.$route.router.go({name:'search'});
+      if(isEmpty(this.keyword)){
+        this.keyword = " "
+      }
+      this.eventHandle('search',{keyword:this.keyword});
     },
+
     rightClick:function(){
       this.eventHandle(this.rightLink)
     },
@@ -46,11 +55,11 @@ module.exports = {
         this.eventHandle(this.leftLink)
       }
     },
-    eventHandle:function(eventTarget){
+    eventHandle:function(eventTarget,msg){
       if(eventTarget.slice(0,1)=='#'){
         location.href = eventTarget
       }else{
-        this.$dispatch(eventTarget)
+        this.$dispatch(eventTarget,msg)
       }
     }
   }

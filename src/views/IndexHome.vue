@@ -30,7 +30,8 @@
       this.$broadcast('refresh');
     },
     'search':function(msg){
-      this.$route.router.go({name:'search',params:{key:msg}});
+      // console.log(msg.keyword);
+      this.$route.router.go({name:'search',params:{keyword:msg.keyword}});
     }
   }
 }
