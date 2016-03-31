@@ -36,7 +36,8 @@
         <a href=""><img src="" alt="">进入店铺</a>
       </p>
     </div>
-      <div class="footer">
+    </flex-scroll-view>
+          <div class="footer">
         <div class="footer-ctrlpanel">
           <a href="">店铺</a>
           <button>收藏</button>
@@ -45,7 +46,6 @@
         <a class="addto-cart">加入购物车</a>
         <a href="" class="buy-now">立即购买</a>
       </div>
-    </flex-scroll-view>
   </div>
 </template>
 

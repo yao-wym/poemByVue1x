@@ -1,8 +1,7 @@
 <template>
   <div class="flex-view" v-transition>
+     <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
   	<flex-scroll-view>
-      <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
-  	
       <div class="section avatar">头像<div class="right avatar-img"><img src="" alt=""></div></div>
       <div class="section">昵称<input type="text" class="nico-name" value="{{ nicoName }}"></div>
       <div class="section">性别<span class="right">></span></div>

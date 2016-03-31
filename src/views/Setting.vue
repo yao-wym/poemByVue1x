@@ -9,8 +9,8 @@
       </div>
       <a  href="" class="section"><img class="xsmall-icon" src="../asset/images/yijianfankui.png" alt="">意见反馈<span class="right">></span></a>
       <a  href="" class="section"><img class="xsmall-icon" src="../asset/images/qingchuhuancun.png" alt="">清除缓存<span class="right">></span></a>
-      <yellow-bottom>退出当前账号</yellow-bottom>
     </flex-scroll-view>
+    <yellow-bottom>退出当前账号</yellow-bottom>
   </div>
 </template>
 <style lang="stylus" scoped>

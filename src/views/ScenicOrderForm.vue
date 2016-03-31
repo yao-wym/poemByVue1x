@@ -34,11 +34,12 @@
           <p>请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则  </p>
         </div>
       </div>
-      <div class="footer">
-        <div class="price">订单金额：<span>{{ orderPrice }}</span></div>
-        <input type="submit" value="提交订单">
-      </div>
+
     </flex-scroll-view>
+    <div class="footer">
+      <div class="price">订单金额：<span>{{ orderPrice }}</span></div>
+      <input type="submit" value="提交订单">
+    </div>
   </div>
 </template>
 <script>

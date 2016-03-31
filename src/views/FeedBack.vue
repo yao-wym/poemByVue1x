@@ -1,7 +1,7 @@
 <template>
   <div class="flex-view" v-transition>
-  	<flex-scroll-view>
-      <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
+  <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
+  	<flex-scroll-view>    
   	  <form class="feedback-form" action="" method="post">
         <textarea name="content" id="" rows="20" placeholder="输入您的反馈意见不超过500字"></textarea>
         <input type="text" name="contact" placeholder="输入您的手机和邮箱非必填">

@@ -37,6 +37,8 @@ import SettingView from './views/Setting.vue'
 import SelfInfo from './views/SelfInfo.vue'
 import FeedBack from './views/FeedBack.vue'
 import PointsDetail from './views/PointsDetail.vue'
+import PointsStore from './views/PointsStore.vue'
+import ItemComments from './views/ItemComments.vue'
 // install router
 // VueValidator = require('vue-validator')
 var client = 'ios';
@@ -167,23 +169,29 @@ router.map({
   '/HotelOrderForm/:id': {
     component: HotelOrderForm
   },
-  'ScenicOrderForm/:id': {
+  '/ScenicOrderForm/:id': {
     component: ScenicOrderForm
   },
-  'FoodDetail/:id': {
+  '/FoodDetail/:id': {
     component: FoodDetail
   },
-  'Setting': {
+  '/Setting': {
     component: SettingView
   },
-  'SelfInfo': {
+  '/SelfInfo': {
     component: SelfInfo
   },
-  'FeedBack': {
+  '/FeedBack': {
     component: FeedBack
   },
-  'PointsDetail': {
+  '/PointsDetail': {
     component: PointsDetail
+  },
+  '/PointsStore': {
+    component: PointsStore
+  },
+  '/Comments/:id': {
+    component: ItemComments
   }
 })
 

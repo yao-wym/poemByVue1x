@@ -1,7 +1,7 @@
 <template>
   <div class="flex-view" v-transition>
+    <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
   	<flex-scroll-view>
-      <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
   	  <p class="owned-points">可用积分 {{ points }}</p>
       <table class="points-detail">
         <tr>
