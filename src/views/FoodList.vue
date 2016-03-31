@@ -3,7 +3,7 @@
 	<app-header title="吃喝玩乐"></app-header>
   <flex-scroll-view>
         <ul id="hotel-list-view" style="font-size: 0.3rem">
-      <food-list-item v-for="hotel in hotelList" :hotel="hotel" :index="$index"></food-list-item>
+      <food-list-item v-for="food in hotelList" :food="food" :index="$index"></food-list-item>
     </ul>
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
@@ -37,12 +37,12 @@ module.exports = {
   },
   methods:{
   	getHotelList:function(){
-  		$.getJSON(HOTEL_LIST_API,{order:"asc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+  		$.getJSON(TECHAN_LIST_API,{order:"asc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
   	},
   	getHotelListDone:function(res){
   		console.log(JSON.stringify(res));
-      if(!isEmpty(res.datas.store_list)){
-        this.hotelList = this.hotelList.concat(res.datas.store_list);
+      if(!isEmpty(res.datas.goods_list)){
+        this.hotelList = this.hotelList.concat(res.datas.goods_list);
         this.curpage++;
         // this.$broadcast('refresh')
         this.$nextTick(function(){
@@ -56,7 +56,7 @@ module.exports = {
     this.$on('conditionChange', function() {
         
       //此处需要清空数组，但是为了调试方便～暂时不清空
-      $.getJSON(SHOP_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+      $.getJSON(TECHAN_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
     });
     // this.$on('scrollViewLoaded', function() {
     //     this.$broadcast('scrollViewLoaded');

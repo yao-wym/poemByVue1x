@@ -17,6 +17,8 @@ var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list';
 
 var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';
 
+var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list';
+
 var poemUI = {
 	toast:function(msg){
 		alert(msg);

@@ -1,13 +1,13 @@
 <template>
 	<li class="goods-item" style="padding:10px 20px">
-		<a style="overflow: hidden;display:flex" v-link="{name:'hoteldetail',params:{hotelId:hotel.store_id}}">
-			<img v-bind:src="hotel.store_label" class="goods-img">
+		<a style="overflow: hidden;display:flex" v-link="{path:'/FoodDetail/'+food.goods_id}">
+			<img v-bind:src="food.goods_image_url" class="goods-img">
 			<div class="goods-info">
-				<div class="goods-name">{{hotel.store_name}}</div>
-				<div style="margin-top:20px" class="goods-name">{{hotel.store_name}}</div>
+				<div class="goods-name">{{food.goods_name}}</div>
+				<div style="margin-top:20px" class="goods-name">{{food.goods_jingle}}</div>
 			</div>
 			<div>
-				<div style="color:red;font-size:0.4rem">¥{{hotel.min_price}}</div>
+				<div style="color:red;font-size:0.4rem">¥{{food.goods_price}}</div>
 				<button style="margin-top:20px;color:white;">预定</button>
 			</div>
 		</a>
