@@ -7,6 +7,7 @@
     </ul>
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
+  <filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['默认排序','传统酒店','牧家乐']"></filter-tab>
 </div>
 </template>
 
@@ -25,7 +26,10 @@ module.exports = {
     },
     'app-header':function(resolve){
     	require(['../components/CommonHeader.vue'], resolve);
-    }
+    },
+    'filter-tab':function(resolve){
+      require(['../components/FilterTab.vue'], resolve);
+    },
   },
   data: function(){
   	var hotelList = [];
@@ -52,15 +56,13 @@ module.exports = {
       }
   	},
   },
-  created: function() {
-    this.$on('conditionChange', function() {
-        
-      //此处需要清空数组，但是为了调试方便～暂时不清空
-      $.getJSON(TECHAN_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
-    });
-    // this.$on('scrollViewLoaded', function() {
-    //     this.$broadcast('scrollViewLoaded');
-    // })
+  events:{
+    'scrollEnd':function(msg){
+      this.getHotelList();
+    },
+    'conditionChange':function(msg){
+      this.getHotelList();
+    }
   },
   ready:function(){
     this.getHotelList();
