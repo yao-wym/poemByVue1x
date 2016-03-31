@@ -33,6 +33,9 @@ module.exports = {
   },
 	props: ['title','leftLabel','rightLabel','leftLink','rightLink','leftIcon','rightIcon','search'],
   methods:{
+    showSearch:function(){
+      this.$route.router.go({name:'search'});
+    },
     rightClick:function(){
       this.eventHandle(this.rightLink)
     },
@@ -79,6 +82,12 @@ header-text-color = #fff
   background-size:100%
   display:inline-block
 .qrcode-icon
+  background-image:url("../asset/images/qr_code.png")
+  width:header-img-width
+  height:@width
+  background-size:100%
+  display:inline-block
+.search-icon
   background-image:url("../asset/images/qr_code.png")
   width:header-img-width
   height:@width

@@ -23,6 +23,7 @@ import OrderHotelView from './views/OrderHotel.vue'
 
 import OrderTechanView from './views/OrderTechan.vue'
 
+import SearchView from './views/Search.vue'
 
 
 import HotelDeepDetail from './views/HotelDeepDetail.vue'
@@ -96,6 +97,10 @@ router.map({
   },
   '/findpwd': {
     component: FindPwdView
+  },
+  '/search': {
+    name:'search',
+    component: SearchView
   },
   '/IndexHome': {
     component: IndexHome
