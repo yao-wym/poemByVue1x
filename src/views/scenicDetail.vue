@@ -21,6 +21,11 @@
           <p>地图</p>
           <span>></span>
         </div>
+        <a class="link-line" href="#/ScenicDeepDetail/{{id}}">
+          <img class="small-icon" src="../asset/images/ditu.png" alt="">
+          <p>详情</p>
+          <span>></span>
+        </a>
       </div>
       <div class="section">
         <div class="link-line">
@@ -60,6 +65,7 @@
       }
 
       return {
+        id: 1,
         openTime: '09:00 - 17:00',
         stars: stars,
         ticketPrices: [

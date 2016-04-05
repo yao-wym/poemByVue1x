@@ -39,6 +39,10 @@ import FeedBack from './views/FeedBack.vue'
 import PointsDetail from './views/PointsDetail.vue'
 import PointsStore from './views/PointsStore.vue'
 import ItemComments from './views/ItemComments.vue'
+import AddItemComment from './views/AddItemComment.vue'
+import ScenicDeepDetail from './views/ScenicDeepDetail.vue'
+import TravelNotesList from './views/TravelNotesList.vue'
+import TravelNote from './views/TravelNote.vue'
 // install router
 // VueValidator = require('vue-validator')
 var client = 'ios';
@@ -160,6 +164,9 @@ router.map({
     name:"scenicdetail",
     component: ScenicDetailView
   },
+  'ScenicDeepDetail/:id': {
+    component: ScenicDeepDetail
+  },
   '/app_header': {
     component: ItemView
   },
@@ -192,6 +199,15 @@ router.map({
   },
   '/Comments/:id': {
     component: ItemComments
+  },
+  '/AddItemComment': {
+    component: AddItemComment
+  },
+  'TravelNotesList/:id': {
+    component: TravelNotesList
+  },
+  'TravelNote/:id': {
+    component: TravelNote
   }
 })
 
