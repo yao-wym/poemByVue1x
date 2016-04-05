@@ -3,8 +3,8 @@
     <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
     <flex-scroll-view>
       <div class="container">
-        <h1>{{ noteTitle }}</h1>
-        <time>{{ date }}</time>
+        <h1>{{ articleTitle }}</h1>
+        <time>{{ publishTime }}</time>
         <img src="{{ travelImg }}" alt="">
         <p>{{ content }}</p>
         <div class="comments"></div>
@@ -42,12 +42,25 @@
     },
     data() {
       return{
-        title: '',
-        noteTitle: '盛大开幕盛大开幕盛大开幕盛大开幕',
-        date: '2014-3-3',
-        travelImg: '',
-        content: '党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央党中央'
+        articleTitle: '',
+        content: '',
+        pubishTime: ''
       }
+    },
+    methods: {
+      getTravelNote() {
+        $.poemGet(TRAVELNOTE_DETAIL_API,{article_id: this.$route.params.id}).done(this.getTravelNoteDone);
+      },
+      getTravelNoteDone(data) {
+        this.articleTitle = data.article_title;
+        this.content = data.article_content;
+        this.pubishTime = data.article_publish_time
+
+      }
+    },
+
+    ready() {
+      this.getTravelNote();
     }
   }
 </script>

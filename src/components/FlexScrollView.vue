@@ -1,10 +1,10 @@
 <template>
 	<div class="scroll-wrap">
         <div id="wrapper">
-        <div id="scroller" class="scroll-content">
-        	<slot></slot>
-        </div>
-    </div>
+	        <div id="scroller" class="scroll-content">
+	        	<slot></slot>
+	        </div>
+	    </div>
     </div>
 </template>
 <style lang="stylus">
@@ -62,7 +62,8 @@ export default {
 	ready:function(){
 		this.myScroll = new IScroll('#wrapper', { 
 			mouseWheel:true,
-			click:true,
+			click:false,
+			preventDefaultException: { tagName:/.*/ },
 			onRefresh:function(){alert(1)},
 		});
 		this.myScroll.on('scrollEnd', (function(that){

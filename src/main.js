@@ -41,7 +41,7 @@ import PointsStore from './views/PointsStore.vue'
 import ItemComments from './views/ItemComments.vue'
 import AddItemComment from './views/AddItemComment.vue'
 import ScenicDeepDetail from './views/ScenicDeepDetail.vue'
-import TravelNotesList from './views/TravelNotesList.vue'
+import TravelNoteList from './views/TravelNoteList.vue'
 import TravelNote from './views/TravelNote.vue'
 // install router
 // VueValidator = require('vue-validator')
@@ -203,8 +203,8 @@ router.map({
   '/AddItemComment': {
     component: AddItemComment
   },
-  'TravelNotesList/:id': {
-    component: TravelNotesList
+  'TravelNoteList/:id': {
+    component: TravelNoteList
   },
   'TravelNote/:id': {
     component: TravelNote

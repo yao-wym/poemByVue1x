@@ -23,6 +23,10 @@ var SUBMIT_ORDER_VR_API = HOST_API+'act=member_vr_buy&op=buy_step3';
 
 var CART_LIST_API = HOST_API+'act=member_cart&op=cart_list';
 
+var COMMENT_LIST_API = HOST_API+'act=goods&op=comment_list';
+var TRAVELNOTE_LIST_API = HOST_API + 'act=cms_article&op=article_list';
+var TRAVELNOTE_DETAIL_API = HOST_API + 'act=cms_article&op=article_detail';
+
 var poemUI = {
 	toast:function(msg){
 		alert(msg);
