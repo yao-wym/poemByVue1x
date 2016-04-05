@@ -8,7 +8,7 @@
               <img src="../asset/images/fanhui.png">
             </i>
             <div style="float:right">
-                <img src="../asset/images/star-red.png">
+                <img src="../asset/images/icon_collect.png">
                 <img style="margin:0 5px" src="../asset/images/share-white.png">
             </div>
           </header>
@@ -20,20 +20,21 @@
 
           <div class="li-label"><a href="">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/comments-green.png">
               </div>
               <div class="title">评论</div>
                            <div class="arrow">
                 <i></i>
               </div>
             </a></div>
-            <div class="li-label"><a href="">
+            <div class="li-label">
+           <a  v-link="{path:'/MapView?pos='+hotelLoc+'&hotelName='+hotelName+'&hotelId='+$route.params.hotelId}">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/ditu.png">
               </div>
               <div class="title">
                 <span style="margin-right:20px">地图</span>
-                <span>{{hotelLoc}}</span>
+                <span></span>
               </div>
                 <div class="arrow">
                 <i></i>
@@ -41,7 +42,7 @@
             </a></div>
             <div class="li-label"><a href="">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/pic-yellow.png">
               </div>
               <div class="title">详情</div>
                 <div class="arrow">
@@ -50,7 +51,7 @@
             </a></div>
               <div class="li-label"><a href="">
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/fun-yellow.png">
               </div>
               <div class="title">吃喝玩乐</div>
                 <div class="arrow">
@@ -58,16 +59,21 @@
               </div>
             </a></div>
         </section>
-        <section class="li-section" style="margin-top: 10px">
-          <div class="li-label"><a href="">
+        <section class="li-section" style="margin-top: 10px;position: relative">
+          <div id="date" style="display: ;position:absolute;width:100%;top:1rem"></div>
+          <div class="li-label">
+          <a>
               <div class="icon">
-                <img src="../asset/images/star-red-full.png">
+                <img src="../asset/images/icon_calender.png">
               </div>
-              <div class="title"><span>3月10日入住－3月20日离店</span><span>共一晚</span></div>
+              <div class="title">
+              <span>3月10日入住－3月20日离店</span><span>共一晚</span></div>
+      
                 <div class="arrow">
                 <i></i>
               </div>
-            </a></div>
+            </a>
+          </div>
             <ul class="hotel-room-list">
              
           <div class="li-room" v-for="room in roomList">
@@ -116,6 +122,15 @@
     }
   },
   methods:{
+    showDate:function(){
+      $('#date').DatePicker({
+        flat: true,
+        date: '2008-07-31',
+        current: '2008-07-31',
+        calendars: 1,
+        starts: 1
+      });
+    },
     getHotelDetail:function(){
       $.poemGet(HOTEL_DETAIL_API,{'store_id':this.$route.params.hotelId}).done(this.initPage)
     },
@@ -128,7 +143,7 @@
       }
     },
     bookRoom:function(key){
-      this.$route.router.go('/HotelOrderForm/'+this.roomList[key].goods_id);
+      this.$route.router.go('/HotelOrderForm/'+this.roomList[key].goods_id+"?roomInfo="+JSON.stringify(this.roomList[key])+'&hotelName='+this.hotelName);
     },
   },
   components: {

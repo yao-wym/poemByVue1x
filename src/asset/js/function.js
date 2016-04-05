@@ -78,13 +78,20 @@ window.poem = {};
 			return deferredObj;
 		};
 		return deferredObj;
+	},
+	isEmpty:function(obj){
+	  if(obj ==null||obj=='null'||obj==''||obj==undefined||obj==false||obj.length==0){
+	    return true;
+	  }else{
+	    return false;
+		}
 	}
 });
 	poem.saveItem = function(itemName,itemVal){
 		localStorage.setItem(itemName,itemVal);
 	};
 	poem.getItem = function(itemName){
-		localStorage.getItem(itemName);
+		return localStorage.getItem(itemName);
 	};
 	poem.saveObj = function(itemName,itemObj){
 		localStorage.save(itemName,JSON.stringify(itemObj));
@@ -92,6 +99,13 @@ window.poem = {};
 	poem.getObj = function(itemName){
 		objStr = localStorage.get(itemName);
 		return JSON.parse(objStr);
+	};
+	poem.getPos = function(pos){
+  		var posArr = pos.split(',');
+		return {
+		    'lat':posArr[0],
+		    'lon':posArr[1]
+		}
 	};
 	poem.client = 'ios';
 })(jQuery,window.poem);

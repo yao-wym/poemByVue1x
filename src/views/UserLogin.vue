@@ -12,7 +12,7 @@
 			<div>
 				<img src='../asset/images/lock-white.png'/>
 				<label id="password" style="font-size:.4rem;width:1.5rem display:inline-block">密码</label>
-				<input v-model="password" id="password" v-validate:password="{minlength:6}" placeholder='请填写密码' />
+				<input v-model="password" type="password" id="password" v-validate:password="{minlength:6}" placeholder='请填写密码' />
 				<p v-if="$validation1.password.required">Your comment is too long.</p>
 			</div>
 		</div>

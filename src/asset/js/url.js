@@ -18,6 +18,7 @@ var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list';
 var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';
 
 var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list';
+var SUBMIT_ORDER_VR_API = HOST_API+'act=member_vr_buy&op=buy_step3';
 
 var poemUI = {
 	toast:function(msg){

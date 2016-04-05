@@ -24,6 +24,7 @@ import OrderHotelView from './views/OrderHotel.vue'
 import OrderTechanView from './views/OrderTechan.vue'
 
 import SearchView from './views/Search.vue'
+import MapView from './views/MapView.vue'
 
 
 import HotelDeepDetail from './views/HotelDeepDetail.vue'
@@ -46,6 +47,9 @@ var router = new Router()
 router.map({
   '/news/:page': {
     component: NewsView
+  },
+  '/MapView': {
+    component: MapView
   },
   '/user': {
     component: UserView,

@@ -5,13 +5,13 @@
         <div class="section">
           <h1>{{ hotelName }}</h1>
           <p>时间：{{ checkInTime }}入住-{{ checkOutTime }}离店<span class="day">{{ day }}晚</span></p>
-          <p>房型：{{ houseType }}</p>
+          <p>房型：{{ roomInfo.goods_name }}</p>
         </div>
         <div class="section">
           <div class="house-count">房间数
             <div class="right">
               <button @click="minusHouseCount">-</button>
-              {{ houseCount }}
+              {{ formInfo.rooms }}
               <button @click="addHouseCount">+</button>
             </div>
           </div>
@@ -20,16 +20,16 @@
               >
             </div>
           </div>
-          <div>入住人
-            <input type="text">
-          </div>
+     <!--      <div>入住人
+            <input name="contact" type="text">
+          </div> -->
         </div>
         <div class="section">
           <div>联系人
-            <input type="text">
+            <input type="text" v-model="contact">
             <img src="../asset/images/contacter-green.png" alt=""></div>
           <div>联系方式
-            <input type="text">
+            <input v-model="buyer_phone" type="text">
             <img src="../asset/images/phone-device.png" alt=""></div>
         </div>
           <div class="notice">
@@ -37,11 +37,11 @@
             <p>请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则  </p>
           </div>
       </div>
+    </flex-scroll-view>
       <div class="footer">
         <div class="price">订单金额：<span>{{ orderPrice }}</span></div>
-        <input type="submit" value="提交订单">
+        <input @click="submitOrder()" type="button" value="提交订单">
       </div>
-    </flex-scroll-view>
   </div>
 </template>
 <script>
@@ -53,11 +53,24 @@
     },
     data() {
       return {
-        hotelName: '北京首都大饭店',
+        formInfo:{
+          key:poem.getItem('key'),
+          goods_id:JSON.parse(this.$route.query.roomInfo).goods_id,
+          quantity:1,
+          buyer_phone:'',
+          rcb_pay:0,
+          pd_pay:0,
+          buyer_msg:'',
+          days:1,
+          rooms:1,
+          contact:'',
+        },
+        roomInfo:{},
+        hotelName: '',
         checkInTime: '8月13日',
         checkOutTime: '8月14日',
-        day: 1,
-        houseType: '普通标准间',
+        daysz: 1,
+        houseType: '',
         houseCount: 1,
         saveTo: '',
         livePerson: '',
@@ -76,8 +89,28 @@
           return;
         }
         this.houseCount -= 1
+      },
+      submitOrder(){
+        $.poemPost(SUBMIT_ORDER_VR_API,this.formInfo).done(function(res){
+          if(!$.isEmpty(res.error)){
+            poemUI.toast(res.error)
+          }
+        });
       }
-    }
+    },
+    route: {
+      data: function (transition) {
+        // alert(JSON.stringify(this.$route.params));
+        transition.next({
+            // 'hotelName':'111'
+        })
+        this.roomInfo = JSON.parse(this.$route.query.roomInfo);
+        this.hotelName = this.$route.query.hotelName
+    },
+      canReuse:function(transition){
+        //判断是否可以重用，可以则为返回true，不能重用则返回false，会实例化一个新的vue对象
+      }
+  },
   }
 </script>
 <style scoped lang="stylus">
