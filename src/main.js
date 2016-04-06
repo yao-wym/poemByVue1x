@@ -43,6 +43,7 @@ import AddItemComment from './views/AddItemComment.vue'
 import ScenicDeepDetail from './views/ScenicDeepDetail.vue'
 import TravelNoteList from './views/TravelNoteList.vue'
 import TravelNote from './views/TravelNote.vue'
+import About from './views/About.vue'
 // install router
 // VueValidator = require('vue-validator')
 var client = 'ios';
@@ -97,6 +98,9 @@ router.map({
         component:UserView
       }
     }
+  },
+  'About': {
+    component: About
   },
   '/item/:id': {
     component: ItemView

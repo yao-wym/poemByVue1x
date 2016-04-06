@@ -6,7 +6,7 @@
         <h1>{{ articleTitle }}</h1>
         <time>{{ publishTime }}</time>
         <img src="{{ travelImg }}" alt="">
-        <p>{{ content }}</p>
+        <p>{{{ content }}}</p>
         <div class="comments"></div>
       </div>
     </flex-scroll-view>
@@ -52,10 +52,14 @@
         $.poemGet(TRAVELNOTE_DETAIL_API,{article_id: this.$route.params.id}).done(this.getTravelNoteDone);
       },
       getTravelNoteDone(data) {
-        this.articleTitle = data.article_title;
-        this.content = data.article_content;
-        this.pubishTime = data.article_publish_time
-
+        let detail = data.article_detail;
+        this.articleTitle = detail.article_title;
+        this.content = detail.article_content;
+        this.pubishTime = detail.article_publish_time
+        this.$nextTick(function(){
+          this.$broadcast('refresh');
+        });
+        // setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),1000)
       }
     },
 

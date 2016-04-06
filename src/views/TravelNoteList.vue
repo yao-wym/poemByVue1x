@@ -10,7 +10,7 @@
             </div>
             <div class="article-detail">
               <h2>{{ article.article_title }}</h2>
-              <p>{{ article.article_abstract }}代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替</p>
+              <p>{{ article.article_abstract }}代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替替代替代替代替</p>
               <div class="info">
                 <div>阅读量：{{ article.article_click }}</div>
                 <div>评论：{{ article.article_comment_flag }}</div>
@@ -25,19 +25,25 @@
 <style lang="stylus" scoped>
   @import "../main.styl"
   .article a
-    display: flex
-    padding: section-padding
+    display: block
+    overflow: hidden
+    padding: .2rem
     border-bottom: 1px solid line-gray
   .article-img
-    width: 100%
+    float: left
+    width: 3rem
+    height: 2.5rem
     margin-right: .4rem
     & img
       width: 100%
   .article-detail
     & h2
       color: app-green
-      font-size: .4rem
+      font-size: .33rem
       margin-top: 0
+      font-weight: normal
+    & p
+      font-size: .3rem
   .info
     display: flex
     
@@ -70,7 +76,12 @@
         $.poemGet(TRAVELNOTE_LIST_API,{order:"asc",page:10,curpage:this.curpage, class_id: this.$route.params.id}).done(this.getTravelNoteListDone);
       },
       getTravelNoteListDone(data) {
-        this.articleList = this.articleList.concat(data.article_list)
+        this.articleList = this.articleList.concat(data.article_list);
+        this.curpage++;
+        this.$nextTick(function(){
+          this.$broadcast('refresh');
+        });
+        setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),1000)
       }
     },
 

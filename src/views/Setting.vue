@@ -7,7 +7,7 @@
         <p><img class="xsmall-icon" src="../asset/images/zhanghao.png" alt="">账号<input class="xid" type="text" value="{{xid}}"></p>
         <a href=""><p><img class="xsmall-icon" src="../asset/images/mima.png" alt="">密码<span class="right">></span></p></a>
       </div>
-      <a  href="" class="section"><img class="xsmall-icon" src="../asset/images/yijianfankui.png" alt="">意见反馈<span class="right">></span></a>
+      <a  href="#/FeedBack" class="section"><img class="xsmall-icon" src="../asset/images/yijianfankui.png" alt="">意见反馈<span class="right">></span></a>
       <a  href="" class="section"><img class="xsmall-icon" src="../asset/images/qingchuhuancun.png" alt="">清除缓存<span class="right">></span></a>
     </flex-scroll-view>
     <yellow-bottom>退出当前账号</yellow-bottom>
