@@ -11,16 +11,21 @@
         <p>开放时间：{{ openTime }}</p>
       </div>
       <div class="section">
-        <div class="link-line">
+        <a href="#/Comments/100163" class="link-line">
           <img class="small-icon" src="../asset/images/pinglun.png" alt="">
           <p>评论</p>
           <span>></span>
-        </div>
+        </a>
         <div class="link-line">
           <img class="small-icon" src="../asset/images/ditu.png" alt="">
           <p>地图</p>
           <span>></span>
         </div>
+        <a class="link-line" href="#/ScenicDeepDetail/{{id}}">
+          <img class="small-icon" src="../asset/images/pic-yellow.png" alt="">
+          <p>详情</p>
+          <span>></span>
+        </a>
       </div>
       <div class="section">
         <div class="link-line">
@@ -60,6 +65,7 @@
       }
 
       return {
+        id: this.$route.params.id,
         openTime: '09:00 - 17:00',
         stars: stars,
         ticketPrices: [

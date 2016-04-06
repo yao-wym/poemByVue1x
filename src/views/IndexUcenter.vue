@@ -61,7 +61,7 @@
               <i></i>
               </div>
             </a></div>
-            <div class="li-label"><a href="">
+            <div class="li-label"><a href="#/PointsDetail">
               <div class="icon">
                 <img src="../asset/images/score-detail.png">
               </div>
@@ -70,7 +70,7 @@
               <i></i>
               </div>
             </a></div>
-            <div class="li-label"><a href="">
+            <div class="li-label"><a href="#/PointsStore">
               <div class="icon">
                 <img src="../asset/images/score-exchange.png">
               </div>
@@ -81,7 +81,7 @@
             </a></div>
         </section>
         <section class="li-section" style="margin-top: 10px">
-          <div class="li-label"><a href="">
+          <div class="li-label"><a href="#/About">
               <div class="icon">
                 <img src="../asset/images/about-us.png">
               </div>
@@ -101,11 +101,20 @@
             </a></div>
         </section>
         <section class="li-section" style="margin-top: 10px">
-          <div class="li-label"><a href="">
+          <div class="li-label"><a href="#/Setting">
               <div class="icon">
                 <img src="../asset/images/setting-yellow.png">
               </div>
               <div class="title">设置</div>
+              <div class="arrow">
+              <i></i>
+              </div>
+            </a></div>
+            <div class="li-label"><a href="#/SelfInfo">
+              <div class="icon">
+                <img src="../asset/images/help-suggest.png">
+              </div>
+              <div class="title">个人资料</div>
               <div class="arrow">
               <i></i>
               </div>

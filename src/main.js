@@ -33,6 +33,17 @@ import ScenicDetailView from './views/ScenicDetail.vue'
 import ScenicOrderForm from './views/ScenicOrderForm.vue'
 import FoodDetail from './views/FoodDetail.vue'
 import TechanListView from './views/TechanList.vue'
+import SettingView from './views/Setting.vue'
+import SelfInfo from './views/SelfInfo.vue'
+import FeedBack from './views/FeedBack.vue'
+import PointsDetail from './views/PointsDetail.vue'
+import PointsStore from './views/PointsStore.vue'
+import ItemComments from './views/ItemComments.vue'
+import AddItemComment from './views/AddItemComment.vue'
+import ScenicDeepDetail from './views/ScenicDeepDetail.vue'
+import TravelNoteList from './views/TravelNoteList.vue'
+import TravelNote from './views/TravelNote.vue'
+import About from './views/About.vue'
 // install router
 // VueValidator = require('vue-validator')
 var client = 'ios';
@@ -87,6 +98,9 @@ router.map({
         component:UserView
       }
     }
+  },
+  'About': {
+    component: About
   },
   '/item/:id': {
     component: ItemView
@@ -154,6 +168,9 @@ router.map({
     name:"scenicdetail",
     component: ScenicDetailView
   },
+  'ScenicDeepDetail/:id': {
+    component: ScenicDeepDetail
+  },
   '/app_header': {
     component: ItemView
   },
@@ -163,11 +180,38 @@ router.map({
   '/HotelOrderForm/:id': {
     component: HotelOrderForm
   },
-  'ScenicOrderForm/:id': {
+  '/ScenicOrderForm/:id': {
     component: ScenicOrderForm
   },
-  'FoodDetail/:id': {
+  '/FoodDetail/:id': {
     component: FoodDetail
+  },
+  '/Setting': {
+    component: SettingView
+  },
+  '/SelfInfo': {
+    component: SelfInfo
+  },
+  '/FeedBack': {
+    component: FeedBack
+  },
+  '/PointsDetail': {
+    component: PointsDetail
+  },
+  '/PointsStore': {
+    component: PointsStore
+  },
+  '/Comments/:id': {
+    component: ItemComments
+  },
+  '/AddItemComment': {
+    component: AddItemComment
+  },
+  'TravelNoteList/:id': {
+    component: TravelNoteList
+  },
+  'TravelNote/:id': {
+    component: TravelNote
   }
 })
 
