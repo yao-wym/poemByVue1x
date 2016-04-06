@@ -13,12 +13,15 @@ var ADDR_LIST_API = HOST_API+'act=member_address&op=address_list';
 
 var ADDR_DEL_API = HOST_API+'act=member_address&op=address_del';
 
-var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list';
+var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=3';
 
 var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';
 
-var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list';
+var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=1';
+
 var SUBMIT_ORDER_VR_API = HOST_API+'act=member_vr_buy&op=buy_step3';
+
+var CART_LIST_API = HOST_API+'act=member_cart&op=cart_list';
 
 var poemUI = {
 	toast:function(msg){

@@ -1,5 +1,5 @@
 <template>
-	<app-header :title="hotelName"></app-header>
+	<app-header :title="title"></app-header>
 	<div id="container"></div> 
 </template>
 <style type="text/css">
@@ -12,7 +12,8 @@ module.exports = {
   replace: true,
   data:function(){
     return {
-    	hotelName:this.$route.query.hotelName
+    	hotelName:this.$route.query.hotelName,
+      title:this.$route.query.title
     }
   },
   components: {
@@ -22,21 +23,51 @@ module.exports = {
   },
   ready:function(){
   		var pos = this.$route.query.pos;
-  		var lon = poem.getPos(pos).lon;
-  		var lat = poem.getPos(pos).lat;
-		var map = new BMap.Map("container");          // 创建地图实例  
-		var point = new BMap.Point(lon, lat);  // 创建点坐标 
-		console.log(lon); 
-		console.log(lat); 
-		map.centerAndZoom(point, 15); 
-		var marker = new BMap.Marker(point);        // 创建标注     
-		map.addOverlay(marker);   
-		var opts = {    
-			 width : 250,     // 信息窗口宽度    
-			 height: 30,     // 信息窗口高度    
-			}
-			var infoWindow = new BMap.InfoWindow(this.$route.query.hotelName, opts);  // 创建信息窗口对象    
-			map.openInfoWindow(infoWindow, map.getCenter());      // 打开信息窗口
+      if(!$.isEmpty(pos)){
+        var lng = poem.getPos(pos).lng;
+        var lat = poem.getPos(pos).lat;
+        this.initMap(lng,lat);
+        if(!$.isEmpty(this.$route.query)){
+          var infoWindow = new BMap.InfoWindow(this.$route.query.markName, opts);  // 创建信息窗口对象    
+          map.openInfoWindow(infoWindow, map.getCenter());      // 打开信息窗口
+        }
+      }else{
+        this.getPosition();
+      }
+  		console.log(lng); 
+  		console.log(lat); 
+  },
+  methods:{
+    getPosition:function(){
+      if (window.navigator.geolocation) { 
+        var options = { 
+          enableHighAccuracy: true, 
+          }; 
+        window.navigator.geolocation.getCurrentPosition(this.handleSuccess, this.handleError, options); 
+      }else{ 
+        alert("浏览器不支持html5来获取地理位置信息"); 
+      } 
+    },
+    handleSuccess:function(position){
+      var lng = position.coords.longitude; 
+      var lat = position.coords.latitude; 
+      this.initMap(lng,lat);
+    },
+    handleError:function(){
+
+    },
+    initMap:function(lng,lat){
+      var map = new BMap.Map("container");          // 创建地图实例  
+      var point = new BMap.Point(lng, lat);  // 创建点坐标 
+      map.centerAndZoom(point, 15); 
+      var marker = new BMap.Marker(point);        // 创建标注     
+      map.addOverlay(marker);   
+      var opts = {    
+         width : 250,     // 信息窗口宽度    
+         height: 30,     // 信息窗口高度    
+      }
+      
+    }
   },
   route: {
     data: function (transition) {

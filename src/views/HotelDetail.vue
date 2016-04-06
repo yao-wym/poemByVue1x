@@ -28,7 +28,7 @@
               </div>
             </a></div>
             <div class="li-label">
-           <a  v-link="{path:'/MapView?pos='+hotelLoc+'&hotelName='+hotelName+'&hotelId='+$route.params.hotelId}">
+           <a  v-link="{path:'/MapView?pos='+hotelLoc+'&title='+hotelName+'&markName='+hotelName+'&hotelId='+$route.params.hotelId}">
               <div class="icon">
                 <img src="../asset/images/ditu.png">
               </div>
@@ -49,7 +49,8 @@
                 <i></i>
               </div>
             </a></div>
-              <div class="li-label"><a href="">
+              <div class="li-label">
+             <a v-link="{path:'/Techan'}">
               <div class="icon">
                 <img src="../asset/images/fun-yellow.png">
               </div>

@@ -1,12 +1,15 @@
 <template class="flex-view" v-transition>
     	<app-header title='购物车'></app-header>
       <flex-scroll-view>
-        <ul id="hotel-list-view" style="font-size: 0.3rem;">
-          <cart-list-item>
+        <ul id="cart-list-view" style="font-size: 0.3rem;">
+          <cart-list-item v-for="cart in cartList" :cart="cart" :index="$index">
           </cart-list-item>
         </ul>
       </flex-scroll-view>
-
+<!--       <footer style="position: fixed;bottom: 1rem;width: 100%;height: 2rem;border-top: 1px solid #ccc">
+        <div style="width: 60%;display: inline-block">123</div>
+        <div style="width: 30%;display: inline-block">123</div>
+      </footer> -->
 </template>
 
 <script>
@@ -22,7 +25,21 @@
   },
   ready:function(){
     // $.fn.poemGet(CART_LIST_API,{'key':});
+    this.getCartList();
   },
+  data:function(){
+    return{
+      cartList:[]
+    }
+  },
+  methods:{
+    getCartList:function(){
+      $.poemGet(CART_LIST_API,{key:'15c773c6df19d56beff430f2486b5357'}).done(this.success);
+    },
+    success:function(res){
+      this.cartList = res.cart_list;
+    }
+  }
 }
 </script>
 

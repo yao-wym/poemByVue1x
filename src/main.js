@@ -32,6 +32,7 @@ import HotelOrderForm from './views/HotelOrderForm.vue'
 import ScenicDetailView from './views/ScenicDetail.vue'
 import ScenicOrderForm from './views/ScenicOrderForm.vue'
 import FoodDetail from './views/FoodDetail.vue'
+import TechanListView from './views/TechanList.vue'
 // install router
 // VueValidator = require('vue-validator')
 var client = 'ios';
@@ -135,6 +136,9 @@ router.map({
   },
   '/FoodList': {
     component: FoodListView
+  },
+  '/TechanList': {
+    component: TechanListView
   },
   '/ScenicList': {
     component: ScenicListView

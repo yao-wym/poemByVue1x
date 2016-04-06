@@ -7,24 +7,36 @@
   <div class="pane-left">
     <a v-link="{path:'/HotelList'}">
       <div v-on="click:location.href='#hotel-list'" style="background-color: rgb(234,99,94)">
-        <img src="../asset/images/store-white.png">
+        <div class="logo">
+          <img src="../asset/images/jiudianzhusu.png">
+          <div>酒店</div>
+        </div>
       </div>
     </a>
-    <a v-link="{path:'/ScenicList'}">
+    <a v-link="{path:'/MapView?title=周边'}">
       <div style="background-color: rgb(127,204,229)">
-        <img src="../asset/images/location.png">
+        <div class="logo">
+          <img src="../asset/images/location.png">
+          <div>周边</div>
+        </div>
       </div>
     </a>
   </div>
   <div class="pane-right">
     <a v-link="{path:'/ScenicList'}">
       <div style="background-color: rgb(141,194,30)">
-        <img src="../asset/images/ticket-white.png">
+        <div class="logo">
+          <img src="../asset/images/jingdianmengpiao.png">
+          <div>景点门票</div>
+        </div>
       </div>
     </a>
-    <a v-link="{path:'/FoodList'}">
+    <a v-link="{path:'/TechanList'}">
       <div style="background-color: rgb(242,150,0)">
-        <img src="../asset/images/techan.png">
+        <div class="logo">
+          <img src="../asset/images/techan-white.png">
+          <div>特产</div>
+        </div>
       </div>
     </a>
   </div>
@@ -52,11 +64,17 @@ module.exports = {
 <style lang="stylus">
 .pane
 	overflow:hidden
+  & .logo
+    width:.5rem
+    position:absolute
+    margin:auto
+    top:0
+    bottom:0
+    left:0
+    right:0
+    color:whitex
 	& img
 		width:1rem
-		position:absolute
-		margin:auto
-		top:0;bottom:0;left:0;right:0;
 	& div
 		padding:3px
 		position:relative

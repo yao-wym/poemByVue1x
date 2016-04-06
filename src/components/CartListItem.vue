@@ -10,48 +10,24 @@
 			</div>
 		</div>
 		<div class="cart-goods-list">
-			<div class="cart-goods-item">
+			<div class="cart-goods-item" v-link="{path:'/ScenicDetail/'+cart.goods_id}">
 				<a>
-			<img class="cart-goods-img" src="../asset/images/star-red.png" />
+			<img class="cart-goods-img" src="{{cart.goods_image_url}}" />
 			<div class="cart-goods-info">
-				包包2015款包包2015款包包2015款包包2015款包包2015款
+				{{cart.goods_name}}
 			</div>
 			<div class="cart-goods-price">
-				<p>123</p>
-				<p>x1</p>
-			</div>
-			</a>
-			</div>
-			<div class="cart-goods-item">
-				<a>
-			<img class="cart-goods-img" src="../asset/images/star-red.png" />
-			<div class="cart-goods-info">
-				包包2015款包包2015款包包2015款包包2015款包包2015款
-			</div>
-			<div class="cart-goods-price">
-				<p>123</p>
-				<p>x1</p>
-			</div>
-			</a>
-			</div>
-			<div class="cart-goods-item">
-				<a>
-			<img class="cart-goods-img" src="../asset/images/star-red.png" />
-			<div class="cart-goods-info">
-				包包2015款包包2015款包包2015款包包2015款包包2015款
-			</div>
-			<div class="cart-goods-price">
-				<p>123</p>
-				<p>x1</p>
+				<p>{{cart.goods_price}}</p>
+				<p>x{{cart.goods_num}}</p>
 			</div>
 			</a>
 			</div>
 		</div>
 		<div class="cart-item-price" style="overflow:hidden">
 			<span style="float:right">总共
-			<span>1</span>
+			<span>{{cart.goods_num}}</span>
 			件合计¥
-			<span >88</span>
+			<span >{{cart.goods_sum}}</span>
 			（含运费
 			<span>0</span>
 			)
@@ -68,7 +44,7 @@
 <script type="text/javascript">
 module.exports = {
 	replace: true,
-	props: ['hotel']
+	props: ['cart']
 }
 </script>
 
