@@ -1,5 +1,5 @@
 <template>
-    	<app-header search='找美食.找酒店' left-icon='user-icon' left-link='#user/login'  right-icon='phone-icon' right-link="search"></app-header>
+    	<app-header search='找美食.找酒店' left-icon='user-icon' left-link='#user/login'  right-icon='phone-icon' right-link="call"></app-header>
       <flex-scroll-view>
           <app-pane side="left" msg="1123" name="{{leftName}}"></app-pane>
       </flex-scroll-view>
@@ -32,6 +32,9 @@
     'search':function(msg){
       // console.log(msg.keyword);
       this.$route.router.go({name:'search',params:{keyword:msg.keyword}});
+    },
+    'call':function(){
+      location.href="tel:13041022978";
     }
   }
 }

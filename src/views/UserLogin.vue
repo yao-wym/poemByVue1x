@@ -1,6 +1,5 @@
 <template>
 <div class="view" v-transition>
-	<validator name="validation1">
 	<form novalidate>
 				<div style="margin-top:3rem;text-align:center" class="login-container">
 		<div class="poem-input-box">
@@ -12,17 +11,15 @@
 			<div>
 				<img src='../asset/images/lock-white.png'/>
 				<label id="password" style="font-size:.4rem;width:1.5rem display:inline-block">密码</label>
-				<input v-model="password" type="password" id="password" v-validate:password="{minlength:6}" placeholder='请填写密码' />
-				<p v-if="$validation1.password.required">Your comment is too long.</p>
+				<input v-model="password" type="password" id="password" placeholder='请填写密码' />
 			</div>
 		</div>
 		<div style="display: block;width: 80%;margin:1rem auto">
 			<div class="poem-btn-green" @click="login()">登陆</div>
-			<a href="#/user/findpwd" style="margin-top:0.5rem;float: left;color:green;font-size:.3rem">忘记密码?</a>
+			<a v-link={path:'/user/findpwd'} style="margin-top:0.5rem;float: left;color:green;font-size:.3rem">忘记密码?</a>
 		</div>
 		</div>
 	</form>
-	</validator>
 </div>
 </template>
 

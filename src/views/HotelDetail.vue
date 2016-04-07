@@ -4,7 +4,7 @@
       <div id="hotel-container"\>
         <div class="hotel-header" style="background-image:url({{bgImg}})">
           <header>
-            <i style="float:left">
+            <i @click="goBack()" style="float:left">
               <img src="../asset/images/fanhui.png">
             </i>
             <div style="float:right">
@@ -133,6 +133,9 @@
         calendars: 1,
         starts: 1
       });
+    },
+    goBack:function(){
+      history.go(-1)
     },
     getHotelDetail:function(){
       $.poemGet(HOTEL_DETAIL_API,{'store_id':this.$route.params.hotelId}).done(this.initPage)

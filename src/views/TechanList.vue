@@ -1,6 +1,6 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header search="找特产" right-icon="user-icon" right-link="#/user/login"></app-header>
+	<app-header title="特产" right-icon="user-icon" right-link="#/user/login"></app-header>
   <flex-scroll-view>
         <ul id="techan-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
@@ -10,7 +10,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['默认排序','传统酒店','牧家乐']"></filter-tab>
+	<filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['工艺品','肉制品','奶制品','酒类','其他']"></filter-tab>
 </div>
 </template>
 

@@ -1,28 +1,33 @@
 <template>
 	<div class="view" v-transition>
-	<div style="margin-top:2rem;text-align:center" class="login-container">
+	<div style="margin-top:2rem;text-align:center" class="reg-container">
 		<div class="poem-input-box">
 			<div class="input-item">
-				<img src='../asset/images/user-green.png' style="width:30px;height: 30px"/>
-				<label style="width:1.5rem display:inline-block">手机号</label>
-				<input v-model="mobile" id="mobile" style="width:5rem;border:0;heigth:50px;display:inline-block;" placeholder='手机号'/>
-				<button style="" @click="sendSms">发送验证码</button>
+        <div class="icon">
+          <img src='../asset/images/phone-device.png'/>
+          <label style="display:inline-block">手机号</label>
+        </div>
+				<input v-model="mobile" id="mobile" style="border:0;heigth:50px;display:inline-block;" placeholder='手机号'/>
+				<button style="margin-top: -5px;border: none;padding: 5px 10px;color:#aaa;background-color: #eee;height:.6rem;font-size:.3rem;width: 2rem" @click="sendSms">发送验证码</button>
 			</div>
-			<div>
-				<img src='../asset/images/lock-white.png' style="width:30px;height: 30px"/>
-				<label v-model="validCode" id="valid-code" style="width:1.5rem display:inline-block">验证码</label>
-				<input style="width:7rem display:inline-block;" placeholder='请填写密码' />
+			<div class="input-item">
+        <div class="icon">
+  				<label v-model="validCode" id="valid-code" style="display:inline-block">验证码</label>
+        </div>
+        <input style=" display:inline-block;" placeholder='请填写验证码' />
 			</div>
-			<div>
-				<img src='../asset/images/lock-white.png' style="width:30px;height: 30px"/>
-				<label id="password" style="width:1.5rem display:inline-block">密码</label>
-				<input v-model="password" style="width:7rem display:inline-block;" placeholder='请填写密码' />
+			<div class="input-item">
+        <div class="icon">
+  				<img src='../asset/images/lock-white.png'/>
+  				<label id="password" style="display:inline-block">密码</label>
+        </div>
+        <input v-model="password" style="display:inline-block;" placeholder='请填写密码' />
 			</div>
 		</div>
 		<div style="display: block;width: 80%;margin:0 auto">
 			<div class="poem-btn-green" @click="register">注册</div>
 			<span style="float: left;font-size:.3rem">
-				<input type="checkbox" style="width:auto" v-model="agreeCheck">
+				<input type="checkbox" style="width:.3rem;height:.3rem" v-model="agreeCheck">
 			我已阅读并同意诗画草原<a v-link="hostlist">《用户使用协议》</a></span>
 		</div>
 	</div>
@@ -30,7 +35,21 @@
 </template>
 
 <style lang="stylus">
-
+.reg-container
+  & .poem-input-box
+    border:1px solid #ddd
+    width:8rem
+    border:none
+  & .input-item
+    display:flex
+    align-items: center
+    & .icon
+      text-align:left
+      width:2rem
+      & img
+        width:.35rem
+        height:.35rem
+    
 </style>
 
 

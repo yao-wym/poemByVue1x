@@ -6,18 +6,17 @@
 				<div class="scenic-name">
 					<p>{{scenic.goods_name}}</p>
 					<p style="margin-top:6px">
-					<span style="color:red">{{scenic.store_star}}</span>
-					<span>/{{scenic.eval_num}}条评论</span>
+					<span style="color:red">{{scenic.evaluation_good_star}}</span>
+					<span>/{{scenic.evaluation_count}}条评论</span>
 					</p>
 				</div>
 				<div style="margin-top:0.2rem">
 					<div style="float: left;font-size:0.28rem">
-						<p><span>{{scenic.evaluation_good_star}}</span>星级</p>
-						<p style="margin-top:10px">{{scenic.store_address}}</p>
+						<p style="margin-top:10px">{{scenic.goods_jingle}}</p>
 					</div>
 					<div style="float:right;margin-right: 10px">
 						<span style='font-size:0.4rem;color:orangered'>¥</span>
-						<span style='font-size:0.4rem;color:orangered'>{{scenic.min_price}}</span>
+						<span style='font-size:0.4rem;color:orangered'>{{scenic.goods_price}}</span>
 						<span>起</span>
 					</div>
 				</div>

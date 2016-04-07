@@ -1,8 +1,8 @@
 <template>
 	<li class="cart-item">
 		<div class="cart-item-header" style="overflow:hidden">
-			<div style="float:left">
-				<input type="checkbox">
+			<div style="float:left;margin-left: 10px">
+				<input style="height:.4rem;width:.4rem" type="checkbox">
 			</div>
 			<div style="float:right">
 				<span style="margin-right:15px">删除</span>
@@ -51,7 +51,7 @@ module.exports = {
 <style lang="stylus">
 	@import "../main.styl"
 .cart-item
-	font-size:.3rem
+	font-size:.35rem
 	& .cart-item-header
 		padding:15px
 	& .cart-item-price
@@ -62,7 +62,7 @@ module.exports = {
 		& div
 			background-color:white
 			margin:10px
-			width:1.8rem
+			min-width:2rem
 			color:text-gray
 			text-align:center
 			border:solid 1px line-gray

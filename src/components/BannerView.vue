@@ -1,8 +1,8 @@
 <template>
 	<div class="banner-wrap">
         <div id="b-wrapper">
-        <div id="banner" class="banner-content">
-        	<div v-for="item in slideList" @click='showDetail($index)' class="slide">
+        <div id="banner" style="background-color: white" class="banner-content">
+        	<div @click='showDetail($index)' v-for="item in slideList" class="slide">
 				<div style="background-image:url({{item.image}})" class="painting giotto"></div>
 			</div>
         </div>
@@ -13,7 +13,7 @@
     </div>
 </template>
 <style lang="stylus">
-bannerHeight = 3rem
+bannerHeight = 3.2rem
 imgHeight = bannerHeight-0.3rem
 imgWidth = 9rem
 * {
@@ -54,6 +54,7 @@ imgWidth = 9rem
 }
 
 .slide {
+	background-color: white
 	width: 10rem
 	height: bannerHeight;
 	float: left;
@@ -98,6 +99,7 @@ function loaded () {
 		scrollY: false,
 		momentum: false,
 		snap: true,
+		click:true,
 		snapSpeed: 400,
 		keyBindings: true,
 		indicators: {

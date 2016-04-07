@@ -3,8 +3,8 @@
       <div id="uc-container">
         <header class="uc-header">
           <div>
-            <img src="../asset/images/user-white.png">
-            <p>18782950298</p>
+            <img style="width: 1.6rem" src="../asset/images/my-circle.png">
+            <p style="margin-top:10px;color:white">{{username}}</p>
           </div>
         </header>
         <section class="li-section">
@@ -27,13 +27,13 @@
               <div class="icon">
                 <img src="../asset/images/techan.png">
               </div>
-              <div class="title">特产订单</div>
+              <div style="border-bottom: none" class="title">特产订单</div>
               <div class="arrow">
               <i></i>
               </div>
             </a></div>
         </section>
-        <section class="li-section" style="margin-top: 10px">
+        <section class="li-section" style="margin-top: 15px">
          <div class="li-label"><a v-link="{name:'addresslist'}">
               <div class="icon">
                 <img src="../asset/images/star-red-full.png">
@@ -74,18 +74,18 @@
               <div class="icon">
                 <img src="../asset/images/score-exchange.png">
               </div>
-              <div class="title">积分兑换</div>
+              <div style="border-bottom: none" class="title">积分兑换</div>
               <div class="arrow">
               <i></i>
               </div>
             </a></div>
         </section>
-        <section class="li-section" style="margin-top: 10px">
-          <div class="li-label"><a href="#/About">
+        <section class="li-section" style="margin-top: 15px">
+          <div  class="li-label"><a href="#/About">
               <div class="icon">
                 <img src="../asset/images/about-us.png">
               </div>
-              <div class="title">关于我们</div>
+              <div style="border-bottom: none" class="title">关于我们</div>
               <div class="arrow">
               <i></i>
               </div>
@@ -100,7 +100,7 @@
               </div>
             </a></div> -->
         </section>
-        <section class="li-section" style="margin-top: 10px">
+        <section class="li-section" style="margin-top: 15px">
           <div class="li-label"><a href="#/Setting">
               <div class="icon">
                 <img src="../asset/images/setting-yellow.png">
@@ -114,7 +114,7 @@
               <div class="icon">
                 <img src="../asset/images/help-suggest.png">
               </div>
-              <div class="title">个人资料</div>
+              <div style="border-bottom: none" class="title">个人资料</div>
               <div class="arrow">
               <i></i>
               </div>
@@ -128,6 +128,11 @@
 
 	module.exports = {
   replace: true,
+  data:function(){
+    return{
+      'username':poem.getItem('username')
+    }
+  },
   components: {
     'app-header': require('../components/CommonHeader.vue'),
     'app-pane': require('../components/IndexHomePane.vue'),
@@ -142,21 +147,20 @@
   #uc-container
     background-color:rgb(238,238,238)
     .uc-header
-      background:url(../asset/images/news.png)
+      background:url(../asset/images/my-bg.png)
       text-align:center
-      padding-top:1rem
-      padding-bottom:.6rem
+      padding-top:.4rem
+      padding-bottom:.3rem
       color:white
     .li-section
       background-color:white
     .li-section .li-label
-      height:1rem
+      height:1.2rem
       padding:0 10px
-      line-height:1rem
+      line-height:1.2rem
       width:100%
       display:-webkit-box
-      display: -webkit-box; /* Safari */
-      font-size: .4rem
+      font-size: .45rem
       color:poem-text-gray
       & a
         width:100%
@@ -165,12 +169,14 @@
         & .title
           -webkit-box-flex: 1
           flex:1
+          padding-left:10px
         & .icon
-          width:.3rem
-          height:.3rem
-          margin-right:10px
+          width:.5rem
+          height:.5rem
+          padding:5px
+          margin-left:10px
           & img
-            width:100%
+            width:.5rem
         & .arrow
           height:.5rem
           background:none
