@@ -16,7 +16,7 @@
 		</div>
 		<div style="display: block;width: 80%;margin:1rem auto">
 			<div class="poem-btn-green" @click="login()">登陆</div>
-			<a v-link={path:'/user/findpwd'} style="margin-top:0.5rem;float: left;color:green;font-size:.3rem">忘记密码?</a>
+			<a v-link="{name:'findpwd'}" style="margin-top:0.5rem;float: left;color:green;font-size:.3rem">忘记密码?</a>
 		</div>
 		</div>
 	</form>
