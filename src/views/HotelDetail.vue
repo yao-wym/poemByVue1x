@@ -18,7 +18,8 @@
         </div>
         <section class="li-section">
 
-          <div class="li-label"><a href="">
+          <div class="li-label">
+          <a v-link="{path:'/Comments/'+this.$route.params.hotelId}">
               <div class="icon">
                 <img src="../asset/images/comments-green.png">
               </div>
@@ -40,7 +41,8 @@
                 <i></i>
               </div>
             </a></div>
-            <div class="li-label"><a href="">
+            <div class="li-label">
+            <a v-link="{path:'/HotelDeepDetail/'+this.$route.params.hotelId}">
               <div class="icon">
                 <img src="../asset/images/pic-yellow.png">
               </div>
@@ -50,7 +52,7 @@
               </div>
             </a></div>
               <div class="li-label">
-             <a v-link="{path:'/Techan'}">
+             <a v-link="{path:'/FoodList'}">
               <div class="icon">
                 <img src="../asset/images/fun-yellow.png">
               </div>

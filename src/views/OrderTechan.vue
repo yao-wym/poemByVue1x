@@ -26,8 +26,9 @@
   ready:function(){
     // $.fn.poemGet(CART_LIST_API,{'key':});
     this.leftLabel='特产';
+    this.title="";
   },
-  props:['leftLabel']
+  props:['leftLabel','title']
 }
 </script>
 

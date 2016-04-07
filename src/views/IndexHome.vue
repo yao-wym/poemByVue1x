@@ -1,5 +1,5 @@
 <template>
-    	<app-header search='找美食.找酒店' left-icon='user-icon' left-link='#user/login'  right-icon='search-icon' right-link="search"></app-header>
+    	<app-header search='找美食.找酒店' left-icon='user-icon' left-link='#user/login'  right-icon='phone-icon' right-link="search"></app-header>
       <flex-scroll-view>
           <app-pane side="left" msg="1123" name="{{leftName}}"></app-pane>
       </flex-scroll-view>

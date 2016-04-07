@@ -43,7 +43,7 @@
               <i></i>
               </div>
             </a></div>
-          <div class="li-label"><a href="">
+          <!-- <div class="li-label"><a href="">
               <div class="icon">
                 <img src="../asset/images/collect-red.png">
               </div>
@@ -51,8 +51,8 @@
               <div class="arrow">
               <i></i>
               </div>
-            </a></div>
-          <div class="li-label"><a href="">
+            </a></div> -->
+         <!--  <div class="li-label"><a href="">
               <div class="icon">
                 <img src="../asset/images/invite-friends.png">
               </div>
@@ -60,7 +60,7 @@
               <div class="arrow">
               <i></i>
               </div>
-            </a></div>
+            </a></div> -->
             <div class="li-label"><a href="#/PointsDetail">
               <div class="icon">
                 <img src="../asset/images/score-detail.png">
@@ -90,7 +90,7 @@
               <i></i>
               </div>
             </a></div>
-          <div class="li-label"><a href="">
+         <!--  <div class="li-label"><a href="">
               <div class="icon">
                 <img src="../asset/images/help-suggest.png">
               </div>
@@ -98,7 +98,7 @@
               <div class="arrow">
               <i></i>
               </div>
-            </a></div>
+            </a></div> -->
         </section>
         <section class="li-section" style="margin-top: 10px">
           <div class="li-label"><a href="#/Setting">

@@ -44,6 +44,7 @@ import ScenicDeepDetail from './views/ScenicDeepDetail.vue'
 import TravelNoteList from './views/TravelNoteList.vue'
 import TravelNote from './views/TravelNote.vue'
 import About from './views/About.vue'
+import StoreGoodsView from './views/StoreGoodsList.vue'
 // install router
 // VueValidator = require('vue-validator')
 var client = 'ios';
@@ -171,8 +172,8 @@ router.map({
   'ScenicDeepDetail/:id': {
     component: ScenicDeepDetail
   },
-  '/app_header': {
-    component: ItemView
+  '/StoreGoodsList/:id': {
+    component: StoreGoodsView
   },
   '/app_header': {
     component: ItemView

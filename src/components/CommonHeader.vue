@@ -84,6 +84,12 @@ header-text-color = #fff
   height:@width
   background-size:100%
   display:inline-block
+.phone-icon
+  background-image:url("../asset/images/phone.png")
+  width:header-img-width
+  height:@width
+  background-size:100%
+  display:inline-block
 .back-icon
   background-image:url("../asset/images/fanhui.png")
   width:header-img-width
@@ -113,6 +119,8 @@ header-text-color = #fff
   display: -webkit-flex; /* Safari */
   flex-direction:row
   align-items:center
+  & a
+    color:white
 .header-center
   flex-grow: 1;
   height:0.8rem

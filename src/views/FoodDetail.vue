@@ -33,7 +33,7 @@
       </a>
       <p class="contact">
         <a href=""><img src="" alt="">联系客服</a>    
-        <a href=""><img src="" alt="">进入店铺</a>
+        <a v-link="{path:'/StoreGoodsList/3'}"><img src="" alt="">进入店铺</a>
       </p>
     </div>
     </flex-scroll-view>

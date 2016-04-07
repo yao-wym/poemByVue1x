@@ -64,22 +64,26 @@ module.exports = {
 <style lang="stylus">
 .pane
 	overflow:hidden
-  & .logo
-    width:.5rem
-    position:absolute
-    margin:auto
-    top:0
-    bottom:0
-    left:0
-    right:0
-    color:whitex
 	& img
 		width:1rem
 	& div
 		padding:3px
 		position:relative
+	& .logo
+		position:absolute
+		margin:auto
+		top:0
+		bottom:0
+		left:0
+		right:0
+		height:2rem
+		color:white
+		text-align:center
+		& div
+			width:auto
+			margin-top:5px
 	& a
-		overflow:hidden
+		overflow:hidden 
 .pane-left
 	float:left
 	width:48%
@@ -92,10 +96,10 @@ module.exports = {
 .pane div div:nth-child(2)
 	margin-top:6px
 
-.pane-left a:nth-child(1) div
-.pane-right a:nth-child(2) div
+.pane-left a:nth-child(1)>div
+.pane-right a:nth-child(2)>div
 	height:50vw
-.pane-left a:nth-child(2) div
-.pane-right a:nth-child(1) div
+.pane-left a:nth-child(2)>div
+.pane-right a:nth-child(1)>div
 	height:60vw
 </style>
