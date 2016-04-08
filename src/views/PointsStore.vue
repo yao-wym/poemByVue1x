@@ -5,9 +5,9 @@
   	  <p class="owned-points">可用积分 {{ points }}</p>
       <div class="item-list">
         <div class="item" v-for="item in itemList">
-          <div class="img-wrapper"><img src="{{item.imgSrc}}" alt=""></div>
-          <p>{{item.name}}</p>
-          <p><span class="score-price">{{item.price}}</span>积分<button :class="{'active': item.active}">立即兑换</button></p>
+          <div class="img-wrapper"><img src="{{item.pgoods_image_small}}" alt=""></div>
+          <p>{{item.pgoods_name}}</p>
+          <p><span class="score-price">{{item.pgoods_points}}</span>积分<button @click="buy(item.pgoods_id)" :class="{'active': item.pgoods_show}">立即兑换</button></p>
         </div>
       </div>
     </flex-scroll-view>
@@ -85,8 +85,37 @@
       return {
         title: '积分商城',
         points: 90,
-        itemList: itemList
+        itemList: []
       }
+    },
+
+    methods: {
+      getPointsStoreList() {
+        $.poemPost(POINTS_STORE_API,{
+          order:"asc",curpage:this.curpage,
+          key:"60669c1838e2613754ea9a466d50b89f",
+          }).done(this.getPointsStoreListDone);
+      },
+      getPointsStoreListDone(data) {
+        console.log(data)
+        this.itemList = this.itemList.concat(data);
+      },
+      buy(pgoods_id) {
+        $.poemPost(POINTS_BUY_API,{key:"60669c1838e2613754ea9a466d50b89f",
+          pgoods_id: pgoods_id,
+          quantity: 1,}).done(this.buyDone);
+      },
+      buyDone(data) {
+        if (data.error) {
+          alert(data.error);
+          return;
+        };
+        return alert('兑换成功')
+      }
+    },
+
+    ready() {
+      this.getPointsStoreList();
     }
   }
 </script>
