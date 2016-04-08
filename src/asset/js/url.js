@@ -18,14 +18,31 @@ var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=3';
 var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';
 
 var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=1';
+var TECHAN_DETAIL_API = HOST_API+'act=goods&op=goods_list&gc_id=1';
 
-var SUBMIT_ORDER_VR_API = HOST_API+'act=member_vr_buy&op=buy_step3';
 
 var CART_LIST_API = HOST_API+'act=member_cart&op=cart_list';
 
 var COMMENT_LIST_API = HOST_API+'act=goods&op=comment_list';
 var TRAVELNOTE_LIST_API = HOST_API + 'act=cms_article&op=article_list';
 var TRAVELNOTE_DETAIL_API = HOST_API + 'act=cms_article&op=article_detail';
+
+var CART_DEL_API = HOST_API+'act=member_cart&op=cart_del';
+
+var CART_BUY_API = HOST_API+'act=member_cart&op=cart_del';
+
+var GOODS_BUY_STEP1_API = HOST_API+'act=member_buy&op=buy_step1';
+var GOODS_BUY_STEP2_API = HOST_API+'act=member_buy&op=buy_step2';
+
+var SUBMIT_ORDER_VR_API = HOST_API+'act=member_vr_buy&op=buy_step3';
+
+var BUY_CART_VR_API = HOST_API+'act=member_vr_buy&op=buy_step1';
+
+var GOODS_DETAIL_API = HOST_API+'act=goods&op=goods_detail';
+
+var CART_ADD_API = HOST_API+'act=member_cart&op=cart_add';
+
+var TECHAN_ORDER_LIST_API = HOST_API+'act=member_order&op=order_list_v2';
 
 var poemUI = {
 	toast:function(msg){

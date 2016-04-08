@@ -4,12 +4,12 @@
       <banner></banner>
       <div class="container">
         <div class="intro">
-          <p>{{ foodName }}</p>
-          <p class="price"></p>
-          <p>价格: <span class="original-price">{{ originalPrice }}</span></p>
+          <p>{{ goodsDetail.goods_info.goods_name }}</p>
+          <p class="price">{{ goodsDetail.goods_info.goods_price }}</p>
+          <p>价格: <span class="original-price">{{ goodsDetail.goods_info.goods_marketprice }}</span></p>
           <div class="row">
             <p>快递: {{ expressPrice }}元</p>
-            <p>月销：{{ monthSold }}</p>
+            <p>月销：{{ goodsDetail.goods_info.goods_salenum }}</p>
             <p>库存：{{ stock }}</p>
           </div>
         </div>
@@ -18,22 +18,22 @@
           <span class="right">></span>
       </a>
         <a class="link-line" href="">
-          评价晒单 好评<span class="price-red">{{ postiveCommentsRate * 100 }}%</span>
+          评价晒单 评分<span class="price-red">{{ goodsDetail.goods_info.evaluation_good_star }}</span>
           <span class="right">></span>
       </a>
         <a class="link-line" href="">
           图文详情
           <span class="right">></span>
       </a>
-      <a class="link-line" href="">
+      <a  v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id}">
         <img src="" alt="">
-        <span>{{ storeName }}</span>
-        <span class="price-red">{{ storeScore }}分</span>
+        <span>{{ goodsDetail.store_info.store_name }}</span>
+        <!-- <span class="price-red">{{ goodsDetail.store_info. }}分</span> -->
         <span class="right">></span>
       </a>
       <p class="contact">
         <a href=""><img src="" alt="">联系客服</a>    
-        <a v-link="{path:'/StoreGoodsList/3'}"><img src="" alt="">进入店铺</a>
+        <a v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id}"><img src="" alt="">进入店铺</a>
       </p>
     </div>
     </flex-scroll-view>
@@ -43,8 +43,8 @@
           <button>收藏</button>
           <a href="">购物车</a>
         </div>
-        <a class="addto-cart">加入购物车</a>
-        <a href="" class="buy-now">立即购买</a>
+        <a class="addto-cart" @click="addToCart()">加入购物车</a>
+        <a @click="buy()" class="buy-now">立即购买</a>
       </div>
   </div>
 </template>
@@ -60,8 +60,37 @@ module.exports = {
       require(['../components/BannerView.vue'], resolve);
     }
   },
+  ready:function(){
+    this.goodsId = this.$route.params.id;
+    this.getGoodsDetail();
+  },
+  methods:{
+    addToCart:function(){
+      $.poemPost(CART_ADD_API,{'key':poem.getItem('key'),'goods_id':this.goodsId,'quantity':this.quantity}).done(function(res){
+        if(res.error){
+          poemUI.toast(res.error);
+        }else{
+          poemUI.toast('添加成功');
+        }
+      });
+    },
+    getGoodsDetail:function(){
+      $.poemGet(GOODS_DETAIL_API,{'goods_id':this.goodsId}).done(this.getSuccess);
+    },
+    getSuccess:function(res){
+      this.goodsDetail = res;
+      this.goodsType = res.spec_list[Object.keys(res['spec_list'])[0]]
+    },
+    buy:function(res){
+        this.$route.router.go({path:'/TechanOrderForm?goodsId='+this.goodsId+'&goodsType='+this.goodsType});
+    }
+  },
   data() {
     return {
+      quantity:1,
+      goodsId:'',
+      goodsType:'',
+      goodsDetail:{},
       foodName: '风干牛肉干风干牛肉干风干牛肉干风干风干牛肉干风干牛肉干风干牛肉干',
       price: 59,
       originalPrice: 100,

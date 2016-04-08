@@ -45,6 +45,7 @@ import TravelNoteList from './views/TravelNoteList.vue'
 import TravelNote from './views/TravelNote.vue'
 import About from './views/About.vue'
 import StoreGoodsView from './views/StoreGoodsList.vue'
+import TechanOrderFormView from './views/TechanOrderForm.vue'
 // install router
 // VueValidator = require('vue-validator')
 var client = 'ios';
@@ -121,6 +122,10 @@ router.map({
   '/search/:keyword': {
     name:'search',
     component: SearchView
+  },
+  '/TechanOrderForm': {
+    name:'techanOrderForm',
+    component: TechanOrderFormView
   },
   '/IndexHome': {
     component: IndexHome

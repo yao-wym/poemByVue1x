@@ -1,6 +1,6 @@
 <template>
 	<li class="techan-item">
-		<a style="overflow: hidden" v-link="{path:'/FoodDetail/'+techan.store_id}">
+		<a style="overflow: hidden" v-link="{path:'/FoodDetail/'+techan.goods_id}">
 			<img v-bind:src="techan.goods_image_url" class="techan-img">
 			<div class="techan-info">
 				<div class="techan-name">

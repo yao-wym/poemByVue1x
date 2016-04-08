@@ -32,13 +32,18 @@
       cartList:[]
     }
   },
+  events:{
+    cartRefresh:function(){
+      this.getCartList();
+    }
+  },
   methods:{
     getCartList:function(){
-      $.poemGet(CART_LIST_API,{key:'15c773c6df19d56beff430f2486b5357'}).done(this.success);
+      $.poemGet(CART_LIST_API,{key:poem.getItem('key')}).done(this.getSuccess);
     },
-    success:function(res){
+    getSuccess:function(res){
       this.cartList = res.cart_list;
-    }
+    },
   }
 }
 </script>

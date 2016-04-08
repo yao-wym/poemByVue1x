@@ -8,7 +8,7 @@
   </div>
       <flex-scroll-view>
         <ul id="order-hotel-view" style="font-size: 0.3rem;">
-          <order-techan-item>
+          <order-techan-item for>
           </order-techan-item>
         </ul>
       </flex-scroll-view>
@@ -27,6 +27,14 @@
     // $.fn.poemGet(CART_LIST_API,{'key':});
     this.leftLabel='特产';
     this.title="";
+  },
+  methods:{
+    getOrderList:function(){
+      poemGet(TECHAN_ORDER_LIST_API,{key:poem.getItem('key',order_state:1)}).done(this.getSuccess);
+    },
+    getSuccess:function(res){
+      this.orderList = res.order_group_list;
+    }
   },
   props:['leftLabel','title']
 }

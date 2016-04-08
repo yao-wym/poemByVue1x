@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<div class="cart-goods-list">
-			<div class="cart-goods-item" v-link="{path:'/ScenicDetail/'+cart.goods_id}">
+			<div class="cart-goods-item" v-link="{path:'/FoodDetail/'+cart.goods_id}">
 				<a>
 			<img class="cart-goods-img" src="{{cart.goods_image_url}}" />
 			<div class="cart-goods-info">
@@ -35,8 +35,8 @@
 		</div>
 		<div class="cart-item-operate" style="overflow:hidden">
 			<div class="cart-item-pay" style="float:right">付款</div>
-			<div class="cart-item-cancel" style="float:right">取消订单</div>
-			<div class="cart-item-call" style="float:right">联系卖家</div>
+			<div @click="delete(cart.cart_id)" class="cart-item-cancel" style="float:right">取消订单</div>
+			<!-- <div class="cart-item-call" style="float:right">联系卖家</div> -->
 		</div>
 	</li>
 </template>
@@ -44,7 +44,22 @@
 <script type="text/javascript">
 module.exports = {
 	replace: true,
-	props: ['cart']
+	props: ['cart'],
+	methods:{
+	    delete:function(cart_id){
+	      $.poemPost(CART_DEL_API,{key:'15c773c6df19d56beff430f2486b5357',cart_id:cart_id}).done(this.delSuccess);
+	    },
+	    delSuccess:function(res){
+	    	poemUI.toast('删除成功');
+      		this.$dispatch('cartRefresh');
+	    },
+	    buy:function(cart_id){
+	      $.poemPost(BUY_CART_VR_API,{key:'15c773c6df19d56beff430f2486b5357',cart_id:cart_id}).done(this.delSuccess);
+	    },
+	    buySuccess:function(res){
+	    	poemUI.toast('购买成功成功');
+	    },
+	}
 }
 </script>
 
@@ -71,8 +86,6 @@ module.exports = {
 				color:white
 				background-color:app-green
 				border:none
-
-
 .cart-goods-list
 	background-color:rgb(242,242,242)
 .cart-goods-item a

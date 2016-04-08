@@ -37,12 +37,15 @@ module.exports = {
   		this.showList();
   		this.items = this.orderItems
   	},
+  	showAll:function(){
+
+  	},
   	changeList:function(){
       this.$dispatch('conditionChange');
   	},
   	itemClick:function(){
   		this.hiddenMask();
-      this.changeList();
+      	this.changeList();
   	},
   	resetState:function(){
   	},
