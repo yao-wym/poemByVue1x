@@ -1,6 +1,6 @@
 <template>
-	<div class="flex-view" v-transition>
-	<!-- <app-header search="找酒店" right-icon="user-icon"></app-header> -->
+	<div style="background-color: #eee" class="flex-view" v-transition>
+	<app-header title="我的地址" right-label="新增" right-link="#/AddressAdd"></app-header>
   <flex-scroll-view>
         <ul id="addr-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
@@ -40,7 +40,7 @@ module.exports = {
   },
   methods:{
   	getAddrList:function(){
-  		$.poemPost(ADDR_LIST_API,{key:"60669c1838e2613754ea9a466d50b89f"}).done(this.getAddrListDone);
+  		$.poemPost(ADDR_LIST_API,{key:poem.getItem('key')}).done(this.getAddrListDone);
   	},
   	getAddrListDone:function(res){
         this.addrlList = res.address_list;
@@ -55,13 +55,11 @@ module.exports = {
   ready:function(){
     this.getAddrList();
     this.$dispatch('pageLoaded');
-    this.title = '我的地址';
   },
   attached:function(){
   },
   compiled:function(){
   },
-  props:['title','leftLabel'],
   events:{
     'scrollEnd':function(msg){
       this.getAddrList();

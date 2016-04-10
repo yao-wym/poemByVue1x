@@ -13,6 +13,12 @@ var ADDR_LIST_API = HOST_API+'act=member_address&op=address_list';
 
 var ADDR_DEL_API = HOST_API+'act=member_address&op=address_del';
 
+var ADDR_ADD_API = HOST_API+'act=member_address&op=address_add';
+
+var ADDR_DETAIL_API = HOST_API+'act=member_address&op=address_info';
+
+var ADDR_EDIT_API = HOST_API+'act=member_address&op=address_edit';
+
 var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=3';
 
 var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';

@@ -23,6 +23,8 @@ import OrderHotelView from './views/OrderHotel.vue'
 
 import OrderTechanView from './views/OrderTechan.vue'
 
+import AddressAddView from './views/AddressAdd.vue'
+
 import SearchView from './views/Search.vue'
 import MapView from './views/MapView.vue'
 
@@ -84,10 +86,6 @@ router.map({
         name:'changepwd',
         component:ChangePwdView
       },
-      '/addresslist':{
-        name:'addresslist',
-        component:AddressListView
-      },
       '/OrderHotel':{
         name:'orderhotel',
         component:OrderHotelView
@@ -101,6 +99,14 @@ router.map({
       }
     }
   },
+  '/AddressList':{
+        name:'addressList',
+        component:AddressListView
+  },
+  '/AddressAdd':{
+      name:'addressAdd',
+      component:AddressAddView
+    },  
   'About': {
     component: About
   },

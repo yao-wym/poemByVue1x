@@ -34,7 +34,7 @@
             </a></div>
         </section>
         <section class="li-section" style="margin-top: 15px">
-         <div class="li-label"><a v-link="{name:'addresslist'}">
+         <div class="li-label"><a v-link="{name:'addressList'}">
               <div class="icon">
                 <img src="../asset/images/star-red-full.png">
               </div>

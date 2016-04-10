@@ -1,5 +1,5 @@
 <template>
-	<li class="addr-list-item" style="margin-bottom:20px;padding:15px;border-top:1px solid #ccc;border-bottom:1px solid #ccc">
+	<li class="addr-list-item" style="margin-top:20px;padding:15px;border-bottom:1px solid #ccc;border-bottom:1px solid #ccc;background-color: #fafafa">
 		<div class="addr-head" style="position:relative;overflow:hidden;">
 			<div style="float:left" class="addr-name">{{addr.true_name}}</div>
 			<div style="float:right" class="addr-mobile">{{addr.mob_phone}}</div>
@@ -9,11 +9,12 @@
 		</p>
 		<div style="margin-top:30px;overflow:hidden">
 			<div style="float:left">
-				<input type="checkbox" name="" id="">
+				<input v-if="addr.is_default == 1" checked="true" type="radio" name="defaultAddr" @click="setDefault"/>  
+				<input v-if="addr.is_default == 0" chec type="radio" name="defaultAddr" @click="setDefault"/>  
 				<span>设为默认</span>
 			</div>
 			<div style="float:right">
-				<div style="display:inline-block">
+				<div style="display:inline-block" v-link="'AddressAdd?addressId='+addr.address_id">
 					编辑
 				</div>
 				<div @click="deleteAddr" style="display:inline-block">
@@ -29,19 +30,31 @@ module.exports = {
 	replace: true,
 	data:function(){
 		return {
-
+			"addr":{}
 		}
 	},
 	props: ['addr'],
 	methods:{
 		deleteAddr:function(){
-			$.poemPost(ADDR_DEL_API,{key:"bef844bb183057e8dca921ae556478e8",address_id:this.addr.address_id}).done(this.delDone)
+			$.poemPost(ADDR_DEL_API,{key:poem.getItem('key'),address_id:this.addr.address_id}).done(this.delDone)
 		},
 		delDone:function(res){
 			if(!isEmpty(res.error)){
 				poemUI.toast(res.error);
 			}else{
 
+			}
+		},
+		setDefault:function(){
+			this.addr.is_default = 1;
+			this.addr['key'] = poem.getItem('key');
+			$.poemPost(ADDR_EDIT_API,this.addr).done(this.setDone)
+		},
+		setDone:function(res){
+			if(!$.isEmpty(res.error)){
+				poemUI.toast(res.error)
+			}else{
+				poemUI.toast("修改成功");
 			}
 		}
 	}
