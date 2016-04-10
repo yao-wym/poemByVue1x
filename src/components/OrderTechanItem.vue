@@ -2,63 +2,39 @@
 	<li class="cart-item">
 		<div class="cart-item-header" style="overflow:hidden">
 			<div style="float:left">
-				特产
+				{{order.order_list[0].store_name}}
 			</div>
 			<div style="float:right">
-				<span style="color:red;margin-right:15px">待收货</span>
+				<span style="color:red;margin-right:15px">{{order.order_list[0].state_desc}}</span>
 			</div>
 		</div>
 		<div class="cart-goods-list">
-			<div class="cart-goods-item">
+			<div class="cart-goods-item" v-for="goods in order.order_list[0].extend_order_goods" :index="$index">
 				<a>
-			<img class="cart-goods-img" src="../asset/images/star-red.png" />
+			<img class="cart-goods-img" v-link="{path:'/FoodDetail/'+goods.goods_id}" src="{{goods.goods_image_url}}" />
 			<div class="cart-goods-info">
-				包包2015款包包2015款包包2015款包包2015款包包2015款
+				{{goods.goods_name}}
 			</div>
 			<div class="cart-goods-price">
-				<p>123</p>
-				<p>x1</p>
-			</div>
-			</a>
-			</div>
-			<div class="cart-goods-item">
-				<a>
-			<img class="cart-goods-img" src="../asset/images/star-red.png" />
-			<div class="cart-goods-info">
-				包包2015款包包2015款包包2015款包包2015款包包2015款
-			</div>
-			<div class="cart-goods-price">
-				<p>123</p>
-				<p>x1</p>
-			</div>
-			</a>
-			</div>
-			<div class="cart-goods-item">
-				<a>
-			<img class="cart-goods-img" src="../asset/images/star-red.png" />
-			<div class="cart-goods-info">
-				包包2015款包包2015款包包2015款包包2015款包包2015款
-			</div>
-			<div class="cart-goods-price">
-				<p>123</p>
-				<p>x1</p>
+				<p>{{goods.goods_price}}</p>
+				<p>x{{goods.goods_num}}</p>
 			</div>
 			</a>
 			</div>
 		</div>
 		<div class="cart-item-price" style="overflow:hidden">
 			<span style="float:right">总共
-			<span>1</span>
+			<span>{{order.order_list[0].extend_order_goods.length}}</span>
 			件合计¥
-			<span >88</span>
+			<span >{{order.order_list[0].order_amount}}</span>
 			（含运费
 			<span>0</span>
 			)
 			</span>
 		</div>
 		<div class="cart-item-operate" style="overflow:hidden">
-			<div class="cart-item-pay" style="float:right">付款</div>
-			<div class="cart-item-cancel" style="float:right">取消订单</div>
+			<div @click="payOrder()" class="cart-item-pay" style="float:right">付款</div>
+			<div @click="cancelOrder()" class="cart-item-cancel" style="float:right">取消订单</div>
 			<div class="cart-item-call" style="float:right">联系卖家</div>
 		</div>
 	</li>
@@ -67,7 +43,31 @@
 <script type="text/javascript">
 module.exports = {
 	replace: true,
-	props: ['hotel']
+	props: ['order'],
+	data:function(){
+		return {
+			'orderId':""
+		}
+	},
+	methods:{
+		cancelOrder:function(order_id){
+			$.poemPost(TECHAN_CANCEL_ORDER_API,{'key':poem.getItem('key'),'order_id':this.orderId}).done(this.cancelDone);
+		},
+		cancelDone:function(res){
+			if(!$.isEmpty(res.error)){
+					poemUI.toast(res.error)
+				}else{
+					poemUI.toast('取消成功');
+					this.$dispatch('refreshTechanOrder');
+				}
+		},
+		payOrder:function(res){
+			location.href="http://www.shcyec.cn/mobile/index.php?act=member_payment&op=pay&key="+poem.getItem('key')+"&pay_sn="+this.order.pay_sn+"&payment_code=wxpay"
+		}
+	},
+	ready:function(){
+		this.orderId = this.order.order_list[0].order_id;
+	}
 }
 </script>
 

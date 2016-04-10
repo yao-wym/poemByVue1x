@@ -43,6 +43,10 @@
     },
     getSuccess:function(res){
       this.cartList = res.cart_list;
+      this.$nextTick(function(){
+        this.$dispatch("refresh");
+        this.$broadcast('refresh');
+        });
     },
   }
 }

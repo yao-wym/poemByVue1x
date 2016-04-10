@@ -34,7 +34,7 @@
 			</span>
 		</div>
 		<div class="cart-item-operate" style="overflow:hidden">
-			<div class="cart-item-pay" style="float:right">付款</div>
+			<div @click="submitOrder(cart.goods_id)" class="cart-item-pay" style="float:right">去下单</div>
 			<div @click="delete(cart.cart_id)" class="cart-item-cancel" style="float:right">取消订单</div>
 			<!-- <div class="cart-item-call" style="float:right">联系卖家</div> -->
 		</div>
@@ -59,6 +59,9 @@ module.exports = {
 	    buySuccess:function(res){
 	    	poemUI.toast('购买成功成功');
 	    },
+	    submitOrder:function(goods_id){
+	    	this.$route.router.go({path:'/TechanOrderForm?goodsId='+goods_id+'&goodsType='+goods_id});
+	    }
 	}
 }
 </script>

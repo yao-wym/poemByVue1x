@@ -91,11 +91,15 @@
         this.houseCount -= 1
       },
       submitOrder(){
-        $.poemPost(SUBMIT_ORDER_VR_API,this.formInfo).done(function(res){
-          if(!$.isEmpty(res.error)){
-            poemUI.toast(res.error)
-          }
-        });
+        $.poemPost(SUBMIT_ORDER_VR_API,this.formInfo).done(this.submitDone);
+      },
+      submitDone(res){
+        if(!$.isEmpty(res.error)){
+          poemUI.toast(res.error)
+        }else{
+          poemUI.toast('订单提交成功');
+          this.$route.router.go({name:'orderhotel'});
+        }
       }
     },
     route: {

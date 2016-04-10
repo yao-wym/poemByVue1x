@@ -36,7 +36,7 @@
     </flex-scroll-view>
       <div class="footer">
         <div class="price">订单金额：<span>{{ goodsDetail.goods_info.goods_price }}</span></div>
-        <input @click="submitOrder()" type="button" value="提交订单">
+        <input @click="submitOrder1()" type="button" value="提交订单">
       </div>
   </div>
 </template>
@@ -91,16 +91,17 @@
         }
         this.techanCount -= 1
       },
-      submitOrder1(){
-        $.poemPost(GOODS_BUY_STEP1_API,{'key':poem.getItem('key'),'cart_id':this.goodsTypeId+'|'+this.goodsNum}).done(function(res){
+      submitOrder1:function(){
+        $.poemPost(GOODS_BUY_STEP1_API,{'key':poem.getItem('key'),'cart_id':this.goodsTypeId+'|'+this.goodsNum}).done(this.submitSuccess1);
+      },
+      submitSuccess1:function(res){
           if(!$.isEmpty(res.error)){
             poemUI.toast(res.error)
           }else{
             this.submitOrder2();
           }
-        });
       },
-      submitOrder2(){
+      submitOrder2:function(){
         $.poemPost(GOODS_BUY_STEP2_API,{'key':poem.getItem('key'),'cart_id':this.goodsTypeId+'|'+this.goodsNum,'address_id':this.addressId,'pay_name':'online'}).done(function(res){
           if(!$.isEmpty(res.error)){
             poemUI.toast(res.error);

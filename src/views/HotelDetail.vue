@@ -17,14 +17,13 @@
           </div>
         </div>
         <section class="li-section">
-
           <div class="li-label">
           <a v-link="{path:'/Comments/'+this.$route.params.hotelId}">
               <div class="icon">
                 <img src="../asset/images/comments-green.png">
               </div>
               <div class="title">评论</div>
-                           <div class="arrow">
+                  <div class="arrow">
                 <i></i>
               </div>
             </a></div>
