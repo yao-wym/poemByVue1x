@@ -10,9 +10,9 @@
           <th>日期</th>
         </tr>
         <tr v-for="pointsDetail in pointsDetails">
-          <td>{{pointsDetail.way}}</td>
-          <td>{{pointsDetail.points}}</td>
-          <td>{{pointsDetail.date}}</td>
+          <td>{{pointsDetail.pl_desc}}</td>
+          <td>{{pointsDetail.pl_points}}</td>
+          <td>{{pointsDetail.pl_addtime}}</td>
         </tr>
       </table>
     </flex-scroll-view>
@@ -54,12 +54,22 @@
       return {
         title: '积分详情',
         points: 90,
-        pointsDetails: [
-          {way: '邀请好友', points: 50, date: '2015-08-25'},
-          {way: '邀请好友', points: 50, date: '2015-08-25'},
-          {way: '邀请好友', points: 50, date: '2015-08-25'}
-        ]
+        pointsDetails: [],
+        curpage: 1
       }
+    },
+
+    methods: {
+      getPointsDetail() {
+        $.poemPost(POINTS_DETAIL_API,{order:"asc",curpage:this.curpage, key:"60669c1838e2613754ea9a466d50b89f"}).done(this.getPointsDetailDone);
+      },
+      getPointsDetailDone(data) {
+        this.pointsDetails = this.pointsDetails.concat(data);
+      }
+    },
+
+    ready() {
+      this.getPointsDetail();
     }
   }
 </script>

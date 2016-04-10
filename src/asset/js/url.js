@@ -26,6 +26,10 @@ var CART_LIST_API = HOST_API+'act=member_cart&op=cart_list';
 var COMMENT_LIST_API = HOST_API+'act=goods&op=comment_list';
 var TRAVELNOTE_LIST_API = HOST_API + 'act=cms_article&op=article_list';
 var TRAVELNOTE_DETAIL_API = HOST_API + 'act=cms_article&op=article_detail';
+var POINTS_DETAIL_API = HOST_API + 'act=member_index&op=points_log';
+var POINTS_STORE_API = HOST_API + 'act=member_pointmall&op=plist';
+var POINTS_BUY_API = HOST_API + 'act=member_pointmall&op=buystep1';
+var USER_INFO_API = HOST_API + 'act=member_index';
 
 var CART_DEL_API = HOST_API+'act=member_cart&op=cart_del';
 
