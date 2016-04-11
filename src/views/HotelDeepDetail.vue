@@ -18,7 +18,7 @@
           </div>
           <div>
             <h2>电话</h2>
-            <p>010-4747515</p>
+            <p>{{ phone }}</p>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
           <h2>介绍</h2>
         </div>
         <div>
-          <p v-for="intro in intros">{{ intro }}</p>
+          <p>{{ intro }}</p>
         </div>
       </div>
     </flex-scroll-view>
@@ -62,8 +62,19 @@
     data() {
       return {
         address: '我在马路边捡到一分钱',
-        intros: ['把他交给警察叔叔手里边把他交给警察叔叔手里边把他交给警察叔叔手里边把他交给警察叔叔手里边', '把他交给警察叔叔手里边把他交给警察叔叔手里边把他交给警察叔叔手里边把他交给警察叔叔手里边'],
         estabs: ['宽带上网', 'wifi', '停车场', '停车场', '停车场', '停车场' ]
+      }
+    },
+
+    methods: {
+      getHotelDeepDetail() {
+        $.poemGet(HOTEL_DEEP_DETAIL_API,{'store_id':this.$route.params.id}).done(this.getHotelDeepDetailDone)
+      },
+
+      getHotelDeepDetailDone(data) {
+        this.phone = data.store_phone;
+        this.address = data.store_location_lat;
+        this.intro = data.store_description;
       }
     }
   }
