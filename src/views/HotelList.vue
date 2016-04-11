@@ -10,7 +10,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['默认排序','传统酒店','牧家乐']"></filter-tab>
+	<filter-tab :filter-items="[{'word':'全部','sc_id':'2,12'},{'word':'传统酒店','sc_id':'2'},{'word':'牧家乐','sc_id':'12'}]" :order-items="[{'word':'默认排序','order':''},{'word':'商家信用从高到底','key':'store_credit','order':'desc'},{'word':'商家信用从低到高','key':'store_credit','order':'asc'},{'word':'销量从高到底','key':'store_sales','order':'desc'},{'word':'销量从低到高','key':'store_sales','order':'asc'}]"></filter-tab>
 </div>
 </template>
 
@@ -39,18 +39,24 @@ module.exports = {
   },
   data: function(){
   	var hotelList = [];
-  	var curpage = 1; 
   	return {
-  		curpage : curpage,
-  		hotelList:hotelList
+  		curpage : 1,
+      pageNum : 1,
+  		hotelList:hotelList,
+      condition:{}
   	}
   },
   methods:{
   	getHotelList:function(){
-  		$.getJSON(HOTEL_LIST_API,{order:"asc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+      if(this.curpage>this.pageNum){
+        poemUI.toast('没有更多了');
+        return;
+      }
+  		$.getJSON(HOTEL_LIST_API,{curpage:this.curpage}).done(this.getHotelListDone);
   	},
   	getHotelListDone:function(res){
   		console.log(JSON.stringify(res));
+      this.pageNum = res.page_total;
       if(!isEmpty(res.datas.store_list)){
         this.hotelList = this.hotelList.concat(res.datas.store_list);
         this.curpage++;
@@ -78,8 +84,21 @@ module.exports = {
     'scrollEnd':function(msg){
       this.getHotelList();
     },
-    'conditionChange':function(msg){
-      $.getJSON(SHOP_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+    'showAll':function(msg){
+      this.curpage = 1;
+      this.hotelList = [];
+      this.condition = {};
+      this.getHotelList();
+    },
+    'conditionChange':function(condition){
+      this.curpage = 1;
+      this.hotelList = [];
+      condition['curpage'] = this.curpage;
+      console.log(JSON.stringify(condition));
+      $.extend(this.condition,condition);
+      console.log(JSON.stringify(this.condition));
+      // delete condition.word;
+      $.getJSON(SHOP_LIST_API,this.condition).done(this.getHotelListDone);
     }
   }
 }

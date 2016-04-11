@@ -10,7 +10,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['工艺品','肉制品','奶制品','酒类','其他']"></filter-tab>
+	<filter-tab :filter-items="[{'word':'工艺品','gc_id':'1063'},{'word':'肉制品','gc_id':'5'},{'word':'奶制品','gc_id':'4'},{'word':'酒类','gc_id':'1064'},{'word':'其他','gc_id':'1065'}]" :order-items="[{'word':'默认排序','order':''},{'word':'商家信用从高到底','key':'store_credit','order':'desc'},{'word':'商家信用从低到高','key':'store_credit','order':'asc'},{'word':'销量从高到底','key':'store_sales','order':'desc'},{'word':'销量从低到高','key':'store_sales','order':'asc'}]"></filter-tab>
 </div>
 </template>
 
@@ -38,19 +38,22 @@ module.exports = {
     }
   },
   data: function(){
-  	var techanList = [];
-  	var curpage = 1; 
   	return {
-  		curpage : curpage,
-  		techanList:techanList
+  		curpage : 1,
+  		techanList:[],
+      pageNum:1,
+      condition:{
+        "gc_id":1
+      }
   	}
   },
   methods:{
   	getTechanList:function(){
-  		$.getJSON(TECHAN_LIST_API,{order:"asc",page:10,curpage:this.curpage}).done(this.getTechanListDone);
+  		$.getJSON(TECHAN_LIST_API,this.condition).done(this.getTechanListDone);
   	},
   	getTechanListDone:function(res){
   		console.log(JSON.stringify(res));
+      this.pageNum = res.page_total;
       if(!isEmpty(res.datas.goods_list)){
         this.techanList = this.techanList.concat(res.datas.goods_list);
         this.curpage++;
@@ -75,11 +78,25 @@ module.exports = {
   compiled:function(){
   },
   events:{
-    'scrollEnd':function(msg){
+    'showAll':function(){
+      this.scenicList = [];
+      this.condition = {};
+      this.condition['curpage'] = 1;
+      this.condition.gc_id = 1;
       this.getTechanList();
     },
-    'conditionChange':function(msg){
-      $.getJSON(TECHAN_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.gettechanListDone);
+    'scrollEnd':function(msg){
+      if(this.curpage>this.pageNum){
+        poemUI.toast('没有更多了');
+        return;
+      }
+      this.getTechanList();
+    },
+    'conditionChange':function(condition){
+      this.curpage = 1;
+      this.techanList = [];
+      $.extend(this.condition,condition);
+      $.getJSON(TECHAN_LIST_API,this.condition).done(this.getTechanListDone);
     }
   }
 }

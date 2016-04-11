@@ -1,6 +1,6 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header search="找景点" right-icon="user-icon"></app-header>
+	<app-header title="景点门票" right-icon="user-icon"></app-header>
   <flex-scroll-view>
         <ul id="scienic-list-view" style="font-size: 0.3rem">
       <scenic-list-item v-for="scenic in scenicList" :scenic="scenic" :index="$index"></scenic-list-item>
@@ -8,7 +8,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['景区','娱乐项目']"></filter-tab>
+	<filter-tab :filter-items="[{'word':'全部','gc_id':'3'},{'word':'景区','gc_id':'1061'},{'word':'娱乐项目','gc_id':'1062'}]" :order-items="[{'word':'默认排序','order':''},{'word':'商家信用从高到底','key':'store_credit','order':'desc'},{'word':'商家信用从低到高','key':'store_credit','order':'asc'},{'word':'销量从高到底','key':'store_sales','order':'desc'},{'word':'销量从低到高','key':'store_sales','order':'asc'}]"></filter-tab>
 </div>
 </template>
 
@@ -33,41 +33,51 @@ module.exports = {
     }
   },
   data: function(){
-  	var scenicList = [];
-  	var curpage = 1; 
   	return {
-  		curpage : curpage,
-  		scenicList:scenicList
+      pageNum : 1,
+  		curpage : 1,
+  		scenicList:[],
+      condition:{
+        'gc_id':3
+      }
   	}
   },
   methods:{
   	getScenicList:function(){
-  		$.poemGet(SCENIC_LIST_API,{order:"asc",page:10,curpage:this.curpage}).done(this.getScenicListDone);
+  		$.getJSON(SCENIC_LIST_API,this.condition).done(this.getScenicListDone);
   	},
   	getScenicListDone:function(res){
-        this.scenicList = this.scenicList.concat(res.goods_list);
-        this.curpage++;
-        this.$nextTick(function(){
-          this.$broadcast('refresh');
+      this.pageNum = res.page_total;
+      this.scenicList = this.scenicList.concat(res.datas.goods_list);
+      this.curpage++;
+      this.$nextTick(function(){
+      this.$broadcast('refresh');
         });
       setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),1000)
   	},
   },
   created: function() {
-    this.$on('conditionChange', function() {
-        
-      //此处需要清空数组，但是为了调试方便～暂时不清空
-      this.getScenicList();
-    });
-    // this.$on('scrollViewLoaded', function() {
-    //     this.$broadcast('scrollViewLoaded');
-    // })
   },
   events:{
-    'scrollEnd':function(msg){
+    'showAll':function(){
+      this.scenicList = [];
+      this.condition = {};
+      this.condition['curpage'] = 1;
+      this.condition.gc_id = 3;
       this.getScenicList();
     },
-    'conditionChange':function(msg){
+    'scrollEnd':function(msg){
+      if(this.curpage>this.pageNum){
+        poemUI.toast('没有更多了');
+        return;
+      }
+      this.getScenicList();
+    },
+    'conditionChange':function(condition){
+      condition['curpage'] = 1;
+      this.scenicList = [];
+      $.extend(this.condition,condition);
+      console.log(JSON.stringify(this.condition));
       this.getScenicList();
     }
   },
