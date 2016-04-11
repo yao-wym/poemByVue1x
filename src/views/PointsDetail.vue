@@ -53,7 +53,7 @@
     data() {
       return {
         title: '积分详情',
-        points: 90,
+        points: null,
         pointsDetails: [],
         curpage: 1
       }
@@ -62,6 +62,10 @@
     methods: {
       getPointsDetail() {
         $.poemPost(POINTS_DETAIL_API,{order:"asc",curpage:this.curpage, key:"60669c1838e2613754ea9a466d50b89f"}).done(this.getPointsDetailDone);
+        $.poemPost(USER_INFO_API, {key:"60669c1838e2613754ea9a466d50b89f"}).done((data) => {
+          console.log(data)
+          this.points = data.member_info.point;
+        })
       },
       getPointsDetailDone(data) {
         this.pointsDetails = this.pointsDetails.concat(data);

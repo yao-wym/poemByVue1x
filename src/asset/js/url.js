@@ -37,6 +37,7 @@ var POINTS_STORE_API = HOST_API + 'act=member_pointmall&op=plist';
 var POINTS_BUY_API = HOST_API + 'act=member_pointmall&op=buystep1';
 var USER_INFO_API = HOST_API + 'act=member_index';
 var HOTEL_DEEP_DEATIL_API = HOST_API + 'act=store&op=store_detai';
+var SAVE_USER_INFO_API = HOST_API + 'act=member_index&op=set_member_info'
 
 var CART_DEL_API = HOST_API+'act=member_cart&op=cart_del';
 
@@ -50,6 +51,7 @@ var SUBMIT_ORDER_VR_API = HOST_API+'act=member_vr_buy&op=buy_step3';
 var BUY_CART_VR_API = HOST_API+'act=member_vr_buy&op=buy_step1';
 
 var GOODS_DETAIL_API = HOST_API+'act=goods&op=goods_detail';
+var GOODS_DEEP_DETAIL_API = HOST_API + 'act=goods&op=goods_body';
 
 var CART_ADD_API = HOST_API+'act=member_cart&op=cart_add';
 
