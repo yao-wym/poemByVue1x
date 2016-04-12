@@ -57,6 +57,7 @@ module.exports = {
 				poemUI.toast(res.error)
 			}else{
 				poemUI.toast("添加成功");
+				poem.saveObj('address',this.addrData);
 				history.go(-1);
 			}
 		},

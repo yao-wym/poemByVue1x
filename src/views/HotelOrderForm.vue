@@ -1,10 +1,14 @@
 <template>
+  <app-header title="订单填写"></app-header>
   <div class="flex-view" v-transition>
     <flex-scroll-view>
       <div class="container">
-        <div class="section">
+        <div id="date"  class="section">
           <h1>{{ hotelName }}</h1>
-          <p>时间：{{ checkInTime }}入住-{{ checkOutTime }}离店<span class="day">{{ day }}晚</span></p>
+          <p>
+          时间：{{ checkInTime }}入住-{{ checkOutTime }}离店<span class="day">{{ day }}晚</span>
+          <input type="date" style="display: none ;width: 6rem;height: 1rem">
+          </p>
           <p>房型：{{ roomInfo.goods_name }}</p>
         </div>
         <div class="section">
@@ -39,7 +43,8 @@
       </div>
     </flex-scroll-view>
       <div class="footer">
-        <div class="price">订单金额：<span>{{ orderPrice }}</span></div>
+        <div class="price">订单金额：<span>{{ formInfo.rooms*formInfo.quantity*formInfo.goods_price }}</span></div>
+        <input type="text" v-model="formInfo.orderPrice">
         <input @click="submitOrder()" type="button" value="提交订单">
       </div>
   </div>
@@ -50,45 +55,53 @@
       'flex-scroll-view': function(resolve) {
         require(['../components/FlexScrollView.vue'], resolve);
       },
+      'app-header': function(resolve) {
+        require(['../components/CommonHeader.vue'], resolve);
+      },
+    },
+    computed:{
+      formInfo:function(){
+        return{
+            key:poem.getItem('key'),
+            goods_id:this.roomInfo.goods_id,
+            quantity:this.quantity,
+            goods_price:this.roomInfo.goods_price,
+            rcb_pay:0,
+            pd_pay:0,
+            buyer_msg:this.checkInTime+'~'+this.checkOutTime,
+            days:1,
+            rooms:this.rooms,
+            contact:this.contact,
+            buyer_phone:this.contact
+        }
+      }
     },
     data() {
       return {
-        formInfo:{
-          key:poem.getItem('key'),
-          goods_id:JSON.parse(this.$route.query.roomInfo).goods_id,
-          quantity:1,
-          buyer_phone:'',
-          rcb_pay:0,
-          pd_pay:0,
-          buyer_msg:'',
-          days:1,
-          rooms:1,
-          contact:'',
-        },
         roomInfo:{},
         hotelName: '',
         checkInTime: '8月13日',
         checkOutTime: '8月14日',
         daysz: 1,
         houseType: '',
-        houseCount: 1,
+        quantity: 1,
         saveTo: '',
         livePerson: '',
-        contactPerson: '',
-        contactWay: '',
-        orderPrice: 66666
+        rooms:1,
+        contact:'',
+
       }
     },
     methods: {
       addHouseCount() {
-        this.houseCount += 1;
+        this.quantity += 1;
       },
       minusHouseCount() {
-        if (this.houseCount < 2) {
-          alert('至少要定一间房哦');
+        if (this.quantity < 2) {
+          poemUI.toast('至少要定一间房哦');
           return;
         }
-        this.houseCount -= 1
+        this.quantity -= 1
       },
       submitOrder(){
         $.poemPost(SUBMIT_ORDER_VR_API,this.formInfo).done(this.submitDone);
@@ -102,6 +115,9 @@
         }
       }
     },
+    ready:function(){
+      $("#date").date();
+    },
     route: {
       data: function (transition) {
         // alert(JSON.stringify(this.$route.params));
@@ -109,7 +125,7 @@
             // 'hotelName':'111'
         })
         this.roomInfo = JSON.parse(this.$route.query.roomInfo);
-        this.hotelName = this.$route.query.hotelName
+        this.hotelName = this.$route.query.hotelName;
     },
       canReuse:function(transition){
         //判断是否可以重用，可以则为返回true，不能重用则返回false，会实例化一个新的vue对象
@@ -186,5 +202,4 @@
         color: text-gray
         & span
           color: red
-
 </style>

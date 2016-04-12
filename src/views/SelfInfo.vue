@@ -10,7 +10,7 @@
         <input type="radio" value="0" name="sex" v-model="sex" id="secret"><label for="secret">保密</label>
       </div>
       <div class="section">出生日期<span class="right">></span></div>
-      <a href="#/user/addresslist" class="section">我的收货地址<span class="right">></span></a>
+      <a href="#/AddressList" class="section">我的收货地址<span class="right">></span></a>
   </div>
 </template>
 <style lang="stylus" scoped>

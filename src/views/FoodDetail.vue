@@ -1,4 +1,5 @@
 <template>
+<app-header title="详情" header>
   <div class="flex-view" v-transition>
     <flex-scroll-view>
       <banner></banner>

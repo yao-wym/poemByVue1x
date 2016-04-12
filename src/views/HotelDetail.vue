@@ -108,6 +108,7 @@
         </section>
       </div>
     </flex-scroll-view>
+    <!-- <date-picker></date-picker> -->
   </div>
 </template>
 
@@ -125,13 +126,13 @@
   },
   methods:{
     showDate:function(){
-      $('#date').DatePicker({
-        flat: true,
-        date: '2008-07-31',
-        current: '2008-07-31',
-        calendars: 1,
-        starts: 1
-      });
+      // $('#date').DatePicker({
+      //   flat: true,
+      //   date: '2008-07-31',
+      //   current: '2008-07-31',
+      //   calendars: 1,
+      //   starts: 1
+      // });
     },
     goBack:function(){
       history.go(-1)
@@ -145,6 +146,9 @@
         this.hotelLoc = res.store_info.store_location_lat+','+res.store_info.store_location_lng;
         this.bgImg = res.store_info.store_label;
         this.roomList = res.good_list;
+        this.$nextTick(function(){
+          this.$broadcast('refresh');
+        });
       }
     },
     bookRoom:function(key){
@@ -155,6 +159,9 @@
     'flex-scroll-view': function(resolve) {
       require(['../components/FlexScrollView.vue'], resolve);
     },
+    // 'date-picker': function(resolve) {
+    //   require(['../components/DatePicker.vue'], resolve);
+    // },
   },
     route: {
       data: function (transition) {
@@ -162,6 +169,7 @@
         transition.next({
             // 'hotelName':'111'
         })
+
         this.getHotelDetail();
     },
       canReuse:function(transition){
