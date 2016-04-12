@@ -64,28 +64,10 @@
 
     data() {
       let itemList = [];
-      itemList.push({
-        name: '风干牛肉干',
-        imgSrc: 'http://www.56jk.com/uploads/allimg/141218/4-14121Q0233RM.jpg',
-        price: 650,
-        active: 1
-      })
-      itemList.push({
-        name: '风干牛肉干',
-        imgSrc: 'http://www.56jk.com/uploads/allimg/141218/4-14121Q0233RM.jpg',
-        price: 650,
-        active: 0
-      })
-      itemList.push({
-        name: '风干牛肉干',
-        imgSrc: 'http://www.56jk.com/uploads/allimg/141218/4-14121Q0233RM.jpg',
-        price: 650,
-        active: 1
-      })
       return {
         title: '积分商城',
-        points: 90,
-        itemList: []
+        points: null,
+        itemList: itemList
       }
     },
 
@@ -115,6 +97,9 @@
     },
 
     ready() {
+      $.poemPost(USER_INFO_API, {key:"60669c1838e2613754ea9a466d50b89f"}).done((data) => {
+          this.points = data.member_info.point;
+        })
       this.getPointsStoreList();
     }
   }
