@@ -4,7 +4,7 @@
 	</div>
 	<div style="position:absolute;bottom:0;width: 100%;">
 		<ul class="item-list poem-hidden">
-			<li v-on:click="itemClick" v-for="item in items">{{item}}</li>
+			<li v-on:click="itemClick($index)" v-for="item in items">{{item.word}}</li>
 		</ul>
 		<footer class="filter-tab">
     		<a v-on:click="showAll"><img src="../asset/images/all.png"><span>全部</span></a>
@@ -37,15 +37,15 @@ module.exports = {
   		this.showList();
   		this.items = this.orderItems
   	},
-  	showAll:function(){
-
+  	showAll:function(){	
+      	this.$dispatch('showAll');
   	},
-  	changeList:function(){
-      this.$dispatch('conditionChange');
+  	changeList:function(condition){
+      	this.$dispatch('conditionChange',condition);
   	},
-  	itemClick:function(){
+  	itemClick:function(index){
   		this.hiddenMask();
-      	this.changeList();
+      	this.changeList(this.items[index]);
   	},
   	resetState:function(){
   	},

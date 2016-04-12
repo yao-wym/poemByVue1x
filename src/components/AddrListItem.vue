@@ -48,7 +48,8 @@ module.exports = {
 		setDefault:function(){
 			this.addr.is_default = 1;
 			this.addr['key'] = poem.getItem('key');
-			$.poemPost(ADDR_EDIT_API,this.addr).done(this.setDone)
+			$.poemPost(ADDR_EDIT_API,this.addr).done(this.setDone);
+			poem.saveObj('address',this.addr);
 		},
 		setDone:function(res){
 			if(!$.isEmpty(res.error)){

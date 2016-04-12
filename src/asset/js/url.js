@@ -3,8 +3,8 @@ var HOST_API = "http://123.56.136.248/app/index.php?";
 var ARTICLE_LIST_API = HOST_API+"act=cms_article&op=article_list&class_id=1";
 var LOGIN_API = HOST_API+'act=login';
 var REG_API = HOST_API+'act=login&op=register';
-var HOTEL_LIST_API = HOST_API+'act=shop&op=hotel_list&key=store_credits';
-var SHOP_LIST_API = HOST_API+'act=shop&sc_id=3';
+var HOTEL_LIST_API = HOST_API+'act=shop&op=hotel_list&key=store_credit&order=asc';
+var SHOP_LIST_API = HOST_API+'act=shop';
 var SEND_SMS_API = HOST_API+'act=index&op=send_sms';
 var HOTEL_DETAIL_API = HOST_API+'act=store&op=store_detail';
 var ADV_API = HOST_API+'act=index&op=index_adv_list';
@@ -19,11 +19,11 @@ var ADDR_DETAIL_API = HOST_API+'act=member_address&op=address_info';
 
 var ADDR_EDIT_API = HOST_API+'act=member_address&op=address_edit';
 
-var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=3';
+var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list';
 
 var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';
 
-var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=1';
+var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list';
 var TECHAN_DETAIL_API = HOST_API+'act=goods&op=goods_list&gc_id=1';
 
 
