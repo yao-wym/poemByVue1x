@@ -1,8 +1,20 @@
 <template>
-<app-header title="详情" header>
   <div class="flex-view" v-transition>
     <flex-scroll-view>
-      <banner></banner>
+     <div class="scenic-header" style="background-image:url({{bgImg}})">
+        <header>
+          <i @click="goBack()" style="float:left">
+            <img src="../asset/images/fanhui.png">
+          </i>
+          <div style="float:right">
+            <img src="../asset/images/icon_collect.png">
+            <img style="margin:0 5px" src="../asset/images/share-white.png">
+          </div>
+        </header>
+        <div style="position:absolute;bottom:0;padding-left:10px;font-size:.3rem">
+          <p>{{storeName}}</p>
+        </div>
+      </div>
       <div class="container">
         <div class="intro">
           <p>{{ goodsDetail.goods_info.goods_name }}</p>
@@ -62,8 +74,20 @@ module.exports = {
     }
   },
   ready:function(){
-    this.goodsId = this.$route.params.id;
-    this.getGoodsDetail();
+    // this.goodsId = this.$route.params.id;
+    // this.getGoodsDetail();
+  },
+  route: {
+      data: function (transition) {
+        transition.next({
+        })
+        this.goodsId = this.$route.params.id;
+        this.getGoodsDetail();
+    },
+      canReuse:function(transition){
+        return false
+        //判断是否可以重用，可以则为返回true，不能重用则返回false，会实例化一个新的vue对象
+      }
   },
   methods:{
     addToCart:function(){
@@ -80,7 +104,10 @@ module.exports = {
     },
     getSuccess:function(res){
       this.goodsDetail = res;
-      this.goodsType = res.spec_list[Object.keys(res['spec_list'])[0]]
+      this.goodsType = res.spec_list[Object.keys(res['spec_list'])[0]];
+       this.$nextTick(function(){
+          this.$broadcast('refresh');
+        });
     },
     buy:function(res){
         this.$route.router.go({path:'/TechanOrderForm?goodsId='+this.goodsId+'&goodsType='+this.goodsType});
@@ -92,11 +119,12 @@ module.exports = {
       goodsId:'',
       goodsType:'',
       goodsDetail:{},
-      foodName: '风干牛肉干风干牛肉干风干牛肉干风干风干牛肉干风干牛肉干风干牛肉干',
+      foodName: '',
       price: 59,
       originalPrice: 100,
       expressPrice: 0,
       monthSold: 3215,
+      bgImg:'',
       stock: 999,
       postiveCommentsRate: 0.98,
       storeName: 'xx旗舰店',
@@ -108,6 +136,18 @@ module.exports = {
 
 <style lang="stylus" scoped>
   @import "../main.styl"
+  .scenic-header
+    background:url(../asset/images/news.png)
+    background-size:100% 100%
+    text-align:center
+    height:6rem
+    padding-bottom:.6rem
+    color:white
+    position:relative
+    & header
+      padding:10px
+      & img
+        height:0.5rem
   .container
     padding-bottom: 1rem
   .intro

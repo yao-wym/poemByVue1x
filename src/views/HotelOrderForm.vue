@@ -6,8 +6,10 @@
         <div id="date"  class="section">
           <h1>{{ hotelName }}</h1>
             <p>
-            时间：{{ checkInTime }}入住-{{ checkOutTime }}离店<span class="day">{{ day }}晚</span>
-            <input type="date" style="display: none ;width: 6rem;height: 1rem">
+              时间：
+              <span id="dateCheckIn">{{ checkInTime }}</span>入住-<span id="dateCheckOut">{{ checkOutTime }}</span>
+              离店
+              <span class="day">{{ formInfo.days }}晚</span>
             </p>
           <p>房型：{{ roomInfo.goods_name }}</p>
         </div>
@@ -15,20 +17,23 @@
           <div class="house-count">房间数
             <div class="right">
               <button @click="minusHouseCount">-</button>
-              {{ formInfo.rooms }}
+              {{ quantity }}
               <button @click="addHouseCount">+</button>
             </div>
           </div>
-          <div>保留到
+          <!-- <div id="saveTime" style="padding-top: .5rem">
+            保留到
+            <input value="19:00" type="time" style="height: .6rem;width: 6rem;margin-top: -5px;margin-left: 10px;font-size: .4rem">
             <div class="right">
-              >
+              
             </div>
-          </div>
+          </div> -->
      <!--      <div>入住人
             <input name="contact" type="text">
           </div> -->
         </div>
         <div class="section">
+            <input id="date-test" type="date" style="display: none ;width: 6rem;height: 1rem">
           <div>联系人
             <input type="text" v-model="contact">
             <img src="../asset/images/contacter-green.png" alt=""></div>
@@ -44,8 +49,8 @@
     </flex-scroll-view>
       <div id="datePlugin"></div>
       <div class="footer">
-        <div class="price">订单金额：<span>{{ formInfo.rooms*formInfo.quantity*formInfo.goods_price }}</span></div>
-        <input type="text" v-model="formInfo.orderPrice">
+        <div class="price">订单金额：<span>{{ orderPrice }}</span></div>
+        <input type="text" v-model="orderPrice" style="display:none">
         <input @click="submitOrder()" type="button" value="提交订单">
       </div>
   </div>
@@ -66,30 +71,32 @@
             key:poem.getItem('key'),
             goods_id:this.roomInfo.goods_id,
             quantity:this.quantity,
-            goods_price:this.roomInfo.goods_price,
             rcb_pay:0,
             pd_pay:0,
-            buyer_msg:this.checkInTime+'~'+this.checkOutTime,
-            days:1,
-            rooms:this.rooms,
+            days:Math.ceil((this.checkOutTimeStamp-this.checkInTimeStamp)/86400000),
+            buyer_msg:Math.ceil((this.checkOutTimeStamp-this.checkInTimeStamp)/86400000)+'晚|'+this.checkInTime+'~'+this.checkOutTime+'|'+this.contact,
             contact:this.contact,
-            buyer_phone:this.contact
+            quantity:this.quantity,
+            buyer_phone:this.buyer_phone
         }
+      },
+      orderPrice:function(){
+        return (this.quantity*this.roomInfo.goods_price*Math.ceil((this.checkOutTimeStamp-this.checkInTimeStamp)/86400000)).toFixed(2)
       }
     },
     data() {
       return {
         roomInfo:{},
         hotelName: '',
-        checkInTime: '8月13日',
-        checkOutTime: '8月14日',
-        daysz: 1,
+        checkInTime: (new Date()).getFullYear()+'-'+(parseInt((new Date()).getMonth())+1)+'-'+(new Date()).getDate(),
+        checkOutTime: (new Date()).getFullYear()+'-'+(parseInt((new Date()).getMonth())+1)+'-'+(parseInt((new Date()).getDate())+1),
+        checkInTimeStamp: (new Date()).getTime(),
+        checkOutTimeStamp: (new Date()).getTime()+86400000,
         houseType: '',
-        quantity: 1,
         saveTo: '',
         livePerson: '',
-        rooms:1,
         contact:'',
+        quantity:1
 
       }
     },
@@ -114,10 +121,25 @@
           poemUI.toast('订单提交成功');
           this.$route.router.go({name:'orderhotel'});
         }
-      }
+      },
+      checkInDate(dateStr){
+        this.checkInTime = dateStr;
+        this.checkInTimeStamp = (new Date(dateStr)).getTime();
+        alert(this.checkInTime)
+      },
+      checkOutDate(dateStr){
+        this.checkOutTimeStamp = (new Date(dateStr)).getTime();
+        this.checkOutTime = dateStr;
+      },
+      saveTimeDone(timeStr){
+        this.saveTime = timeStr;
+      },
     },
     ready:function(){
-      $("#date").date();
+      $("#dateCheckIn").date({'title':'请选择入住时间'},this.checkInDate);
+      $("#dateCheckOut").date({'title':'请选择离店时间'},this.checkOutDate);
+      // $("#saveTime").
+      // date({'title':'保留时间','theme':'datetime'},this.saveTimeDone);
     },
     route: {
       data: function (transition) {

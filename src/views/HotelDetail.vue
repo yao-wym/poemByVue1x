@@ -63,7 +63,7 @@
         </section>
         <section class="li-section" style="margin-top: 10px;position: relative">
           <div id="date" style="display: ;position:absolute;width:100%;top:1rem"></div>
-          <div class="li-label">
+          <!-- <div class="li-label">
           <a>
               <div class="icon">
                 <img src="../asset/images/icon_calender.png">
@@ -75,7 +75,7 @@
                 <i></i>
               </div>
             </a>
-          </div>
+          </div> -->
             <ul class="hotel-room-list">
              
           <div class="li-room" v-for="room in roomList">
@@ -173,6 +173,7 @@
         this.getHotelDetail();
     },
       canReuse:function(transition){
+        return false
         //判断是否可以重用，可以则为返回true，不能重用则返回false，会实例化一个新的vue对象
       }
   },
@@ -210,8 +211,8 @@ room-item-height=1.5rem
     padding:0 10px
     line-height:1rem
     width:100%
-    display:-webkit-box
-    display: -webkit-box; /* Safari */
+    display:flex
+    align-items:center
     font-size: .3rem
     color:poem-text-gray
     & a

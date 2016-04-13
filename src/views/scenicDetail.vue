@@ -129,6 +129,7 @@
         this.$nextTick(function(){
           this.$broadcast('refresh');
         });
+        setTimeout((function(that){return function(){that.$dispatch('refresh');}})(this),1000)
       },
       countStar(count) {
         let fullStarCount = count;

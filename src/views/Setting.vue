@@ -1,8 +1,7 @@
 <template>
   <div class="flex-view" v-transition>
+  <app-header title="设置"></app-header>
   	<flex-scroll-view>
-      <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
-  	
       <div class="two-section">
         <p><img class="xsmall-icon" src="../asset/images/zhanghao.png" alt="">账号<input class="xid" type="text" value="{{xid}}"></p>
         <a href=""><p><img class="xsmall-icon" src="../asset/images/mima.png" alt="">密码<span class="right">></span></p></a>
@@ -62,7 +61,6 @@
         require(['../components/YellowBottom.vue'], resolve);
       }
     },
-
     data() {
       return {
         title: '设置',
