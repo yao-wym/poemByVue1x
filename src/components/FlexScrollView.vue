@@ -68,9 +68,11 @@ export default {
 		});
 		this.myScroll.on('scrollEnd', (function(that){
 			return function(){
-				console.log('加载更多');
-				that.$dispatch('scrollEnd');
-				that.$broadcast('scrollEnd');
+				if(this.y < (this.maxScrollY +10)){
+					console.log('加载更多');
+					that.$dispatch('scrollEnd');
+					that.$broadcast('scrollEnd');
+				}
 			}
 		})(this)
 			);

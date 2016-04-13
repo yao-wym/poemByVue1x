@@ -5,10 +5,10 @@
       <div class="container">
         <div id="date"  class="section">
           <h1>{{ hotelName }}</h1>
-          <p>
-          时间：{{ checkInTime }}入住-{{ checkOutTime }}离店<span class="day">{{ day }}晚</span>
-          <input type="date" style="display: none ;width: 6rem;height: 1rem">
-          </p>
+            <p>
+            时间：{{ checkInTime }}入住-{{ checkOutTime }}离店<span class="day">{{ day }}晚</span>
+            <input type="date" style="display: none ;width: 6rem;height: 1rem">
+            </p>
           <p>房型：{{ roomInfo.goods_name }}</p>
         </div>
         <div class="section">
@@ -42,6 +42,7 @@
           </div>
       </div>
     </flex-scroll-view>
+      <div id="datePlugin"></div>
       <div class="footer">
         <div class="price">订单金额：<span>{{ formInfo.rooms*formInfo.quantity*formInfo.goods_price }}</span></div>
         <input type="text" v-model="formInfo.orderPrice">

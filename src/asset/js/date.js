@@ -67,9 +67,9 @@
             dayScroll.refresh();
 
             resetInitDete();
-            yearScroll.scrollTo(0, initY * 60, 100);
+            yearScroll.scrollTo(0, initY * 0, 100);
             monthScroll.scrollTo(0, initM * 60, 100);
-            dayScroll.scrollTo(0, initD * 60 - 60, 100);
+            dayScroll.scrollTo(0, initD * 60, 100);
         }
 
         function refreshTime() {
