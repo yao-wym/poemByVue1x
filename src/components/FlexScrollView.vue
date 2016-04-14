@@ -81,7 +81,10 @@ export default {
 	events:{
 		'refresh':function(msg){
 			// alert(2);
+			console.log('refresh');
+			console.log(this);
 			this.myScroll.refresh();
+
 		},
 		'scrollViewLoaded':function(msg){
 			// this.myScroll.refresh();

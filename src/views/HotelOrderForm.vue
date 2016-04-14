@@ -1,6 +1,6 @@
 <template>
-  <app-header title="订单填写"></app-header>
   <div class="flex-view" v-transition>
+  <app-header title="订单填写"></app-header>
     <flex-scroll-view>
       <div class="container">
         <div id="date"  class="section">
@@ -138,6 +138,9 @@
     ready:function(){
       $("#dateCheckIn").date({'title':'请选择入住时间'},this.checkInDate);
       $("#dateCheckOut").date({'title':'请选择离店时间'},this.checkOutDate);
+      this.$nextTick(function(){
+         this.$broadcast('refresh');
+        });
       // $("#saveTime").
       // date({'title':'保留时间','theme':'datetime'},this.saveTimeDone);
     },
@@ -147,6 +150,7 @@
         transition.next({
             // 'hotelName':'111'
         })
+        
         this.roomInfo = JSON.parse(this.$route.query.roomInfo);
         this.hotelName = this.$route.query.hotelName;
     },

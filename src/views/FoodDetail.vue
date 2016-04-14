@@ -29,21 +29,21 @@
         <a class="link-line" href="">
           选择尺码 颜色
           <span class="right">></span>
-      </a>
+        </a>
         <a class="link-line" href="">
           评价晒单 评分<span class="price-red">{{ goodsDetail.goods_info.evaluation_good_star }}</span>
           <span class="right">></span>
-      </a>
+        </a>
         <a class="link-line" href="">
           图文详情
           <span class="right">></span>
-      </a>
-      <a  v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id}">
-        <img src="" alt="">
-        <span>{{ goodsDetail.store_info.store_name }}</span>
-        <!-- <span class="price-red">{{ goodsDetail.store_info. }}分</span> -->
-        <span class="right">></span>
-      </a>
+        </a>
+        <a v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id}">
+          <img src="" alt="">
+          <span>{{ goodsDetail.store_info.store_name }}</span>
+          <!-- <span class="price-red">{{ goodsDetail.store_info. }}分</span> -->
+          <span class="right">></span>
+        </a>
       <p class="contact">
         <a href=""><img src="" alt="">联系客服</a>    
         <a v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id}"><img src="" alt="">进入店铺</a>
@@ -106,7 +106,7 @@ module.exports = {
       this.goodsDetail = res;
       this.goodsType = res.spec_list[Object.keys(res['spec_list'])[0]];
        this.$nextTick(function(){
-          this.$broadcast('refresh');
+          // this.$broadcast('refresh');
         });
     },
     buy:function(res){

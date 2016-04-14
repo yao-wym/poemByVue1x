@@ -63,7 +63,6 @@
     },
     data() {
       return {
-        title: '设置',
         xid: '0988776'
       }
     }

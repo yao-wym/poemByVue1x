@@ -1,8 +1,8 @@
 <template>
-  <div class="flex-view" v-transition>
+  <div class="flex-view">
     <flex-scroll-view>
-      <div id="hotel-container"\>
-        <div class="hotel-header" style="background-image:url({{bgImg}})">
+      <div id="hotel-container">
+        <div class="hotel-header" v-bind:style="{'background-image':bgImg}">
           <header>
             <i @click="goBack()" style="float:left">
               <img src="../asset/images/fanhui.png">
@@ -51,7 +51,7 @@
               </div>
             </a></div>
               <div class="li-label">
-             <a v-link="{path:'/FoodList'}">
+             <a v-link="{path:'/FoodList/'+this.$route.params.hotelId}">
               <div class="icon">
                 <img src="../asset/images/fun-yellow.png">
               </div>
@@ -81,7 +81,7 @@
           <div class="li-room" v-for="room in roomList">
               <a>
                 <div class="room-img">
-                  <img src="{{room.goods_image_url}}">
+                  <img v-bind:src="room.goods_image_url">
                 </div>
                 <div class="room-info">
                   <p>{{room.goods_name}}</p>
@@ -97,7 +97,7 @@
               <div class="room-detail">
                 <div class="hotel-room-img-list">
                 <div v-for="photo in room.goods_photo" class="room-img-item">
-                  <img src="{{photo}}">
+                  <img v-bind:src="photo">
                 </div>
               </div>
               <div style="overflow:hidden">
@@ -149,6 +149,7 @@
         this.$nextTick(function(){
           this.$broadcast('refresh');
         });
+        // setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),2000)
       }
     },
     bookRoom:function(key){
@@ -173,12 +174,11 @@
         this.getHotelDetail();
     },
       canReuse:function(transition){
-        return false
+        //return false
         //判断是否可以重用，可以则为返回true，不能重用则返回false，会实例化一个新的vue对象
       }
   },
   ready:function(){
-    
     this.$broadcast('refresh');
   }
 }

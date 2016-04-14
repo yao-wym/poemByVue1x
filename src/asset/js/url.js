@@ -67,6 +67,8 @@ var VR_CANCEL_ORDER_API = HOST_API+'act=member_vr_order&op=order_cancel';
 
 var VR_PAY_API = HOST_API+'act=member_payment&op=payment_confirm_real';
 
+var HOTEL_FUN_API = HOST_API+'act=goods&op=goods_list&gc_id=1106';
+
 var poemUI = {
 	toast:function(msg){
 		alert(msg);

@@ -21,9 +21,8 @@
         var yearScroll = null, monthScroll = null, dayScroll = null;
         var HourScroll = null, MinuteScroll = null, SecondScroll = null;
         $.fn.date.defaultOptions = {
-            title      : '请选择时间',
-            beginyear  : 2016,                 //日期--年--份开始
-            endyear    : 2030,                 //日期--年--份结束
+            beginyear  : 2000,                 //日期--年--份开始
+            endyear    : 2020,                 //日期--年--份结束
             beginmonth : 1,                    //日期--月--份结束
             endmonth   : 12,                   //日期--月--份结束
             beginday   : 1,                    //日期--日--份结束
@@ -68,9 +67,9 @@
             dayScroll.refresh();
 
             resetInitDete();
-            yearScroll.scrollTo(0, initY * 0, 100);
-            monthScroll.scrollTo(0, initM * -40 + 40, 100);
-            dayScroll.scrollTo(0, initD * -40 + 40, 100);
+            yearScroll.scrollTo(0, initY * 40, 100, true);
+            monthScroll.scrollTo(0, initM * 40 - 40, 100, true);
+            dayScroll.scrollTo(0, initD * 40 - 40, 100, true);
         }
 
         function refreshTime() {
@@ -78,11 +77,11 @@
             MinuteScroll.refresh();
             SecondScroll.refresh();
             if (initH > 12) {    //判断当前时间是上午还是下午
-                SecondScroll.scrollTo(0, initD * 40 - 40, 100);   //显示“下午”
+                SecondScroll.scrollTo(0, initD * 40 - 40, 100, true);   //显示“下午”
                 initH = initH - 12 - 1;
             }
-            HourScroll.scrollTo(0, initH * 40, 100);
-            MinuteScroll.scrollTo(0, initI * 40, 100);
+            HourScroll.scrollTo(0, initH * 40, 100, true);
+            MinuteScroll.scrollTo(0, initI * 40, 100, true);
             initH = parseInt(nowdate.getHours());
         }
 
@@ -149,38 +148,34 @@
         function init_iScrll() {
             var strY = $("#yearwrapper ul li:eq(" + indexY + ")").html().substr(0, $("#yearwrapper ul li:eq(" + indexY + ")").html().length - 1);
             var strM = $("#monthwrapper ul li:eq(" + indexM + ")").html().substr(0, $("#monthwrapper ul li:eq(" + indexM + ")").html().length - 1)
-            yearScroll = new IScroll("#yearwrapper", {
-                snap       : "li", vScrollbar: false
-            });
-            monthScroll = new IScroll("#monthwrapper", {
-                snap       : "li", vScrollbar: false
-            });
-            dayScroll = new IScroll("#daywrapper", {
-                snap       : "li", vScrollbar: false
-            });
-           yearScroll.on('scrollEnd', function () {
+            yearScroll = new iScroll("yearwrapper", {
+                snap       : "li", vScrollbar: false,
+                onScrollEnd: function () {
                     indexY = (this.y / 40) * (-1) + 1;
-                    //todo 此处代码会导致dayscroll view的snap失效（原因在于html会把之前的li替换，而li是缓存到对象中，这样会导致高度读取错误）
-                    //目前可以的解决方案是通过append标签来解决。此处代码的目的是动态设置当月的天数
-                    // opts.endday = checkdays(strY, strM);
-                    // $("#daywrapper ul").html(createDAY_UL());
-                    // dayScroll.refresh();
-                });
-           
-            monthScroll.on('scrollEnd',function () {
+                    opts.endday = checkdays(strY, strM);
+                    $("#daywrapper ul").html(createDAY_UL());
+                    dayScroll.refresh();
+                }
+            });
+            monthScroll = new iScroll("monthwrapper", {
+                snap       : "li", vScrollbar: false,
+                onScrollEnd: function () {
                     indexM = (this.y / 40) * (-1) + 1;
-                    //同上
-                    // opts.endday = checkdays(strY, strM);
-                    // $("#daywrapper ul").html(createDAY_UL());
-                    // dayScroll.refresh();
-                });
-            dayScroll.on('scrollEnd',function () {
+                    opts.endday = checkdays(strY, strM);
+                    $("#daywrapper ul").html(createDAY_UL());
+                    dayScroll.refresh();
+                }
+            });
+            dayScroll = new iScroll("daywrapper", {
+                snap       : "li", vScrollbar: false,
+                onScrollEnd: function () {
                     indexD = (this.y / 40) * (-1) + 1;
-                });
+                }
+            });
         }
 
         function showdatetime() {
-            init_IScroll_datetime();
+            init_iScroll_datetime();
             addTimeStyle();
             $("#datescroll_datetime").show();
             $("#Hourwrapper ul").html(createHOURS_UL());
@@ -189,40 +184,28 @@
         }
 
         //日期+时间滑动
-        function init_IScroll_datetime() {
-            HourScroll = new IScroll("#Hourwrapper", {
+        function init_iScroll_datetime() {
+            HourScroll = new iScroll("Hourwrapper", {
                 snap       : "li", vScrollbar: false,
                 onScrollEnd: function () {
                     indexH = Math.round((this.y / 40) * (-1)) + 1;
                     HourScroll.refresh();
                 }
             })
-            HourScroll.on('scrollEnd',function () {
-                    indexH = Math.round((this.y / 40) * (-1)) + 1;
-                    HourScroll.refresh();
-                });
-            MinuteScroll = new IScroll("#Minutewrapper", {
+            MinuteScroll = new iScroll("Minutewrapper", {
                 snap       : "li", vScrollbar: false,
                 onScrollEnd: function () {
                     indexI = Math.round((this.y / 40) * (-1)) + 1;
                     HourScroll.refresh();
                 }
             })
-             MinuteScroll.on('scrollEnd',function () {
-                    indexI = Math.round((this.y / 40) * (-1)) + 1;
-                    HourScroll.refresh();
-                });
-            SecondScroll = new IScroll("#Secondwrapper", {
+            SecondScroll = new iScroll("Secondwrapper", {
                 snap       : "li", vScrollbar: false,
                 onScrollEnd: function () {
                     indexS = Math.round((this.y / 40) * (-1));
                     HourScroll.refresh();
                 }
             })
-            SecondScroll.on('scrollEnd',function () {
-                    indexS = Math.round((this.y / 40) * (-1));
-                    HourScroll.refresh();
-                });
         }
 
         function checkdays(year, month) {
@@ -249,9 +232,7 @@
                 '<div id="dateshadow"></div>' +
                 '<div id="datePage" class="page">' +
                 '<section>' +
-                '<div id="datetitle"><h1>'+
-                opts.title
-                +'</h1></div>' +
+                '<div id="datetitle"><h1>请选择日期</h1></div>' +
                 '<div id="datemark"><a id="markyear"></a><a id="markmonth"></a><a id="markday"></a></div>' +
                 '<div id="timemark"><a id="markhour"></a><a id="markminut"></a><a id="marksecond"></a></div>' +
                 '<div id="datescroll">' +
@@ -291,7 +272,7 @@
 
         function addTimeStyle() {
             $("#datePage").css("height", "380px");
-            $("#datePage").css("top", "200px");
+            $("#datePage").css("top", "60px");
             $("#yearwrapper").css("position", "absolute");
             $("#yearwrapper").css("bottom", "200px");
             $("#monthwrapper").css("position", "absolute");

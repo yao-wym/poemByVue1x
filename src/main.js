@@ -160,7 +160,7 @@ router.map({
   '/HotelList': {
     component: HotelListView
   },
-  '/FoodList': {
+  '/FoodList/:id': {
     component: FoodListView
   },
   '/TechanList': {

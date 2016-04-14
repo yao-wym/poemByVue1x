@@ -41,7 +41,7 @@ module.exports = {
   },
   methods:{
   	getHotelList:function(){
-  		$.getJSON(TECHAN_LIST_API,{order:"asc",page:10,curpage:this.curpage}).done(this.getHotelListDone);
+  		$.getJSON(HOTEL_FUN_API,{curpage:this.curpage,'store_id':this.$route.params.id}).done(this.getHotelListDone);
   	},
   	getHotelListDone:function(res){
   		console.log(JSON.stringify(res));

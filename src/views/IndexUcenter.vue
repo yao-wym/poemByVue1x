@@ -7,7 +7,8 @@
             <p style="margin-top:10px;color:white">{{username}}</p>
           </div>
         </header>
-        <section class="li-section">
+        <div v-show="key">
+          <section class="li-section">
           <div class="li-label"><a>
               <div class="icon">
                 <img src="../asset/images/order-yellow.png">
@@ -80,26 +81,7 @@
               </div>
             </a></div>
         </section>
-        <section class="li-section" style="margin-top: 15px">
-          <div  class="li-label"><a href="#/About">
-              <div class="icon">
-                <img src="../asset/images/about-us.png">
-              </div>
-              <div style="border-bottom: none" class="title">关于我们</div>
-              <div class="arrow">
-              <i></i>
-              </div>
-            </a></div>
-         <!--  <div class="li-label"><a href="">
-              <div class="icon">
-                <img src="../asset/images/help-suggest.png">
-              </div>
-              <div class="title">客服帮助</div>
-              <div class="arrow">
-              <i></i>
-              </div>
-            </a></div> -->
-        </section>
+       
         <section class="li-section" style="margin-top: 15px">
           <div class="li-label"><a href="#/Setting">
               <div class="icon">
@@ -120,6 +102,27 @@
               </div>
             </a></div>
         </section>
+        </div>
+         <section class="li-section" style="margin-top: 15px">
+          <div  class="li-label"><a href="#/About">
+              <div class="icon">
+                <img src="../asset/images/about-us.png">
+              </div>
+              <div style="border-bottom: none" class="title">关于我们</div>
+              <div class="arrow">
+              <i></i>
+              </div>
+            </a></div>
+         <!--  <div class="li-label"><a href="">
+              <div class="icon">
+                <img src="../asset/images/help-suggest.png">
+              </div>
+              <div class="title">客服帮助</div>
+              <div class="arrow">
+              <i></i>
+              </div>
+            </a></div> -->
+        </section>
       </div>
     </flex-scroll-view>
 </template>
@@ -130,7 +133,8 @@
   replace: true,
   data:function(){
     return{
-      'username':poem.getItem('username')
+      'username':poem.getItem('username'),
+      'key':false
     }
   },
   components: {
@@ -138,6 +142,9 @@
     'app-pane': require('../components/IndexHomePane.vue'),
     'index-tab': require('../components/IndexTab.vue'),
     'flex-scroll-view': require('../components/FlexScrollView.vue'),
+  },
+  ready:function(){
+    this.key = poem.getItem("key");
   }
 }
 </script>
