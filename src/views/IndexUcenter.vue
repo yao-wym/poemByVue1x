@@ -1,10 +1,11 @@
 <template>
-      <flex-scroll-view>
+    <flex-scroll-view>
       <div id="uc-container">
         <header class="uc-header">
           <div>
             <img style="width: 1.6rem" src="../asset/images/my-circle.png">
-            <p style="margin-top:10px;color:white">{{username}}</p>
+            <p v-if="key" style="margin-top:10px;color:white">{{username}}</p>
+            <p v-link="{path:'/user/login'}" v-else style="margin-top:10px;color:white">登陆</p>
           </div>
         </header>
         <div v-show="key">
@@ -145,12 +146,19 @@
   },
   ready:function(){
     this.key = poem.getItem("key");
+  },
+  route:{
+    data(transition){
+       transition.next({
+            key:poem.getItem('key'),
+            username:poem.getItem('username')
+        })
+    }
   }
 }
 </script>
 
-<style lang="stylus">
-@import "../main.styl"
+<style lang="stylus" scoped>
   #uc-container
     background-color:rgb(238,238,238)
     .uc-header

@@ -21,7 +21,7 @@
   				<img src='../asset/images/lock-white.png'/>
   				<label id="password" style="display:inline-block">密码</label>
         </div>
-        <input v-model="password" style="display:inline-block;" placeholder='请填写密码' />
+        <input v-model="password" type="password" style="display:inline-block;" placeholder='请填写密码' />
 			</div>
 		</div>
 		<div style="display: block;width: 80%;margin:0 auto">

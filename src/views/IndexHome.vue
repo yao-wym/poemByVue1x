@@ -41,5 +41,4 @@
 </script>
 
 <style lang="stylus">
-  @import "../main.styl"
 </style>

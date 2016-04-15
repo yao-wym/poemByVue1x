@@ -1,6 +1,6 @@
 <template>
-	<div class="flex-view" v-transition>
-	<app-header title="特产" right-icon="user-icon" right-link="#/user/login"></app-header>
+	<div class="flex-view">
+	<app-header title="特产" right-icon="home-icon" right-link="#/index/home"></app-header>
   <flex-scroll-view>
         <ul id="techan-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->

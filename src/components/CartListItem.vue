@@ -1,6 +1,6 @@
 <template>
 	<li class="cart-item">
-		<div class="cart-item-header" style="overflow:hidden">
+		<!-- <div class="cart-item-header" style="overflow:hidden">
 			<div style="float:left;margin-left: 10px">
 				<input style="height:.4rem;width:.4rem" type="checkbox">
 			</div>
@@ -8,7 +8,7 @@
 				<span style="margin-right:15px">删除</span>
 				<span>编辑</span>
 			</div>
-		</div>
+		</div> -->
 		<div class="cart-goods-list">
 			<div class="cart-goods-item" v-link="{path:'/FoodDetail/'+cart.goods_id}">
 				<a>

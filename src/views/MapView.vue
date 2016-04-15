@@ -1,18 +1,18 @@
 <template>
-	<app-header :title="title"></app-header>
-	<div id="container"></div> 
+  <app-header :title="title"></app-header>
+  <div id="container"></div> 
 </template>
 <style type="text/css">
-	html{height:100%}  
-	body{height:100%;margin:0px;padding:0px}  
-	#container{height:100%} 
+  html{height:100%}  
+  body{height:100%;margin:0px;padding:0px}  
+  #container{height:100%} 
 </style>
 <script type="text/javascript">
 module.exports = {
   replace: true,
   data:function(){
     return {
-    	hotelName:this.$route.query.hotelName,
+      hotelName:this.$route.query.hotelName,
       title:this.$route.query.title
     }
   },
@@ -22,7 +22,7 @@ module.exports = {
     },
   },
   ready:function(){
-  		var pos = this.$route.query.pos;
+      var pos = this.$route.query.pos;
       if(!$.isEmpty(pos)){
         var lng = poem.getPos(pos).lng;
         var lat = poem.getPos(pos).lat;
@@ -34,8 +34,8 @@ module.exports = {
       }else{
         this.getPosition();
       }
-  		console.log(lng); 
-  		console.log(lat); 
+      console.log(lng); 
+      console.log(lat); 
   },
   methods:{
     getPosition:function(){
@@ -54,7 +54,6 @@ module.exports = {
       this.initMap(lng,lat);
     },
     handleError:function(){
-
     },
     initMap:function(lng,lat){
       var map = new BMap.Map("container");          // 创建地图实例  
@@ -78,9 +77,9 @@ module.exports = {
         
     },
     canReuse:function(transition){
-    		return false;
+        return false;
         //判断是否可以重用，可以则为返回true，不能重用则返回false，会实例化一个新的vue对象
     }
   },
-	}
+  }
 </script>

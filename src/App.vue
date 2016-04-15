@@ -91,4 +91,73 @@ a
     margin 0
   #app-container
     width 100%
+
+.poem-btn-green
+  font-size:.4rem
+  background-color:app-green
+  border-radius:10px
+  height:1rem
+  line-height:1rem
+  width:8rem
+  margin:30px auto
+  text-align: center;
+  color:white
+  
+.poem-input-box
+  margin:0 auto;
+  width:9.5rem;
+  background-color:#fff
+  border:line-gray 1px solid
+  color:text-gray
+  &>div
+    height:input-height+0.2rem
+    line-height:input-height+0.2rem
+    border-bottom:solid 1px line-gray
+  & input
+    outline:none !important
+    height:(input-height)
+    border:none
+    font-size:.4rem
+    height:input-height
+  
+.poem-hidden
+  display:none
+  
+.poem-mask
+  position: fixed
+  bottom: 0
+  width: 100%
+  height:100%
+  width: 100%
+  background-color:grey
+  opacity:0.5
+  animation:showMask 0.2s;
+  -moz-animation:showMask 0.2s; /* Firefox */
+  -webkit-animation:showMask 0.2s; /* Safari and Chrome */
+  -o-animation:showMask 0.2s; /* Opera */
+
+.flex-view
+  -webkit-box-orient:vertical
+  -webkit-box-direction:normal
+  flex-direction:column;
+  height:100%
+  display: flex
+
+.small-icon
+  width: .6rem
+  height: .6rem
+
+  
+@keyframes showMask
+  from 
+    background:#ffffff
+  to 
+    background:grey
+
+@-moz-keyframes showMask /* Firefox */
+  from 
+    background:#ffffff
+  to 
+    background:grey
+
 </style>

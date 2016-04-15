@@ -1,6 +1,6 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header title="景点门票" right-icon="user-icon"></app-header>
+	<app-header title="景点门票" right-icon="home-icon" right-link="#/index/home"></app-header>
   <flex-scroll-view>
         <ul id="scienic-list-view" style="font-size: 0.3rem">
       <scenic-list-item v-for="scenic in scenicList" :scenic="scenic" :index="$index"></scenic-list-item>

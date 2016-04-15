@@ -229,4 +229,5 @@
         color: text-gray
         & span
           color: red
+
 </style>

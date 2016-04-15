@@ -31,7 +31,7 @@
 		font-size:.4rem
 		display:inline-block
 		width:6.5rem
-		height:.4rem
+		height:.6rem
 	& img
 		width:.4rem
 		height:.4rem

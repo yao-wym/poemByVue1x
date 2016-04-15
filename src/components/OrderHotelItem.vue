@@ -11,7 +11,8 @@
 		<div class="cart-goods-list">
 			<div class="cart-goods-item">
 				<a>
-			<img class="cart-goods-img" v-link="{path:'/FoodDetail/'+order.goods_id}" src="{{order.goods_image_url}}" />
+			<!-- <img class="cart-goods-img" v-link="{path:'/FoodDetail/'+order.goods_id}" src="{{order.goods_image_url}}" /> -->
+			<img class="cart-goods-img" src="{{order.goods_image_url}}" />
 			<div class="cart-goods-info">
 				{{order.goods_name}}
 			</div>
@@ -32,7 +33,7 @@
 		<div class="cart-item-operate" style="overflow:hidden">
 			<div @click="payOrder()" class="cart-item-pay" style="float:right">付款</div>
 			<div @click="cancelOrder()" class="cart-item-cancel" style="float:right">取消订单</div>
-			<div class="cart-item-call" style="float:right">联系卖家</div>
+			<!-- <div class="cart-item-call" style="float:right">联系卖家</div> -->
 		</div>
 	</li>
 </template>

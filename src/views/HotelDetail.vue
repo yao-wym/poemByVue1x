@@ -2,14 +2,14 @@
   <div class="flex-view">
     <flex-scroll-view>
       <div id="hotel-container">
-        <div class="hotel-header" v-bind:style="{'background-image':bgImg}">
+        <div class="hotel-header" style="background-image:url({{bgImg}})">
           <header>
             <i @click="goBack()" style="float:left">
               <img src="../asset/images/fanhui.png">
             </i>
             <div style="float:right">
-                <img src="../asset/images/icon_collect.png">
-                <img style="margin:0 5px" src="../asset/images/share-white.png">
+                <!-- <img src="../asset/images/icon_collect.png"> -->
+                <!-- <img style="margin:0 5px" src="../asset/images/share-white.png"> -->
             </div>
           </header>
           <div style="position:absolute;bottom:0;padding-left:10px;font-size:.3rem">
@@ -28,7 +28,7 @@
               </div>
             </a></div>
             <div class="li-label">
-           <a  v-link="{path:'/MapView?pos='+hotelLoc+'&title='+hotelName+'&markName='+hotelName+'&hotelId='+$route.params.hotelId}">
+           <a v-link="{path:'/MapView?pos='+hotelLoc+'&title='+hotelName+'&markName='+hotelName+'&hotelId='+$route.params.hotelId}">
               <div class="icon">
                 <img src="../asset/images/ditu.png">
               </div>
@@ -146,10 +146,10 @@
         this.hotelLoc = res.store_info.store_location_lat+','+res.store_info.store_location_lng;
         this.bgImg = res.store_info.store_label;
         this.roomList = res.good_list;
-        this.$nextTick(function(){
-          this.$broadcast('refresh');
-        });
-        // setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),2000)
+        // this.$nextTick(function(){
+        //   this.$broadcast('refresh');
+        // });
+        setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),1000)
       }
     },
     bookRoom:function(key){
@@ -193,7 +193,6 @@ room-item-height=1.5rem
     & a
       color:text-gray
     & .hotel-header
-      background:url(../asset/images/news.png)
       background-size:100% 100%
       text-align:center
       height:6rem

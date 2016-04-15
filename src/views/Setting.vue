@@ -1,19 +1,31 @@
 <template>
   <div class="flex-view" v-transition>
-  <app-header title="设置"></app-header>
+    <app-header title="设置"></app-header>
   	<flex-scroll-view>
       <div class="two-section">
         <p><img class="xsmall-icon" src="../asset/images/zhanghao.png" alt="">账号<input class="xid" type="text" value="{{xid}}"></p>
         <a href=""><p><img class="xsmall-icon" src="../asset/images/mima.png" alt="">密码<span class="right">></span></p></a>
       </div>
-      <a  href="#/FeedBack" class="section"><img class="xsmall-icon" src="../asset/images/yijianfankui.png" alt="">意见反馈<span class="right">></span></a>
-      <a  href="" class="section"><img class="xsmall-icon" src="../asset/images/qingchuhuancun.png" alt="">清除缓存<span class="right">></span></a>
+      <a href="#/FeedBack" class="section"><img class="xsmall-icon" src="../asset/images/yijianfankui.png" alt="">意见反馈<span class="right">></span></a>
+      <a href="" class="section"><img class="xsmall-icon" src="../asset/images/qingchuhuancun.png" alt="">清除缓存<span class="right">></span></a>
     </flex-scroll-view>
-    <yellow-bottom>退出当前账号</yellow-bottom>
+    <footer @click="loginOut()" class="yellow-footer">
+    退出当前账号
+    </footer>
   </div>
 </template>
 <style lang="stylus" scoped>
   @import "../main.styl"
+  buttom-tab-height = 1.2rem
+  .yellow-footer
+    background-color:app-yellow
+    height:buttom-tab-height
+    line-height:buttom-tab-height
+    text-align:center
+    font-size:.5rem
+    bottom:0
+    width:100%
+    color:app-white
   .two-section
     margin-bottom: section-margin
     background: poem-white
@@ -65,6 +77,13 @@
       return {
         xid: '0988776'
       }
+    },
+    methods:{
+      loginOut(){
+        poem.saveItem('username','');
+        poem.saveItem('key','');
+        history.go(-1);
+      },
     }
   }
 </script>

@@ -96,6 +96,12 @@ header-text-color = #fff
   height:@width
   background-size:100%
   display:inline-block
+.home-icon
+  background-image:url("../asset/images/store-white.png")
+  width:header-img-width
+  height:@width
+  background-size:100%
+  display:inline-block
 .qrcode-icon
   background-image:url("../asset/images/qr_code.png")
   width:header-img-width

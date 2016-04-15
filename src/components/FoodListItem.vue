@@ -8,7 +8,7 @@
 			</div>
 			<div>
 				<div style="color:red;font-size:0.4rem">¥{{food.goods_price}}</div>
-				<button style="margin-top:20px;color:white;">预定</button>
+				<button style="float:right;margin-top:20px;color:white;">预定</button>
 			</div>
 		</a>
 	</li>
@@ -32,9 +32,10 @@ module.exports = {
 	flex:1
 	overflow:hidden
 .goods-item
-	 background-color: #eee; 
+	 background-color: #fafafa; 
 	 overflow:auto; 
 	 resize:horizontal;
+	 border-bottom:1px solid line-gray
 button
 	background-color:app-yellow
 	border:none

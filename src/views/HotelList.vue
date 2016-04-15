@@ -1,6 +1,6 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header search="找酒店" right-icon="user-icon"></app-header>
+	<app-header search="找酒店" right-icon="home-icon" right-link="#/index/home"></app-header>
   <flex-scroll-view>
         <ul id="hotel-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
@@ -10,7 +10,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="[{'word':'全部','sc_id':'2,12'},{'word':'传统酒店','sc_id':'2'},{'word':'牧家乐','sc_id':'12'}]" :order-items="[{'word':'默认排序','order':''},{'word':'商家信用从高到底','key':'store_credit','order':'desc'},{'word':'商家信用从低到高','key':'store_credit','order':'asc'},{'word':'销量从高到底','key':'store_sales','order':'desc'},{'word':'销量从低到高','key':'store_sales','order':'asc'}]"></filter-tab>
+	<filter-tab :filter-items="[{'word':'全部','sc_id':'2,12'},{'word':'传统酒店','op':'hotel','sc_id':'2'},{'word':'牧家乐','sc_id':'12'}]" :order-items="[{'word':'默认排序','order':'','op':'hotel_list'},{'word':'商家信用从高到底','key':'store_credit','order':'desc','op':'hotel_list'},{'word':'商家信用从低到高','key':'store_credit','order':'asc','op':'hotel_list'},{'word':'销量从高到底','op':'hotel_list','key':'store_sales','order':'desc'},{'word':'销量从低到高','key':'store_sales','order':'asc','op':'hotel_list'}]"></filter-tab>
 </div>
 </template>
 
@@ -104,24 +104,4 @@ module.exports = {
 }
 </script>
 
-<style lang="stylus">
-	@import "../main.styl"
-// px2rem(name, px){
-//     name: px/75 
-// }
-.goods-img
-	width:2rem
-	height:2rem
-	float:left
-	margin-right:0.3rem
-
-.goods-info
-	overflow:hidden
-.goods-item
-	 background-color: #eee; 
-	 overflow:auto; 
-	 resize:horizontal;
-	
-
-
-</style>
+<style lang="stylus"></style>
