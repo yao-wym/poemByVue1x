@@ -4,7 +4,7 @@
   <flex-scroll-view>
         <ul id="addr-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
-      <addr-list-item v-for="addr in addrlList" :addr="addr" :index="$index"></addr-list-item>
+      <addr-list-item @click="addrClick($index)" v-for="addr in addrlList" :addr="addr" :index="$index"></addr-list-item>
       <!-- </list-view> -->
     </ul>
 <!--     <return-top></return-top> -->
@@ -33,10 +33,15 @@ module.exports = {
     }
   },
   data: function(){
-  	var addrlList = [];
   	return {
-  		addrlList:addrlList
+  		addrlList:[],
+      action:"default"
   	}
+  },
+  route:{
+    data(){
+      this.action = this.$route.query.action;
+    }
   },
   methods:{
   	getAddrList:function(){
@@ -49,6 +54,14 @@ module.exports = {
         });
         this.$off('scrollEnd')
   	},
+    addrClick:function(index){
+      console.log(this.action)
+      if(this.action == 'chooseAddr'){
+        poem.saveObj('chosenAddr',this.addrlList[index]);
+        refer = this.$route.query.refer;
+        location.href = refer;
+      }
+    }
   },
   created: function() {
   },

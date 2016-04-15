@@ -7,7 +7,7 @@
     </ul>
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
-  <filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['默认排序','传统酒店','牧家乐']"></filter-tab>
+  <!-- <filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['默认排序','传统酒店','牧家乐']"></filter-tab> -->
 </div>
 </template>
 
@@ -32,11 +32,10 @@ module.exports = {
     },
   },
   data: function(){
-  	var hotelList = [];
-  	var curpage = 1; 
   	return {
-  		curpage : curpage,
-  		hotelList:hotelList
+  		curpage : 1,
+      pageNum :1,
+  		hotelList:[]
   	}
   },
   methods:{
@@ -46,6 +45,7 @@ module.exports = {
   	getHotelListDone:function(res){
   		console.log(JSON.stringify(res));
       if(!isEmpty(res.datas.goods_list)){
+        this.pageNum = res.page_total;
         this.hotelList = this.hotelList.concat(res.datas.goods_list);
         this.curpage++;
         // this.$broadcast('refresh')
@@ -58,6 +58,10 @@ module.exports = {
   },
   events:{
     'scrollEnd':function(msg){
+      if(this.curpage>this.pageNum){
+        poemUI.toast('没有更多了');
+        return;
+      }
       this.getHotelList();
     },
     'conditionChange':function(msg){

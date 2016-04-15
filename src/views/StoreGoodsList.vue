@@ -40,6 +40,7 @@ module.exports = {
   data: function(){
   	return {
   		curpage : 1,
+      pageNum : 1,
   		techanList:[],
       storeName:''
   	}
@@ -51,6 +52,7 @@ module.exports = {
   	getTechanListDone:function(res){
   		console.log(JSON.stringify(res));
       if(!isEmpty(res.datas.goods_list)){
+        this.pageNum = res.page_total
         this.techanList = this.techanList.concat(res.datas.goods_list);
         this.curpage++;
         this.$nextTick(function(){
@@ -77,6 +79,10 @@ module.exports = {
   },
   events:{
     'scrollEnd':function(msg){
+      if(this.curpage>this.pageNum){
+        poemUI.toast('没有更多了');
+        return;
+      }
       this.getTechanList();
     },
     'conditionChange':function(msg){

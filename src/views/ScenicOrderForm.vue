@@ -65,7 +65,7 @@
       }
     },
     data() {
-      var address = poem.getObj('address');
+      var address = poem.getObj('address')==undefined?{}:poem.getObj('address');
       return {
         address:address,
         goodsInfo:{},

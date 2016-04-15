@@ -3,23 +3,24 @@
     <app-header title="订单提交"></app-header>
     <flex-scroll-view>
       <div class="container">
-        <div v-link="{path:'/AddressList'}" class="section" style="overflow: hidden;border-bottom:solid 1px #ccc;margin-bottom: 0">
+        <div v-link="{path:'/AddressList?action=chooseAddr&refer='+hash}" class="section" style="overflow: hidden;border-bottom:solid 1px #ccc;margin-bottom: 0">
           <div v-if="address" style="width: 80%;float: left;padding: 0;border: none">
             <h3><span>收货人:{{ address.true_name }}</span><span>{{ address.mob_phone }}</span></h3>
             <p>收货地址：<span>{{address.address}}</span></p>
           </div>
-          <div v-else class="section" style="height: 1rem">
-            <h3 v-link="{path:'/AddressList'}">选择地址</h3>
+           <div v-else="address" style="width: 80%;float: left;padding: 0;border: none">
+            <h3></h3>
+            <p>选择地址<span></span></p>
           </div>
           <div style="width: 15%;text-align: center;float: right;border: none">
             >
           </div>
         </div>
-        <div class="section" class="order-form-goods" style="overflow:hidden">
-          <div style="float: left;overflow:hidden">
-            <img style="width: 1rem;height: 1rem" src="{{goodsDetail.spec_image[0]}}">
+        <div class="section" class="order-form-goods" style="overflow:hidden;;border-bottom:1px solid #ccc">
+          <div style="float: left;overflow:hidden;border-bottom:none">
+            <img style="width: 1rem;height: 1rem;top:0" src="{{goodsDetail.spec_image[0]}}">
           </div>
-          <div style="width: 80%;float: right">
+          <div style="width: 80%;float: right;border-bottom:none">
             <div>{{goodsDetail.goods_info.goods_name}}</div>
             <div>￥{{goodsDetail.goods_info.goods_price}}</div>
           </div>
@@ -67,6 +68,7 @@
         techanType: '',
         techanCount: 1,
         orderPrice: 0,
+        hash:location.hash,
         address:poem.getObj('address')
       }
     },
@@ -125,6 +127,9 @@
         this.goodsId = this.$route.query.goodsId;
         this.goodsTypeId = this.$route.query.goodsType;
         this.getGoodsDetail();
+        if(!$.isEmpty(poem.getObj('chosenAddr'))){
+          this.address = poem.getObj('chosenAddr')
+        }
         // alert(JSON.stringify(this.$route.params));
         // transition.next({
         //     // 'techanName':'111'

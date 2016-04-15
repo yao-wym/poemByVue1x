@@ -29,11 +29,13 @@
           <p>评论</p>
           <span>></span>
         </a>
-        <div class="link-line">
+        <a v-link="{path:'/MapView?pos='+loc+'&title='+storeName+'&storeName='+storeName+'&hotelId='+id}">
+          <div class="link-line">
           <img class="small-icon" src="../asset/images/ditu.png" alt="">
           <p>地图</p>
           <span>></span>
         </div>
+        </a>
         <a class="link-line" href="#/ScenicDeepDetail/{{id}}">
           <img class="small-icon" src="../asset/images/pic-yellow.png" alt="">
           <p>详情</p>
@@ -86,6 +88,7 @@
         ticketPrices: [],
         gallery: [],
         orderDetailShow: [1, 1, 1],
+        loc:''
       }
     },
     methods: {
@@ -109,6 +112,7 @@
       },
       initPage(data) {
         console.log(data)
+        this.loc = data.store_info.store_location_lat+','+data.store_info.store_location_lng;
         this.storeName = data.store_info.store_name;
         this.gallery = data.goods_image;
         this.ticketPrices = data.relate_goods;
