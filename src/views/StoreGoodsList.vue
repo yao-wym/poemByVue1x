@@ -1,6 +1,6 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header :title="title" right-icon="user-icon" right-link="#/user/login"></app-header>
+	<app-header :title="storeName" right-icon="user-icon" right-link="#/user/login"></app-header>
   <flex-scroll-view>
         <ul id="techan-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
@@ -10,7 +10,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['默认排序','传统酒店','牧家乐']"></filter-tab>
+<!-- 	<filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['默认排序','传统酒店','牧家乐']"></filter-tab> -->
 </div>
 </template>
 
@@ -38,42 +38,42 @@ module.exports = {
     }
   },
   data: function(){
-  	var techanList = [];
-  	var curpage = 1; 
   	return {
-  		curpage : curpage,
-  		techanList:techanList,
-      title:'xx旗舰店'
+  		curpage : 1,
+  		techanList:[],
+      storeName:''
   	}
   },
   methods:{
   	getTechanList:function(){
-  		$.getJSON(TECHAN_LIST_API,{order:"asc",page:10,curpage:this.curpage}).done(this.getTechanListDone);
+  		$.getJSON(HOTEL_FUN_API,{'store_id':this.$route.params.id}).done(this.getTechanListDone);
   	},
   	getTechanListDone:function(res){
   		console.log(JSON.stringify(res));
       if(!isEmpty(res.datas.goods_list)){
         this.techanList = this.techanList.concat(res.datas.goods_list);
         this.curpage++;
-        // this.$broadcast('refresh')
         this.$nextTick(function(){
           //this.$broadcast('refresh');
         });
-        setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),50)
+        setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),500)
       }
-      // if(res.hasmore == false){
-      //   this.$off('scrollEnd')
-      // }
   	},
   },
   created: function() {
   },
   ready:function(){
-    this.getTechanList();
+    
   },
   attached:function(){
   },
   compiled:function(){
+  },
+  route:{
+    data(){
+      this.storeName = this.$route.query.storeName;
+      this.getTechanList();
+    }
   },
   events:{
     'scrollEnd':function(msg){

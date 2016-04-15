@@ -7,7 +7,7 @@
         <a href=""><p><img class="xsmall-icon" src="../asset/images/mima.png" alt="">密码<span class="right">></span></p></a>
       </div>
       <a href="#/FeedBack" class="section"><img class="xsmall-icon" src="../asset/images/yijianfankui.png" alt="">意见反馈<span class="right">></span></a>
-      <a href="" class="section"><img class="xsmall-icon" src="../asset/images/qingchuhuancun.png" alt="">清除缓存<span class="right">></span></a>
+     <!--  <a href="" class="section"><img class="xsmall-icon" src="../asset/images/qingchuhuancun.png" alt="">清除缓存<span class="right">></span></a> -->
     </flex-scroll-view>
     <footer @click="loginOut()" class="yellow-footer">
     退出当前账号
@@ -75,7 +75,7 @@
     },
     data() {
       return {
-        xid: '0988776'
+        xid: poem.getItem('username')
       }
     },
     methods:{

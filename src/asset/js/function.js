@@ -94,10 +94,10 @@ window.poem = {};
 		return localStorage.getItem(itemName);
 	};
 	poem.saveObj = function(itemName,itemObj){
-		localStorage.save(itemName,JSON.stringify(itemObj));
+		localStorage.setItem(itemName,JSON.stringify(itemObj));
 	};
 	poem.getObj = function(itemName){
-		objStr = localStorage.get(itemName);
+		objStr = localStorage.getItem(itemName);
 		return JSON.parse(objStr);
 	};
 	poem.getPos = function(pos){

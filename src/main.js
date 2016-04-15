@@ -229,7 +229,7 @@ router.map({
       require(['./Views/HotelOrderForm.vue'], resolve)
     }
   },
-  '/ScenicOrderForm/:id': {
+  '/ScenicOrderForm': {
     // component: ScenicOrderForm
     component:function (resolve) {
       require(['./Views/ScenicOrderForm.vue'], resolve)

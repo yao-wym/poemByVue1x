@@ -1,7 +1,7 @@
 <template>
   <div class="flex-view" v-transition>
     <flex-scroll-view>
-     <div class="scenic-header" style="background-image:url({{bgImg}})">
+     <div class="scenic-header" style="background-image:url({{goodsDetail.goods_image[0]}})">
         <header>
           <i @click="goBack()" style="float:left">
             <img src="../asset/images/fanhui.png">
@@ -12,7 +12,7 @@
           </div>
         </header>
         <div style="position:absolute;bottom:0;padding-left:10px;font-size:.3rem">
-          <p>{{storeName}}</p>
+          <p>{{goodsDetail.store_info.store_name}}</p>
         </div>
       </div>
       <div class="container">
@@ -21,9 +21,9 @@
           <p class="price">{{ goodsDetail.goods_info.goods_price }}</p>
           <p>价格: <span class="original-price">{{ goodsDetail.goods_info.goods_marketprice }}</span></p>
           <div class="row">
-            <p>快递: {{ expressPrice }}元</p>
+            <!-- <p>快递: {{ expressPrice }}元</p> -->
             <p>月销：{{ goodsDetail.goods_info.goods_salenum }}</p>
-            <p>库存：{{ stock }}</p>
+            <p>库存：{{ goodsDetail.goods_info.goods_storage }}</p>
           </div>
         </div>
         <a class="link-line" href="">
@@ -38,23 +38,26 @@
           图文详情
           <span class="right">></span>
         </a>
-        <a v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id}">
-          <img src="" alt="">
-          <span>{{ goodsDetail.store_info.store_name }}</span>
+        <a class="link-line" v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id+'?storeName='+goodsDetail.store_info.store_name}">
+          <div style="margin-top: 10px;height: 1.5rem;line-height: 1.5rem;display:inline-block;vertical-align:middle">
+            <img style="margin-top: 10px;border-radius: 50%;width: 1rem" src="{{ goodsDetail.store_info.avatar }}" alt="">
+          </div>
+          <span style="display: inline-block">{{ goodsDetail.store_info.store_name }}</span>
           <!-- <span class="price-red">{{ goodsDetail.store_info. }}分</span> -->
           <span class="right">></span>
         </a>
       <p class="contact">
-        <a href=""><img src="" alt="">联系客服</a>    
-        <a v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id}"><img src="" alt="">进入店铺</a>
+        <a href=""><img style="width: .5rem" src="../asset/images/contacter-green.png" alt="">联系客服</a>    
+        <a v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id+'?storeName='+goodsDetail.store_info.store_name}">
+        <img style="width: .5rem" src="../asset/images/home-gray.png" alt="">进入店铺</a>
       </p>
     </div>
     </flex-scroll-view>
           <div class="footer">
         <div class="footer-ctrlpanel">
-          <a href="">店铺</a>
+          <!-- <a href="">店铺</a>
           <button>收藏</button>
-          <a href="">购物车</a>
+          <a href="">购物车</a> -->
         </div>
         <a class="addto-cart" @click="addToCart()">加入购物车</a>
         <a @click="buy()" class="buy-now">立即购买</a>
@@ -90,6 +93,9 @@ module.exports = {
       }
   },
   methods:{
+    goBack:function(){
+      history.go(-1);
+    },
     addToCart:function(){
       $.poemPost(CART_ADD_API,{'key':poem.getItem('key'),'goods_id':this.goodsId,'quantity':this.quantity}).done(function(res){
         if(res.error){
@@ -100,14 +106,21 @@ module.exports = {
       });
     },
     getGoodsDetail:function(){
-      $.poemGet(GOODS_DETAIL_API,{'goods_id':this.goodsId}).done(this.getSuccess);
+      $.poemGet(GOODS_DETAIL_API,{'goods_id':this.goodsId}).done(this.getDone);
     },
-    getSuccess:function(res){
+    getDone:function(res){
+      if(res.error){
+        poemUI.toast("商品已下架");
+        this.goBack();
+        return;
+      }
       this.goodsDetail = res;
       this.goodsType = res.spec_list[Object.keys(res['spec_list'])[0]];
-       this.$nextTick(function(){
-          // this.$broadcast('refresh');
-        });
+      this.bgImg = res.spec_image[0];
+      this.$nextTick(function(){
+        // this.$broadcast('refresh');
+      });
+      setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
     },
     buy:function(res){
         this.$route.router.go({path:'/TechanOrderForm?goodsId='+this.goodsId+'&goodsType='+this.goodsType});
@@ -127,7 +140,7 @@ module.exports = {
       bgImg:'',
       stock: 999,
       postiveCommentsRate: 0.98,
-      storeName: 'xx旗舰店',
+      storeName: '',
       storeScore: 9.2
     }
   }
@@ -137,7 +150,6 @@ module.exports = {
 <style lang="stylus" scoped>
   @import "../main.styl"
   .scenic-header
-    background:url(../asset/images/news.png)
     background-size:100% 100%
     text-align:center
     height:6rem

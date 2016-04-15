@@ -47,8 +47,8 @@
         </div>
         <div class="ticket-price" v-for="ticketPrice in ticketPrices">
           <div class="price-kind">
-            <p class="ticket-name">{{ ticketPrice.name }}</p>
-            <p class="price">¥{{ ticketPrice.price }}</p>
+            <p class="ticket-name">{{ ticketPrice.goods_name }}</p>
+            <p class="price">¥{{ ticketPrice.goods_price }}</p>
             <div class="arrow" @click="ctrlOrderDetail($index)">
               <i></i>
             </div>
@@ -83,20 +83,7 @@
         openTime: '09:00 - 17:00',
         stars: [],
         'bgImg':'',
-        ticketPrices: [
-          {
-            name: '成人票',
-            price: 59
-          },
-          {
-            name: '老人票',
-            price: 29
-          },
-          {
-            name: '学生票',
-            price: 39
-          },
-        ],
+        ticketPrices: [],
         gallery: [],
         orderDetailShow: [1, 1, 1],
       }
@@ -124,12 +111,13 @@
         console.log(data)
         this.storeName = data.store_info.store_name;
         this.gallery = data.goods_image;
-        this.bgImg = data.spec_image[0]
+        this.ticketPrices = data.relate_goods;
+        this.bgImg = data.spec_image[0];
         this.countStar(data.evaluate_info.good_star)
-        this.$nextTick(function(){
-          this.$broadcast('refresh');
-        });
-        setTimeout((function(that){return function(){that.$dispatch('refresh');}})(this),1000)
+        // this.$nextTick(function(){
+        //   this.$broadcast('refresh');
+        // });
+        setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
       },
       countStar(count) {
         let fullStarCount = count;
@@ -143,7 +131,13 @@
         }
       },
       bookTicket(index){
-        this.$route.router.go({path:'/ScenicOrderForm/123'})
+        var goodsInfo = {
+          'scenicName':this.storeName,
+          'goodsName':this.ticketPrices[index].goods_name,
+          'goodsPrice':this.ticketPrices[index].goods_price,
+          'goodsId':this.ticketPrices[index].goods_id
+        }
+        this.$route.router.go({path:'/ScenicOrderForm?goodsInfo='+JSON.stringify(goodsInfo)})
       },
     },
     route: {

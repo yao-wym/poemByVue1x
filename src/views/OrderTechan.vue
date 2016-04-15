@@ -33,6 +33,7 @@
     // $.fn.poemGet(CART_LIST_API,{'key':});
     this.leftLabel='特产';
     this.title="";
+    this.rightLabel="";
     this.getOrderList();
     $(".header-tab").on('click',".header-tab-item",
       (function(that){ return function(){
@@ -60,7 +61,7 @@
         });
     }
   },
-  props:['leftLabel','title']
+  props:['leftLabel','title','rightLabel']
 }
 </script>
 

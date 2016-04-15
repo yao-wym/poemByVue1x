@@ -6,13 +6,13 @@
           <div class="banner-img">
             <img src="http://2.share.photo.xuite.net/wxm3338/126d4b2/14058821/738662509_m.jpg" alt="">
           </div>
-          <h1>{{ scenicName }}</h1>
+          <h1>{{ goodsInfo.scenicName+' '+goodsInfo.goodsName }}</h1>
         </div>
         <div class="section">
           <div class="house-count">购买数量
             <div class="right">
               <button @click="minusCount">-</button>
-              {{ count }}
+              {{ quantity }}
               <button @click="addCount">+</button>
             </div>
           </div>
@@ -23,10 +23,10 @@
         <h2 class="person-info"><img class="small-icon" src="../asset/images/user-green.png" alt="">取票人信息</h2>
         <div class="section">
           <div>姓名
-            <input type="text">
+            <input type="text" v-model="contact">
             <img class="icon" src="../asset/images/contacter-green.png" alt=""></div>
           <div>联系方式
-            <input type="text">
+            <input type="text" v-model="buyer_phone">
             <img class="icon" src="../asset/images/phone-device.png" alt=""></div>
         </div>
         <div class="notice">
@@ -37,8 +37,8 @@
 
     </flex-scroll-view>
     <div class="footer">
-      <div class="price">订单金额：<span>{{ orderPrice }}</span></div>
-      <input type="submit" value="提交订单">
+      <div class="price">订单金额：<span>{{ (goodsInfo.goodsPrice*quantity).toFixed(2) }}</span></div>
+      <input type="button" @click="submitOrder()" value="提交订单">
     </div>
   </div>
 </template>
@@ -49,29 +49,63 @@
         require(['../components/FlexScrollView.vue'], resolve);
       },
     },
+    computed:{
+      formData:function(){
+        return{
+          key:poem.getItem('key'),
+          goods_id:this.goodsInfo.goodsId,
+          quantity:this.quantity,
+          rcb_pay:0,
+          pd_pay:0,
+          days:1,
+          buyer_msg:'',
+          contact:this.contact,
+          buyer_phone:this.buyer_phone
+        };
+      }
+    },
     data() {
+      var address = poem.getObj('address');
       return {
-        scenicName: '响沙湾',
-        price: 59,
-        count: 1,
+        address:address,
+        goodsInfo:{},
+        quantity:1,
+        contact:address.true_name,
+        buyer_phone:address.mob_phone,
+        scenicName: '',
+        price: '',
         exchangeWay: '兑换码',
-        saveTo: '',
         personName: '',
-        contactWay: '',
-        orderPrice: 66666
+        contactWay: ''
+      }
+    },
+    route:{
+      data(){
+        this.goodsInfo = $.parseJSON(this.$route.query.goodsInfo);
       }
     },
     methods: {
       addCount() {
-        this.count += 1;
+        this.quantity += 1;
       },
       minusCount() {
-        if (this.count < 2) {
-          alert('至少要定一张票哦');
+        if (this.quantity < 2) {
+          // alert('至少要定一张票哦');
           return;
         }
-        this.count -= 1
-      }
+        this.quantity -= 1
+      },
+      submitOrder(){
+        $.poemPost(SUBMIT_ORDER_VR_API,this.formData).done(this.submitDone);
+      },
+      submitDone(res){
+        if(!$.isEmpty(res.error)){
+          poemUI.toast(res.error)
+        }else{
+          poemUI.toast('订单提交成功');
+          this.$route.router.go({name:'orderhotel'});
+        }
+      },
     }
   }
 </script>

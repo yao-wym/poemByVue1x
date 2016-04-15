@@ -1,25 +1,34 @@
 <template>
   <div class="flex-view" v-transition>
+    <app-header title="订单提交"></app-header>
     <flex-scroll-view>
       <div class="container">
-        <div class="section">
-          <h3><span>收货人:{{ techanName }}</span><span>{{ techanName }}</span></h3>
-          <p>收货地址：<span>123</span></p>
-        </div>
-        <div class="section" class="order-form-goods">
-          <div>
-            <img src="{{goodsDetail.goods_info.spec_image}}">
+        <div v-link="{path:'/AddressList'}" class="section" style="overflow: hidden;border-bottom:solid 1px #ccc;margin-bottom: 0">
+          <div v-if="address" style="width: 80%;float: left;padding: 0;border: none">
+            <h3><span>收货人:{{ address.true_name }}</span><span>{{ address.mob_phone }}</span></h3>
+            <p>收货地址：<span>{{address.address}}</span></p>
           </div>
-          <div>
+          <div v-else class="section" style="height: 1rem">
+            <h3 v-link="{path:'/AddressList'}">选择地址</h3>
+          </div>
+          <div style="width: 15%;text-align: center;float: right;border: none">
+            >
+          </div>
+        </div>
+        <div class="section" class="order-form-goods" style="overflow:hidden">
+          <div style="float: left;overflow:hidden">
+            <img style="width: 1rem;height: 1rem" src="{{goodsDetail.spec_image[0]}}">
+          </div>
+          <div style="width: 80%;float: right">
             <div>{{goodsDetail.goods_info.goods_name}}</div>
-            <div>{{goodsDetail.goods_info.goods_price}}</div>
+            <div>￥{{goodsDetail.goods_info.goods_price}}</div>
           </div>
         </div>
         <div class="section">
           <div class="techan-count">购买数量
             <div class="right">
               <button @click="minusTechanCount">-</button>
-              {{ goodsNum }}
+              {{ techanCount }}
               <button @click="addTechanCount">+</button>
             </div>
           </div>
@@ -35,7 +44,7 @@
       </div>
     </flex-scroll-view>
       <div class="footer">
-        <div class="price">订单金额：<span>{{ goodsDetail.goods_info.goods_price }}</span></div>
+        <div class="price">订单金额：<span>{{ goodsDetail.goods_info.goods_price*techanCount }}</span></div>
         <input @click="submitOrder1()" type="button" value="提交订单">
       </div>
   </div>
@@ -46,53 +55,49 @@
       'flex-scroll-view': function(resolve) {
         require(['../components/FlexScrollView.vue'], resolve);
       },
+      'app-header': function(resolve) {
+        require(['../components/CommonHeader.vue'], resolve);
+      },
     },
     data() {
       return {
-        formInfo:{
-          key:poem.getItem('key'),
-          // goods_id:JSON.parse(this.$route.query.roomInfo).goods_id,
-          goodsId:'',
-          quantity:1,
-          buyer_phone:'',
-          rcb_pay:0,
-          pd_pay:0,
-          buyer_msg:'',
-          days:1,
-          rooms:1,
-          contact:'',
-        },
         goodsId:'',
         goodsDetail:{},
-        goodsNum:1,
-        addressId:181,
-        roomInfo:{},
         techanName: '',
-        checkInTime: '8月13日',
-        checkOutTime: '8月14日',
-        daysz: 1,
         techanType: '',
         techanCount: 1,
-        saveTo: '',
-        livePerson: '',
-        contactPerson: '',
-        contactWay: '',
-        orderPrice: 66666
+        orderPrice: 0,
+        address:poem.getObj('address')
       }
     },
     methods: {
+      getGoodsDetail:function(){
+        $.poemGet(GOODS_DETAIL_API,{'goods_id':this.goodsId}).done(this.getDone);
+      },
+      getDone:function(res){
+        if(res.error){
+          poemUI.toast("商品已下架");
+          this.goBack();
+          return;
+        }
+        this.goodsDetail = res;
+        this.goodsType = res.spec_list[Object.keys(res['spec_list'])[0]];
+        this.bgImg = res.spec_image[0];
+      },
       addTechanCount() {
         this.techanCount += 1;
       },
       minusTechanCount() {
         if (this.techanCount < 2) {
-          alert('至少要定一间房哦');
           return;
         }
         this.techanCount -= 1
       },
       submitOrder1:function(){
-        $.poemPost(GOODS_BUY_STEP1_API,{'key':poem.getItem('key'),'cart_id':this.goodsTypeId+'|'+this.goodsNum}).done(this.submitSuccess1);
+        if($.isEmpty(this.address.address_id)){
+          poemUI.toast('请选择收货地址');
+        }
+        $.poemPost(GOODS_BUY_STEP1_API,{'key':poem.getItem('key'),'cart_id':this.goodsTypeId+'|'+this.techanCount}).done(this.submitSuccess1);
       },
       submitSuccess1:function(res){
           if(!$.isEmpty(res.error)){
@@ -100,23 +105,26 @@
           }else{
             this.submitOrder2();
           }
-      },
+      },  
       submitOrder2:function(){
-        $.poemPost(GOODS_BUY_STEP2_API,{'key':poem.getItem('key'),'cart_id':this.goodsTypeId+'|'+this.goodsNum,'address_id':this.addressId,'pay_name':'online'}).done(function(res){
-          if(!$.isEmpty(res.error)){
-            poemUI.toast(res.error);
-          }else{
-            poemUI.toast('下单成功');
-          }
-        });
+        $.poemPost(GOODS_BUY_STEP2_API,{'key':poem.getItem('key'),'cart_id':this.goodsTypeId+'|'+this.techanCount,'address_id':this.address.address_id,'pay_name':'online'}).done(this.submitDone);
+      },
+      submitDone:function(res){
+        if(!$.isEmpty(res.error)){
+          poemUI.toast(res.error);
+        }else{
+          poemUI.toast('下单成功');
+          this.$route.router.go({path:'/user/OrderTechan'});
+        }
       },
     },
     ready:function(){
-      this.goodsId = this.$route.query.goodsId;
-      this.goodsTypeId = this.$route.query.goodsType;
     },
     route: {
       data: function (transition) {
+        this.goodsId = this.$route.query.goodsId;
+        this.goodsTypeId = this.$route.query.goodsType;
+        this.getGoodsDetail();
         // alert(JSON.stringify(this.$route.params));
         // transition.next({
         //     // 'techanName':'111'

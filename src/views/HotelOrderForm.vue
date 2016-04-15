@@ -41,10 +41,10 @@
             <input v-model="buyer_phone" type="text">
             <img src="../asset/images/phone-device.png" alt=""></div>
         </div>
-          <div class="notice">
+         <!--  <div class="notice">
             <h2>温馨提示：</h2>
             <p>请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则  </p>
-          </div>
+          </div> -->
       </div>
     </flex-scroll-view>
       <div id="datePlugin"></div>
@@ -76,7 +76,6 @@
             days:Math.ceil((this.checkOutTimeStamp-this.checkInTimeStamp)/86400000),
             buyer_msg:Math.ceil((this.checkOutTimeStamp-this.checkInTimeStamp)/86400000)+'晚|'+this.checkInTime+'~'+this.checkOutTime+'|'+this.contact,
             contact:this.contact,
-            quantity:this.quantity,
             buyer_phone:this.buyer_phone
         }
       },
