@@ -27,7 +27,7 @@ html, body
   font-size 30px
   height 100%
   color:text-gray
-
+  margin:0
 ul
   color:text-gray
   list-style-type none
