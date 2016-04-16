@@ -1,18 +1,20 @@
 <template>
   <div class="flex-view" v-transition>
   <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
-  	<flex-scroll-view>    
-  	  <form class="feedback-form" action="" method="post">
-        <textarea name="content" id="" rows="20" placeholder="输入您的反馈意见不超过500字"></textarea>
-        <input type="text" name="contact" placeholder="输入您的手机和邮箱非必填">
-        <input type="submit" value="提交">
-      </form>
+    <flex-scroll-view>    
+      <div class="feedback-form" action="" method="post">
+        <textarea v-model="consult_content" name="consult_content" id="" rows="20" placeholder="输入您的反馈意见不超过500字"></textarea>
+        <input v-model="contact" type="text" name="contact" placeholder="输入您的手机和邮箱非必填">
+        <button class="submit" @click="postFeedback()">提交</button>
+      </div>
       <p class="notice">我们的进步离不开您的每一个建议与创意</p>
     </flex-scroll-view>
   </div>
 </template>
 <style lang="stylus" scoped>
   @import "../main.styl"
+  .flex-view
+    background: #fafafa
   .feedback-form
     textarea
       width: 100%;
@@ -29,7 +31,7 @@
       display: block
       font-size: .4rem
       padding: 0 section-padding
-    input[type=submit]
+    .submit
       background: app-green
       width: 70%
       height: 1rem
@@ -60,8 +62,23 @@
     data() {
       return {
         title: '意见反馈',
-        xid: '0988776'
+        xid: '0988776',
+        consult_content: '',
+        contact: ''
       }
+    },
+
+    methods: {
+      postFeedback() {
+        if (!this.consult_content) return;
+        $.poemPost(FEEDBACK_API, {key:"60669c1838e2613754ea9a466d50b89f", consult_content: this.consult_content }).done(function(data) {
+          alert(data);
+          history.go(-1);
+        });
+      }
+    },
+
+    ready() {
     }
   }
 </script>
