@@ -35,12 +35,14 @@ module.exports = {
   data: function(){
   	return {
   		addrlList:[],
-      action:"default"
+      action:"default",
+      refer:''
   	}
   },
   route:{
     data(){
       this.action = this.$route.query.action;
+      this.refer = location.href.split("refer=");
     }
   },
   methods:{
@@ -58,8 +60,7 @@ module.exports = {
       console.log(this.action)
       if(this.action == 'chooseAddr'){
         poem.saveObj('chosenAddr',this.addrlList[index]);
-        refer = this.$route.query.refer;
-        location.href = refer;
+        location.href = this.refer[1];
       }
     }
   },
