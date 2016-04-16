@@ -38,7 +38,7 @@ var POINTS_BUY_API = HOST_API + 'act=member_pointmall&op=buystep1';
 var USER_INFO_API = HOST_API + 'act=member_index';
 var HOTEL_DEEP_DEATIL_API = HOST_API + 'act=store&op=store_detai';
 var SAVE_USER_INFO_API = HOST_API + 'act=member_index&op=set_member_info';
-var FEED_BACK_API = HOST_API + 'act=member_index&op=save_mallconsult';
+var FEEDBACK_API = HOST_API + 'act=member_index&op=save_mallconsult';
 
 var CART_DEL_API = HOST_API+'act=member_cart&op=cart_del';
 
@@ -69,16 +69,40 @@ var VR_CANCEL_ORDER_API = HOST_API+'act=member_vr_order&op=order_cancel';
 var VR_PAY_API = HOST_API+'act=member_payment&op=payment_confirm_real';
 
 var poemUI = {
-	toast:function(msg){
-		alert(msg);
-	},
-	comfirm:function(msg){
-		var flag = comfirm(msg);
-		if(flag == true){
+    toast:function(msg){
+        var toast = document.createElement('div');
+        toast.innerHTML = `${msg}`;
 
-		}else{
+        toast.style.position = 'fixed';
+        toast.style.left = '50%';
+        toast.style.bottom = '3.5rem';
+        toast.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+        toast.style.color = 'fff'
+        toast.style.width = '60%';
+        toast.style.padding = '.3rem';
+        toast.style.borderRadius = '20px';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.textAlign = 'center';
+        toast.style.transition = 'all .8s';
+        toast.style.opacity = '0';
 
-		}
-	}
+        document.getElementById('app-container').appendChild(toast);
+        setTimeout(function () {
+            toast.style.opacity = '1';
+            toast.style.bottom = '4rem'
+        }, 10)
+
+        setTimeout(function () {
+            toast.style.opacity = '0'
+        }, 2000)
+    },
+    comfirm:function(msg){
+        var flag = comfirm(msg);
+        if(flag == true){
+
+        }else{
+
+        }
+    }
 }
 var client = 'ios'
