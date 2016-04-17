@@ -9,8 +9,8 @@
 		</p>
 		<div style="margin-top:30px;overflow:hidden">
 			<div style="float:left">
-				<input v-if="addr.is_default == 1" checked="true" type="radio" name="defaultAddr" @click="setDefault"/>  
-				<input v-if="addr.is_default == 0" chec type="radio" name="defaultAddr" @click="setDefault"/>  
+				<input v-if="addr.is_default == 1" checked="true" style="font-size:1rem;width:30px;height:30px" type="radio" name="defaultAddr" @click="setDefault"/>  
+				<input v-if="addr.is_default == 0" chec type="radio" style="font-size:1rem;width:30px;height:30px" name="defaultAddr" @click="setDefault"/>  
 				<span>设为默认</span>
 			</div>
 			<div style="float:right">
@@ -42,7 +42,7 @@ module.exports = {
 			if(!isEmpty(res.error)){
 				poemUI.toast(res.error);
 			}else{
-
+				poemUI.toast("删除成功");
 			}
 		},
 		setDefault:function(){

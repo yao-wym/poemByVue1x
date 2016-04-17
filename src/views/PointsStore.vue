@@ -89,10 +89,10 @@
       },
       buyDone(data) {
         if (data.error) {
-          alert(data.error);
+          poemUI.toast(data.error);
           return;
         };
-        return alert('兑换成功')
+        return poemUI.toast('兑换成功')
       }
     },
 

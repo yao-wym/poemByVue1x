@@ -2,7 +2,7 @@
 	<div style="background-color: #eee" class="flex-view" v-transition>
 	<app-header title="我的地址" right-label="新增" right-link="#/AddressAdd"></app-header>
   <flex-scroll-view>
-        <ul id="addr-list-view" style="font-size: 0.3rem">
+        <ul id="addr-list-view" style="font-size: 0.4rem">
       <!-- <list-view> -->
       <addr-list-item @click="addrClick($index)" v-for="addr in addrlList" :addr="addr" :index="$index"></addr-list-item>
       <!-- </list-view> -->
@@ -51,10 +51,10 @@ module.exports = {
   	},
   	getAddrListDone:function(res){
         this.addrlList = res.address_list;
-        this.$nextTick(function(){
-          this.$broadcast('refresh');
-        });
-        this.$off('scrollEnd')
+        // this.$nextTick(function(){
+        //   this.$broadcast('refresh');
+        // });
+        setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),500)
   	},
     addrClick:function(index){
       console.log(this.action)

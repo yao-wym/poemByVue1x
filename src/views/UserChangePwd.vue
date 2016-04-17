@@ -61,7 +61,6 @@ module.exports = {
 }
 
 function goNextStep() {
-	alert(2);
 	$.post(LOGIN_API).done(registerDone).fail(registerFail);
 }
 </script>

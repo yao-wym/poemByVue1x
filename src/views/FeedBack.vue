@@ -72,7 +72,7 @@
       postFeedback() {
         if (!this.consult_content) return;
         $.poemPost(FEEDBACK_API, {key:"60669c1838e2613754ea9a466d50b89f", consult_content: this.consult_content }).done(function(data) {
-          alert(data);
+          poemUI.toast(data);
           history.go(-1);
         });
       }

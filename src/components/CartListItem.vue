@@ -27,7 +27,7 @@
 			<span style="float:right">总共
 			<span>{{cart.goods_num}}</span>
 			件合计¥
-			<span >{{cart.goods_sum}}</span>
+			<span style="color:rgb(217,96,86)">{{cart.goods_sum}}</span>
 			（含运费
 			<span>0</span>
 			)

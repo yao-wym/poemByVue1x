@@ -45,7 +45,7 @@ module.exports = {
           }; 
         window.navigator.geolocation.getCurrentPosition(this.handleSuccess, this.handleError, options); 
       }else{ 
-        alert("浏览器不支持html5来获取地理位置信息"); 
+        poemUI.toast("浏览器不支持html5来获取地理位置信息"); 
       } 
     },
     handleSuccess:function(position){

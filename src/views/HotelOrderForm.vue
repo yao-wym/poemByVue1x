@@ -124,7 +124,7 @@
       checkInDate(dateStr){
         this.checkInTime = dateStr;
         this.checkInTimeStamp = (new Date(dateStr)).getTime();
-        alert(this.checkInTime)
+        //alert(this.checkInTime)
       },
       checkOutDate(dateStr){
         this.checkOutTimeStamp = (new Date(dateStr)).getTime();

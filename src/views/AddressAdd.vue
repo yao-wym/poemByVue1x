@@ -3,7 +3,7 @@
 	<app-header :title="title"></app-header>
 	<flex-scroll-view>
 	<div id="address-form">
-		<div>选择地区</div>
+		<!-- <div style="color:rgb(12,12,12)">选择地区</div> -->
 		<input v-model="addrData.area_info" type="text" name="" placeholder="地区">
 		<input v-model="addrData.true_name" type="text" placeholder="收货人">
 		<input v-model="addrData.mob_phone" type="text" placeholder="手机号码">
@@ -16,15 +16,21 @@
 </div>
 </template>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
+@import "../main.styl"
 #address-form
+	font-size:.6rem
 	padding-top:20px
 	& input,& div
-		padding-left:10px
+		padding-left:20px
+		margin:10px
+		font-size:.5rem
 		display:block
 		width:100%
 		border:none
-		height:.6rem
+		height:1rem
+		line-height:.8rem
+		color:text-gray
 		border-bottom:1px solid line-color
 .yellow-footer
 	background-color:app-yellow
