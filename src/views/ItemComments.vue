@@ -1,7 +1,7 @@
 <template>
   <div class="flex-view" v-transition>
   <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
-  	<flex-scroll-view>
+    <flex-scroll-view>
       <!-- <ul class="tab-header">
         <li><input type="radio" name="commentType" id="filter-nice" v-model="commentFilter" value="h"><label for="filter-nice">好评()</label></li>
         <li><input type="radio" name="commentType" id="filter-nor" v-model="commentFilter" value="z"><label for="filter-nor">中评()</label></li>
@@ -19,10 +19,14 @@
             <li v-for="comment in comments | filterBy 'c' in 'type'">{{ comment.content }}</li>
           </ul>
       </div> -->
-      <ul class="tab-header"></ul>
+      <ul class="tab-header">
+        <li @click="filterComments(0)">好评</li>
+        <li @click="filterComments(1)">中评</li>
+        <li @click="filterComments(2)">差评</li>
+      </ul>
       <div class="comments">
         <ul>
-          <li class="comments-sg" v-for="comment in comments">
+          <li class="comments-sg" v-for="comment in filtedComments">
             <div class="user-info">
               <img class="avatar" src="{{ comment.geval_useravatar }}" alt="">
               <p>{{ comment.geval_username }}</p>
@@ -73,6 +77,18 @@
       margin-right: .3rem
       & img
         width: 100%
+  .tab-header
+    display: flex
+    height: 1.5rem
+    align-items: center
+    border-bottom: 1px solid line-gray
+    li
+      flex: 1
+      text-align: center
+      font-size: .4rem
+      border-right: 4px solid app-green
+      &:last-child
+        border-right: none
 </style>
 <script>
   module.exports = {
@@ -90,7 +106,8 @@
         title: '',
         points: 90,
         comments: [],
-        curpage: 1
+        curpage: 1,
+        filtedComments: []
       }
     },
     methods: {
@@ -99,11 +116,37 @@
       },
       getCommentListDone(data) {
         this.comments = this.comments.concat(data);
+        this.filtedComments = this.comments;
         console.log(this.comments); 
         this.curpage++;
         this.$nextTick(function(){
           this.$broadcast('refresh');
         });
+      },
+      filterComments(type) {
+        this.filtedComments = [];
+        let comments = this.comments
+        if (type==0) {
+          for (var i=0; i<comments.length; i++){
+            if (comments[i].geval_scores >= 4) {
+              this.filtedComments.push(comments[i]);
+            }
+          }
+        }
+        if (type==1) {
+          for (var i=0; i<comments.length; i++){
+            if (comments[i].geval_scores == 3) {
+              this.filtedComments.push(comments[i]);
+            }
+          }
+        }
+        if (type==2) {
+          for (var i=0; i<comments.length; i++){
+            if (comments[i].geval_scores <= 2) {
+              this.filtedComments.push(comments[i]);
+            }
+          }
+        }
       }
     },
     ready() {

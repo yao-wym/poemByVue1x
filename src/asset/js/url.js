@@ -3,8 +3,8 @@ var HOST_API = "http://123.56.136.248/app/index.php?";
 var ARTICLE_LIST_API = HOST_API+"act=cms_article&op=article_list&class_id=1";
 var LOGIN_API = HOST_API+'act=login';
 var REG_API = HOST_API+'act=login&op=register';
-var HOTEL_LIST_API = HOST_API+'act=shop&op=hotel_list&key=store_credit&order=asc';
-var SHOP_LIST_API = HOST_API+'act=shop';
+var HOTEL_LIST_API = HOST_API+'act=shop&op=hotel_list&key=store_credits';
+var SHOP_LIST_API = HOST_API+'act=shop&sc_id=3';
 var SEND_SMS_API = HOST_API+'act=index&op=send_sms';
 var HOTEL_DETAIL_API = HOST_API+'act=store&op=store_detail';
 var ADV_API = HOST_API+'act=index&op=index_adv_list';
@@ -19,11 +19,11 @@ var ADDR_DETAIL_API = HOST_API+'act=member_address&op=address_info';
 
 var ADDR_EDIT_API = HOST_API+'act=member_address&op=address_edit';
 
-var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list';
+var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=3';
 
 var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';
 
-var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list';
+var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=1';
 var TECHAN_DETAIL_API = HOST_API+'act=goods&op=goods_list&gc_id=1';
 
 
@@ -37,7 +37,8 @@ var POINTS_STORE_API = HOST_API + 'act=member_pointmall&op=plist';
 var POINTS_BUY_API = HOST_API + 'act=member_pointmall&op=buystep1';
 var USER_INFO_API = HOST_API + 'act=member_index';
 var HOTEL_DEEP_DEATIL_API = HOST_API + 'act=store&op=store_detai';
-var SAVE_USER_INFO_API = HOST_API + 'act=member_index&op=set_member_info'
+var SAVE_USER_INFO_API = HOST_API + 'act=member_index&op=set_member_info';
+var FEEDBACK_API = HOST_API + 'act=member_index&op=save_mallconsult';
 
 var CART_DEL_API = HOST_API+'act=member_cart&op=cart_del';
 
@@ -67,19 +68,41 @@ var VR_CANCEL_ORDER_API = HOST_API+'act=member_vr_order&op=order_cancel';
 
 var VR_PAY_API = HOST_API+'act=member_payment&op=payment_confirm_real';
 
-var HOTEL_FUN_API = HOST_API+'act=goods&op=goods_list&gc_id=1106';
-
 var poemUI = {
-	toast:function(msg){
-		alert(msg);
-	},
-	comfirm:function(msg){
-		var flag = comfirm(msg);
-		if(flag == true){
+    toast:function(msg){
+        var toast = document.createElement('div');
+        toast.innerHTML = `${msg}`;
 
-		}else{
+        toast.style.position = 'fixed';
+        toast.style.left = '50%';
+        toast.style.bottom = '3.5rem';
+        toast.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+        toast.style.color = 'fff'
+        toast.style.width = '60%';
+        toast.style.padding = '.3rem';
+        toast.style.borderRadius = '20px';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.textAlign = 'center';
+        toast.style.transition = 'all .8s';
+        toast.style.opacity = '0';
 
-		}
-	}
+        document.getElementById('app-container').appendChild(toast);
+        setTimeout(function () {
+            toast.style.opacity = '1';
+            toast.style.bottom = '4rem'
+        }, 10)
+
+        setTimeout(function () {
+            toast.style.opacity = '0'
+        }, 2000)
+    },
+    comfirm:function(msg){
+        var flag = comfirm(msg);
+        if(flag == true){
+
+        }else{
+
+        }
+    }
 }
 var client = 'ios'
