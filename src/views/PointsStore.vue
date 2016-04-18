@@ -81,6 +81,8 @@
       getPointsStoreListDone(data) {
         console.log(data)
         this.itemList = this.itemList.concat(data);
+      setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),50)
+        
       },
       buy(pgoods_id) {
         $.poemPost(POINTS_BUY_API,{key:"60669c1838e2613754ea9a466d50b89f",
@@ -97,10 +99,12 @@
     },
 
     ready() {
+
       $.poemPost(USER_INFO_API, {key:"60669c1838e2613754ea9a466d50b89f"}).done((data) => {
           this.points = data.member_info.point;
         })
       this.getPointsStoreList();
+
     }
   }
 </script>

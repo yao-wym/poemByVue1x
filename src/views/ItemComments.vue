@@ -20,9 +20,9 @@
           </ul>
       </div> -->
       <ul class="tab-header">
-        <li @click="filterComments(0)">好评</li>
-        <li @click="filterComments(1)">中评</li>
-        <li @click="filterComments(2)">差评</li>
+        <li :class="{'active': activeA}" @click="filterComments(0)">好评</li>
+        <li :class="{'active': activeB}" @click="filterComments(1)">中评</li>
+        <li :class="{'active': activeC}" @click="filterComments(2)">差评</li>
       </ul>
       <div class="comments">
         <ul>
@@ -86,9 +86,12 @@
       flex: 1
       text-align: center
       font-size: .4rem
-      border-right: 4px solid app-green
+      border-right: 3px solid app-green
+      line-height: 270%
       &:last-child
         border-right: none
+      &.active
+        border-bottom: 10px solid app-green      
 </style>
 <script>
   module.exports = {
@@ -107,7 +110,10 @@
         points: 90,
         comments: [],
         curpage: 1,
-        filtedComments: []
+        filtedComments: [],
+        activeA: 1,
+        activeB: 0,
+        activeC: 0
       }
     },
     methods: {
@@ -132,6 +138,9 @@
               this.filtedComments.push(comments[i]);
             }
           }
+          this.activeA = 1;
+          this.activeB = 0;
+          this.activeC = 0;
         }
         if (type==1) {
           for (var i=0; i<comments.length; i++){
@@ -139,6 +148,9 @@
               this.filtedComments.push(comments[i]);
             }
           }
+          this.activeA = 0;
+          this.activeB = 1;
+          this.activeC = 0;
         }
         if (type==2) {
           for (var i=0; i<comments.length; i++){
@@ -146,6 +158,9 @@
               this.filtedComments.push(comments[i]);
             }
           }
+          this.activeA = 0;
+          this.activeB = 0;
+          this.activeC = 1;
         }
       }
     },

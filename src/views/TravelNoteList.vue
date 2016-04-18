@@ -46,6 +46,7 @@
       font-size: .3rem
   .info
     display: flex
+    font-size: .25rem
     
 </style>
 <script>
