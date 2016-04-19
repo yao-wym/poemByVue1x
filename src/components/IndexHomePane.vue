@@ -67,7 +67,7 @@ module.exports = {
 	& img
 		width:1rem
 	& div
-		padding:3px
+		padding:5px
 		position:relative
 	& .logo
 		position:absolute
@@ -86,7 +86,7 @@ module.exports = {
 		overflow:hidden 
 .pane-left
 	float:left
-	width:49%
+	width:50%
 	margin-right:-3px
 .pane-right
 	overflow:hidden

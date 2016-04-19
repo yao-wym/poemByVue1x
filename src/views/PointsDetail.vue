@@ -61,8 +61,8 @@
 
     methods: {
       getPointsDetail() {
-        $.poemPost(POINTS_DETAIL_API,{order:"asc",curpage:this.curpage, key:"60669c1838e2613754ea9a466d50b89f"}).done(this.getPointsDetailDone);
-        $.poemPost(USER_INFO_API, {key:"60669c1838e2613754ea9a466d50b89f"}).done((data) => {
+        $.poemPost(POINTS_DETAIL_API,{order:"asc",curpage:this.curpage, key:poem.getItem("key")}).done(this.getPointsDetailDone);
+        $.poemPost(USER_INFO_API, {key:poem.getItem("key")}).done((data) => {
           console.log(data)
           this.points = data.member_info.point;
         })

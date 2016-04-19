@@ -75,7 +75,7 @@
       getPointsStoreList() {
         $.poemPost(POINTS_STORE_API,{
           order:"asc",curpage:this.curpage,
-          key:"60669c1838e2613754ea9a466d50b89f",
+          key:poem.getItem("key"),
           }).done(this.getPointsStoreListDone);
       },
       getPointsStoreListDone(data) {
@@ -85,7 +85,7 @@
         
       },
       buy(pgoods_id) {
-        $.poemPost(POINTS_BUY_API,{key:"60669c1838e2613754ea9a466d50b89f",
+        $.poemPost(POINTS_BUY_API,{key:poem.getItem("key"),
           pgoods_id: pgoods_id,
           quantity: 1,}).done(this.buyDone);
       },
@@ -100,7 +100,7 @@
 
     ready() {
 
-      $.poemPost(USER_INFO_API, {key:"60669c1838e2613754ea9a466d50b89f"}).done((data) => {
+      $.poemPost(USER_INFO_API, {key:poem.getItem("key")}).done((data) => {
           this.points = data.member_info.point;
         })
       this.getPointsStoreList();
