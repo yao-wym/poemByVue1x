@@ -1,8 +1,13 @@
 <template>
 	<div class="banner-wrap">
-        <div id="b-wrapper">
-        <div id="banner" style="background-color: white" class="banner-content">
-        	<div @click='showDetail($index)' v-for="item in slideList" class="slide">
+        <div style="height:{{bannerHeight}}" id="b-wrapper">
+        <div v-if="imgArr" id="banner" style="background-color: white;width:{{imgArr.length*10+'rem'}};height:{{bannerHeight}}" class="banner-content">
+        	<div v-for="item in imgArr" class="slide" style="height:{{bannerHeight}}">
+				<div style="background-image:url({{item}});height:{{bannerHeight}}" class="painting giotto"></div>
+			</div>
+        </div>
+        <div id="banner" style="background-color: white" class="banner-content" v-else>
+			<div @click='showDetail($index)' v-for="item in slideList" :item="item"  class="slide">
 				<div style="background-image:url({{item.image}})" class="painting giotto"></div>
 			</div>
         </div>
@@ -111,6 +116,7 @@ function loaded () {
 export default {
 	data:function(){
 		return {
+			scrollWidth:'40rem',
 			myScroll:'',
 			slideList:[],
 			pageType:{
@@ -121,6 +127,7 @@ export default {
 			}
 		}
 	},
+	props:['imgArr','bannerHeight','isAuto'],
 	methods:{
 		initPage:function(res){
 			this.slideList = res.adv_list.item
@@ -133,12 +140,28 @@ export default {
 	created:function(){
 	},
 	ready:function(){
-		$.poemGet(ADV_API).done(this.initPage);
-		loaded();
+		this.scrollWidth = this.imgArr.length*10+'rem';
+		if(!$.isEmpty(this.imgArr)){
+			this.slideList = this.imgArr;
+		}else{
+			$.poemGet(ADV_API).done(this.initPage);
+		}
+		setTimeout((function(that){return function(){loaded();}})(this),500);
+	},
+	route:{
+		data:function(transition){
+			transition.next({
+        	});
+			this.slideList = this.imgArr;
+		},
+	    canReuse:function(transition){
+	      return false
+	    }
+
 	},
 	events:{
 		'refresh':function(msg){
-			setTimeout((function(that){return function(){loaded();}})(this),1000)
+			setTimeout((function(that){return function(){loaded();}})(this),1000);
 			// this.myScroll.refresh();
 		},
 		'scrollViewLoaded':function(msg){

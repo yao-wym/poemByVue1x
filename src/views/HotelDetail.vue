@@ -2,27 +2,26 @@
   <div class="flex-view">
     <flex-scroll-view>
       <div id="hotel-container">
-        <div class="hotel-header" style="background-image:url({{bgImg}})">
-          <header>
-            <i @click="goBack()" style="float:left">
-              <img src="../asset/images/fanhui.png">
+        <banner banner-height="5rem" :img-arr="HotelImgArr"></banner>
+          <header style="position: fixed;top:0;width:100%;z-index:2">
+            <i @click="goBack()" style="float:left;padding: 20px">
+              <img src="../asset/images/fanhui.png" style="width: .5rem">
             </i>
             <div style="float:right">
                 <!-- <img src="../asset/images/icon_collect.png"> -->
                 <!-- <img style="margin:0 5px" src="../asset/images/share-white.png"> -->
             </div>
           </header>
-          <div style="position:absolute;bottom:0;padding-left:10px;font-size:.3rem">
+          <div style="position: fixed;top:4rem;width:100%;height:5rem;z-index:2;margin-left:10px;color:white;font-size: .3rem">
             <p>{{hotelName}}</p>
           </div>
-        </div>
         <section class="li-section">
           <div class="li-label">
           <a v-link="{path:'/Comments/'+this.$route.params.hotelId}">
               <div class="icon">
                 <img src="../asset/images/comments-green.png">
               </div>
-              <div class="title">评论</div>
+              <div style="color:rgb(85, 182, 111)" class="title">评论</div>
                   <div class="arrow">
                 <i></i>
               </div>
@@ -33,7 +32,7 @@
                 <img src="../asset/images/ditu.png">
               </div>
               <div class="title">
-                <span style="margin-right:20px">地图</span>
+                <span style="color:rgb(65, 143, 232)" style="margin-right:20px">导航</span>
                 <span></span>
               </div>
                 <div class="arrow">
@@ -45,7 +44,7 @@
               <div class="icon">
                 <img src="../asset/images/pic-yellow.png">
               </div>
-              <div class="title">详情</div>
+              <div style="color:orange" class="title">详情</div>
                 <div class="arrow">
                 <i></i>
               </div>
@@ -55,7 +54,7 @@
               <div class="icon">
                 <img src="../asset/images/fun-yellow.png">
               </div>
-              <div class="title">吃喝玩乐</div>
+              <div style="color:orange" class="title">吃喝玩乐</div>
                 <div class="arrow">
                 <i></i>
               </div>
@@ -118,10 +117,11 @@
   replace: true,
   data:function(){
     return {
-      'hotelName':'123',
+      'hotelName':'',
       'bgImg':'',
       'hotelLoc':'',
-      'roomList':[]
+      'roomList':[],
+      'HotelImgArr':[1,2]
     }
   },
   methods:{
@@ -146,6 +146,7 @@
         this.hotelLoc = res.store_info.store_location_lat+','+res.store_info.store_location_lng;
         this.bgImg = res.store_info.store_label;
         this.roomList = res.good_list;
+        this.HotelImgArr = res.store_info.store_slide;
         // this.$nextTick(function(){
         //   this.$broadcast('refresh');
         // });
@@ -159,6 +160,9 @@
   components: {
     'flex-scroll-view': function(resolve) {
       require(['../components/FlexScrollView.vue'], resolve);
+    },
+    'banner': function(resolve) {
+      require(['../components/BannerView.vue'], resolve);
     },
     // 'date-picker': function(resolve) {
     //   require(['../components/DatePicker.vue'], resolve);
@@ -184,10 +188,10 @@
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
   @import "../main.styl"
 room-item-height=1.5rem
-
+label-height=1.2rem
   #hotel-container
     background-color:rgb(238,238,238)
     & a
@@ -195,7 +199,7 @@ room-item-height=1.5rem
     & .hotel-header
       background-size:100% 100%
       text-align:center
-      height:6rem
+      height:5rem
       padding-bottom:.6rem
       color:white
       position:relative
@@ -206,13 +210,13 @@ room-item-height=1.5rem
   .li-section
     background-color:white
   .li-section .li-label
-    height:1rem
+    height:label-height
     padding:0 10px
-    line-height:1rem
+    line-height:label-height
     width:100%
     display:flex
     align-items:center
-    font-size: .3rem
+    font-size: .35rem
     color:poem-text-gray
     & a
       width:100%
@@ -223,18 +227,20 @@ room-item-height=1.5rem
         flex:1
         border-bottom:solid 1px line-gray
       & .icon
-        width:.3rem
-        height:.3rem
-        margin-right:10px
+        width:.5rem
+        height:label-height
+        line-height:label-height
+        margin-right:20px
+        margin-left:10px
         & img
-          width:100%
+          margin-top:.35rem
+          width:.5rem
       & .arrow
-        border-bottom:solid 1px line-gray
-        height:1rem
+        height:label-height
         background:none
         & i
-          margin-top:.3rem
-          line-height:1rem
+          margin-top:.4rem
+          line-height:label-height
           display:block
           width:.3rem
           height:@width

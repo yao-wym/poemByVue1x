@@ -71,7 +71,7 @@ module.exports = {
 @import "../main.styl"
 header-btn-width = 1.5rem
 header-img-width = 0.5rem
-header-height = 1rem
+header-height = 1.2rem
 header-text-color = #fff
 .icon-left
   width:header-img-width

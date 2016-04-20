@@ -9,15 +9,15 @@
       <div v-on="click:location.href='#hotel-list'" style="background-color: rgb(234,99,94)">
         <div class="logo">
           <img src="../asset/images/jiudianzhusu.png">
-          <div>酒店</div>
+          <div>酒店住宿</div>
         </div>
       </div>
     </a>
     <a v-link="{path:'/MapView?title=周边'}">
-      <div style="background-color: rgb(127,204,229)">
+      <div style="background-color: rgb(127,204,229);margin-top: 8px">
         <div class="logo">
-          <img src="../asset/images/location.png">
-          <div>周边</div>
+          <img src="../asset/images/home-map.png">
+          <div>地图周边</div>
         </div>
       </div>
     </a>
@@ -32,10 +32,10 @@
       </div>
     </a>
     <a v-link="{path:'/TechanList'}">
-      <div style="background-color: rgb(242,150,0)">
+      <div style="background-color: rgb(242,150,0);margin-top: 8px">
         <div class="logo">
           <img src="../asset/images/techan-white.png">
-          <div>特产</div>
+          <div>当地特产</div>
         </div>
       </div>
     </a>
@@ -56,7 +56,7 @@ module.exports = {
     // this.$nextTick(function(){
     //   this.$dispatch('refresh');
     // });
-    setTimeout((function(that){return function(){that.$dispatch('refresh');}})(this),1000)
+    setTimeout((function(that){return function(){that.$dispatch('refresh');}})(this),500)
   }
 }
 </script>
@@ -65,7 +65,7 @@ module.exports = {
 .pane
 	overflow:hidden
 	& img
-		width:1rem
+		width:1.2rem
 	& div
 		padding:5px
 		position:relative
@@ -98,7 +98,7 @@ module.exports = {
 
 .pane-left a:nth-child(1)>div
 .pane-right a:nth-child(2)>div
-	height:50vw
+	height:55vw
 .pane-left a:nth-child(2)>div
 .pane-right a:nth-child(1)>div
 	height:60vw

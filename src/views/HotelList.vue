@@ -1,6 +1,6 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header tilte="找酒店" right-icon="home-icon" right-link="#/index/home"></app-header>
+	<app-header title="酒店列表" right-icon="home-icon" right-link="#/index/home"></app-header>
   <flex-scroll-view>
         <ul id="hotel-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
