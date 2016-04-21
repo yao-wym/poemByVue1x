@@ -1,25 +1,33 @@
 <template>
 	<li class="scenic-item">
-		<a style="overflow: hidden" v-link="{path:'ScenicDetail/'+scenic.goods_id}">
-			<img v-bind:src="scenic.goods_image_url" class="scenic-img">
+		<a style="overflow: hidden" v-link="{path:'ScenicDetail/'+scenic.store_id}">
+			<img v-bind:src="scenic.store_label" class="scenic-img">
 			<div class="scenic-info">
 				<div class="scenic-name">
-					<p>{{scenic.goods_name}}</p>
-					<p style="margin-top:6px">
-					<span style="color:red">{{scenic.evaluation_good_star}}</span>
-					<span>/{{scenic.evaluation_count}}条评论</span>
+					<p style="color:#888">{{scenic.store_name}}</p>
+				</div>
+				<div class="scenic-name">
+					<p style="margin-top:10px">
+						<span style="color:red">{{scenic.store_star}}分</span>
 					</p>
 				</div>
-				<div style="margin-top:0.2rem">
-					<div style="float: left;font-size:0.28rem">
-						<p style="margin-top:10px">{{scenic.goods_jingle}}</p>
-					</div>
-					<div style="float:right;margin-right: 10px">
+				<div style="margin-top:10px;">
+					<p style="float: left;font-size:0.3rem">
+						<span style="color:rgb(80,180,100)" v-if="scenic.eval_num">共有{{scenic.eval_num}}人评价</span>
+						<span style="color:rgb(80,180,100)" v-else>暂无评价</span>
+					</p>
+					<div v-if="scenic.min_price" style="float:right;margin-right: 10px">
 						<span style='font-size:0.4rem;color:orangered'>¥</span>
-						<span style='font-size:0.4rem;color:orangered'>{{scenic.goods_price}}</span>
+						<span style='font-size:0.4rem;color:orangered'>{{scenic.min_price}}</span>
 						<span>起</span>
 					</div>
 				</div>
+				<div class="scenic-name">
+					<div style="float: left;font-size:0.3rem">
+						<p style="margin-top:10px">{{scenic.store_address}}</p>
+					</div>
+				</div>
+				
 			</div>
 		</a>
 	</li>

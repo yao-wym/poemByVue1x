@@ -1,8 +1,8 @@
 <template>
     	<!-- <app-header search='找美食.找酒店' left-icon='user-icon' left-link='#user/login'  right-icon='phone-icon' right-link="call"></app-header> -->
-      <app-header title='首页' left-icon='user-icon' left-link='#user/login'  right-icon='phone-icon' right-link="call"></app-header>
+      <app-header title='首页' left-icon='user-icon' left-link='#index/ucenter'  right-icon='phone-icon' right-link="call"></app-header>
       <flex-scroll-view>
-          <app-pane side="left" msg="1123" name="{{leftName}}"></app-pane>
+          <app-pane side="left" name="{{leftName}}"></app-pane>
       </flex-scroll-view>
 </template>
 
@@ -35,7 +35,7 @@
       this.$route.router.go({name:'search',params:{keyword:msg.keyword}});
     },
     'call':function(){
-      location.href="tel:13041022978";
+      location.href="tel:"+SERVICE_CALL;
     }
   }
 }

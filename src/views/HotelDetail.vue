@@ -2,7 +2,7 @@
   <div class="flex-view">
     <flex-scroll-view>
       <div id="hotel-container">
-        <banner banner-height="5rem" :img-arr="HotelImgArr"></banner>
+        <banner banner-height="6.5rem" :img-arr="HotelImgArr"></banner>
           <header style="position: fixed;top:0;width:100%;z-index:2">
             <i @click="goBack()" style="float:left;padding: 20px">
               <img src="../asset/images/fanhui.png" style="width: .5rem">
@@ -12,7 +12,7 @@
                 <!-- <img style="margin:0 5px" src="../asset/images/share-white.png"> -->
             </div>
           </header>
-          <div style="position: fixed;top:4rem;width:100%;height:5rem;z-index:2;margin-left:10px;color:white;font-size: .3rem">
+          <div style="position: fixed;top:5.5rem;width:100%;z-index:2;margin-left:10px;color:white;font-size: .3rem">
             <p>{{hotelName}}</p>
           </div>
         <section class="li-section">
@@ -121,7 +121,7 @@
       'bgImg':'',
       'hotelLoc':'',
       'roomList':[],
-      'HotelImgArr':[1,2]
+      'HotelImgArr':[]
     }
   },
   methods:{

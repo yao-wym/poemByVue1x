@@ -2,7 +2,13 @@
   <div class="flex-view" v-transition>
      <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
      <div class="section">
-       <a  href="#/FeedBack" class="section"><img class="xsmall-icon" src="../asset/images/yijianfankui.png" alt="">诗画介绍<span class="right">></span></a>
+       <a  href="#/StaticView?title=免责声明" class="section">免责声明<span class="right">></span></a>
+     </div>
+     <div class="section">
+       <a  href="#/StaticView?title=知识产权" class="section">知识产权<span class="right">></span></a>
+     </div>
+     <div class="section">
+       <a  href="#/StaticView?title=用户使用协议" class="section">用户使用协议<span class="right">></span></a>
      </div>
   </div>
 </template>

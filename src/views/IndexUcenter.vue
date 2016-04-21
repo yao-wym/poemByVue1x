@@ -3,18 +3,18 @@
       <div id="uc-container">
         <header class="uc-header">
           <div>
-            <img style="width: 1.6rem" src="../asset/images/my-circle.png">
+            <img v-link="{path:'/SelfInfo'}" style="width: 2rem" src="../asset/images/my-circle.png">
             <p v-if="key" style="margin-top:10px;color:white">{{username}}</p>
             <p v-link="{path:'/user/login'}" v-else style="margin-top:10px;color:white">登陆</p>
           </div>
         </header>
-        <div v-show="key">
+        <div v-="key">
           <section class="li-section">
           <div class="li-label"><a>
               <div class="icon">
                 <img src="../asset/images/order-yellow.png">
               </div>
-              <div class="title">我的订单</div>
+              <div style="color:#565454" class="title">我的订单</div>
             </a></div>
           <div class="li-label"><a v-link="{name:'orderhotel'}">
               <div class="icon">
@@ -45,15 +45,15 @@
               <i></i>
               </div>
             </a></div>
-          <!-- <div class="li-label"><a href="">
+          <div class="li-label"><a v-link="{path:'/CollectList'}">
               <div class="icon">
                 <img src="../asset/images/collect-red.png">
               </div>
-              <div class="title">收藏商品</div>
+              <div class="title">收藏</div>
               <div class="arrow">
               <i></i>
               </div>
-            </a></div> -->
+            </a></div>
          <!--  <div class="li-label"><a href="">
               <div class="icon">
                 <img src="../asset/images/invite-friends.png">
@@ -82,27 +82,7 @@
               </div>
             </a></div>
         </section>
-       
-        <section class="li-section" style="margin-top: 15px">
-          <div class="li-label"><a href="#/Setting">
-              <div class="icon">
-                <img src="../asset/images/setting-yellow.png">
-              </div>
-              <div class="title">设置</div>
-              <div class="arrow">
-              <i></i>
-              </div>
-            </a></div>
-            <div class="li-label"><a href="#/SelfInfo">
-              <div class="icon">
-                <img src="../asset/images/help-suggest.png">
-              </div>
-              <div style="border-bottom: none" class="title">个人资料</div>
-              <div class="arrow">
-              <i></i>
-              </div>
-            </a></div>
-        </section>
+     
         </div>
          <section class="li-section" style="margin-top: 15px">
           <div  class="li-label"><a href="#/About">
@@ -114,11 +94,32 @@
               <i></i>
               </div>
             </a></div>
-         <!--  <div class="li-label"><a href="">
+          <div class="li-label"><a href="tel:010-57221838">
               <div class="icon">
                 <img src="../asset/images/help-suggest.png">
               </div>
               <div class="title">客服帮助</div>
+              <div class="arrow">
+              <i></i>
+              </div>
+            </a></div>
+        </section>
+
+        <section class="li-section" style="margin-top: 15px">
+          <div class="li-label"><a href="#/Setting">
+              <div class="icon">
+                <img src="../asset/images/setting-yellow.png">
+              </div>
+              <div class="title">设置</div>
+              <div class="arrow">
+              <i></i>
+              </div>
+            </a></div>
+            <!-- <div class="li-label"><a href="#/SelfInfo">
+              <div class="icon">
+                <img src="../asset/images/help-suggest.png">
+              </div>
+              <div style="border-bottom: none" class="title">个人资料</div>
               <div class="arrow">
               <i></i>
               </div>
@@ -175,7 +176,7 @@
       line-height:1.2rem
       width:100%
       display:-webkit-box
-      font-size: .45rem
+      font-size: .4rem
       color:poem-text-gray
       & a
         width:100%

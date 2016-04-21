@@ -1,27 +1,23 @@
 <template>
   <div class="flex-view" v-transition>
     <flex-scroll-view>
-      <div class="scenic-header" style="background-image:url({{bgImg}})">
-        <header>
-          <i @click="goBack()" style="float:left">
-            <img src="../asset/images/fanhui.png">
-          </i>
-          <div style="float:right">
-            <img src="../asset/images/icon_collect.png">
-            <img style="margin:0 5px" src="../asset/images/share-white.png">
-          </div>
-        </header>
-        <div style="position:absolute;bottom:0;padding-left:10px;font-size:.3rem">
-          <p>{{storeName}}</p>
-        </div>
-      </div>
+      <banner banner-height="6.5rem" :img-arr="ScenicImgArr"></banner>
+          <header style="position: fixed;top:0;width:100%;z-index:2">
+            <i @click="goBack()" style="float:left;padding: 20px">
+              <img src="../asset/images/fanhui.png" style="width: .5rem">
+            </i>
+            <div style="float:right">
+                <!-- <img src="../asset/images/icon_collect.png"> -->
+                <!-- <img style="margin:0 5px" src="../asset/images/share-white.png"> -->
+            </div>
+          </header>
       <div class="section brief-intro">
         <div class="stars">
           <img v-for="star in stars" :src="star.src" class="star-red"  alt="fff">
           <img src="../asset/images/star-green.png" class="small-icon star-green" alt="">
         </div>
-        <p>旅游避暑胜地</p>
-        <p>开放时间：{{ openTime }}</p>
+        <p>{{storeInfo.store_name}}</p>
+        <p>{{ storeInfo.store_zy }}</p>
       </div>
       <div class="section">
         <a href="#/Comments/100163" class="link-line">
@@ -49,15 +45,25 @@
         </div>
         <div class="ticket-price" v-for="ticketPrice in ticketPrices">
           <div class="price-kind">
-            <p class="ticket-name">{{ ticketPrice.goods_name }}</p>
-            <p class="price">¥{{ ticketPrice.goods_price }}</p>
+            <img style="width:1.8rem;height:1.8rem" src="{{ticketPrice.goods_image_url}}">
+            <div class="ticket-name" style="margin-left:15px">
+              <div>
+                {{ ticketPrice.goods_name }}
+              </div>
+              <div style="margin-top:10px">
+                {{ ticketPrice.goods_jingle }}
+              </div>
+            </div>
+            <p class="price" style="color:orangered">
+                ¥{{ ticketPrice.goods_price }}
+            </p>
             <div class="arrow" @click="ctrlOrderDetail($index)">
               <i></i>
             </div>
           </div>
           <div v-show="orderDetailShow[$index]" class="order-detail">
             <div class="gallery">
-              <div v-for="photo in gallery" class="scenic-img-item">
+              <div v-for="photo in ticketPrice.goods_photo" class="scenic-img-item">
                 <img src="{{photo}}">
               </div>
             </div>
@@ -82,13 +88,14 @@
       return {
         id: this.$route.params.id,
         storeName: '',
+        storeInfo:'',
         openTime: '09:00 - 17:00',
         stars: [],
-        'bgImg':'',
         ticketPrices: [],
         gallery: [],
         orderDetailShow: [1, 1, 1],
-        loc:''
+        loc:'',
+        ScenicImgArr:[]
       }
     },
     methods: {
@@ -108,16 +115,18 @@
         return result;
       },
       getScenicDetail() {
-        $.poemGet(GOODS_DETAIL_API,{'goods_id':this.$route.params.id}).done(this.initPage)
+        $.poemGet(SCENIC_DETAIL_API,{'store_id':this.$route.params.id}).done(this.initPage)
       },
       initPage(data) {
-        console.log(data)
+        console.log(data);
+        this.storeInfo = data.store_info;
         this.loc = data.store_info.store_location_lat+','+data.store_info.store_location_lng;
         this.storeName = data.store_info.store_name;
-        this.gallery = data.goods_image;
-        this.ticketPrices = data.relate_goods;
-        this.bgImg = data.spec_image[0];
-        this.countStar(data.evaluate_info.good_star)
+        // this.gallery = data.goods_image;
+        this.ticketPrices = data.good_list;
+        // this.bgImg = data.spec_image[0];
+        // this.countStar(data.evaluate_info.good_star);
+        this.ScenicImgArr = data.store_info.store_slide
         // this.$nextTick(function(){
         //   this.$broadcast('refresh');
         // });

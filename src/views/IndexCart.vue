@@ -1,5 +1,5 @@
 <template class="flex-view" v-transition>
-    	<app-header title='购物车'></app-header>
+    	<app-header left-icon="1" title='购物车'></app-header>
       <flex-scroll-view>
         <ul id="cart-list-view" style="font-size: 0.3rem;">
           <cart-list-item v-for="cart in cartList" :cart="cart" :index="$index">

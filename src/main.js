@@ -188,6 +188,21 @@ router.map({
       require(['./Views/ScenicList.vue'], resolve)
     }
   },
+    '/CollectList': {
+    component:function (resolve) {
+      require(['./Views/CollectList.vue'], resolve)
+    }
+  },
+   '/StaticView': {
+    component:function (resolve) {
+      require(['./Views/StaticView.vue'], resolve)
+    }
+  },
+    '/ResetView': {
+    component:function (resolve) {
+      require(['./Views/UserResetPwd.vue'], resolve)
+    }
+  },
   '/HotelDetail/:hotelId': {
     name:'hoteldetail',
     // component: HotelDetailView,

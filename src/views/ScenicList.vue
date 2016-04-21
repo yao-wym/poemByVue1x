@@ -1,6 +1,6 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header title="景点门票" right-icon="home-icon" right-link="#/index/home"></app-header>
+	<app-header title="景点列表" right-icon="home-icon" right-link="#/index/home"></app-header>
   <flex-scroll-view>
         <ul id="scienic-list-view" style="font-size: 0.3rem">
       <scenic-list-item v-for="scenic in scenicList" :scenic="scenic" :index="$index"></scenic-list-item>
@@ -8,7 +8,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="[{'word':'全部','gc_id':'3'},{'word':'景区','gc_id':'1061'},{'word':'娱乐项目','gc_id':'1062'}]" :order-items="[{'word':'默认排序','order':''},{'word':'商家信用从高到底','key':'store_credit','order':'desc'},{'word':'商家信用从低到高','key':'store_credit','order':'asc'},{'word':'销量从高到底','key':'store_sales','order':'desc'},{'word':'销量从低到高','key':'store_sales','order':'asc'}]"></filter-tab>
+	<filter-tab :filter-items="[{'word':'景区','gc_id':'1061'},{'word':'娱乐项目','gc_id':'1062'}]" :order-items="[{'word':'信用','key':'store_credit','order':'desc'},{'word':'销量','key':'store_sales','order':'desc'}]"></filter-tab>
 </div>
 </template>
 
@@ -38,7 +38,7 @@ module.exports = {
   		curpage : 1,
   		scenicList:[],
       condition:{
-        'gc_id':3
+        'sc_id':3
       }
   	}
   },
@@ -48,7 +48,7 @@ module.exports = {
   	},
   	getScenicListDone:function(res){
       this.pageNum = res.page_total;
-      this.scenicList = this.scenicList.concat(res.datas.goods_list);
+      this.scenicList = this.scenicList.concat(res.datas.store_list);
       this.curpage++;
       this.$nextTick(function(){
       this.$broadcast('refresh');

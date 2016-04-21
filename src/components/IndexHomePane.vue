@@ -1,9 +1,9 @@
 <template>
 	<div class="index-home-container"> 
   <div style="height:auto;width: 100%">
-    <banner></banner>
+    <banner banner-height="3.2rem"></banner>
 </div>
-<div class="pane">
+<div class="pane" style="margin-top:0.55rem">
   <div class="pane-left">
     <a v-link="{path:'/HotelList'}">
       <div v-on="click:location.href='#hotel-list'" style="background-color: rgb(234,99,94)">

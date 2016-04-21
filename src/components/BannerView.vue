@@ -6,7 +6,7 @@
 				<div style="background-image:url({{item}});height:{{bannerHeight}}" class="painting giotto"></div>
 			</div>
         </div>
-        <div id="banner" style="background-color: white" class="banner-content" v-else>
+        <div default="true" id="banner" style="background-color: white" class="banner-content" v-else>
 			<div @click='showDetail($index)' v-for="item in slideList" :item="item"  class="slide">
 				<div style="background-image:url({{item.image}})" class="painting giotto"></div>
 			</div>
@@ -21,11 +21,6 @@
 bannerHeight = 3.2rem
 imgHeight = bannerHeight-0.3rem
 imgWidth = 9rem
-* {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
 
 
 #b-wrapper {
@@ -63,13 +58,15 @@ imgWidth = 9rem
 	width: 10rem
 	height: bannerHeight;
 	float: left;
+	background-size:100%
 }
 
 .painting {
 	width: 100%;
 	height: bannerHeight+0.5rem;
 	margin: 0;
-	background-size:100%
+	background-size:100% 100%
+	background-repeat:no-repeat
 	border: 1px solid #000;
 
 }
@@ -77,10 +74,9 @@ imgWidth = 9rem
 #indicator {
 	position: relative;
 	width: 110px;
-	height: 20px;
-	margin: 10px auto;
+	margin: auto;
 	z-index:2
-	top:-0.3rem;
+	top:-5px;
 }
 
 #dotty {
@@ -140,7 +136,6 @@ export default {
 	created:function(){
 	},
 	ready:function(){
-		this.scrollWidth = this.imgArr.length*10+'rem';
 		if(!$.isEmpty(this.imgArr)){
 			this.slideList = this.imgArr;
 		}else{

@@ -7,6 +7,7 @@ var HOTEL_LIST_API = HOST_API+'act=shop&op=hotel_list&key=store_credits';
 var SHOP_LIST_API = HOST_API+'act=shop&sc_id=3';
 var SEND_SMS_API = HOST_API+'act=index&op=send_sms';
 var HOTEL_DETAIL_API = HOST_API+'act=store&op=store_detail';
+var SCENIC_DETAIL_API = HOST_API+'act=store&op=store_detail';
 var ADV_API = HOST_API+'act=index&op=index_adv_list';
 
 var ADDR_LIST_API = HOST_API+'act=member_address&op=address_list';
@@ -19,7 +20,7 @@ var ADDR_DETAIL_API = HOST_API+'act=member_address&op=address_info';
 
 var ADDR_EDIT_API = HOST_API+'act=member_address&op=address_edit';
 
-var SCENIC_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=3';
+var SCENIC_LIST_API = HOST_API+'act=shop';
 
 var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';
 
@@ -67,6 +68,8 @@ var VR_ORDER_LIST_API = HOST_API+'act=member_vr_order&op=order_list_v2';
 var VR_CANCEL_ORDER_API = HOST_API+'act=member_vr_order&op=order_cancel';
 
 var VR_PAY_API = HOST_API+'act=member_payment&op=payment_confirm_real';
+
+var SERVICE_CALL = "010-57221838";
 
 var poemUI = {
     toast:function(msg){

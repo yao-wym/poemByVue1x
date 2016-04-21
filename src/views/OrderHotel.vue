@@ -64,14 +64,14 @@
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
   @import "../main.styl"
 .header-tab
   display:flex
   padding:20px
   & .header-tab-item
     flex:1
-    font-size:.3rem
+    font-size:.4rem
     text-align:center
     &.active
       color:orangered

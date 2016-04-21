@@ -12,7 +12,9 @@ export default{
 	},
 	methods:{
   		goNextStep:function(){
-  			location.href=this.href
+  			if(!$.isEmpty(this.href)){
+  				location.href=this.href
+  			}
   		}
   	},
 	props: ['href']
