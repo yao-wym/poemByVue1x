@@ -4,20 +4,26 @@
 			<img v-bind:src="techan.goods_image_url" class="techan-img">
 			<div class="techan-info">
 				<div class="techan-name">
-					<p>{{techan.goods_name}}</p>
-					<p style="margin-top:6px">
-					<span style="color:red">{{techan.evaluation_good_star}}分</span>/<span>{{techan.evaluation_count}}条评论</span>
-					</p>
+					<p style="color:#505050">{{techan.goods_name}}</p>
 				</div>
-				<div style="margin-top:0.2rem">
-					<div style="float:left;margin-left: 10px">
-						<span style='font-size:0.4rem;color:orangered'>¥</span>
-						<span style='font-size:0.4rem;color:orangered'>{{techan.goods_price}}</span>
+					<div>
+						<span style="color:red">{{techan.evaluation_good_star}}分</span>
 					</div>
-					<div style="float: right;font-size:0.28rem">
-						<p>銷量&nbsp&nbsp<span>{{techan.goods_salenum}}</span>笔</p>
-						<!-- <p style="margin-top:10px">{{techan.store_address}}</p> -->
+					<div style="color:green">
+						<span style="color:green" v-if="techan.evaluation_count!=0">{{techan.evaluation_count}}条评论</span>
+						<span style="color:green" v-else>暂无评价</span>
+						<span style="float: right;font-size:0.28rem">
+							<span style='font-size:0.25rem;color:orangered'>¥</span>
+							<span style='font-size:0.4rem;color:orangered'>{{techan.goods_price}}</span>
+							<span style='font-size:0.3rem;color:orange'>起</span>
+						</span>
 					</div>
+					
+				<div>
+					<div style="width: 95%;float:left;margin-left: 10px;display:block;white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+						{{techan.goods_jingle}}&nbsp
+					</div>
+					
 				</div>
 			</div>
 		</a>
@@ -51,6 +57,8 @@ module.exports = {
 		height:2.3rem
 		display:flex
 		flex-direction:column
+		& div
+			flex:1
 	& p,span
 		color:text-gray
 		margin:0

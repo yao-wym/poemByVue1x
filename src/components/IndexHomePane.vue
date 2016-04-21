@@ -86,7 +86,7 @@ module.exports = {
 		overflow:hidden 
 .pane-left
 	float:left
-	width:50%
+	width:49%
 	margin-right:-3px
 .pane-right
 	overflow:hidden

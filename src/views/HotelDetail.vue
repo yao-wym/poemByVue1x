@@ -77,8 +77,8 @@
           </div> -->
             <ul class="hotel-room-list">
              
-          <div class="li-room" v-for="room in roomList">
-              <a>
+          <div class="li-room" v-if="room['gc_id_1']==1103" v-for="room in roomList">
+              <a @click="ctrlRoomDetail($index)">
                 <div class="room-img">
                   <img v-bind:src="room.goods_image_url">
                 </div>
@@ -93,7 +93,7 @@
                   <i></i>
                 </div>
               </a>
-              <div class="room-detail">
+              <div v-show="roomDetailShow[$index]" class="room-detail">
                 <div class="hotel-room-img-list">
                 <div v-for="photo in room.goods_photo" class="room-img-item">
                   <img v-bind:src="photo">
@@ -113,7 +113,7 @@
 
 <script>
 
-	module.exports = {
+module.exports = {
   replace: true,
   data:function(){
     return {
@@ -121,10 +121,27 @@
       'bgImg':'',
       'hotelLoc':'',
       'roomList':[],
-      'HotelImgArr':[]
+      'HotelImgArr':[],
+      'roomDetailShow':{}
     }
   },
   methods:{
+    ctrlRoomDetail(index) {
+        // this.roomDetailShow[index] = (this.roomDetailShow[index]+1)%2;
+        let newArr = this.deepClone(this.roomDetailShow);
+        newArr[index] = !this.roomDetailShow[index];
+        this.roomDetailShow = newArr;
+        this.$nextTick(function(){
+          this.$broadcast('refresh');
+        });
+      },
+    deepClone(arr) {
+      let result = [];
+      for (let i=0; i<arr.length; i++){
+        result[i] = arr[i];
+      }
+      return result;
+    },
     showDate:function(){
       // $('#date').DatePicker({
       //   flat: true,
@@ -146,11 +163,15 @@
         this.hotelLoc = res.store_info.store_location_lat+','+res.store_info.store_location_lng;
         this.bgImg = res.store_info.store_label;
         this.roomList = res.good_list;
+        this.roomDetailShow = new Array(this.roomList.length);
+        for(var i=0;i<this.roomList.length;i++){
+          this.roomDetailShow[i] = 0;
+        }
         this.HotelImgArr = res.store_info.store_slide;
         // this.$nextTick(function(){
         //   this.$broadcast('refresh');
         // });
-        setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),1000)
+        setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
       }
     },
     bookRoom:function(key){
@@ -211,7 +232,6 @@ label-height=1.2rem
     background-color:white
   .li-section .li-label
     height:label-height
-    padding:0 10px
     line-height:label-height
     width:100%
     display:flex
@@ -220,8 +240,7 @@ label-height=1.2rem
     color:poem-text-gray
     & a
       width:100%
-      display:-webkit-box
-      display: -webkit-box; /* Safari */
+      display:flex
       & .title
         -webkit-box-flex: 1
         flex:1
@@ -238,11 +257,12 @@ label-height=1.2rem
       & .arrow
         height:label-height
         background:none
+        width:.5rem
         & i
-          margin-top:.4rem
+          margin:.5rem auto
           line-height:label-height
           display:block
-          width:.3rem
+          width:.35rem
           height:@width
           background-size:100%
           background-image:url(../asset/images/right_icon.png)

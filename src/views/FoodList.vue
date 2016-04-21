@@ -3,7 +3,7 @@
 	<app-header title="吃喝玩乐"></app-header>
   <flex-scroll-view>
         <ul id="hotel-list-view" style="font-size: 0.3rem">
-      <food-list-item v-for="food in hotelList" :food="food" :index="$index"></food-list-item>
+      <food-list-item v-if="food['gc_id']==1113" v-for="food in hotelList" :food="food" :index="$index"></food-list-item>
     </ul>
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
@@ -40,7 +40,7 @@ module.exports = {
   },
   methods:{
   	getHotelList:function(){
-  		$.getJSON(HOTEL_FUN_API,{curpage:this.curpage,'store_id':this.$route.params.id}).done(this.getHotelListDone);
+  		$.getJSON(STORE_GOODS_API,{curpage:this.curpage,'store_id':this.$route.params.id}).done(this.getHotelListDone);
   	},
   	getHotelListDone:function(res){
   		console.log(JSON.stringify(res));
@@ -56,6 +56,16 @@ module.exports = {
       }
   	},
   },
+  route:{
+    data:function(transition){
+      transition.next({
+        curpage : 1,
+        pageNum :1,
+        hotelList:[]
+      })
+      this.getHotelList();
+    }
+  },
   events:{
     'scrollEnd':function(msg){
       if(this.curpage>this.pageNum){
@@ -69,7 +79,6 @@ module.exports = {
     }
   },
   ready:function(){
-    this.getHotelList();
   },
   attached:function(){
    // alert(2);

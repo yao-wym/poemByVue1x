@@ -24,8 +24,9 @@ var SCENIC_LIST_API = HOST_API+'act=shop';
 
 var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';
 
-var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list&gc_id=1';
+var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list&page=10';
 var TECHAN_DETAIL_API = HOST_API+'act=goods&op=goods_list&gc_id=1';
+var STORE_GOODS_API = HOST_API+'act=goods&op=goods_list';
 
 
 var CART_LIST_API = HOST_API+'act=member_cart&op=cart_list';

@@ -5,11 +5,9 @@
 			<div class="hotel-info">
 				<div class="hotel-name">
 					<p style="color:#505050">{{hotel.store_name}}</p>
-					<p style="margin-top:1px">
-					<span v-if="hotel.store_star" style="color:red">{{hotel.store_star}}分</span>
-					<span style="color:red" v-else>5分</span>
-
-					
+					<p style="margin-top:4px">
+						<span v-if="hotel.store_star" style="color:red">{{hotel.store_star}}分</span>
+						<span style="color:red" v-else>5分</span>
 					</p>
 				</div>
 				<div style="margin-top:0rem">
@@ -18,7 +16,6 @@
 							<span style="color: green" v-if="hotel.eval_num">{{hotel.eval_num}}条评论</span>
 							<span  style="color: green" v-else>暂无评价</span>
 						</p>
-						<p style="margin-top:10px">{{hotel.store_address}}</p>
 					</div>
 					<div style="float:right;margin-right: 10px;">
 						<span style='font-size:0.3rem;color:orangered'>¥</span>
@@ -26,6 +23,7 @@
 						<span style="color:orangered">起</span>
 					</div>
 				</div>
+				<p style="margin-top:10px">{{hotel.store_address}}</p>
 			</div>
 		</a>
 	</li>
@@ -38,10 +36,10 @@ module.exports = {
 }
 </script>
 
-<style lang="stylus">
-	@import "../main.styl"
+<style lang="stylus" scoped>
+@import "../main.styl"
 .hotel-item
-	height:2.2rm
+	height:2.2rem
 	color:text-gray
 	background-color: #fff; 
 	overflow:auto; 

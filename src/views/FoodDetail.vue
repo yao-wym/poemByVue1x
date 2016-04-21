@@ -1,20 +1,16 @@
 <template>
   <div class="flex-view" v-transition>
     <flex-scroll-view>
-     <div class="scenic-header" style="background-image:url({{goodsDetail.goods_image[0]}})">
-        <header>
-          <i @click="goBack()" style="float:left">
-            <img src="../asset/images/fanhui.png">
-          </i>
-          <div style="float:right">
-            <img src="../asset/images/icon_collect.png">
-            <img style="margin:0 5px" src="../asset/images/share-white.png">
-          </div>
-        </header>
-        <div style="position:absolute;bottom:0;padding-left:10px;font-size:.3rem">
-          <p>{{goodsDetail.store_info.store_name}}</p>
+      <banner banner-height="6.5rem" :img-arr="foodImgArr"></banner>
+      <header style="position: fixed;top:0;width:100%;z-index:2">
+        <i @click="goBack()" style="float:left;padding: 20px">
+          <img src="../asset/images/fanhui.png" style="width: .5rem">
+        </i>
+        <div style="float:right">
+            <!-- <img src="../asset/images/icon_collect.png"> -->
+            <!-- <img style="margin:0 5px" src="../asset/images/share-white.png"> -->
         </div>
-      </div>
+      </header>
       <div class="container">
         <div class="intro">
           <p>{{ goodsDetail.goods_info.goods_name }}</p>
@@ -53,14 +49,23 @@
       </p>
     </div>
     </flex-scroll-view>
-          <div class="footer">
+      <div class="footer">
         <div class="footer-ctrlpanel">
-          <!-- <a href="">店铺</a>
-          <button>收藏</button>
-          <a href="">购物车</a> -->
+          <div @click="goBack()">
+            <img src="../asset/images/down_back.png">
+            <div href="">返回</div>
+          </div>
+          <div @click="collect()">
+            <img src="../asset/images/collect-white.png">
+            <div href="">收藏</div>
+          </div>
+          <div v-link="{path:'/index/cart'}">
+            <img src="../asset/images/cart-white.png">
+            <div href="">购物车</div>
+          </div>
         </div>
         <a class="addto-cart" @click="addToCart()">加入购物车</a>
-        <a @click="buy()" class="buy-now">立即购买</a>
+        <!-- <a @click="buy()" class="buy-now">立即购买</a> -->
       </div>
   </div>
 </template>
@@ -88,7 +93,7 @@ module.exports = {
         this.getGoodsDetail();
     },
       canReuse:function(transition){
-        return false
+        // return false
         //判断是否可以重用，可以则为返回true，不能重用则返回false，会实例化一个新的vue对象
       }
   },
@@ -96,6 +101,7 @@ module.exports = {
     goBack:function(){
       history.go(-1);
     },
+    collect:function(){},
     addToCart:function(){
       $.poemPost(CART_ADD_API,{'key':poem.getItem('key'),'goods_id':this.goodsId,'quantity':this.quantity}).done(function(res){
         if(res.error){
@@ -115,22 +121,22 @@ module.exports = {
         return;
       }
       this.goodsDetail = res;
-      this.goodsType = res.spec_list[Object.keys(res['spec_list'])[0]];
-      this.bgImg = res.spec_image[0];
+      // this.goodsType = res.spec_list[Object.keys(res['spec_list'])[0]];
+      this.foodImgArr = res.goods_image;
       this.$nextTick(function(){
         // this.$broadcast('refresh');
       });
       setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
     },
     buy:function(res){
-        this.$route.router.go({path:'/TechanOrderForm?goodsId='+this.goodsId+'&goodsType='+this.goodsType});
+        this.$route.router.go({path:'/TechanOrderForm?goodsId='+this.goodsId+'&goodsType='+this.goodsId});
     }
   },
   data() {
     return {
       quantity:1,
       goodsId:'',
-      goodsType:'',
+      // goodsType:'',
       goodsDetail:{},
       foodName: '',
       price: 59,
@@ -141,7 +147,8 @@ module.exports = {
       stock: 999,
       postiveCommentsRate: 0.98,
       storeName: '',
-      storeScore: 9.2
+      storeScore: 9.2,
+      foodImgArr:[],
     }
   }
 }
@@ -176,8 +183,8 @@ module.exports = {
     display: block
     &:link, &:visited
       color: text-gray
-    height: 1.5rem
-    line-height: 1.5rem
+    height: 1.3rem
+    line-height: 1.3rem
     border-top: 1px solid line-gray
     padding: 0 section-padding
   .contact
@@ -201,19 +208,28 @@ module.exports = {
     padding-left: .4rem
   .footer
     display: flex
-    height: 1rem
-    line-height: 1rem
-    position: fixed;
+    height: 1.5rem
+    line-height: 1.5rem
     width: 100%;
-    bottom: 0;
     .footer-ctrlpanel
       width: 50%
       background: #aaa
       color: #fff
+      display:flex
+      &>div
+        flex:1
+        text-align:center
+        color:white
+        &>div
+          line-height:0px
+          margin-top:-.35rem
+        & img
+          width:35%
+          height:35%
     .addto-cart
-      background: poem-green
+      background: #50C850
       color: #fff
-      width: 25%
+      width: 50%
       text-align: center
     .buy-now
       background: app-yellow

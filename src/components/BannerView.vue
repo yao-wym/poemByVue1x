@@ -67,7 +67,6 @@ imgWidth = 9rem
 	margin: 0;
 	background-size:100% 100%
 	background-repeat:no-repeat
-	border: 1px solid #000;
 
 }
 

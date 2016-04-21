@@ -1,6 +1,6 @@
 <template>
 	<div class="flex-view">
-	<app-header title="特产" right-icon="home-icon" right-link="#/index/home"></app-header>
+	<app-header title="特产列表" right-icon="home-icon" right-link="#/index/home"></app-header>
   <flex-scroll-view>
         <ul id="techan-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
@@ -39,16 +39,19 @@ module.exports = {
   },
   data: function(){
   	return {
-  		curpage : 1,
   		techanList:[],
-      pageNum:1,
       condition:{
-        "gc_id":1
+        "gc_id":1,
+        "curpage":1
       }
   	}
   },
   methods:{
   	getTechanList:function(){
+       if(this.condition.curpage>this.pageNum){
+        poemUI.toast('没有更多了');
+        return;
+      }
   		$.getJSON(TECHAN_LIST_API,this.condition).done(this.getTechanListDone);
   	},
   	getTechanListDone:function(res){
@@ -56,7 +59,7 @@ module.exports = {
       this.pageNum = res.page_total;
       if(!isEmpty(res.datas.goods_list)){
         this.techanList = this.techanList.concat(res.datas.goods_list);
-        this.curpage++;
+        this.condition.curpage++;
         // this.$broadcast('refresh')
         this.$nextTick(function(){
           //this.$broadcast('refresh');
@@ -93,7 +96,7 @@ module.exports = {
       this.getTechanList();
     },
     'conditionChange':function(condition){
-      this.curpage = 1;
+      this.condition.curpage = 1;
       this.techanList = [];
       $.extend(this.condition,condition);
       $.getJSON(TECHAN_LIST_API,this.condition).done(this.getTechanListDone);

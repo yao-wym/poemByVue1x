@@ -44,7 +44,7 @@
           <p>票价</p>
         </div>
         <div class="ticket-price" v-for="ticketPrice in ticketPrices">
-          <div class="price-kind">
+          <div class="price-kind" @click="ctrlOrderDetail($index)">
             <img style="width:1.8rem;height:1.8rem" src="{{ticketPrice.goods_image_url}}">
             <div class="ticket-name" style="margin-left:15px">
               <div>
@@ -57,7 +57,7 @@
             <p class="price" style="color:orangered">
                 ¥{{ ticketPrice.goods_price }}
             </p>
-            <div class="arrow" @click="ctrlOrderDetail($index)">
+            <div class="arrow">
               <i></i>
             </div>
           </div>
@@ -93,7 +93,7 @@
         stars: [],
         ticketPrices: [],
         gallery: [],
-        orderDetailShow: [1, 1, 1],
+        orderDetailShow: [0, 0, 0],
         loc:'',
         ScenicImgArr:[]
       }
@@ -103,6 +103,9 @@
         let newArr = this.deepClone(this.orderDetailShow);
         newArr[index] = !this.orderDetailShow[index];
         this.orderDetailShow = newArr;
+        this.$nextTick(function(){
+          this.$broadcast('refresh');
+        });
       },
       goBack:function(){
         history.go(-1)
