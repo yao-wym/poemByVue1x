@@ -286,6 +286,12 @@ router.map({
     }
     // component: PointsStore
   },
+  '/GoodsDeepDetail': {
+    component:function (resolve) {
+      require(['./Views/GoodsDeepDetail.vue'], resolve)
+    }
+    // component: PointsStore
+  },
   '/Comments/:id': {
     component:function (resolve) {
       require(['./Views/ItemComments.vue'], resolve)

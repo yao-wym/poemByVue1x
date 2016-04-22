@@ -70,6 +70,18 @@ var VR_CANCEL_ORDER_API = HOST_API+'act=member_vr_order&op=order_cancel';
 
 var VR_PAY_API = HOST_API+'act=member_payment&op=payment_confirm_real';
 
+var STORE_COLLECT_API = HOST_API+'act=member_favorites&op=fav_store_add';
+
+var GOODS_COLLECT_API = HOST_API+'act=member_favorites&op=favorites_add';
+
+var STORE_COLLECT_LIST_API = HOST_API+'act=member_favorites&op=fav_store_list';
+
+var GOODS_COLLECT_LIST_API = HOST_API+'act=member_favorites&op=favorites_list';
+
+var GOODS_COLLECT_DELETE_API = HOST_API+'act=member_favorites&op=favorites_del';
+
+var STORE_COLLECT_DELETE_API = HOST_API+'act=member_favorites&op=favorites_del';
+
 var SERVICE_CALL = "010-57221838";
 
 var poemUI = {

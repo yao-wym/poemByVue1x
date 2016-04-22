@@ -8,7 +8,7 @@
               <img src="../asset/images/fanhui.png" style="width: .5rem">
             </i>
             <div style="float:right">
-                <!-- <img src="../asset/images/icon_collect.png"> -->
+                <img @click="collect()" src="../asset/images/collection_icon.png" style="width: .7rem;height: .7rem;margin:15px">
                 <!-- <img style="margin:0 5px" src="../asset/images/share-white.png"> -->
             </div>
           </header>
@@ -126,6 +126,16 @@ module.exports = {
     }
   },
   methods:{
+    collect(){
+      $.poemPost(STORE_COLLECT_API+'&fid='+this.$route.params.hotelId,{key:poem.getItem('key')}).done(this.collectDone);
+    },
+    collectDone(res){
+      if(res.error){
+        poemUI.toast(res.error);
+      }else{
+        poemUI.toast('收藏成功');
+      }
+    },
     ctrlRoomDetail(index) {
         // this.roomDetailShow[index] = (this.roomDetailShow[index]+1)%2;
         let newArr = this.deepClone(this.roomDetailShow);

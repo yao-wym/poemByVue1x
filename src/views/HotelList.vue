@@ -10,7 +10,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="[{'word':'传统酒店','op':'hotel','sc_id':'2'},{'word':'牧家乐','sc_id':'12'}]" :order-items="[{'word':'信用','key':'store_credit','order':'desc','op':'hotel_list'},{'word':'销量','op':'hotel_list','key':'store_sales','order':'desc'}]"></filter-tab>
+	<filter-tab :filter-items="[{'word':'传统酒店','op':'hotel','sc_id':'2'},{'word':'牧家乐','sc_id':'12'}]" :order-items="[{'word':'评价','key':'store_credit','order':'desc','op':'hotel_list'},{'word':'销量','op':'hotel_list','key':'store_sales','order':'desc'}]"></filter-tab>
 </div>
 </template>
 

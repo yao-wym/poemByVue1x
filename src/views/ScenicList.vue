@@ -8,7 +8,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="[{'word':'景区','gc_id':'1061'},{'word':'娱乐项目','gc_id':'1062'}]" :order-items="[{'word':'信用','key':'store_credit','order':'desc'},{'word':'销量','key':'store_sales','order':'desc'}]"></filter-tab>
+	<filter-tab :filter-items="[{'word':'景区','gc_id':'1061'},{'word':'娱乐项目','gc_id':'1062'}]" :order-items="[{'word':'评价','key':'store_credit','order':'desc'},{'word':'销量','key':'store_sales','order':'desc'}]"></filter-tab>
 </div>
 </template>
 

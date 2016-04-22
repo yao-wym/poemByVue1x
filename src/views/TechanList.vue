@@ -10,7 +10,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="[{'word':'工艺品','gc_id':'1063'},{'word':'肉制品','gc_id':'5'},{'word':'奶制品','gc_id':'4'},{'word':'酒类','gc_id':'1064'},{'word':'其他','gc_id':'1065'}]" :order-items="[{'word':'默认排序','order':''},{'word':'商家信用从高到底','key':'store_credit','order':'desc'},{'word':'商家信用从低到高','key':'store_credit','order':'asc'},{'word':'销量从高到底','key':'store_sales','order':'desc'},{'word':'销量从低到高','key':'store_sales','order':'asc'}]"></filter-tab>
+	<filter-tab :filter-items="[{'word':'工艺品','gc_id':'1063'},{'word':'肉制品','gc_id':'5'},{'word':'奶制品','gc_id':'4'},{'word':'酒类','gc_id':'1064'},{'word':'其他','gc_id':'1065'}]" :order-items="[{'word':'销量','key':'1','order':'2'},{'word':'浏览量','key':'2','order':'2'},{'word':'价格从低到高','order':'1','key':'3'}]"></filter-tab>
 </div>
 </template>
 
@@ -82,7 +82,7 @@ module.exports = {
   },
   events:{
     'showAll':function(){
-      this.scenicList = [];
+      this.techanList = [];
       this.condition = {};
       this.condition['curpage'] = 1;
       this.condition.gc_id = 1;

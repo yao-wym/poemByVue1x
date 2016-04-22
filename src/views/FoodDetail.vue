@@ -14,24 +14,25 @@
       <div class="container">
         <div class="intro">
           <p>{{ goodsDetail.goods_info.goods_name }}</p>
-          <p class="price">{{ goodsDetail.goods_info.goods_price }}</p>
+          <p class="price" style="color:red;font-size: .55rem">￥{{ goodsDetail.goods_info.goods_price }}</p>
           <p>价格: <span class="original-price">{{ goodsDetail.goods_info.goods_marketprice }}</span></p>
           <div class="row">
-            <!-- <p>快递: {{ expressPrice }}元</p> -->
-            <p>月销：{{ goodsDetail.goods_info.goods_salenum }}</p>
+            <p>快递: {{ expressPrice }}元</p>
+            <p>月销：{{ goodsDetail.goods_info.goods_salenum }}笔</p>
             <p>库存：{{ goodsDetail.goods_info.goods_storage }}</p>
           </div>
         </div>
-        <a class="link-line" href="">
-          选择尺码 颜色
+        <a class="link-line">
+          <span style="color: orange">选择商品规格</span>
           <span class="right">></span>
         </a>
-        <a class="link-line" href="">
-          评价晒单 评分<span class="price-red">{{ goodsDetail.goods_info.evaluation_good_star }}</span>
+        <a class="link-line" v-link="{path:'/Comments/'+this.$route.params.id}">
+          <span style="color:rgb(75, 120, 237)">评价晒单</span> 
+          <!-- <span class="price-red">{{ goodsDetail.goods_info.evaluation_good_star }}</span> -->
           <span class="right">></span>
         </a>
-        <a class="link-line" href="">
-          图文详情
+        <a class="link-line" v-link="{path:'/GoodsDeepDetail?id='+this.$route.params.id}">
+          <span style="color:rgb(81, 211, 17)">图文详情</span>
           <span class="right">></span>
         </a>
         <a class="link-line" v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id+'?storeName='+goodsDetail.store_info.store_name}">
@@ -43,9 +44,13 @@
           <span class="right">></span>
         </a>
       <p class="contact">
-        <a href=""><img style="width: .5rem" src="../asset/images/contacter-green.png" alt="">联系客服</a>    
+        <a v-if="{{ goodsDetail.store_info.store_phone }}" href="tel:{{ goodsDetail.store_info.store_phone }}">
+        <a @click="toast('暂无商家电话')" v-else>
+        <img style="width: .5rem;position: relative;top:5px;margin-right:10px" src="../asset/images/contacter-green.png" alt="">
+        <span>联系客服</span></a>    
         <a v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id+'?storeName='+goodsDetail.store_info.store_name}">
-        <img style="width: .5rem" src="../asset/images/home-gray.png" alt="">进入店铺</a>
+        <img style="width: .5rem;position: relative;top:5px;margin-right:10px" src="../asset/images/home-gray.png" alt="">
+        <span>进入店铺</span></a>
       </p>
     </div>
     </flex-scroll-view>
@@ -101,7 +106,19 @@ module.exports = {
     goBack:function(){
       history.go(-1);
     },
-    collect:function(){},
+    toast:function(){
+      poemUI.toast('暂无商家电话');
+    },
+    collect(){
+      $.poemPost(GOODS_COLLECT_API,{key:poem.getItem('key'),goods_id:this.$route.params.id}).done(this.collectDone);
+      },
+    collectDone(res){
+      if(res.error){
+        poemUI.toast(res.error);
+      }else{
+        poemUI.toast('收藏成功');
+      }
+    },
     addToCart:function(){
       $.poemPost(CART_ADD_API,{'key':poem.getItem('key'),'goods_id':this.goodsId,'quantity':this.quantity}).done(function(res){
         if(res.error){
@@ -168,7 +185,7 @@ module.exports = {
       & img
         height:0.5rem
   .container
-    padding-bottom: 1rem
+    padding-bottom: .5rem
   .intro
     padding: 0 section-padding
   .row

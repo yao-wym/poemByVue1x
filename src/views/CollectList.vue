@@ -1,56 +1,93 @@
-<template class="flex-view" v-transition>
-  <app-header title="我的收藏"></app-header>
-  <div class="header-tab" style="display:flex">
-    <div class="header-tab-item active" state="2">店铺</div>
-    <div class="header-tab-item" state="1">商品</div>
+<template>
+  <div class="flex-view">
+    <app-header title="我的收藏"></app-header>
+    <div class="header-tab" style="display:flex">
+      <div class="header-tab-item active" position="0">店铺</div>
+      <div class="header-tab-item" position="1">商品</div>
+    </div>
+        <flex-scroll-view>
+          <!-- <ul id="store-collect-view" style="font-size: 0.3rem;">
+            <order-hotel-item v-for="order in orderList" :order="order" :state="state" :index="$index">
+            </order-hotel-item>
+          </ul> -->
+          <ul v-if="position==0" id="store-collect-view" style="font-size: 0.3rem;">
+            <collect-store-item v-for="item in storeCollectList" :item="item":index="$index">
+            </collect-store-item>
+          </ul>
+          <ul v-if="position==1" id="goods-collect-view" style="font-size: 0.3rem;">
+            <collect-goods-item v-for="item in goodsCollectList" :item="item" :index="$index">
+            </collect-goods-item>
+          </ul>
+        </flex-scroll-view>
   </div>
-      <flex-scroll-view>
-        <ul id="order-hotel-view" style="font-size: 0.3rem;">
-          <order-hotel-item v-for="order in orderList" :order="order" :state="state" :index="$index">
-          </order-hotel-item>
-        </ul>
-      </flex-scroll-view>
-
 </template>
-
 <script>
 
   module.exports = {
   replace: true,
   components: {
-    'order-hotel-item': require('../components/OrderHotelItem.vue'),
+    'collect-goods-item': require('../components/CollectGoodsItem.vue'),
+    'collect-store-item': require('../components/CollectStoreItem.vue'),
     'flex-scroll-view': require('../components/FlexScrollView.vue'),
     'app-header': require('../components/CommonHeader.vue'),
   },
   data:function(){
     return {
-      orderList:[],
-      state:2
+      goodsCollectList:[],
+      storeCollectList:[],
+      position:0,
+      initState:[0,0]
     }
   },
   ready:function(){
     // $.fn.poemGet(CART_LIST_API,{'key':});
-    this.getOrderList();
     $(".header-tab").on('click',".header-tab-item",
       (function(that){ return function(){
         $('.header-tab-item').removeClass('active');
         $(this).addClass('active');
-        that.state = $(this).attr('state');
-        that.getOrderList();
+        that.position = [].indexOf.call(this.parentNode.children,this);
+        if(that.initState[that.position] == 0){
+          that.getCollectList(that.position);
+        }
       }
     })(this))
   },
   events:{
-      'refreshVROrder':function(){
-        this.getOrderList();
+      
+    },
+  route:{
+    data(transition){
+      transition.next({
+
+      })
+      this.getStoreCollectList();
+    }
+  },
+  methods:{
+    getCollectList(position){
+      if(position == 0){
+        this.getStoreCollectList();
+      }else{
+        this.getGoodsCollectList();
       }
     },
-  methods:{
-    getOrderList:function(){
-      $.poemGet(VR_ORDER_LIST_API,{key:poem.getItem('key'),'order_state':this.state}).done(this.getSuccess);
+    getGoodsCollectList:function(){
+      $.getJSON(GOODS_COLLECT_LIST_API,{key:poem.getItem('key')}).done(this.getGoodsDone);
     },
-    getSuccess:function(res){
-      this.orderList = res.order_list;
+    getGoodsDone:function(res){
+      this.goodsCollectList = res.datas.favorites_list;
+      this.initState[1] = 1;
+      this.$nextTick(function(){
+        this.$dispatch("refresh");
+        this.$broadcast('refresh');
+        });
+    },
+    getStoreCollectList:function(){
+      $.getJSON(STORE_COLLECT_LIST_API,{key:poem.getItem('key')}).done(this.getStoreDone);
+    },
+    getStoreDone:function(res){
+      this.storeCollectList = res.datas;
+      this.initState[0] = 1;
       this.$nextTick(function(){
         this.$dispatch("refresh");
         this.$broadcast('refresh');

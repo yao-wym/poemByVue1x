@@ -13,8 +13,8 @@
           </header>
       <div class="section brief-intro">
         <div class="stars">
-          <img v-for="star in stars" :src="star.src" class="star-red"  alt="fff">
-          <img src="../asset/images/star-green.png" class="small-icon star-green" alt="">
+          <img v-for="star in stars" :src="star.src"  class="star-red"  alt="fff">
+          <img @click="collect()" src="../asset/images/star-green.png" style="margin: 40px 20px;width: .8rem;height:.8rem" class="small-icon star-green" alt="">
         </div>
         <p>{{storeInfo.store_name}}</p>
         <p>{{ storeInfo.store_zy }}</p>
@@ -99,6 +99,16 @@
       }
     },
     methods: {
+      collect(){
+      $.poemPost(GOODS_COLLECT_API,{key:poem.getItem('key'),goods_id:this.$route.params.id}).done(this.collectDone);
+      },
+      collectDone(res){
+        if(res.error){
+          poemUI.toast(res.error);
+        }else{
+          poemUI.toast('收藏成功');
+        }
+      },
       ctrlOrderDetail(index) {
         let newArr = this.deepClone(this.orderDetailShow);
         newArr[index] = !this.orderDetailShow[index];
@@ -158,6 +168,7 @@
     },
     route: {
       data(){
+        this.id = this.$route.params.id;
         this.getScenicDetail()
       }
     },

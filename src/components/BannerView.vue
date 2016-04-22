@@ -1,20 +1,20 @@
 <template>
 	<div class="banner-wrap">
         <div style="height:{{bannerHeight}}" id="b-wrapper">
-        <div v-if="imgArr" id="banner" style="background-color: white;width:{{imgArr.length*10+'rem'}};height:{{bannerHeight}}" class="banner-content">
-        	<div v-for="item in imgArr" class="slide" style="height:{{bannerHeight}}">
-				<div style="background-image:url({{item}});height:{{bannerHeight}}" class="painting giotto"></div>
-			</div>
-        </div>
-        <div default="true" id="banner" style="background-color: white" class="banner-content" v-else>
-			<div @click='showDetail($index)' v-for="item in slideList" :item="item"  class="slide">
-				<div style="background-image:url({{item.image}})" class="painting giotto"></div>
-			</div>
-        </div>
-    </div>
-    <div id="indicator">
-		<div id="dotty"></div>
-	</div>
+	        <div v-if="imgArr" id="banner" style="background-color: white;width:{{imgArr.length*10+'rem'}};height:{{bannerHeight}}" class="banner-content">
+	        	<div v-for="item in imgArr" track-by="$index" class="slide" style="height:{{bannerHeight}}">
+					<div style="background-image:url({{item}});height:{{bannerHeight}}" class="painting giotto"></div>
+				</div>
+	        </div>
+	        <div default="true" id="banner" style="background-color: white" class="banner-content" v-else>
+				<div @click='showDetail($index)' v-for="item in slideList" :item="item"  class="slide">
+					<div style="background-image:url({{item.image}})" class="painting giotto"></div>
+				</div>
+	        </div>
+    	</div>
+	    <div id="indicator">
+			<div id="dotty"></div>
+		</div>
     </div>
 </template>
 <style lang="stylus">

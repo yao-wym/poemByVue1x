@@ -1,8 +1,8 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header :title="storeName" right-icon="user-icon" right-link="#/user/login"></app-header>
+	<app-header :title="storeName"></app-header>
   <flex-scroll-view>
-        <ul id="techan-list-view" style="font-size: 0.3rem">
+    <ul id="techan-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
       <techan-list-item v-for="techan in techanList" :techan="techan" :index="$index"></techan-list-item>
       <!-- </list-view> -->
@@ -47,7 +47,7 @@ module.exports = {
   },
   methods:{
   	getTechanList:function(){
-  		$.getJSON(HOTEL_FUN_API,{'store_id':this.$route.params.id}).done(this.getTechanListDone);
+  		$.getJSON(STORE_GOODS_API,{'store_id':this.$route.params.id,'page':10,'curpage':this.curpage}).done(this.getTechanListDone);
   	},
   	getTechanListDone:function(res){
   		console.log(JSON.stringify(res));
@@ -82,11 +82,9 @@ module.exports = {
       if(this.curpage>this.pageNum){
         poemUI.toast('没有更多了');
         return;
+      }else{
+        this.getTechanList();
       }
-      this.getTechanList();
-    },
-    'conditionChange':function(msg){
-      $.getJSON(TECHAN_LIST_API,{order:"desc",page:10,curpage:this.curpage}).done(this.gettechanListDone);
     }
   }
 }
