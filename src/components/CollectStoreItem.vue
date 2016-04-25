@@ -1,25 +1,25 @@
 <template>
-	<li v-if="item.store.sc_id==3||item.store.sc_id==2" class="collect-goods-item">
+	<li v-if="item.store.sc_id==3||item.store.sc_id==2" class="collect-store-item">
 		<div v-if="item.store.sc_id==2" v-link="{path:'/HotelDetail/'+storeId}" class="icon">
 			<img src="{{item.store.store_label}}">
 		</div>
-		<div v-if="item.store.sc_id==3" v-link="{path:'/scenicDetail/'+storeId}" class="icon">
+		<div v-if="item.store.sc_id==3" v-link="{path:'/ScenicDetail/'+storeId}" class="icon">
 			<img src="{{item.store.store_label}}">
 		</div>
-		<div v-if="item.store.sc_id==2" v-link="{path:'/FoodDetail/'+storeId}" class="content">
-			<div class="goods-name">{{item.store.store_name}}</div>
-			<div class="goods-price" style="position: relative">
+		<div v-if="item.store.sc_id==2" v-link="{path:'/HotelDetail/'+storeId}" class="content">
+			<div class="store-name">{{item.store.store_name}}</div>
+			<div class="store-price" style="position: relative">
 				<div style="position: absolute;bottom: 0;color:red">{{item.store.area_info}}</div>
 			</div>
 		</div>
-		<div v-if="item.store.sc_id==3" v-link="{path:'/scenicDetail/'+storeId}" class="content">
-			<div class="goods-name">{{item.store.store_name}}</div>
-			<div class="goods-price" style="position: relative">
+		<div v-if="item.store.sc_id==3" v-link="{path:'/ScenicDetail/'+storeId}" class="content">
+			<div class="store-name">{{item.store.store_name}}</div>
+			<div class="store-price" style="position: relative">
 				<div style="position: absolute;bottom: 0;color:red">{{item.store.area_info}}</div>
 			</div>
 		</div>
 		<div class="delete-btn">
-			<img @click="deleteGoods()" src="../asset/images/delete-white.png">
+			<img @click="deleteStore()" src="../asset/images/delete-white.png">
 		</div>
 	</li>
 </template>
@@ -34,7 +34,7 @@ module.exports = {
 		}
 	},
 	methods:{
-		deleteGoods:function(){
+		deleteStore:function(){
 			$.poemPost(STORE_COLLECT_DELETE_API,{'key':poem.getItem('key'),'fav_id':this.item.fav_id}).done(this.deleteDone);
 			event.stoppropagation();
 		},
@@ -56,7 +56,7 @@ module.exports = {
 @import "../main.styl"
 collect-item-height = 1.8rem
 collect-img-height = 1.6rem
-.collect-goods-item
+.collect-store-item
 	display:flex
 	height:collect-item-height
 	&>.icon

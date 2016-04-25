@@ -36,7 +36,7 @@
             </a></div>
         </section>
         <section class="li-section" style="margin-top: 15px">
-         <div class="li-label"><a v-link="{name:'addressList'}">
+        <!--  <div class="li-label"><a v-link="{name:'addressList'}">
               <div class="icon">
                 <img src="../asset/images/star-red-full.png">
               </div>
@@ -44,7 +44,7 @@
               <div class="arrow">
               <i></i>
               </div>
-            </a></div>
+            </a></div> -->
           <div class="li-label"><a v-link="{path:'/CollectList'}">
               <div class="icon">
                 <img src="../asset/images/collect-red.png">

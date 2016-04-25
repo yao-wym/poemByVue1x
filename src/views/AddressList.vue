@@ -43,6 +43,7 @@ module.exports = {
     data(){
       this.action = this.$route.query.action;
       this.refer = location.href.split("refer=");
+      this.getAddrList();
     }
   },
   methods:{
@@ -67,7 +68,6 @@ module.exports = {
   created: function() {
   },
   ready:function(){
-    this.getAddrList();
     this.$dispatch('pageLoaded');
   },
   attached:function(){

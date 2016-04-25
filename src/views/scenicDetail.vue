@@ -100,7 +100,7 @@
     },
     methods: {
       collect(){
-      $.poemPost(GOODS_COLLECT_API,{key:poem.getItem('key'),goods_id:this.$route.params.id}).done(this.collectDone);
+      $.poemPost(STORE_COLLECT_API+'&fid='+this.$route.params.id,{key:poem.getItem('key')}).done(this.collectDone);
       },
       collectDone(res){
         if(res.error){

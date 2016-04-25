@@ -6,7 +6,7 @@
 					<div style="background-image:url({{item}});height:{{bannerHeight}}" class="painting giotto"></div>
 				</div>
 	        </div>
-	        <div default="true" id="banner" style="background-color: white" class="banner-content" v-else>
+	        <div default="true" id="banner" style="background-color: white;width:{{slideList.length*10+'rem'}}" class="banner-content" v-else>
 				<div @click='showDetail($index)' v-for="item in slideList" :item="item"  class="slide">
 					<div style="background-image:url({{item.image}})" class="painting giotto"></div>
 				</div>
@@ -128,6 +128,7 @@ export default {
 			this.slideList = res.adv_list.item
 		},
 		showDetail:function(index){
+
 			this.$route.router.go({name:this.pageType['scenic'],params:{'id':this.slideList[index].data}});
 			// alert(JSON.stringify(this.slideList[index]));
 		}

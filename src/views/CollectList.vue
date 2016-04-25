@@ -2,8 +2,10 @@
   <div class="flex-view">
     <app-header title="我的收藏"></app-header>
     <div class="header-tab" style="display:flex">
-      <div class="header-tab-item active" position="0">店铺</div>
-      <div class="header-tab-item" position="1">商品</div>
+      <div v-if="position==0" class="header-tab-item active" position="0">店铺</div>
+      <div v-else class="header-tab-item" position="0">店铺</div>
+      <div v-if="position==1" class="header-tab-item active" position="1">商品</div>
+      <div v-else class="header-tab-item" position="1">商品</div>
     </div>
         <flex-scroll-view>
           <!-- <ul id="store-collect-view" style="font-size: 0.3rem;">
@@ -43,8 +45,6 @@
     // $.fn.poemGet(CART_LIST_API,{'key':});
     $(".header-tab").on('click',".header-tab-item",
       (function(that){ return function(){
-        $('.header-tab-item').removeClass('active');
-        $(this).addClass('active');
         that.position = [].indexOf.call(this.parentNode.children,this);
         if(that.initState[that.position] == 0){
           that.getCollectList(that.position);
@@ -58,7 +58,7 @@
   route:{
     data(transition){
       transition.next({
-
+        initState:[0,0],
       })
       this.getStoreCollectList();
     }

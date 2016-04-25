@@ -1,11 +1,11 @@
 <template>
   <div class="flex-view" v-transition>
      <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
-      <div class="section avatar">头像
+      <!-- <div class="section avatar">头像
         <span class="right">></span>
         <div class="right avatar-img"><img src="{{ avatar }}" alt=""></div>
-      </div>
-      <div class="section">昵称<input type="text" class="nickname" value="{{ nickname }}" v-model="nickname"></div>
+      </div> -->
+      <div class="section">昵称<input type="text" class="nickname" value="{{ nickname }}" v-model="nickname" lazy></div>
       <div  @click="showChooseSex = !showChooseSex" class="section">性别<span class="right">></span></div>
       <div v-show="showChooseSex" class="choose-sex">
         <input type="radio" value="1" name="sex" v-model="sex" id="man"><label :class="{'active': sex==1}" for="man">男性</label>
@@ -92,41 +92,55 @@
         require(['../components/CommonHeader.vue'], resolve);
       }
     },
-
     data() {
+      var user = poem.getObj('user');
       return {
+        rightLabel:'确定',
         title: '个人资料',
-        nickname: '',
+        rightLink:"setUserInfo",
+        nickname: user['nickname'],
         showChooseSex: 0,
-        sex: 0,
+        sex: user['sex'],
         avatar: ''
       }
     },
-
+    computed:function(){},
     methods: {
       getUserInfo() {
-        $.poemPost(USER_INFO_API, {key:"60669c1838e2613754ea9a466d50b89f"}).done(this.getUserInfoDone);
+        $.poemPost(USER_INFO_API, {key:poem.getItem('key')}).done(this.getUserInfoDone);
       },
-
+      setUserInfo(){
+        $.poemPost(SAVE_USER_INFO_API, {key:poem.getItem('key'), nickname: val}).done(this.setDone);
+      },
       getUserInfoDone(data) {
         let info = data.member_info;
-        this.avatar = info.avator;
-        this.nickname = info.nickname
+        poem.saveObj('user',info);
+      },
+
+      setDone(data){
+        poemUI.toast(data[0]);
       }
     },
+    route:{
+      data:function(){
 
+      }
+    },
+    events:{
+      setUserInfo:function(){
+        this.setUserInfo();
+      }
+    },
     ready() {
-      this.getUserInfo();
+      // this.getUserInfo();
     },
 
     watch: {
       nickname: function (val,oldval) {
-          $.poemPost(SAVE_USER_INFO_API, {key:"60669c1838e2613754ea9a466d50b89f", nickname: val});
+          $.poemPost(SAVE_USER_INFO_API, {key:poem.getItem('key'), nickname: val}).done(this.setDone);
       },
       'sex': function(val, oldval) {
-        $.poemPost(SAVE_USER_INFO_API, {key:"60669c1838e2613754ea9a466d50b89f", sex: val}).done(function(data) {
-          console.log(data)
-        })
+        $.poemPost(SAVE_USER_INFO_API, {key:poem.getItem('key'), sex: val}).done(this.setDone);
       }
     }
   }

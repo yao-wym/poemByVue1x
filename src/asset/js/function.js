@@ -109,3 +109,41 @@ window.poem = {};
 	};
 	poem.client = 'ios';
 })(jQuery,window.poem);
+
+var poemUI = {
+    toast:function(msg){
+        var toast = document.createElement('div');
+        toast.innerHTML = `${msg}`;
+
+        toast.style.position = 'fixed';
+        toast.style.left = '50%';
+        toast.style.bottom = '1.5rem';
+        toast.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+        toast.style.color = 'fff'
+        toast.style.width = 'auto';
+        toast.style.padding = '.3rem 0.8rem';
+        toast.style.borderRadius = '20px';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.textAlign = 'center';
+        toast.style.transition = 'all .5s';
+        toast.style.opacity = '0';
+
+        document.getElementById('app-container').appendChild(toast);
+        setTimeout(function () {
+            toast.style.opacity = '1';
+            toast.style.bottom = '2rem'
+        }, 10)
+
+        setTimeout(function () {
+            toast.style.opacity = '0'
+        }, 1000)
+    },
+    comfirm:function(msg){
+        var flag = comfirm(msg);
+        if(flag == true){
+
+        }else{
+
+        }
+    }
+}

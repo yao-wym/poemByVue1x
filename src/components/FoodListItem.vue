@@ -1,6 +1,6 @@
 <template>
 	<li class="goods-item" style="padding:10px 20px">
-		<a style="overflow: hidden;display:flex" v-link="{path:'/ScenicDetail/'+food.goods_id}">
+		<a style="overflow: hidden;display:flex" v-link="{path:'/FoodDetail/'+food.goods_id}">
 			<img v-bind:src="food.goods_image_url" class="goods-img">
 			<div class="goods-info">
 				<div class="goods-name">{{food.goods_name}}</div>

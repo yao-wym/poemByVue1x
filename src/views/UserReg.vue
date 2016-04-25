@@ -8,10 +8,11 @@
           <label style="display:inline-block">手机号</label>
         </div>
 				<input v-model="mobile" id="mobile" style="border:0;heigth:50px;display:inline-block;" placeholder='手机号'/>
-				<button style="margin-top: -5px;border: none;padding: 5px 10px;color:#aaa;background-color: #eee;height:.6rem;font-size:.3rem;width: 2rem" @click="sendSms">发送验证码</button>
+				<button style="margin-top: -5px;border: none;padding: 5px 10px;color:#aaa;background-color: #eee;height:.6rem;font-size:.3rem;" @click="sendSms">发送验证码</button>
 			</div>
 			<div class="input-item">
         <div class="icon">
+          <img src='../asset/images/lock-white.png'/>
   				<label v-model="validCode" id="valid-code" style="display:inline-block">验证码</label>
         </div>
         <input style=" display:inline-block;" placeholder='请填写验证码' />
@@ -19,7 +20,7 @@
 			<div class="input-item">
         <div class="icon">
   				<img src='../asset/images/lock-white.png'/>
-  				<label id="password" style="display:inline-block">密码</label>
+  				<label style="display:inline-block">密码</label>
         </div>
         <input v-model="password" type="password" style="display:inline-block;" placeholder='请填写密码' />
 			</div>

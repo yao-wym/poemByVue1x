@@ -83,42 +83,5 @@ var GOODS_COLLECT_DELETE_API = HOST_API+'act=member_favorites&op=favorites_del';
 var STORE_COLLECT_DELETE_API = HOST_API+'act=member_favorites&op=favorites_del';
 
 var SERVICE_CALL = "010-57221838";
-
-var poemUI = {
-    toast:function(msg){
-        var toast = document.createElement('div');
-        toast.innerHTML = `${msg}`;
-
-        toast.style.position = 'fixed';
-        toast.style.left = '50%';
-        toast.style.bottom = '1.5rem';
-        toast.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-        toast.style.color = 'fff'
-        toast.style.width = '60%';
-        toast.style.padding = '.3rem';
-        toast.style.borderRadius = '20px';
-        toast.style.transform = 'translateX(-50%)';
-        toast.style.textAlign = 'center';
-        toast.style.transition = 'all .5s';
-        toast.style.opacity = '0';
-
-        document.getElementById('app-container').appendChild(toast);
-        setTimeout(function () {
-            toast.style.opacity = '1';
-            toast.style.bottom = '2rem'
-        }, 10)
-
-        setTimeout(function () {
-            toast.style.opacity = '0'
-        }, 1000)
-    },
-    comfirm:function(msg){
-        var flag = comfirm(msg);
-        if(flag == true){
-
-        }else{
-
-        }
-    }
-}
+    
 var client = 'ios'
