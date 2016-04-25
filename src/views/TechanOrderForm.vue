@@ -16,7 +16,7 @@
             >
           </div>
         </div>
-        <div class="section" class="order-form-goods" style="overflow:hidden;;border-bottom:1px solid #ccc">
+        <div v-if="goodsDetail!=''" class="section" class="order-form-goods" style="overflow:hidden;;border-bottom:1px solid #ccc">
           <div style="float: left;overflow:hidden;border-bottom:none">
             <img style="width: 1rem;height: 1rem;top:0" src="{{goodsDetail.spec_image[0]}}">
           </div>
@@ -25,8 +25,20 @@
             <div>￥{{goodsDetail.goods_info.goods_price}}</div>
           </div>
         </div>
+        <div v-if="goodsBuyList" v-for="goods in goodsBuyList" class="section" class="order-form-goods" style="overflow:hidden;;border-bottom:1px solid #ccc">
+          <div style="float: left;overflow:hidden;border-bottom:none">
+            <img style="width: 1rem;height: 1rem;top:0" src="{{goods.goods_image_url}}">
+          </div>
+          <div style="width: 60%;float: left;border-bottom:none">
+            <div>{{goods.goods_name}}</div>
+            <div>￥{{goods.goods_price}}</div>
+          </div>
+          <div style="float:right;overflow:hidden;border-bottom:none">
+            <div>X{{goods.goods_num}}</div>
+          </div>
+        </div>
         <div class="section">
-          <div class="techan-count">购买数量
+          <div v-if="goodsDetail!=''" class="techan-count">购买数量
             <div class="right">
               <button @click="minusTechanCount">-</button>
               {{ techanCount }}
@@ -44,9 +56,12 @@
         </div>
       </div>
     </flex-scroll-view>
-      <div class="footer">
-        <div class="price">订单金额：<span>{{ goodsDetail.goods_info.goods_price*techanCount }}</span></div>
-        <input @click="submitOrder1()" type="button" value="提交订单">
+      <div class="footer" v-if="goodsDetail!=''">
+       <div class="price" >订单金额：<span>{{ goodsDetail.goods_info.goods_price*techanCount }}</span></div> <input @click="submitOrder1()" type="button" value="提交订单">
+      </div>
+      <div class="footer" v-else>
+        <div class="price"  v-if="goodsBuyList!=''">订单金额：<span>{{ cartCount }}</span></div>
+        <input @click="submitCartOrder1()" type="button" value="提交订单">
       </div>
   </div>
 </template>
@@ -63,7 +78,10 @@
     data() {
       return {
         goodsId:'',
-        goodsDetail:{},
+        goodsDetail:"",
+        goodsBuyList:{},
+        cartBuyStr:'',
+        cartCount:0,
         techanName: '',
         techanType: '',
         techanCount: 1,
@@ -101,6 +119,7 @@
         }
         $.poemPost(GOODS_BUY_STEP1_API,{'key':poem.getItem('key'),'cart_id':this.goodsTypeId+'|'+this.techanCount}).done(this.submitSuccess1);
       },
+     
       submitSuccess1:function(res){
           if(!$.isEmpty(res.error)){
             poemUI.toast(res.error)
@@ -111,6 +130,25 @@
       submitOrder2:function(){
         $.poemPost(GOODS_BUY_STEP2_API,{'key':poem.getItem('key'),'cart_id':this.goodsTypeId+'|'+this.techanCount,'address_id':this.address.address_id,'pay_name':'online'}).done(this.submitDone);
       },
+      submitCartOrder1:function(){
+        if($.isEmpty(this.address.address_id)){
+          poemUI.toast('请选择收货地址');
+        }
+        $.poemPost(GOODS_BUY_STEP1_API,{'key':poem.getItem('key'),'cart_id':this.cartBuyStr}).done(this.submitCartSuccess1);
+      },
+      submitCartOrder2:function(){
+        if($.isEmpty(this.address.address_id)){
+          poemUI.toast('请选择收货地址');
+        }
+        $.poemPost(GOODS_BUY_STEP1_API,{'key':poem.getItem('key'),'cart_id':this.cartBuyStr,'address_id':this.address.address_id,'pay_name':'online'}).done(this.submitDone);
+      },
+      submitCartSuccess1:function(res){
+          if(!$.isEmpty(res.error)){
+            poemUI.toast(res.error)
+          }else{
+            this.submitCartOrder2();
+          }
+      }, 
       submitDone:function(res){
         if(!$.isEmpty(res.error)){
           poemUI.toast(res.error);
@@ -124,9 +162,19 @@
     },
     route: {
       data: function (transition) {
-        this.goodsId = this.$route.query.goodsId;
-        this.goodsTypeId = this.$route.query.goodsType;
-        this.getGoodsDetail();
+        if(this.$route.query['cart']!=undefined){
+          this.goodsBuyList = JSON.parse(this.$route.query['cart']);
+          this.cartCount = 0;
+          this.cartBuyStr = "";
+          for(var i=0;i<this.goodsBuyList.length;i++){
+            this.cartCount+=this.goodsBuyList[i].goods_price*this.goodsBuyList[i].goods_num;
+            this.cartBuyStr+=this.goodsBuyList[i].goods_id+'|'+this.goodsBuyList[i].goods_num+',';
+          }
+        }else{
+          this.goodsId = this.$route.query.goodsId;
+          this.goodsTypeId = this.$route.query.goodsType;
+          this.getGoodsDetail();
+        }
         if(!$.isEmpty(poem.getObj('chosenAddr'))){
           this.address = poem.getObj('chosenAddr')
         }
@@ -153,7 +201,7 @@
       background: poem-white
       margin-bottom: 0.4rem
       & > div
-        padding: 0.6rem 0.4rem
+        padding: 0.6rem 0.2rem
         border-bottom: 1px solid line-gray
       &:first-child
         padding: 0.4rem

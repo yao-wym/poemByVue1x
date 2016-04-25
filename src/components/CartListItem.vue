@@ -13,15 +13,17 @@
 			</div>
 		</div>
 		<div v-for="goods in cart" class="cart-goods-list">
-			<div class="cart-goods-item" v-link="{path:'/FoodDetail/'+goods.goods_id}">
+			<div class="cart-goods-item">
 				<a>
-			<img class="cart-goods-img" src="{{goods.goods_image_url}}" />
+			<img class="cart-goods-img" src="{{goods.goods_image_url}}"  v-link="{path:'/FoodDetail/'+goods.goods_id}"/>
 			<div class="cart-goods-info">
 				{{goods.goods_name}}
 			</div>
 			<div class="cart-goods-price">
-				<p>{{goods.goods_price}}</p>
-				<p>x{{goods.goods_num}}</p>
+				<p>￥{{goods.goods_price}}</p>
+				<p><button style="border:none;background-color: rgb(80,180,100);color:white;width:.4rem;height:.4rem;;font-size:30px" @click="minusGoods($index)">-</button>
+				<span style="position:relative;top:3px;margin: 0 8px">{{goods.goods_num}}</span>
+				<button style="border:none;background-color: rgb(80,180,100);color:white;width:.4rem;height:.4rem;color:white;font-size:30px" @click="addGoods($index)">+</button></p>
 			</div>
 			</a>
 			</div>
@@ -37,8 +39,8 @@
 			</span>
 		</div>
 		<div class="cart-item-operate" style="overflow:hidden">
-			<div @click="submitOrder(cart_id)" class="cart-item-pay" style="float:right">去下单</div>
-			<div @click="delete(goods.cart_id)" class="cart-item-cancel" style="float:right">取消订单</div>
+			<div @click="submitOrder()" class="cart-item-pay" style="float:right">去下单</div>
+			<!-- <div @click="delete()" class="cart-item-cancel" style="float:right">取消订单</div> -->
 			<!-- <div class="cart-item-call" style="float:right">联系卖家</div> -->
 		</div>
 	</li>
@@ -50,11 +52,22 @@ module.exports = {
 	props: ['cart'],
 	methods:{
 	    delete:function(cart_id){
-	      $.poemPost(CART_DEL_API,{key:poem.getItem('key'),cart_id:cart_id}).done(this.delSuccess);
+	    	$.poemPost(CART_DEL_API,{key:poem.getItem('key'),cart_id:cart_id}).done(this.delSuccess);
 	    },
 	    delSuccess:function(res){
 	    	poemUI.toast('删除成功');
       		this.$dispatch('cartRefresh');
+	    },
+	    addGoods:function(index){
+	    	this.cart[index].goods_num++;
+	    },
+	    minusGoods:function(index){
+	    	if(this.cart[index].goods_num>1)
+	    	this.cart[index].goods_num--;
+	    	if(this.cart[index].goods_num==1){
+	    		this.delete(this.cart[index].cart_id);
+	    	}
+
 	    },
 	    // buy:function(cart_id){
 	    //   $.poemPost(BUY_CART_VR_API,{key:poem.getItem('key'),cart_id:cart_id}).done(this.delSuccess);
@@ -63,7 +76,8 @@ module.exports = {
 	    // 	poemUI.toast('购买成功成功');
 	    // },
 	    submitOrder:function(cart_id){
-	    	this.$route.router.go({path:'/TechanOrderForm?goodsId='+cart_id+'&goodsType='+goods_id});
+	    	var cartJson = JSON.stringify(this.cart);
+	    	this.$route.router.go({path:'/TechanOrderForm?cart='+cartJson});
 	    }
 	}
 }
@@ -106,7 +120,7 @@ module.exports = {
 	& .cart-goods-info
 		flex:1
 	& .cart-goods-price
-		width:1rem
+		width:2rem
 		text-align:center	
 		& p 
 			margin-top:0
