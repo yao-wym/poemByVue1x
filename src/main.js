@@ -10,8 +10,6 @@ import HotelListView from './views/HotelList.vue'
 // import FoodListView from './views/FoodList.vue'
 import UserRegView from './views/UserReg.vue'
 import UserLoginView from './views/UserLogin.vue'
-import FindPwdView from './views/UserFindPwd.vue'
-import ChangePwdView from './views/UserChangePwd.vue'
 // import AddressListView from './views/AddressList.vue'
 import IndexView from './views/Index.vue'
 import IndexArticle from './views/IndexArticle.vue'
@@ -66,25 +64,15 @@ router.map({
       require(['./Views/MapView.vue'], resolve)
     }
   },
+  '/ChangePwd':{
+        name:'changepwd',
+        component:function (resolve) {
+          require(['./Views/UserChangePwd.vue'], resolve)
+        }
+    },
   '/user': {
     component: UserView,
     subRoutes:{
-      '/login':{
-        name:'login',
-        component:UserLoginView
-      },
-      '/reg':{
-        name:'reg',
-        component:UserRegView
-      },
-      '/findpwd':{
-        name:'findpwd',
-        component:FindPwdView
-      },
-      '/changepwd':{
-        name:'changepwd',
-        component:ChangePwdView
-      },
       '/OrderHotel':{
         name:'orderhotel',
         component:OrderHotelView
@@ -124,14 +112,15 @@ router.map({
   // '/ucenter': {
   //   component: ItemView
   // },
-  '/login': {
-    component: UserLoginView
+  '/Login': {
+    component:function (resolve) {
+      require(['./Views/UserLogin.vue'], resolve)
+    }
   },
-  '/reg': {
-    component: UserRegView
-  },
-  '/findpwd': {
-    component: FindPwdView
+  '/Reg': {
+    component:function (resolve) {
+      require(['./Views/UserReg.vue'], resolve)
+    }
   },
   '/search/:keyword': {
     name:'search',
@@ -195,19 +184,19 @@ router.map({
   },
    '/StaticView': {
     component:function (resolve) {
-      require(['./Views/StaticView.vue'], resolve)
+      require(['./Views/StaticView.vue'], resolve);
     }
   },
-    '/ResetView': {
-    component:function (resolve) {
-      require(['./Views/UserResetPwd.vue'], resolve)
-    }
-  },
+  //   '/ResetView': {
+  //   component:function (resolve) {
+  //     require(['./Views/UserResetPwd.vue'], resolve);
+  //   }
+  // },
   '/HotelDetail/:hotelId': {
     name:'hoteldetail',
     // component: HotelDetailView,
     component:function (resolve) {
-      require(['./Views/HotelDetail.vue'], resolve)
+      require(['./Views/HotelDetail.vue'], resolve);
     }
   },
   '/HotelDeepDetail/:id': {

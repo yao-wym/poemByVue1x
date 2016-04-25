@@ -5,7 +5,7 @@
           <div>
             <img v-link="{path:'/SelfInfo'}" style="width: 2rem" src="../asset/images/my-circle.png">
             <p v-if="key" style="margin-top:10px;color:white">{{username}}</p>
-            <p v-link="{path:'/user/login'}" v-else style="margin-top:10px;color:white">登陆</p>
+            <p v-link="{path:'/Login'}" v-else style="margin-top:10px;color:white">登陆</p>
           </div>
         </header>
         <div v-="key">

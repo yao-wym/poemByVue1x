@@ -1,5 +1,6 @@
 <template>
 	<div class="view" v-transition>
+  <app-header title="注册"></app-header>
 	<div style="margin-top:2rem;text-align:center" class="reg-container">
 		<div class="poem-input-box">
 			<div class="input-item">
@@ -62,7 +63,8 @@ module.exports = {
   			mobile:'',
   			password:'',
   			validCode:'',
-  			agreeCheck:''
+  			agreeCheck:'',
+        random:''
   		}
   	},
   	components:{
@@ -79,26 +81,30 @@ module.exports = {
   				poemUI.toast('请先同意使用协议');
   				return;
   			}
+        if(this.random != this.validCode){
+          poemUI.toast('验证码错误');
+          return;
+        }
   			$.post(REG_API,{'username':this.mobile,'password':this.password,'password_confirm':this.password,'client':client,'invite_code':invite_code},'','json').done(this.regDone).fail(this.regFail);
   		},
+      regDone:function(res){
+        if(res.code == 200){
+          if(res.datas.error){
+            poemUI.toast(res.datas.error)
+          }else{
+            localStorage.setItem('username',this.mobile);
+            localStorage.setItem('key',res.datas.key);
+            poemUI.toast('注册成功');
+            this.$route.router.go("/");
+          }
+        }
+      },
+      regFail:function(){
+
+      },
   		sendSms:function(res){
   			var random = Math.floor(Math.random()*1000000);
   			$.post(SEND_SMS_API,{'mobile':this.mobile,'random_str':random},'','json').done(this.sendSmsDone).fail(this.sendSmsFail);
-  		},
-  		regDone:function(res){
-  			if(res.code == 200){
-  				if(res.datas.error){
-  					poemUI.toast(res.datas.error)
-  				}else{
-  					localStorage.setItem('username',this.mobile);
-  					localStorage.setItem('key',res.datas.key);
-  					poemUI.toast('注册成功');
-  					this.$route.router.go("/");
-  				}
-  			}
-  		},
-  		regFail:function(){
-
   		},
   		sendSmsDone:function(res){
   			if(res.code==200){

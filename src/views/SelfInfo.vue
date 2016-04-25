@@ -5,12 +5,12 @@
         <span class="right">></span>
         <div class="right avatar-img"><img src="{{ avatar }}" alt=""></div>
       </div> -->
-      <div class="section">昵称<input type="text" class="nickname" value="{{ nickname }}" v-model="nickname" lazy></div>
+      <div class="section">昵称<input type="text" class="nickname" value="{{ user.nickname }}" v-model="user.nickname" lazy></div>
       <div  @click="showChooseSex = !showChooseSex" class="section">性别<span class="right">></span></div>
       <div v-show="showChooseSex" class="choose-sex">
-        <input type="radio" value="1" name="sex" v-model="sex" id="man"><label :class="{'active': sex==1}" for="man">男性</label>
-        <input type="radio" value="2" name="sex" v-model="sex" id="woman"><label :class="{'active': sex==2}" for="woman">女性</label>
-        <input type="radio" value="0" name="sex" v-model="sex" id="secret"><label :class="{'active': sex==0}" for="secret">保密</label>
+        <input type="radio" value="1" name="sex" v-model="user.sex" id="man"><label :class="{'active': user.sex==1}" for="man">男性</label>
+        <input type="radio" value="2" name="sex" v-model="user.sex" id="woman"><label :class="{'active': user.sex==2}" for="woman">女性</label>
+        <input type="radio" value="0" name="sex" v-model="user.sex" id="secret"><label :class="{'active': user.sex==0}" for="secret">保密</label>
       </div>
       <div class="section">出生日期<span class="right">></span></div>
       <a href="#/AddressList" class="section">我的收货地址<span class="right">></span></a>
@@ -93,15 +93,18 @@
       }
     },
     data() {
-      var user = poem.getObj('user');
+      this.initUserInfo();
       return {
         rightLabel:'确定',
         title: '个人资料',
         rightLink:"setUserInfo",
-        nickname: user['nickname'],
         showChooseSex: 0,
-        sex: user['sex'],
-        avatar: ''
+        user:{
+          nickname:"",
+          sex:1,
+          avatar:"",
+          birthday:""
+        }
       }
     },
     computed:function(){},
@@ -110,10 +113,19 @@
         $.poemPost(USER_INFO_API, {key:poem.getItem('key')}).done(this.getUserInfoDone);
       },
       setUserInfo(){
-        $.poemPost(SAVE_USER_INFO_API, {key:poem.getItem('key'), nickname: val}).done(this.setDone);
+        $.poemPost(SAVE_USER_INFO_API, {key:poem.getItem('key'), nickname: this.user.nickname,sex:this.user.sex,birthday:this.user.birthday}).done(this.setDone);
+      },
+      initUserInfo(){
+        this.getUserInfo();
+        // var user = poem.getObj('user');
+        // if($.isEmpty(user)){
+        // }else{
+        //   this.user = user;
+        // }
       },
       getUserInfoDone(data) {
         let info = data.member_info;
+        this.user = info;
         poem.saveObj('user',info);
       },
 
@@ -136,12 +148,12 @@
     },
 
     watch: {
-      nickname: function (val,oldval) {
-          $.poemPost(SAVE_USER_INFO_API, {key:poem.getItem('key'), nickname: val}).done(this.setDone);
-      },
-      'sex': function(val, oldval) {
-        $.poemPost(SAVE_USER_INFO_API, {key:poem.getItem('key'), sex: val}).done(this.setDone);
-      }
+      // nickname: function (val,oldval) {
+      //     $.poemPost(SAVE_USER_INFO_API, {key:poem.getItem('key'), nickname: val}).done(this.setDone);
+      // },
+      // 'sex': function(val, oldval) {
+      //   $.poemPost(SAVE_USER_INFO_API, {key:poem.getItem('key'), sex: val}).done(this.setDone);
+      // }
     }
   }
 </script>

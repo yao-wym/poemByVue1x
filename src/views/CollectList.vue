@@ -13,7 +13,7 @@
             </order-hotel-item>
           </ul> -->
           <ul v-if="position==0" id="store-collect-view" style="font-size: 0.3rem;">
-            <collect-store-item v-for="item in storeCollectList" :item="item":index="$index">
+            <collect-store-item v-if="item.store" v-for="item in storeCollectList" :item="item":index="$index">
             </collect-store-item>
           </ul>
           <ul v-if="position==1" id="goods-collect-view" style="font-size: 0.3rem;">

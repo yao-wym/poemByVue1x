@@ -4,7 +4,7 @@
   	<flex-scroll-view>
       <div class="two-section">
         <p v-link={path:"/SelfInfo"} ><img class="xsmall-icon" src="../asset/images/zhanghao.png" alt="">账号 {{xid}}</p>
-        <a v-link={path:"/ResetView"}><p><img class="xsmall-icon" src="../asset/images/mima.png" alt="">密码<span class="right">修改密码 ></span></p></a>
+        <a v-link={path:"/ChangePwd"}><p><img class="xsmall-icon" src="../asset/images/mima.png" alt="">密码<span class="right">修改密码 ></span></p></a>
       </div>
       <a href="#/FeedBack" class="section"><img class="xsmall-icon" src="../asset/images/yijianfankui.png" alt="">意见反馈<span class="right">></span></a>
      <!--  <a href="" class="section"><img class="xsmall-icon" src="../asset/images/qingchuhuancun.png" alt="">清除缓存<span class="right">></span></a> -->

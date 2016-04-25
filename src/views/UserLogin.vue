@@ -1,5 +1,6 @@
 <template>
 <div class="view" v-transition>
+	<app-header title="登陆" right-label="注册" right-link="#/Reg"></app-header>
 	<form novalidate>
 				<div style="margin-top:3rem;text-align:center" class="login-container">
 		<div class="poem-input-box">
@@ -16,7 +17,7 @@
 		</div>
 		<div style="display: block;width: 80%;margin:1rem auto">
 			<div class="poem-btn-green" @click="login()">登陆</div>
-			<a v-link="{name:'findpwd'}" style="margin-top:0.5rem;float: left;color:green;font-size:.3rem">忘记密码?</a>
+			<a v-link="{name:'changepwd'}" style="margin-top:0.5rem;float: left;color:green;font-size:.3rem">忘记密码?</a>
 		</div>
 		</div>
 	</form>
@@ -71,6 +72,10 @@ module.exports = {
   	 created:function(){
 
   	 },
+  	 components: {
+		'app-header': require('../components/CommonHeader.vue'),
+		'flex-scroll-view': require('../components/FlexScrollView.vue'),
+	},
   	 ready:function(){
   	 	this.$dispatch('pageLoaded');
   	 	this.rightLabel = '注册';

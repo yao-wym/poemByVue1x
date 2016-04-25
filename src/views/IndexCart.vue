@@ -19,7 +19,6 @@
   components: {
     'cart-list-item': require('../components/CartListItem.vue'),
     'app-header': require('../components/CommonHeader.vue'),
-    'app-pane': require('../components/IndexHomePane.vue'),
     'index-tab': require('../components/IndexTab.vue'),
     'flex-scroll-view': require('../components/FlexScrollView.vue'),
   },

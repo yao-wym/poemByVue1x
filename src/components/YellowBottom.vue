@@ -6,22 +6,22 @@
 </template>
 
 <script>
-export default{
-	data:function () {
-	// return { subtitle: 123 }
-	},
-	methods:{
-  		goNextStep:function(){
-  			if(!$.isEmpty(this.href)){
-  				location.href=this.href
-  			}
-  		}
-  	},
-	props: ['href']
+ module.exports = {
+	// data:function () {
+	// 	return { subtitle: 123 }
+	// },
+	// methods:{
+ //  		goNextStep:function(){
+ //  			if(!$.isEmpty(this.href)){
+ //  				location.href=this.href
+ //  			}
+ //  		}
+ //  	},
+	// props: ['href']
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 @import "../main.styl"
 buttom-tab-height = 1.2rem
 .yellow-footer

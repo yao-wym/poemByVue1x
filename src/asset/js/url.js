@@ -82,6 +82,8 @@ var GOODS_COLLECT_DELETE_API = HOST_API+'act=member_favorites&op=favorites_del';
 
 var STORE_COLLECT_DELETE_API = HOST_API+'act=member_favorites&op=favorites_del';
 
+var RESET_PWD_API = HOST_API+'act=login&op=find_password';
+
 var SERVICE_CALL = "010-57221838";
     
 var client = 'ios'
