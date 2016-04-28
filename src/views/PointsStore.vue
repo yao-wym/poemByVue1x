@@ -94,7 +94,8 @@
           poemUI.toast(data.error);
           return;
         };
-        return poemUI.toast('兑换成功')
+        poemUI.toast('兑换成功')
+        history.go(0) 
       }
     },
 

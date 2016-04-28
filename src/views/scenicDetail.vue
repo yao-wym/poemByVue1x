@@ -20,7 +20,7 @@
         <p>{{ storeInfo.store_zy }}</p>
       </div>
       <div class="section">
-        <a href="#/Comments/100163" class="link-line">
+        <a href="#/Comments/{{id}}" class="link-line">
           <img class="small-icon" src="../asset/images/pinglun.png" alt="">
           <p>评论</p>
           <span>></span>

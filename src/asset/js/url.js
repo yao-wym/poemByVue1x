@@ -38,7 +38,7 @@ var POINTS_DETAIL_API = HOST_API + 'act=member_index&op=points_log';
 var POINTS_STORE_API = HOST_API + 'act=member_pointmall&op=plist';
 var POINTS_BUY_API = HOST_API + 'act=member_pointmall&op=buystep1';
 var USER_INFO_API = HOST_API + 'act=member_index';
-var HOTEL_DEEP_DEATIL_API = HOST_API + 'act=store&op=store_detai';
+// var HOTEL_DEEP_API = HOST_API + 'act=store&op=store_detai';
 var SAVE_USER_INFO_API = HOST_API + 'act=member_index&op=set_member_info';
 var FEEDBACK_API = HOST_API + 'act=member_index&op=save_mallconsult';
 

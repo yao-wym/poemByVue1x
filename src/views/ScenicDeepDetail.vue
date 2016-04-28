@@ -57,21 +57,25 @@
         title: '景点详情',
         scenicImg: '',
         mapImg: '',
-        scenicDetail: '响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾',
-        notice: '响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾',
-        transportation: '响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾响沙湾'
+        scenicDetail: '',
+        notice: '',
+        transportation: ''
       }
     },
 
     methods: {
       initPage(data) {
-
+        console.log(data)
+        this.scenicDetail = data.store_info.store_description;
+        setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
+        
       }
     },
 
     route: {
       data() {
-        $.poemGet(GOODS_DEEP_DETAIL_API,{'goods_id':this.$route.params.id}).done(this.initPage)
+        // $.poemGet(GOODS_DEEP_DETAIL_API,{'goods_id':this.$route.params.id}).done(this.initPage)
+        $.poemGet(SCENIC_DETAIL_API,{'store_id':this.$route.params.id}).done(this.initPage)
       }
     }
   }
