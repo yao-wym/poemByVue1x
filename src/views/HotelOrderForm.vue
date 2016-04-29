@@ -7,9 +7,10 @@
           <h1>{{ hotelName }}</h1>
             <p>
               时间：
-              <span id="dateCheckIn">{{ checkInTime }}</span>入住-<span id="dateCheckOut">{{ checkOutTime }}</span>
+              <!-- <span id="dateCheckIn">{{ checkInTime }}</span>入住-<span id="dateCheckOut">{{ checkOutTime }}</span>
               离店
-              <span class="day">{{ formInfo.days }}晚</span>
+              <span class="day">{{ formInfo.days }}晚</span> -->
+              <input type="text" id="daterange-picker">
             </p>
           <p>房型：{{ roomInfo.goods_name }}</p>
         </div>
@@ -135,8 +136,11 @@
       },
     },
     ready:function(){
-      $("#dateCheckIn").date({'title':'请选择入住时间'},this.checkInDate);
-      $("#dateCheckOut").date({'title':'请选择离店时间'},this.checkOutDate);
+      // $("#dateCheckIn").date({'title':'请选择入住时间'},this.checkInDate);
+      // $("#dateCheckOut").date({'title':'请选择离店时间'},this.checkOutDate);
+      console.log($('daterange-picker'))
+
+      $('#daterange-picker').dateRangePicker();
       this.$nextTick(function(){
          this.$broadcast('refresh');
         });

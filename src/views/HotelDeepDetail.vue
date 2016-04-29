@@ -25,9 +25,9 @@
       <div class="section estab">
         <div class="sub-header">
           <div class="icon">
-            <img src="../asset/images/phone-red.png">
+            <img src="../asset/images/main.png">
           </div>
-          <h2>酒店设施</h2>
+          <h2 class="green">酒店设施</h2>
         </div>
         <div>
           <div class="each-estab" v-for="estab in estabs">{{ estab }}</div>
@@ -36,9 +36,9 @@
       <div class="section intro">
         <div class="sub-header">
           <div class="icon">
-            <img src="../asset/images/phone-red.png">
+            <img src="../asset/images/pinglun.png">
           </div>
-          <h2>介绍</h2>
+          <h2 class="yellow">介绍</h2>
         </div>
         <div>
           <p>{{ intro }}</p>
@@ -62,19 +62,35 @@
     data() {
       return {
         address: '我在马路边捡到一分钱',
-        estabs: ['宽带上网', 'wifi', '停车场', '停车场', '停车场', '停车场' ]
+        phone: null,
+        intro: '',
+        allestabs: ['宽带上网', 'wifi覆盖', '停车场', '餐厅', '全天热水', '会议室', '健身房', '叫醒服务' ],
+        estabs: []
       }
     },
 
     methods: {
       getHotelDeepDetail() {
-        $.poemGet(HOTEL_DEEP_DETAIL_API,{'store_id':this.$route.params.id}).done(this.getHotelDeepDetailDone)
+        $.poemGet(HOTEL_DETAIL_API,{'store_id':this.$route.params.id}).done(this.getHotelDeepDetailDone)
       },
 
       getHotelDeepDetailDone(data) {
-        this.phone = data.store_phone;
-        this.address = data.store_location_lat;
-        this.intro = data.store_description;
+        var info = data.store_info;
+        this.phone = info.store_phone;
+        this.address = info.store_location_lat;
+        this.intro = info.store_description;
+        var store_zy = info.store_zy.split('');
+        for(let i = 0; i < store_zy.length; i++){
+          if (store_zy[i] == 1) {
+            this.estabs.push(this.allestabs[i]);
+          }
+        }
+      }
+    },
+
+    route: {
+      data() {
+        this.getHotelDeepDetail();
       }
     }
   }
@@ -82,6 +98,8 @@
 
 <style scoped lang="stylus">
   @import "../main.styl"
+  .flex-view
+    background: #efefef
   p
     color: text-gray
   h2
@@ -116,9 +134,9 @@
       margin: 0
   .estab
     .icon
-      padding: 0.4rem
+      padding: .4rem 0 0 .4rem
     h2
-      padding: 0.4rem
+      padding: 0.4rem 0
     overflow: hidden
     .each-estab
       width: 25%
@@ -133,4 +151,8 @@
     padding: 0.4rem
     p
       text-indent: 0.4rem
+  .green
+    color: app-green
+  .yellow
+    color: app-yellow
 </style>
