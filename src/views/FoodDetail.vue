@@ -22,7 +22,7 @@
             <p>库存：{{ goodsDetail.goods_info.goods_storage }}</p>
           </div>
         </div>
-        <a class="link-line">
+        <a class="link-line" @click="showCategory()">
           <span style="color: orange">选择商品规格</span>
           <span class="right">></span>
         </a>
@@ -72,6 +72,27 @@
         <a class="addto-cart" @click="addToCart()">加入购物车</a>
         <!-- <a @click="buy()" class="buy-now">立即购买</a> -->
       </div>
+      <div id="poem-mask" class="poem-hidden" v-on:click="hiddenMask"></div>
+      <div id="category-slide" class="poem-hidden">
+        <header class="slide-header" style="">商品规格</header>
+        <div class="slide-content" style="">
+          <div>
+            <div style="float:left;overflow:hidden;width:2rem;height:2rem;">
+              <img style="width:1.5rem;height:1.5rem;margin-top:0.25rem" src="{{goodsDetail.goods_image[0]}}">
+            </div>
+            <div style="width:100%;text-align:left">
+              <p>{{ goodsDetail.goods_info.goods_name }}</p>
+              <p><span style="color:red">¥{{ goodsDetail.goods_info.goods_marketprice }}</span></p>
+            </div>
+          </div>
+          <ul style="text-align:center;margin-top:1rem">
+            <li @click="selectGoodsType(goodsType.goods_id)" v-for="goodsType in goodsDetail.relate_goods" style="width:70%;background-color:#4BAB3A;color:white;margin:0 auto;margin-top:20px;height:.5rem;padding:5px 2px;border-radius:10px">
+              <span> {{goodsType.goods_name}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="slide-footer" @click="addToCart()">加入购物车</div>
+      </div>
   </div>
 </template>
 
@@ -92,17 +113,36 @@ module.exports = {
   },
   route: {
       data: function (transition) {
-        transition.next({
-        })
+        $('#category-slide').addClass("poem-hidden");
+        $('#category-slide').removeClass("slide-hidden");
         this.goodsId = this.$route.params.id;
         this.getGoodsDetail();
     },
       canReuse:function(transition){
-        // return false
+        return false
         //判断是否可以重用，可以则为返回true，不能重用则返回false，会实例化一个新的vue对象
       }
   },
   methods:{
+    showCategory:function(){
+      $('#poem-mask').removeClass("poem-hidden");
+      $('#poem-mask').addClass('poem-mask');
+      $("#category-slide").removeClass("poem-hidden");
+      $("#category-slide").removeClass("slide-hidden");
+      $("#category-slide").addClass("slide-show");
+    },
+    hiddenMask:function(){
+      $("#category-slide").removeClass("peom-hidden");
+      $('#poem-mask').removeClass("poem-mask");
+      $('#poem-mask').addClass('poem-hidden');
+      $('#category-slide').addClass('poem-hidden');
+      $("#category-slide").removeClass("slide-show");
+      $("#category-slide").addClass("slide-hidden");
+    },
+    selectGoodsType:function(goodsId){
+      this.goodsId = goodsId;
+      this.getGoodsDetail();
+    },
     goBack:function(){
       history.go(-1);
     },
@@ -137,6 +177,7 @@ module.exports = {
         this.goBack();
         return;
       }
+
       this.goodsDetail = res;
       // this.goodsType = res.spec_list[Object.keys(res['spec_list'])[0]];
       this.foodImgArr = res.goods_image;
@@ -153,18 +194,10 @@ module.exports = {
     return {
       quantity:1,
       goodsId:'',
-      // goodsType:'',
       goodsDetail:{},
-      foodName: '',
-      price: 59,
-      originalPrice: 100,
       expressPrice: 0,
-      monthSold: 3215,
       bgImg:'',
-      stock: 999,
-      postiveCommentsRate: 0.98,
       storeName: '',
-      storeScore: 9.2,
       foodImgArr:[],
     }
   }
@@ -173,6 +206,49 @@ module.exports = {
 
 <style lang="stylus" scoped>
   @import "../main.styl"
+  @keyframes showSlide
+    from
+      right:-80%
+    to
+      right: 0rem
+  @keyframes hiddenSlide
+    from
+      right:0rem
+    to
+      right: -80%
+  .slide-show
+    animation:showSlide 0.5s
+    right:0
+  .slide-hidden
+    animation:hiddenSlide 0.5s
+    right:-80%
+  & .poem-hidden
+    right:-80%
+  #category-slide
+    position:fixed
+    z-index:10
+    width:80%
+    height:100%
+    background-color:white
+    display:flex
+    top:0
+    flex-direction:column
+    text-align:center
+    & .slide-header
+      background-color:#4BAB3A
+      color:white
+      width:100%
+      height:1.5rem
+      line-height:1.5rem
+    & .slide-content
+      flex:1
+      width:100%
+    & .slide-footer
+      height:1.5rem
+      line-height:1.5rem
+      width:100%
+      background-color:#4BAB3A
+      color:white
   .scenic-header
     background-size:100% 100%
     text-align:center

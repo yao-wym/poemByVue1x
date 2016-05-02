@@ -17,10 +17,14 @@
 							<span  style="color: green" v-else>暂无评价</span>
 						</p>
 					</div>
-					<div style="float:right;margin-right: 10px;">
+
+					<div style="float:right;margin-right: 10px;" v-if="hotel.min_price">
 						<span style='font-size:0.3rem;color:orangered'>¥</span>
 						<span style='font-size:0.45rem;color:orangered'>{{hotel.min_price}}</span>
 						<span style="color:orangered">起</span>
+					</div>
+					<div style="float:right;margin-right: 10px;" v-else>
+						<span style='font-size:0.3rem;color:orangered'>暂无报价</span>
 					</div>
 				</div>
 				<p style="margin-top:10px">{{hotel.store_address}}</p>

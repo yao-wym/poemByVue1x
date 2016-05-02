@@ -21,9 +21,9 @@
 			</div>
 			<div class="cart-goods-price">
 				<p>￥{{goods.goods_price}}</p>
-				<p><button style="border:none;background-color: rgb(80,180,100);color:white;width:.4rem;height:.4rem;;font-size:30px" @click="minusGoods($index)">-</button>
-				<span style="position:relative;top:3px;margin: 0 8px">{{goods.goods_num}}</span>
-				<button style="border:none;background-color: rgb(80,180,100);color:white;width:.4rem;height:.4rem;color:white;font-size:30px" @click="addGoods($index)">+</button></p>
+				<p><button style="border:none;background-color: rgb(80,180,100);color:white;width:.4rem;height:.4rem;;font-size:.3rem" @click="minusGoods($index)">-</button>
+				<span style="position:relative;;margin: 0 8px">{{goods.goods_num}}</span>
+				<button style="border:none;background-color: rgb(80,180,100);color:white;width:.4rem;height:.4rem;color:white;font-size:.3rem" @click="addGoods($index)">+</button></p>
 			</div>
 			</a>
 			</div>

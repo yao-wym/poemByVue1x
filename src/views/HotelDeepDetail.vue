@@ -18,7 +18,7 @@
           </div>
           <div>
             <h2>电话</h2>
-            <p>{{ phone }}</p>
+            <a href="tel:{{ phone }}"><p>{{ phone }}</p></a>
           </div>
         </div>
       </div>
@@ -79,6 +79,7 @@
         this.phone = info.store_phone;
         this.address = info.store_location_lat;
         this.intro = info.store_description;
+        this.estabs = [];
         var store_zy = info.store_zy.split('');
         for(let i = 0; i < store_zy.length; i++){
           if (store_zy[i] == 1) {
@@ -141,6 +142,7 @@
     .each-estab
       width: 25%
       height: 1.5rem
+      box-sizing:border-box
       line-height: 1.5rem
       text-align: center
       border: 1px solid line-gray

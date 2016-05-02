@@ -74,24 +74,24 @@
             quantity:this.quantity,
             rcb_pay:0,
             pd_pay:0,
-            days:Math.ceil((this.checkOutTimeStamp-this.checkInTimeStamp)/86400000),
-            buyer_msg:Math.ceil((this.checkOutTimeStamp-this.checkInTimeStamp)/86400000)+'晚|'+this.checkInTime+'~'+this.checkOutTime+'|'+this.contact,
+            days:1,
+            buyer_msg:this.days+'晚|'+this.daterange+'|'+this.contact,
             contact:this.contact,
             buyer_phone:this.buyer_phone
         }
       },
       orderPrice:function(){
-        return (this.quantity*this.roomInfo.goods_price*Math.ceil((this.checkOutTimeStamp-this.checkInTimeStamp)/86400000)).toFixed(2)
+        return this.quantity*this.roomInfo.goods_price*this.days.toFixed(2)
       }
     },
     data() {
       return {
+        days:1,
+        daterange:'',
         roomInfo:{},
         hotelName: '',
-        checkInTime: (new Date()).getFullYear()+'-'+(parseInt((new Date()).getMonth())+1)+'-'+(new Date()).getDate(),
-        checkOutTime: (new Date()).getFullYear()+'-'+(parseInt((new Date()).getMonth())+1)+'-'+(parseInt((new Date()).getDate())+1),
-        checkInTimeStamp: (new Date()).getTime(),
-        checkOutTimeStamp: (new Date()).getTime()+86400000,
+        checkInTime: '',
+        checkOutTime: '',
         houseType: '',
         saveTo: '',
         livePerson: '',
@@ -124,23 +124,33 @@
       },
       checkInDate(dateStr){
         this.checkInTime = dateStr;
-        this.checkInTimeStamp = (new Date(dateStr)).getTime();
         //alert(this.checkInTime)
       },
       checkOutDate(dateStr){
-        this.checkOutTimeStamp = (new Date(dateStr)).getTime();
         this.checkOutTime = dateStr;
       },
       saveTimeDone(timeStr){
         this.saveTime = timeStr;
       },
+      dateSelected(event,obj){
+          /* This event will be triggered when second date is selected */
+          console.log(obj);
+          this.daterange = obj.value;
+          this.checkInTime = obj.date1;
+          this.checkOutTime = obj.date2;
+          this.days = parseInt($(".selected-days-num").text());
+      }
     },
     ready:function(){
       // $("#dateCheckIn").date({'title':'请选择入住时间'},this.checkInDate);
       // $("#dateCheckOut").date({'title':'请选择离店时间'},this.checkOutDate);
       console.log($('daterange-picker'))
 
-      $('#daterange-picker').dateRangePicker();
+      $('#daterange-picker').dateRangePicker({
+        separator:'至',
+        startDate: (new Date()).getFullYear()+'-'+(parseInt((new Date()).getMonth())+1)+'-'+(new Date()).getDate(),
+        minDays:1
+      }).bind('datepicker-change',this.dateSelected)
       this.$nextTick(function(){
          this.$broadcast('refresh');
         });

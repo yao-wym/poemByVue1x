@@ -117,6 +117,7 @@ var poemUI = {
 
         toast.style.position = 'fixed';
         toast.style.left = '50%';
+        toast.style.zIndex = 2016;
         toast.style.bottom = '1.5rem';
         toast.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
         toast.style.color = 'fff'

@@ -21,25 +21,26 @@ module.exports = {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 	@import "../main.styl"
-.goods-img
-	width:1.2rem
-	height:1.2rem
-	margin-right:0.3rem
-
-.goods-info
-	flex:1
-	overflow:hidden
 .goods-item
-	 background-color: #fafafa; 
-	 overflow:auto; 
-	 resize:horizontal;
-	 border-bottom:1px solid line-gray
-button
-	background-color:app-yellow
-	border:none
-	font-size:.3rem
-	border-radius:5px
-	padding:5px 10px
+	.goods-img
+		width:1.2rem
+		height:1.2rem
+		margin-right:0.3rem
+
+	.goods-info
+		flex:1
+		overflow:hidden
+	.goods-item
+		 background-color: #fafafa; 
+		 overflow:auto; 
+		 resize:horizontal;
+		 border-bottom:1px solid line-gray
+	button
+		background-color:app-yellow
+		border:none
+		font-size:.3rem
+		border-radius:5px
+		padding:5px 10px
 </style>
