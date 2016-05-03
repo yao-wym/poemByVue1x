@@ -139,6 +139,7 @@
           this.checkInTime = obj.date1;
           this.checkOutTime = obj.date2;
           this.days = parseInt($(".selected-days-num").text());
+          $('#daterange-picker').data('dateRangePicker').close();
       }
     },
     ready:function(){

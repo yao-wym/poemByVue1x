@@ -1045,6 +1045,10 @@
                     }
                 }
             }
+            box.css({
+                    left: 0
+                });//by wym
+
         }
 
         // Return the date picker wrapper element
