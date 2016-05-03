@@ -11,15 +11,15 @@
 		<div class="cart-goods-list">
 			<div class="cart-goods-item" v-for="goods in order.order_list[0].extend_order_goods" :index="$index">
 				<a>
-			<img class="cart-goods-img" v-link="{path:'/FoodDetail/'+goods.goods_id}" src="{{goods.goods_image_url}}" />
-			<div class="cart-goods-info">
-				{{goods.goods_name}}
-			</div>
-			<div class="cart-goods-price">
-				<p>{{goods.goods_price}}</p>
-				<p>x{{goods.goods_num}}</p>
-			</div>
-			</a>
+					<img class="cart-goods-img" v-link="{path:'/FoodDetail/'+goods.goods_id}" src="{{goods.goods_image_url}}" />
+					<div class="cart-goods-info">
+						{{goods.goods_name}}
+					</div>
+					<div class="cart-goods-price">
+						<p>{{goods.goods_price}}</p>
+						<p>x{{goods.goods_num}}</p>
+					</div>
+				</a>
 			</div>
 		</div>
 		<div class="cart-item-price" style="overflow:hidden">
