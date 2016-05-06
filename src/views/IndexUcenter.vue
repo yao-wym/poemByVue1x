@@ -147,6 +147,7 @@
   },
   ready:function(){
     this.key = poem.getItem("key");
+    // setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
   },
   route:{
     data(transition){

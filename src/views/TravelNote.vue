@@ -62,9 +62,13 @@
         // setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),1000)
       }
     },
-
+    route:{
+      data(){
+        this.getTravelNote();
+      }
+    },
     ready() {
-      this.getTravelNote();
+      
     }
   }
 </script>

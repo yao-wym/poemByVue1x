@@ -54,7 +54,7 @@ module.exports = {
       this.$nextTick(function(){
       this.$broadcast('refresh');
         });
-      setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),1000)
+      setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
   	},
   },
   created: function() {

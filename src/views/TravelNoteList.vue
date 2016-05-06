@@ -3,19 +3,29 @@
   	<flex-scroll-view>
       <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
       <ul>
-        <li class="article" v-for="article in articleList">
+        <!--li class="article" v-for="article in articleList">
           <a href="#/TravelNote/{{ article.article_id }}">
             <div class="article-img">
               <img src="{{article.article_image}}" alt="">
             </div>
             <div class="article-detail">
               <h2>{{ article.article_title }}</h2>
-              <p>{{ article.article_abstract }}代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替代替替代替代替代替</p>
-              <div class="info">
+              <p>{{ article.article_abstract }}</p>
+              <div style="font-size: .4rem" class="info">
                 <div>阅读量：{{ article.article_click }}</div>
-                <div>评论：{{ article.article_comment_flag }}</div>
-                <time>{{ article.article_publish_time }}</time>
+                <style="margin-left: 20px" div>评论：{{ article.article_comment_flag }}</div>
+                <time>{{ (new Date(article.article_publish_time*1000)).getFullYear()+'-'+(new Date(article.article_publish_time*1000)).getMonth()+'-'+ (new Date(article.article_publish_time*1000)).getDate()  }}</time>
               </div>
+            </div>
+          </a>
+        </li -->
+        <li class="article" style="width:100%;position: relative" v-for="article in articleList">
+          <a href="#/TravelNote/{{ article.article_id }}" style="width:100%;padding: .1rem 0">
+            <div class="article-img" style="width:100%;height:3.5rem">
+              <img src="{{article.article_image}}" alt="">
+            </div>
+            <div class="article-detail" style="position: absolute;bottom:5px;width: 100%;background-color: rgba(0, 0, 0, 0.7);overflow: hidden">
+              <h2 style="color:white;margin: 10px">{{ article.article_title }}</h2>
             </div>
           </a>
         </li>
@@ -74,7 +84,7 @@
 
     methods: {
       getTravelNoteList() {
-        $.poemGet(TRAVELNOTE_LIST_API,{order:"asc",page:10,curpage:this.curpage, class_id: this.$route.params.id}).done(this.getTravelNoteListDone);
+        $.poemGet(TRAVELNOTE_LIST_API,{order:"asc",page:100,curpage:this.curpage, class_id: this.$route.params.id}).done(this.getTravelNoteListDone);
       },
       getTravelNoteListDone(data) {
         this.articleList = this.articleList.concat(data.article_list);

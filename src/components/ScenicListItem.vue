@@ -21,6 +21,9 @@
 						<span style='font-size:0.4rem;color:orangered'>{{scenic.min_price}}</span>
 						<span>起</span>
 					</div>
+					<div v-else style="float:right;margin-right: 10px">
+						<span style='font-size:0.4rem;color:red'>暂无报价</span>
+					</div>
 				</div>
 				<div class="scenic-name">
 					<div style="float: left;font-size:0.3rem">
