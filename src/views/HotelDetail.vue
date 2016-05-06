@@ -95,8 +95,8 @@
               </a>
               <div v-show="roomDetailShow[$index]" class="room-detail">
                 <div class="hotel-room-img-list">
-                <div v-for="photo in room.goods_photo" class="room-img-item">
-                  <img v-bind:src="photo">
+                <div style="margin-left: 10px;overflow: hidden" v-for="photo in room.goods_photo" class="room-img-item">
+                  <img  v-bind:src="photo">
                 </div>
               </div>
               <div style="overflow:hidden">
@@ -328,7 +328,7 @@ label-height=1.2rem
         text-align:center
         & img
           width:2rem
-          height:@width
+          height:1.6rem
           margin:3px auto
           border-radius:5px
     & .book-btn

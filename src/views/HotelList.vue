@@ -43,8 +43,18 @@ module.exports = {
   		curpage : 1,
       pageNum : 1,
   		hotelList:hotelList,
-      condition:{}
+      condition:{
+        page:20
+      }
   	}
+  },
+  route:{
+    data:function(){
+      this.curpage = 1;
+      this.hotelList = [];
+      this.condition = {page:20};
+      this.getHotelList();
+    }
   },
   methods:{
   	getHotelList:function(){
@@ -52,7 +62,7 @@ module.exports = {
         poemUI.toast('没有更多了');
         return;
       }
-  		$.getJSON(HOTEL_LIST_API,{curpage:this.curpage}).done(this.getHotelListDone);
+  		$.getJSON(HOTEL_LIST_API,{curpage:this.curpage,page:20}).done(this.getHotelListDone);
   	},
   	getHotelListDone:function(res){
   		console.log(JSON.stringify(res));
@@ -64,7 +74,7 @@ module.exports = {
         this.$nextTick(function(){
           //this.$broadcast('refresh');
         });
-        setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),50)
+        setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),500)
       }
       // if(res.hasmore == false){
       //   this.$off('scrollEnd')
@@ -87,7 +97,7 @@ module.exports = {
     'showAll':function(msg){
       this.curpage = 1;
       this.hotelList = [];
-      this.condition = {};
+      this.condition = {page:20};
       this.getHotelList();
     },
     'conditionChange':function(condition){

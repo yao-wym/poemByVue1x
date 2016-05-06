@@ -1,6 +1,6 @@
 <template>
 	<div class="flex-view">
-	<app-header title="特产列表" right-icon="home-icon" right-link="#/index/home"></app-header>
+	<app-header title="特产列表"></app-header>
   <flex-scroll-view>
         <ul id="techan-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
@@ -42,7 +42,8 @@ module.exports = {
   		techanList:[],
       condition:{
         "gc_id":1,
-        "curpage":1
+        "curpage":1,
+        "page":20
       }
   	}
   },
@@ -83,7 +84,7 @@ module.exports = {
   events:{
     'showAll':function(){
       this.techanList = [];
-      this.condition = {};
+      this.condition = {'page':20};
       this.condition['curpage'] = 1;
       this.condition.gc_id = 1;
       this.getTechanList();

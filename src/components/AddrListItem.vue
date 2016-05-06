@@ -14,9 +14,9 @@
 				<span>设为默认</span>
 			</div>
 			<div style="float:right">
-				<div style="display:inline-block" v-link="'AddressAdd?addressId='+addr.address_id">
+				<!-- div style="display:inline-block" v-link="'AddressAdd?addressId='+addr.address_id">
 					编辑
-				</div>
+				</div> -->
 				<div @click="deleteAddr" style="display:inline-block">
 					删除
 				</div>

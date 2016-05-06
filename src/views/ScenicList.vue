@@ -1,6 +1,6 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header title="景点列表" right-icon="home-icon" right-link="#/index/home"></app-header>
+	<app-header title="景点列表"></app-header>
   <flex-scroll-view>
         <ul id="scienic-list-view" style="font-size: 0.3rem">
       <scenic-list-item v-for="scenic in scenicList" :scenic="scenic" :index="$index"></scenic-list-item>
@@ -38,7 +38,8 @@ module.exports = {
   		curpage : 1,
   		scenicList:[],
       condition:{
-        'sc_id':3
+        'sc_id':3,
+        'page':20
       }
   	}
   },
@@ -61,7 +62,7 @@ module.exports = {
   events:{
     'showAll':function(){
       this.scenicList = [];
-      this.condition = {};
+      this.condition = {'page':20};
       this.condition['curpage'] = 1;
       this.condition.gc_id = 3;
       this.getScenicList();

@@ -1,12 +1,19 @@
 <template>
   <div class="flex-view" v-transition>
+    <app-header title="订单填写"></app-header>
     <flex-scroll-view>
       <div class="container">
-        <div class="banner">
-          <div class="banner-img">
+        <div class="banner" style="overflow: hidden;padding-left:.4rem">
+          <!-- <div class="banner-img">
             <img src="http://2.share.photo.xuite.net/wxm3338/126d4b2/14058821/738662509_m.jpg" alt="">
+          </div> -->
+          <div style="overflow:hidden;float: left">
+            <h1>{{ goodsInfo.scenicName}}</h1>
+            <div>{{ goodsInfo.goodsName }}</div>
           </div>
-          <h1>{{ goodsInfo.scenicName+' '+goodsInfo.goodsName }}</h1>
+          <div style="float:right;color: orangered;margin-top:.5rem;margin-right: .5rem">
+            ￥{{ goodsInfo.goodsPrice }}
+          </div>
         </div>
         <div class="section">
           <div class="house-count">购买数量
@@ -30,8 +37,8 @@
             <img class="icon" src="../asset/images/phone-device.png" alt=""></div>
         </div>
         <div class="notice">
-          <h2>温馨提示：</h2>
-          <p>请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则请在最晚到店时间以前到达，否则</p>
+          <!-- <h2>温馨提示：</h2> -->
+          <p></p>
         </div>
       </div>
 
@@ -48,6 +55,9 @@
       'flex-scroll-view': function(resolve) {
         require(['../components/FlexScrollView.vue'], resolve);
       },
+      'app-header':function(resolve){
+      require(['../components/CommonHeader.vue'], resolve);
+    },
     },
     computed:{
       formData:function(){
@@ -133,10 +143,11 @@
         width: 60%;
         font-size: 0.4rem;
     .banner
+      padding-left: section-padding
       & h1
         font-size: .6rem
+        color:#000
         font-weight: normal
-        padding-left: section-padding
     .banner-img
       width: 100%
       height: 4rem

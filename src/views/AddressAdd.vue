@@ -34,8 +34,8 @@
 		border-bottom:1px solid line-color
 .yellow-footer
 	background-color:app-yellow
-	height:buttom-tab-height
-	line-height:buttom-tab-height
+	height:1rem
+	line-height:1rem
 	text-align:center
 	font-size:.5rem
 	bottom:0

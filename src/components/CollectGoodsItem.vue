@@ -27,13 +27,14 @@ module.exports = {
 	methods:{
 		deleteGoods:function(){
 			$.poemPost(GOODS_COLLECT_DELETE_API,{'key':poem.getItem('key'),'fav_id':this.item.fav_id}).done(this.deleteDone);
-			event.stoppropagation();
+			event.stopPropagation();
 		},
 		deleteDone:function(res){
 			if(res.error){
 				poemUI.toast(res.error);
 			}else{
 				poemUI.toast('删除成功');
+				this.$dispatch('goodsCollectRefresh');
 			}
 		}
 	},

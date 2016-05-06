@@ -13,7 +13,7 @@
             </order-hotel-item>
           </ul> -->
           <ul v-if="position==0" id="store-collect-view" style="font-size: 0.3rem;">
-            <collect-store-item v-if="item.store" v-for="item in storeCollectList" :item="item":index="$index">
+            <collect-store-item v-if="item.store" v-for="item in storeCollectList" :item="item" :index="$index">
             </collect-store-item>
           </ul>
           <ul v-if="position==1" id="goods-collect-view" style="font-size: 0.3rem;">
@@ -53,7 +53,12 @@
     })(this))
   },
   events:{
-      
+      goodsCollectRefresh:function(){
+        this.getGoodsCollectList();
+      },
+      storeCollectRefresh:function(){
+        this.getStoreCollectList();
+      }
     },
   route:{
     data(transition){
@@ -72,7 +77,7 @@
       }
     },
     getGoodsCollectList:function(){
-      $.getJSON(GOODS_COLLECT_LIST_API,{key:poem.getItem('key')}).done(this.getGoodsDone);
+      $.getJSON(GOODS_COLLECT_LIST_API,{key:poem.getItem('key'),page:100}).done(this.getGoodsDone);
     },
     getGoodsDone:function(res){
       this.goodsCollectList = res.datas.favorites_list;
@@ -83,7 +88,7 @@
         });
     },
     getStoreCollectList:function(){
-      $.getJSON(STORE_COLLECT_LIST_API,{key:poem.getItem('key')}).done(this.getStoreDone);
+      $.getJSON(STORE_COLLECT_LIST_API,{key:poem.getItem('key'),page:100}).done(this.getStoreDone);
     },
     getStoreDone:function(res){
       this.storeCollectList = res.datas;

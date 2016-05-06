@@ -12,7 +12,7 @@
         <input type="radio" value="2" name="sex" v-model="user.sex" id="woman"><label :class="{'active': user.sex==2}" for="woman">女性</label>
         <input type="radio" value="0" name="sex" v-model="user.sex" id="secret"><label :class="{'active': user.sex==0}" for="secret">保密</label>
       </div>
-      <div class="section">出生日期<span class="right">></span></div>
+      <!-- <div class="section">出生日期<span class="right">></span></div> -->
       <a href="#/AddressList" class="section">我的收货地址<span class="right">></span></a>
   </div>
 </template>
@@ -145,6 +145,7 @@
     },
     ready() {
       // this.getUserInfo();
+      
     },
 
     watch: {

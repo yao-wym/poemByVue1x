@@ -39,10 +39,10 @@ module.exports = {
   	}
   },
   methods:{
-  	getHotelList:function(){
-  		$.getJSON(STORE_GOODS_API,{curpage:this.curpage,'store_id':this.$route.params.id}).done(this.getHotelListDone);
+  	getGoodsList:function(){
+  		$.getJSON(STORE_GOODS_API,{curpage:this.curpage,'store_id':this.$route.params.id,'page':20}).done(this.getGoodsListDone);
   	},
-  	getHotelListDone:function(res){
+  	getGoodsListDone:function(res){
   		console.log(JSON.stringify(res));
       if(!isEmpty(res.datas.goods_list)){
         this.pageNum = res.page_total;
@@ -63,7 +63,7 @@ module.exports = {
         pageNum :1,
         hotelList:[]
       })
-      this.getHotelList();
+      this.getGoodsList();
     }
   },
   events:{
@@ -72,10 +72,10 @@ module.exports = {
         poemUI.toast('没有更多了');
         return;
       }
-      this.getHotelList();
+      this.getGoodsList();
     },
     'conditionChange':function(msg){
-      this.getHotelList();
+      this.getGoodsList();
     }
   },
   ready:function(){
@@ -89,11 +89,9 @@ module.exports = {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 	@import "../main.styl"
-// px2rem(name, px){
-//     name: px/75 
-// }
+
 .goods-img
 	width:2rem
 	height:2rem
@@ -103,9 +101,9 @@ module.exports = {
 .goods-info
 	overflow:hidden
 .goods-item
-	 background-color: #eee; 
-	 overflow:auto; 
-	 resize:horizontal;
+	background-color: #fff; 
+	overflow:auto; 
+	resize:horizontal;
 	
 
 

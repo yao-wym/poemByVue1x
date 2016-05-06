@@ -128,7 +128,9 @@ export default {
 			this.slideList = res.adv_list.item
 		},
 		showDetail:function(index){
-
+			if($.isEmpty(this.slideList[index].type)||$.isEmpty(this.slideList[index].data)){
+				return;
+			}
 			this.$route.router.go({name:this.pageType['scenic'],params:{'id':this.slideList[index].data}});
 			// alert(JSON.stringify(this.slideList[index]));
 		}
