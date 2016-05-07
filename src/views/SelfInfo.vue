@@ -25,9 +25,10 @@
       color: text-gray
   .section
     margin-top: section-margin
-    padding: section-padding
+    padding: .3rem
     background: poem-white
     display: block
+    font-size: .45rem
     &:first-child
       margin-top: 0
   .choose-sex

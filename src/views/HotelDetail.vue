@@ -12,7 +12,7 @@
                 <!-- <img style="margin:0 5px" src="../asset/images/share-white.png"> -->
             </div>
           </header>
-          <div style="position: fixed;top:5.5rem;width:100%;z-index:2;margin-left:10px;color:white;font-size: .3rem">
+          <div style="position: fixed;top:5.5rem;width:100%;z-index:2;margin-left:10px;color:white;font-size: .4rem">
             <p>{{hotelName}}</p>
           </div>
         <section class="li-section">
@@ -246,7 +246,7 @@ label-height=1.2rem
     width:100%
     display:flex
     align-items:center
-    font-size: .35rem
+    font-size: .4rem
     color:poem-text-gray
     & a
       width:100%
@@ -280,7 +280,7 @@ label-height=1.2rem
     & .li-room
       border-bottom:solid 1px line-gray
     & .li-room a
-      font-size: .25rem
+      font-size: .35rem
       padding:0 10px
       height:room-item-heigth
       display:flex
