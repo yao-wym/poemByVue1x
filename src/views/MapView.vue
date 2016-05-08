@@ -64,29 +64,42 @@ module.exports = {
     },
     handleError:function(){
     },
+    addCloudLayer:function() {
+        //加载云图层插件
+        this.map.plugin('AMap.CloudDataLayer', function() {
+            var layerOptions = {
+                clickable: true
+            };
+            var cloudDataLayer = new AMap.CloudDataLayer('56a1d385305a2a32882907d0', layerOptions); //实例化云图层类
+            cloudDataLayer.setMap(this.map); //叠加云图层到地图
+
+            AMap.event.addListener(cloudDataLayer, 'click', function(result) {
+                var clouddata = result.data;
+                var photo=[];
+                if(clouddata._image[0]){//如果有上传的图片
+                    photo=['<img width=240 height=100 src="'+clouddata._image[0]._preurl+'"><br>'];
+                }
+                var infoWindow = new AMap.InfoWindow({
+                    content: "<font class='title'>" + clouddata._name + "</font><hr/>"+photo.join("")+"地址：" + clouddata._address + "<br />" + "创建时间：" + clouddata._createtime + "<br />" + "更新时间：" + clouddata._updatetime,
+                    size: new AMap.Size(0, 0),
+                    autoMove: true,
+                    offset: new AMap.Pixel(0, -25)
+                });
+
+                infoWindow.open(this.map, clouddata._location);
+            });
+        });
+    },
     initMap:function(){
       
-      var map = new AMap.Map('container'); 
-      map.setCenter([this.userLng, this.userLat]);
-      map.setZoom(15);
+      this.map = new AMap.Map('container'); 
+      this.map.setCenter([this.userLng, this.userLat]);
+      this.map.setZoom(12);
       var marker = new AMap.Marker({
         position: [this.userLng, this.userLat],
-        map:map
+        map:this.map
       });
-      //  var infowindow = new AMap.InfoWindow({
-      //    content: '<h3>'+this.title+'</h1>',
-      //    offset: new AMap.Pixel(0, -30),
-      //    size:new AMap.Size(330,0)
-      // });
-      //  infowindow.open(map,new AMap.LngLat(this.userLng, this.userLat));
-        AMap.plugin('AMap.CloudDataLayer', function() {//回调函数
-        //TODO:云图图层的初始化和添加等
-        var layerOptions = {
-            clickable: true
-        };
-        var cloudDataLayer = new AMap.CloudDataLayer('b49d8a08924477233d2746f3e8970e1e', layerOptions);
-        cloudDataLayer.setMap(map);//添加到地图
-      })
+      this.addCloudLayer();
     }
   },
   route: {
