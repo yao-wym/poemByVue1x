@@ -1,6 +1,8 @@
 <template>
-  <app-header :title="title"></app-header>
-  <div id="container"></div> 
+  <div>
+    <app-header :title="title"></app-header>
+    <div id="container"></div> 
+  </div>
 </template>
 <style type="text/css">
   html{height:100%}  
@@ -27,7 +29,7 @@ module.exports = {
     },
   },
   ready:function(){
-      location.href="http://m.amap.com/?q=31.234527,121.287689"
+      // location.href="http://m.amap.com/?q=31.234527,121.287689"
 
       this.hotelName=this.$route.query.hotelName,
       this.title=this.$route.query.title
@@ -45,8 +47,6 @@ module.exports = {
       }else{
         this.getPosition();
       }
-      console.log(lng); 
-      console.log(lat); 
   },
   methods:{
     getPosition:function(){
@@ -62,11 +62,7 @@ module.exports = {
     handleSuccess:function(position){
       this.userLng = position.coords.longitude; 
       this.userLat = position.coords.latitude; 
-      if($.isEmpty(this.posLng)){
-        location.href="http://m.amap.com/?from="+this.userLng+","+this.userLng+"&to="+this.posLng+","+this.posLng
-      }else{
         this.initMap();
-      }
     },
     handleError:function(){
     },
@@ -74,17 +70,25 @@ module.exports = {
       
       var map = new AMap.Map('container'); 
       map.setCenter([this.userLng, this.userLat]);
-      map.setZoom(10);
+      map.setZoom(20);
       var marker = new AMap.Marker({
         position: [this.userLng, this.userLat],
         map:map
       });
-       var infowindow = new AMap.InfoWindow({
-         content: '<h3>'+this.title+'</h1>',
-         offset: new AMap.Pixel(0, -30),
-         size:new AMap.Size(330,0)
-      });
-       infowindow.open(map,new AMap.LngLat(this.userLng, this.userLat));
+      //  var infowindow = new AMap.InfoWindow({
+      //    content: '<h3>'+this.title+'</h1>',
+      //    offset: new AMap.Pixel(0, -30),
+      //    size:new AMap.Size(330,0)
+      // });
+      //  infowindow.open(map,new AMap.LngLat(this.userLng, this.userLat));
+        AMap.plugin('AMap.CloudDataLayer', function() {//回调函数
+        //TODO:云图图层的初始化和添加等
+        var layerOptions = {
+            clickable: true
+        };
+        var cloudDataLayer = new AMap.CloudDataLayer('b49d8a08924477233d2746f3e8970e1e', layerOptions);
+        cloudDataLayer.setMap(map);//添加到地图
+      })
     }
   },
   route: {

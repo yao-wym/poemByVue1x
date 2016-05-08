@@ -25,7 +25,7 @@
           <p>评论</p>
           <span>></span>
         </a>
-        <a v-link="{path:'/MapView?pos='+loc+'&title='+storeName+'&storeName='+storeName+'&hotelId='+id}">
+        <a @click="showDaohang">
           <div class="link-line">
           <img class="small-icon" src="../asset/images/ditu.png" alt="">
           <p>地图</p>
@@ -94,7 +94,8 @@
         ticketPrices: [],
         gallery: [],
         orderDetailShow: [0, 0, 0],
-        loc:'',
+        scenicLoc:'',
+        userLoc:'',
         ScenicImgArr:[]
       }
     },
@@ -117,6 +118,25 @@
           this.$broadcast('refresh');
         });
       },
+      showDaohang:function(){
+        var href = "http://m.amap.com/?from="+this.userLoc+"(from)&to="+this.scenicLoc+"(to)";
+        location.href = href;
+      },
+      getPosition:function(){
+        if (window.navigator.geolocation) { 
+          var options = { 
+            enableHighAccuracy: true, 
+            }; 
+          window.navigator.geolocation.getCurrentPosition(this.handleSuccess, this.handleError, options); 
+        }else{ 
+          poemUI.toast("浏览器不支持html5来获取地理位置信息"); 
+        } 
+      },
+      handleSuccess:function(position){
+        this.userLoc = position.coords.latitude.toFixed(6)+','+position.coords.longitude.toFixed(6);
+      },
+      handleError:function(){
+      },
       goBack:function(){
         history.go(-1)
       },
@@ -133,7 +153,7 @@
       initPage(data) {
         console.log(data);
         this.storeInfo = data.store_info;
-        this.loc = data.store_info.store_location_lat+','+data.store_info.store_location_lng;
+        this.scenicLoc = data.store_info.store_location_lat+','+data.store_info.store_location_lng;
         this.storeName = data.store_info.store_name;
         // this.gallery = data.goods_image;
         this.ticketPrices = data.good_list;
@@ -173,7 +193,8 @@
       }
     },
     ready() {
-        this.$broadcast('refresh');
+      this.getPosition();
+      this.$broadcast('refresh');
     }
   }
 </script>
