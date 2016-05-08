@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <app-header :title="title"></app-header>
-    <div id="container"></div> 
-  </div>
+  <app-header :title="title"></app-header>
+  <div id="container"></div> 
 </template>
 <style type="text/css">
   html{height:100%}  
@@ -70,7 +68,7 @@ module.exports = {
       
       var map = new AMap.Map('container'); 
       map.setCenter([this.userLng, this.userLat]);
-      map.setZoom(20);
+      map.setZoom(15);
       var marker = new AMap.Marker({
         position: [this.userLng, this.userLat],
         map:map
