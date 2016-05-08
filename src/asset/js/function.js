@@ -104,7 +104,7 @@ window.poem = {};
   		var posArr = pos.split(',');
 		return {
 		    'lat':posArr[0],
-		    'lon':posArr[1]
+		    'lng':posArr[1]
 		}
 	};
 	poem.client = 'ios';

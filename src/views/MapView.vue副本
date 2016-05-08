@@ -13,12 +13,7 @@ module.exports = {
   data:function(){
     return {
       hotelName:this.$route.query.hotelName,
-      title:this.$route.query.title,
-      map:"",
-      userLng:"",
-      userLat:"",
-      posLng:"",
-      posLat:"",
+      title:this.$route.query.title
     }
   },
   components: {
@@ -27,21 +22,18 @@ module.exports = {
     },
   },
   ready:function(){
-      location.href="http://m.amap.com/?q=31.234527,121.287689"
-
+    
       this.hotelName=this.$route.query.hotelName,
-      this.title=this.$route.query.title
+        this.title=this.$route.query.title
       var pos = this.$route.query.pos;
-
       if(!$.isEmpty(pos)){
-        this.posLng = poem.getPos(pos).lng;
-        this.posLat = poem.getPos(pos).lat;
-        this.getPosition();
-        // this.initMap(lng,lat);
-        // if(!$.isEmpty(this.$route.query)){
-        //   var infoWindow = new BMap.InfoWindow(this.$route.query.markName, opts);  // 创建信息窗口对象    
-        //   map.openInfoWindow(infoWindow, map.getCenter());      // 打开信息窗口
-        // }
+        var lng = poem.getPos(pos).lng;
+        var lat = poem.getPos(pos).lat;
+        this.initMap(lng,lat);
+        if(!$.isEmpty(this.$route.query)){
+          var infoWindow = new BMap.InfoWindow(this.$route.query.markName, opts);  // 创建信息窗口对象    
+          map.openInfoWindow(infoWindow, map.getCenter());      // 打开信息窗口
+        }
       }else{
         this.getPosition();
       }
@@ -60,39 +52,33 @@ module.exports = {
       } 
     },
     handleSuccess:function(position){
-      this.userLng = position.coords.longitude; 
-      this.userLat = position.coords.latitude; 
-      if($.isEmpty(this.posLng)){
-        location.href="http://m.amap.com/?from="+this.userLng+","+this.userLng+"&to="+this.posLng+","+this.posLng
-      }else{
-        this.initMap();
-      }
+      var lng = position.coords.longitude; 
+      var lat = position.coords.latitude; 
+      this.initMap(lng,lat);
     },
     handleError:function(){
     },
-    initMap:function(){
+    initMap:function(lng,lat){
+      var map = new BMap.Map("container");          // 创建地图实例  
+      var point = new BMap.Point(lng, lat);  // 创建点坐标 
+      map.centerAndZoom(point, 15); 
+      var marker = new BMap.Marker(point);        // 创建标注     
+      map.addOverlay(marker);   
+      var opts = {    
+         width : 250,     // 信息窗口宽度    
+         height: 30,     // 信息窗口高度    
+      }
       
-      var map = new AMap.Map('container'); 
-      map.setCenter([this.userLng, this.userLat]);
-      map.setZoom(10);
-      var marker = new AMap.Marker({
-        position: [this.userLng, this.userLat],
-        map:map
-      });
-       var infowindow = new AMap.InfoWindow({
-         content: '<h3>'+this.title+'</h1>',
-         offset: new AMap.Pixel(0, -30),
-         size:new AMap.Size(330,0)
-      });
-       infowindow.open(map,new AMap.LngLat(this.userLng, this.userLat));
     }
   },
   route: {
     data: function (transition) {
+        // // alert(JSON.stringify(this.$route.params));
         transition.next({
           hotelName:this.$route.query.hotelName,
           title:this.$route.query.title
-        })
+        }
+        
     },
     canReuse:function(transition){
         return false;

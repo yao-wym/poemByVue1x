@@ -27,7 +27,8 @@
               </div>
             </a></div>
             <div class="li-label">
-           <a v-link="{path:'/MapView?pos='+hotelLoc+'&title='+hotelName+'&markName='+hotelName+'&hotelId='+$route.params.hotelId}">
+           <!-- <a v-link="{path:'/MapView?pos='+hotelLoc+'&title='+hotelName+'&markName='+hotelName+'&hotelId='+$route.params.hotelId}"> -->
+           <a @click="showDaohang">
               <div class="icon">
                 <img src="../asset/images/ditu.png">
               </div>
@@ -122,7 +123,8 @@ module.exports = {
       'hotelLoc':'',
       'roomList':[],
       'HotelImgArr':[],
-      'roomDetailShow':{}
+      'roomDetailShow':{},
+      'userLoc':''
     }
   },
   methods:{
@@ -166,6 +168,25 @@ module.exports = {
     },
     getHotelDetail:function(){
       $.poemGet(HOTEL_DETAIL_API,{'store_id':this.$route.params.hotelId}).done(this.initPage)
+    },
+    showDaohang:function(){
+      var href = "http://m.amap.com/?from="+this.userLoc+"(from)&to="+this.hotelLoc+"(to)";
+      location.href = href;
+    },
+    getPosition:function(){
+      if (window.navigator.geolocation) { 
+        var options = { 
+          enableHighAccuracy: true, 
+          }; 
+        window.navigator.geolocation.getCurrentPosition(this.handleSuccess, this.handleError, options); 
+      }else{ 
+        poemUI.toast("浏览器不支持html5来获取地理位置信息"); 
+      } 
+    },
+    handleSuccess:function(position){
+      this.userLoc = position.coords.latitude.toFixed(6)+','+position.coords.longitude.toFixed(6);
+    },
+    handleError:function(){
     },
     initPage:function(res){
       if(res.store_info){
@@ -215,6 +236,7 @@ module.exports = {
   },
   ready:function(){
     this.$broadcast('refresh');
+    this.getPosition();
   }
 }
 </script>
