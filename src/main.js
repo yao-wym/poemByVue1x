@@ -115,6 +115,11 @@ router.map({
       require(['./Views/UserLogin.vue'], resolve)
     }
   },
+  '/Image': {
+    component:function (resolve) {
+      require(['./Views/ImageView.vue'], resolve)
+    }
+  },
   '/Reg': {
     component:function (resolve) {
       require(['./Views/UserReg.vue'], resolve)

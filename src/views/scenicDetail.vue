@@ -64,7 +64,7 @@
           <div v-show="orderDetailShow[$index]" class="order-detail">
             <div class="gallery">
               <div v-for="photo in ticketPrice.goods_photo" class="scenic-img-item">
-                <a href="{{photo}}"><img src="{{photo}}"></a>
+                <a v-link="{path:'/Image?imageSrc='+photo}"> <img v-bind:src="photo"></a>
               </div>
             </div>
             <button @click="bookTicket($index)" class="order-button">预定</button>

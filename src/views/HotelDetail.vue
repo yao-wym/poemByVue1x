@@ -97,7 +97,7 @@
               <div v-show="roomDetailShow[$index]" class="room-detail">
                 <div class="hotel-room-img-list">
                 <div style="margin-left: 10px;overflow: hidden" v-for="photo in room.goods_photo" class="room-img-item">
-                <a v-bind:href="photo"> <img v-bind:src="photo"></a>
+                  <a v-link="{path:'/Image?imageSrc='+photo}"> <img v-bind:src="photo"></a>
                 </div>
               </div>
               <div style="overflow:hidden">

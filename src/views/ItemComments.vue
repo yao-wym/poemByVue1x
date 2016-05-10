@@ -1,6 +1,6 @@
 <template>
   <div class="flex-view" v-transition>
-  <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
+  <app-header title="评论列表" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
     <flex-scroll-view>
       <!-- <ul class="tab-header">
         <li><input type="radio" name="commentType" id="filter-nice" v-model="commentFilter" value="h"><label for="filter-nice">好评()</label></li>
