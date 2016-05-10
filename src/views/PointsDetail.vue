@@ -12,7 +12,7 @@
         <tr v-for="pointsDetail in pointsDetails">
           <td>{{pointsDetail.pl_desc}}</td>
           <td>{{pointsDetail.pl_points}}</td>
-          <td>{{pointsDetail.pl_addtime}}</td>
+          <td>{{getDate(pointsDetail.pl_addtime)}}</td>
         </tr>
       </table>
     </flex-scroll-view>
@@ -60,6 +60,10 @@
     },
 
     methods: {
+      getDate(timeStemp){
+        var time = new Date(parseInt(timeStemp*1000));
+        return time.getFullYear()+"-"+time.getMonth()+"-"+time.getDate();
+      },
       getPointsDetail() {
         $.poemPost(POINTS_DETAIL_API,{order:"asc",curpage:this.curpage, key:poem.getItem("key")}).done(this.getPointsDetailDone);
         $.poemPost(USER_INFO_API, {key:poem.getItem("key")}).done((data) => {

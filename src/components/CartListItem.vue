@@ -30,12 +30,10 @@
 		</div>
 		<div class="cart-item-price" style="overflow:hidden">
 			<span style="float:right">总共
-			<span>{{goods.goods_num}}</span>
-			件合计¥
-			<span style="color:rgb(217,96,86)">{{goods.goods_sum}}</span>
-			（含运费
-			<span>0</span>
-			)
+			<span>{{cart.length}}件</span>
+			
+			<span style="color:rgb(217,96,86)">合计¥{{sum}}</span>
+			
 			</span>
 		</div>
 		<div class="cart-item-operate" style="overflow:hidden">
@@ -50,7 +48,18 @@
 module.exports = {
 	replace: true,
 	props: ['cart'],
+	data:function(){
+		return {
+			sum:0
+		}
+	},
+	ready:function(){
+			for(var i=0;i<this.cart.length;i++){
+				this.sum=parseFloat(parseFloat(this.sum)+parseFloat(this.cart[i]['goods_num'])*parseFloat(this.cart[i]['goods_price']));
+			}
+		},
 	methods:{
+		
 	    delete:function(cart_id){
 	    	$.poemPost(CART_DEL_API,{key:poem.getItem('key'),cart_id:cart_id}).done(this.delSuccess);
 	    },

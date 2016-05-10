@@ -90,7 +90,7 @@
         
       },
       buy(pgoods_id) {
-         var r=confirm('使用默认地址——收货人：'+this.address.true_name+"联系电话："+this.address.mob_phone+"详细地址："+this.address.address)
+         var r=confirm('使用默认地址——收货人：'+this.address.true_name+"联系电话："+this.address.mob_phone+"详细地址："+this.address.address+"——您也可以点击取消选择其他地址购买")
           if (r==true)
           {
              $.poemPost(POINTS_BUY_API,{key:poem.getItem("key"),
