@@ -154,7 +154,8 @@
        transition.next({
             key:poem.getItem('key'),
             username:poem.getItem('username')
-        })
+        });
+       this.$broadcast('refresh');
     }
   }
 }

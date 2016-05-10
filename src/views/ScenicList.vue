@@ -8,7 +8,7 @@
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
 
-	<filter-tab :filter-items="[{'word':'景区','gc_id':'1061'},{'word':'娱乐项目','gc_id':'1062'}]" :order-items="[{'word':'评价','key':'store_credit','order':'desc'},{'word':'销量','key':'store_sales','order':'desc'}]"></filter-tab>
+	<filter-tab :filter-items="[{'word':'景区','sc_id':'3'},{'word':'娱乐项目','sc_id':'13'}]" :order-items="[{'word':'评价','key':'store_credit','order':'desc'},{'word':'销量','key':'store_sales','order':'desc'}]"></filter-tab>
 </div>
 </template>
 
@@ -37,8 +37,8 @@ module.exports = {
       pageNum : 1,
   		curpage : 1,
   		scenicList:[],
-      condition:{
-        'sc_id':3,
+      condition:{ 
+        'sc_id':"3,13",
         'page':20
       }
   	}
@@ -64,7 +64,7 @@ module.exports = {
       this.scenicList = [];
       this.condition = {'page':20};
       this.condition['curpage'] = 1;
-      this.condition.gc_id = 3;
+      this.condition.sc_id = "3,13";
       this.getScenicList();
     },
     'scrollEnd':function(msg){

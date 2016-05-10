@@ -81,14 +81,14 @@
           <div class="li-room" v-if="room['gc_id_1']==1103" v-for="room in roomList">
               <a @click="ctrlRoomDetail($index)">
                 <div class="room-img">
-                  <img v-bind:src="room.goods_image_url">
+                <img v-bind:src="room.goods_image_url">
                 </div>
                 <div class="room-info">
                   <p>{{room.goods_name}}</p>
                   <p>{{room.goods_jingle}}</p>
                 </div>
                 <div class="room-price">
-                  <span>¥</span><span style="color:red;font-size:.4rem">{{room.goods_salenum}}</span><span>起</span>
+                  <span>¥</span><span style="color:red;font-size:.4rem">{{room.goods_price}}</span><span>起</span>
                 </div>
                   <div class="arrow">
                   <i></i>
@@ -97,7 +97,7 @@
               <div v-show="roomDetailShow[$index]" class="room-detail">
                 <div class="hotel-room-img-list">
                 <div style="margin-left: 10px;overflow: hidden" v-for="photo in room.goods_photo" class="room-img-item">
-                  <img  v-bind:src="photo">
+                <a v-bind:href="photo"> <img v-bind:src="photo"></a>
                 </div>
               </div>
               <div style="overflow:hidden">
