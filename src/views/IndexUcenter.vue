@@ -147,7 +147,7 @@
   },
   ready:function(){
     this.key = poem.getItem("key");
-    // setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
+    setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
   },
   route:{
     data(transition){
@@ -155,7 +155,6 @@
             key:poem.getItem('key'),
             username:poem.getItem('username')
         });
-       this.$broadcast('refresh');
     }
   }
 }

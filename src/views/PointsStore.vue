@@ -1,6 +1,6 @@
 <template>
   <div class="flex-view" v-transition>
-  <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
+  <app-header left-link="#/index/ucenter" :title="title" :left-label="leftLabel" :right-label="rightLabel" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
   	<flex-scroll-view>
   	  <p class="owned-points">可用积分 {{ points }}</p>
       <div class="item-list">
@@ -24,14 +24,14 @@
     display: flex
     flex-wrap: wrap
   .item
-    width: 50%
+    width: 45%
     padding: section-padding
   .img-wrapper
-    padding: .8rem .4rem
     border: 1px solid line-gray
     background: poem-white
     & img
-      width: 100%
+      width: 4.5rem
+      height:4.5rem
   .score-price
     color: poem-red
   button
@@ -61,10 +61,15 @@
         require(['../components/YellowBottom.vue'], resolve);
       }
     },
-
+    route:{
+      data(){
+        this.address = poem.getObj('address')
+      }
+    },
     data() {
       let itemList = [];
       return {
+        address:poem.getObj('address'),
         title: '积分商城',
         points: null,
         itemList: itemList
@@ -85,17 +90,24 @@
         
       },
       buy(pgoods_id) {
-        $.poemPost(POINTS_BUY_API,{key:poem.getItem("key"),
-          pgoods_id: pgoods_id,
-          quantity: 1,}).done(this.buyDone);
+         var r=confirm('使用默认地址——收货人：'+this.address.true_name+"联系电话："+this.address.mob_phone+"详细地址："+this.address.address)
+          if (r==true)
+          {
+             $.poemPost(POINTS_BUY_API,{key:poem.getItem("key"),
+                pgoods_id: pgoods_id,
+                quantity: 1,}).done(this.buyDone);
+          }
+          else
+          {
+            this.$route.router.go({path:"/AddressList?action=chooseAddr&refer="+location.hash})
+          }
       },
       buyDone(data) {
         if (data.error) {
           poemUI.toast(data.error);
           return;
         };
-        poemUI.toast('兑换成功')
-        history.go(0) 
+        poemUI.toast('兑换成功');
       }
     },
 

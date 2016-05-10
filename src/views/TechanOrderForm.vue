@@ -61,7 +61,7 @@
       </div>
       <div class="footer" v-else>
         <div class="price"  v-if="goodsBuyList!=''">订单金额：<span>{{ cartCount }}</span></div>
-        <input @click="submitCartOrder1()" type="button" value="提交订单">
+        <div class="submit-btn" @click="submitCartOrder1()" value="提交订单">提交订单</div>
       </div>
   </div>
 </template>
@@ -245,7 +245,7 @@
       font-size: 0.5rem
       width: 100%
       background: poem-white
-      & input
+      & .submit-btn
         background-color:app-yellow
         height: 1rem
         line-height:1rem

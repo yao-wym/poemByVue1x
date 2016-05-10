@@ -52,7 +52,7 @@
       <div class="footer">
         <div class="price">订单金额：<span>{{ orderPrice }}</span></div>
         <input type="text" v-model="orderPrice" style="display:none">
-        <input @click="submitOrder()" type="button" value="提交订单">
+        <div class="submit-btn" @click="submitOrder()" value="提交订单">提交订单</div>
       </div>
   </div>
 </template>
@@ -226,7 +226,7 @@
       font-size: 0.5rem
       width: 100%
       background: poem-white
-      & input
+      & .submit-btn
         background-color:app-yellow
         height: 1rem
         line-height:1rem
