@@ -1,7 +1,7 @@
 <template>
 	<div class="index-home-container"> 
   <div style="height:auto;width: 100%">
-    <!-- <banner banner-height="3.2rem"></banner> -->
+    <banner banner-height="3.2rem"></banner>
 </div>
 <div class="pane" style="margin-top:0.55rem">
   <div class="pane-left">
