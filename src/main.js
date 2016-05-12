@@ -4,14 +4,14 @@ import { domain, fromNow } from './filters'
 import App from './App.vue'
 // import ItemView from './components/ItemView.vue'
 import UserView from './views/User.vue'
-import IndexHome from './views/IndexHome.vue'
+// import IndexHome from './views/IndexHome.vue'
 import HotelListView from './views/HotelList.vue'
 // import ScenicListView from './views/ScenicList.vue'
 // import FoodListView from './views/FoodList.vue'
 // import AddressListView from './views/AddressList.vue'
 import IndexView from './views/Index.vue'
-import IndexArticle from './views/IndexArticle.vue'
-import IndexUcenter from './views/IndexUcenter.vue'
+// import IndexArticle from './views/IndexArticle.vue'
+// import IndexUcenter from './views/IndexUcenter.vue'
 // import HotelDetailView from './views/HotelDetail.vue'
 
 import OrderHotelView from './views/OrderHotel.vue'
@@ -20,7 +20,7 @@ import OrderTechanView from './views/OrderTechan.vue'
 
 // import AddressAddView from './views/AddressAdd.vue'
 
-import SearchView from './views/Search.vue'
+// import SearchView from './views/Search.vue'
 // import MapView from './views/MapView.vue'
 
 
@@ -125,22 +125,24 @@ router.map({
       require(['./Views/UserReg.vue'], resolve)
     }
   },
-  '/search/:keyword': {
-    name:'search',
-    component: SearchView
-  },
+  // '/search/:keyword': {
+  //   name:'search',
+  //   component: SearchView
+  // },
   '/TechanOrderForm': {
     name:'techanOrderForm',
     component: TechanOrderFormView
   },
-  '/IndexHome': {
-    component: IndexHome
-  },
+  // '/IndexHome': {
+  //   component: IndexHome
+  // },
   '/index': {
     component: IndexView,
     subRoutes:{
       '/home':{
-        component:IndexHome
+        component:function (resolve) {
+          require(['./Views/IndexHome.vue'], resolve)
+        }
       },
       '/cart':{
         component:function (resolve) {
@@ -149,11 +151,13 @@ router.map({
         }
 
       },
-      '/article':{
-        component:IndexArticle
-      },
+      // '/article':{
+      //   component:IndexArticle
+      // },
       '/ucenter':{
-        component:IndexUcenter
+        component:function (resolve) {
+          require(['./Views/IndexUcenter.vue'], resolve)
+        }
       }
     }
   },

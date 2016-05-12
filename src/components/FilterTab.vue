@@ -72,8 +72,8 @@ module.exports = {
 	width:100%
 	& a
 		padding-top:5px
-		-webkit-box-flex: 1
 		flex:1
+		display:block
 		text-align:center
 		font-size:0.3rem
 		color:rgb(148,148,148)

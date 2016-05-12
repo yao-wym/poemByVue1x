@@ -1,12 +1,12 @@
 <template>
 	<div class="index-home-container"> 
   <div style="height:auto;width: 100%">
-    <banner banner-height="3.2rem"></banner>
+    <!-- <banner banner-height="3.2rem"></banner> -->
 </div>
 <div class="pane" style="margin-top:0.55rem">
   <div class="pane-left">
     <a v-link="{path:'/HotelList'}">
-      <div v-on="click:location.href='#hotel-list'" style="background-color: rgb(234,99,94)">
+      <div style="background-color: rgb(234,99,94)">
         <div class="logo">
           <img src="../asset/images/jiudianzhusu.png">
           <div>酒店住宿</div>
@@ -53,9 +53,9 @@ module.exports = {
   },
 
   ready:function(){
-    // this.$nextTick(function(){
-    //   this.$dispatch('refresh');
-    // });
+    this.$nextTick(function(){
+      this.$dispatch('refresh');
+    });
     setTimeout((function(that){return function(){that.$dispatch('refresh');}})(this),500)
   }
 }

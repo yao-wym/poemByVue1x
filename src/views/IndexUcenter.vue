@@ -8,7 +8,7 @@
             <p v-link="{path:'/Login'}" v-else style="margin-top:10px;color:white">登陆</p>
           </div>
         </header>
-        <div v-="key">
+        <div v-if="key">
           <section class="li-section">
           <div class="li-label"><a>
               <div class="icon">
@@ -63,7 +63,7 @@
               <i></i>
               </div>
             </a></div> -->
-            <div class="li-label"><a href="#/PointsDetail">
+            <div class="li-label"><a v-link="{path:'/PointsDetail'}">
               <div class="icon">
                 <img src="../asset/images/score-detail.png">
               </div>
@@ -72,7 +72,7 @@
               <i></i>
               </div>
             </a></div>
-            <div class="li-label"><a href="#/PointsStore">
+            <div class="li-label"><a v-link="{path:'/PointsStore'}">
               <div class="icon">
                 <img src="../asset/images/score-exchange.png">
               </div>
@@ -85,7 +85,7 @@
      
         </div>
          <section class="li-section" style="margin-top: 15px">
-          <div  class="li-label"><a href="#/About">
+          <div  class="li-label"><a  v-link="{path:'/About'}">
               <div class="icon">
                 <img src="../asset/images/about-us.png">
               </div>
@@ -94,7 +94,7 @@
               <i></i>
               </div>
             </a></div>
-          <div class="li-label"><a href="tel:010-57221838">
+          <div class="li-label"><a @click="callForHelp">
               <div class="icon">
                 <img src="../asset/images/help-suggest.png">
               </div>
@@ -106,7 +106,7 @@
         </section>
 
         <section class="li-section" style="margin-top: 15px">
-          <div class="li-label"><a href="#/Setting">
+          <div class="li-label"><a v-link="{path:'/Setting'}">
               <div class="icon">
                 <img src="../asset/images/setting-yellow.png">
               </div>
@@ -137,6 +137,11 @@
     return{
       'username':poem.getItem('username'),
       'key':false
+    }
+  },
+  methods:{
+    callForHelp:function(){
+      location.href="tel:010-57221838";
     }
   },
   components: {
