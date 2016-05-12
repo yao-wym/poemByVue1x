@@ -69,14 +69,21 @@ module.exports = {
 	    },
 	    addGoods:function(index){
 	    	this.cart[index].goods_num++;
+	    	this.sum = 0;
+	    	for(var i=0;i<this.cart.length;i++){
+				this.sum=parseFloat(parseFloat(this.sum)+parseFloat(this.cart[i]['goods_num'])*parseFloat(this.cart[i]['goods_price']));
+			}
 	    },
 	    minusGoods:function(index){
 	    	if(this.cart[index].goods_num>1)
 	    	this.cart[index].goods_num--;
-	    	if(this.cart[index].goods_num==1){
+	    	if(this.cart[index].goods_num==0){
 	    		this.delete(this.cart[index].cart_id);
 	    	}
-
+	    	this.sum = 0;
+	   		for(var i=0;i<this.cart.length;i++){
+				this.sum=parseFloat(parseFloat(this.sum)+parseFloat(this.cart[i]['goods_num'])*parseFloat(this.cart[i]['goods_price']));
+			}
 	    },
 	    // buy:function(cart_id){
 	    //   $.poemPost(BUY_CART_VR_API,{key:poem.getItem('key'),cart_id:cart_id}).done(this.delSuccess);

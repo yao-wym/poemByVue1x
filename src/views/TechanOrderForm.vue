@@ -134,13 +134,13 @@
         if($.isEmpty(this.address.address_id)){
           poemUI.toast('请选择收货地址');
         }
-        $.poemPost(GOODS_BUY_STEP1_API,{'key':poem.getItem('key'),'cart_id':this.cartBuyStr}).done(this.submitCartSuccess1);
+        $.poemPost(GOODS_BUY_STEP1_API,{'key':poem.getItem('key'),'ifcart':1,'cart_id':this.cartBuyStr}).done(this.submitCartSuccess1);
       },
       submitCartOrder2:function(){
         if($.isEmpty(this.address.address_id)){
           poemUI.toast('请选择收货地址');
         }
-        $.poemPost(GOODS_BUY_STEP1_API,{'key':poem.getItem('key'),'cart_id':this.cartBuyStr,'address_id':this.address.address_id,'pay_name':'online'}).done(this.submitDone);
+        $.poemPost(GOODS_BUY_STEP2_API,{'key':poem.getItem('key'),'ifcart':1,'cart_id':this.cartBuyStr,'address_id':this.address.address_id,'pay_name':'online'}).done(this.submitDone);
       },
       submitCartSuccess1:function(res){
           if(!$.isEmpty(res.error)){
@@ -168,7 +168,7 @@
           this.cartBuyStr = "";
           for(var i=0;i<this.goodsBuyList.length;i++){
             this.cartCount+=this.goodsBuyList[i].goods_price*this.goodsBuyList[i].goods_num;
-            this.cartBuyStr+=this.goodsBuyList[i].goods_id+'|'+this.goodsBuyList[i].goods_num+',';
+            this.cartBuyStr+=this.goodsBuyList[i].cart_id+'|'+this.goodsBuyList[i].goods_num+',';
           }
         }else{
           this.goodsId = this.$route.query.goodsId;

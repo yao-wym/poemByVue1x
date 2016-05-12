@@ -44,6 +44,11 @@
       }
     })(this))
   },
+  route:{
+    data:function(){
+      this.getOrderList();
+    }
+  },
   events:{
       'refreshTechanOrder':function(){
         this.getOrderList();
@@ -51,7 +56,7 @@
     },
   methods:{
     getOrderList:function(){
-      $.poemGet(TECHAN_ORDER_LIST_API,{key:poem.getItem('key'),'order_state':this.state}).done(this.getSuccess);
+      $.poemGet(TECHAN_ORDER_LIST_API,{key:poem.getItem('key'),page:100,'order_state':this.state}).done(this.getSuccess);
     },
     getSuccess:function(res){
       this.orderList = res.order_group_list;

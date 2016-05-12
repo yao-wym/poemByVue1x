@@ -160,6 +160,7 @@
             key:poem.getItem('key'),
             username:poem.getItem('username')
         });
+        setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
     }
   }
 }

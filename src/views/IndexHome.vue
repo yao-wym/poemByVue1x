@@ -1,6 +1,6 @@
 <template>
     	<!-- <app-header search='找美食.找酒店' left-icon='user-icon' left-link='#user/login'  right-icon='phone-icon' right-link="call"></app-header> -->
-      <app-header title='首页' left-icon='user-icon' left-link='goToUcenter'  right-icon='phone-icon' right-link="call"></app-header>
+      <app-header title='首页' left-icon='user-icon' left-link='#index/ucenter'  right-icon='phone-icon' right-link="call"></app-header>
       <flex-scroll-view>
           <app-pane side="left" name="{{leftName}}"></app-pane>
       </flex-scroll-view>
@@ -28,7 +28,6 @@
   }, 
   events:{
     'refresh':function(msg){
-       setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
     },
     'scrollViewLoaded':function(msg){
       // this.myScroll.refresh();
@@ -40,11 +39,6 @@
     },
     'call':function(){
       location.href="tel:"+SERVICE_CALL;
-    },
-    'goToUcenter':function(){
-      alert(4);
-      this.$route.router.go({path:'/index/ucenter'})
-      location.href="#/index/ucenter";
     }
   }
 }

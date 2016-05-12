@@ -113,7 +113,7 @@ window.poem = {};
 var poemUI = {
     toast:function(msg){
         var toast = document.createElement('div');
-        toast.innerHTML = `${msg}`;
+        toast.innerHTML = msg;
 
         toast.style.position = 'fixed';
         toast.style.left = '50%';
