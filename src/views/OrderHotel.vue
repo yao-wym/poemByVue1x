@@ -3,7 +3,7 @@
     <div class="header-tab-item active" state="2">待付款</div>
     <div class="header-tab-item" state="1">可使用</div>
     <div class="header-tab-item" state="4">已完成</div>
-    <div class="header-tab-item" state="3">退款</div>
+    <div class="header-tab-item" state="3">退款单</div>
   </div>
       <flex-scroll-view>
         <ul id="order-hotel-view" style="font-size: 0.3rem;">

@@ -3,7 +3,8 @@
       <div id="uc-container">
         <header class="uc-header">
           <div>
-            <img v-link="{path:'/SelfInfo'}" style="width: 2rem" src="../asset/images/my-circle.png">
+            <img v-if="key" v-link="{path:'/SelfInfo'}" style="width: 2rem" src="../asset/images/my-circle.png">
+            <img v-else v-link="{path:'/Login'}" style="width: 2rem" src="../asset/images/my-circle.png">
             <p v-if="key" style="margin-top:10px;color:white">{{username}}</p>
             <p v-link="{path:'/Login'}" v-else style="margin-top:10px;color:white">登陆</p>
           </div>

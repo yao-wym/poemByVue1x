@@ -86,4 +86,7 @@ var RESET_PWD_API = HOST_API+'act=login&op=find_password';
 
 var SERVICE_CALL = "010-57221838";
     
+var VR_ORDER_REFUND = HOST_API+"act=member_vr_order&op=order_refund";
+
+var GOODS_ORDER_REFUND = HOST_API+"act=member_order&op=order_refund";
 var client = 'ios'

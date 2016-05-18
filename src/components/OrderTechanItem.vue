@@ -32,9 +32,13 @@
 			)
 			</span>
 		</div>
-		<div class="cart-item-operate" style="overflow:hidden">
+		<div v-if="order.order_list[0].state_desc=='待付款'"  class="cart-item-operate" style="overflow:hidden">
 			<div @click="payOrder()" class="cart-item-pay" style="float:right">付款</div>
 			<div @click="cancelOrder()" class="cart-item-cancel" style="float:right">取消订单</div>
+			<!-- <div class="cart-item-call" style="float:right">联系卖家</div> -->
+		</div>
+		<div v-if="order.order_list[0].state_desc=='待发货'" class="cart-item-operate" style="overflow:hidden">
+			<div @click="orderRefund()" class="cart-item-cancel" style="float:right">申请退款</div>
 			<!-- <div class="cart-item-call" style="float:right">联系卖家</div> -->
 		</div>
 	</li>
@@ -50,6 +54,14 @@ module.exports = {
 		}
 	},
 	methods:{
+		orderRefund:function(){
+			$.post(GOODS_ORDER_REFUND,{'key':poem.getItem('key'),'order_id':this.orderId}).done(this.refundDone);
+		},
+		refundDone:function(res){
+			res = JSON.parse(res);
+			poemUI.toast(res.datas);
+			this.$dispatch('refreshTechanOrder');
+		},
 		cancelOrder:function(order_id){
 			$.poemPost(TECHAN_CANCEL_ORDER_API,{'key':poem.getItem('key'),'order_id':this.orderId}).done(this.cancelDone);
 		},

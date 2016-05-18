@@ -4,7 +4,7 @@
     <div class="header-tab-item" state="2">待收货</div>
     <div class="header-tab-item" state="3">待评价</div>
     <div class="header-tab-item" state="5">已完成</div>
-    <div class="header-tab-item" state="4">退款</div>
+    <div class="header-tab-item" state="4">退款单</div>
   </div>
       <flex-scroll-view>
         <ul id="order-hotel-view" style="font-size: 0.3rem;">

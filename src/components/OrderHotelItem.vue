@@ -2,7 +2,7 @@
 	<li class="cart-item">
 		<div class="cart-item-header" style="overflow:hidden">
 			<div style="float:left">
-				{{order.store_name}}
+				{{order.store_name}}<span style="margin-left:20px;">订单编号:{{order.order_sn}}</span>
 			</div>
 			<div style="float:right">
 				<span style="color:red;margin-right:15px">{{order.state_desc}}</span>
@@ -14,7 +14,8 @@
 			<!-- <img class="cart-goods-img" v-link="{path:'/FoodDetail/'+order.goods_id}" src="{{order.goods_image_url}}" /> -->
 			<img class="cart-goods-img" src="{{order.goods_image_url}}" />
 			<div class="cart-goods-info">
-				{{order.goods_name}}
+				<div>{{order.goods_name}}</div>
+				<div style="margin-top:50px" v-if="order.vr_code">兑换码:{{order.vr_code}}</div>
 			</div>
 			<div class="cart-goods-price">
 				<p>{{order.goods_price}}</p>
@@ -27,12 +28,16 @@
 			<span style="float:right">总共
 			<span>{{order.goods_num}}</span>
 			件合计¥
-			<span >{{parseFloat(order.goods_price)*parseInt(order.rooms)*parseInt(order.days)}}</span>
+			<span >{{parseFloat(order.goods_price)*parseInt(order.goods_num)*parseInt(order.days)}}</span>
 			
 		</div>
-		<div class="cart-item-operate" style="overflow:hidden">
+		<div v-if="order.order_state_text=='待付款'" class="cart-item-operate" style="overflow:hidden">
 			<div @click="payOrder()" class="cart-item-pay" style="float:right">付款</div>
 			<div @click="cancelOrder()" class="cart-item-cancel" style="float:right">取消订单</div>
+			<!-- <div class="cart-item-call" style="float:right">联系卖家</div> -->
+		</div>
+		<div v-if="order.vr_code" class="cart-item-operate" style="overflow:hidden">
+			<div @click="orderRefund()" class="cart-item-cancel" style="float:right">申请退款</div>
 			<!-- <div class="cart-item-call" style="float:right">联系卖家</div> -->
 		</div>
 	</li>
@@ -48,6 +53,14 @@ module.exports = {
 		}
 	},
 	methods:{
+		orderRefund:function(){
+			$.post(VR_ORDER_REFUND,{'key':poem.getItem('key'),'order_id':this.orderId}).done(this.refundDone);
+		},
+		refundDone:function(){
+			var res = JSON.parse(res);
+			poemUI.toast(res.datas);
+			this.$dispatch('refreshTechanOrder');
+		},
 		cancelOrder:function(order_id){
 			$.poemPost(VR_CANCEL_ORDER_API,{'key':poem.getItem('key'),'order_id':this.orderId}).done(this.cancelDone);
 		},
@@ -56,7 +69,7 @@ module.exports = {
 					poemUI.toast(res.error)
 				}else{
 					poemUI.toast('取消成功');
-					this.$dispatch('refreshVROrder');
+					this.$dispatch('refreshTechanOrder');
 				}
 		},
 		payOrder:function(res){

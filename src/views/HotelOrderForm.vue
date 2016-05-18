@@ -10,7 +10,7 @@
               <!-- <span id="dateCheckIn">{{ checkInTime }}</span>入住-<span id="dateCheckOut">{{ checkOutTime }}</span>
               离店
               <span class="day">{{ formInfo.days }}晚</span> -->
-              <input type="text" id="daterange-picker">
+              <input type="text" id="daterange-picker" style="ime-mode:disabled" />
             </p>
           <p>房型：{{ roomInfo.goods_name }}</p>
         </div>
@@ -112,6 +112,14 @@
         this.quantity -= 1
       },
       submitOrder(){
+        if($.isEmpty(this.daterange)){
+          poemUI.toast("请选择入住时间");
+          return;
+        }
+        if(isNaN(this.contact)){
+          poemUI.toast("请输入电话号码");
+          return;
+        }
         $.poemPost(SUBMIT_ORDER_VR_API,this.formInfo).done(this.submitDone);
       },
       submitDone(res){
