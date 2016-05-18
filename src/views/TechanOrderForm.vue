@@ -57,7 +57,7 @@
       </div>
     </flex-scroll-view>
       <div class="footer" v-if="goodsDetail!=''">
-       <div class="price" >订单金额：<span>{{ goodsDetail.goods_info.goods_price*techanCount }}</span></div> <input @click="submitOrder1()" type="button" value="提交订单">
+       <div class="price" >订单金额：<span>{{ goodsDetail.goods_info.goods_price*techanCount }}</span></div> <div class="submit-btn" @click="submitOrder1()" type="button" value="提交订单"></div>
       </div>
       <div class="footer" v-else>
         <div class="price"  v-if="goodsBuyList!=''">订单金额：<span>{{ cartCount }}</span></div>

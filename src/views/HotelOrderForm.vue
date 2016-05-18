@@ -5,13 +5,13 @@
       <div class="container">
         <div id="date"  class="section">
           <h1>{{ hotelName }}</h1>
-            <p>
-              时间：
+            <div style="padding-left: 0">
+              <div style="float:left;overflow: hidden;">时间：</div>
+              <div class="time-content" id="daterange-picker" style="width: 8rem" ></div>
               <!-- <span id="dateCheckIn">{{ checkInTime }}</span>入住-<span id="dateCheckOut">{{ checkOutTime }}</span>
               离店
               <span class="day">{{ formInfo.days }}晚</span> -->
-              <input type="text" id="daterange-picker" style="ime-mode:disabled" />
-            </p>
+            </div>
           <p>房型：{{ roomInfo.goods_name }}</p>
         </div>
         <div class="section">
@@ -74,7 +74,7 @@
             quantity:this.quantity,
             rcb_pay:0,
             pd_pay:0,
-            days:1,
+            days:this.days,
             buyer_msg:this.days+'晚|'+this.daterange+'|'+this.contact,
             contact:this.contact,
             buyer_phone:this.buyer_phone
@@ -116,8 +116,12 @@
           poemUI.toast("请选择入住时间");
           return;
         }
-        if(isNaN(this.contact)){
+        if(isNaN(this.buyer_phone)){
           poemUI.toast("请输入电话号码");
+          return;
+        }
+        if($.isEmpty(this.contact)){
+          poemUI.toast("请输入联系人");
           return;
         }
         $.poemPost(SUBMIT_ORDER_VR_API,this.formInfo).done(this.submitDone);
@@ -148,6 +152,8 @@
           this.checkOutTime = obj.date2;
           this.days = parseInt($(".selected-days-num").text());
           $('#daterange-picker').data('dateRangePicker').close();
+          $('#daterange-picker').html(this.daterange);
+
       }
     },
     ready:function(){
@@ -202,7 +208,7 @@
         width: 0.8rem
         position: relative
         top: -0.2rem
-      & input[type=text]
+      & input[type=text],& .time-content
         height: 0.5rem;
         border: none;
         width: 60%;
