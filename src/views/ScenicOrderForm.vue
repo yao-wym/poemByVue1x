@@ -45,7 +45,7 @@
     </flex-scroll-view>
     <div class="footer">
       <div class="price">订单金额：<span>{{ (goodsInfo.goodsPrice*quantity).toFixed(2) }}</span></div>
-      <input type="button" @click="submitOrder()" value="提交订单">
+      <div class="submit-btn" @click="submitOrder()">提交订单</div>
     </div>
   </div>
 </template>
@@ -106,6 +106,14 @@
         this.quantity -= 1
       },
       submitOrder(){
+        if(isNaN(this.buyer_phone)){
+          poemUI.toast("请输入电话号码");
+          return;
+        }
+        if($.isEmpty(this.contact)){
+          poemUI.toast("请输入联系人");
+          return;
+        }
         $.poemPost(SUBMIT_ORDER_VR_API,this.formData).done(this.submitDone);
       },
       submitDone(res){
@@ -188,7 +196,7 @@
       font-size: 0.5rem
       width: 100%
       background: poem-white
-      & input
+      & .submit-btn
         background-color:app-yellow
         height: 1rem
         line-height:1rem
