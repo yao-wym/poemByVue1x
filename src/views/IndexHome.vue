@@ -21,6 +21,9 @@
       'searchKey':''
     }
   },
+  ready:function(){
+    setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
+  },
   methods:{
   }, 
   events:{

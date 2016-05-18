@@ -36,7 +36,7 @@
 			<div @click="cancelOrder()" class="cart-item-cancel" style="float:right">取消订单</div>
 			<!-- <div class="cart-item-call" style="float:right">联系卖家</div> -->
 		</div>
-		<div v-if="order.vr_code" class="cart-item-operate" style="overflow:hidden">
+		<div v-if="order.order_state_text=='可使用'" class="cart-item-operate" style="overflow:hidden">
 			<div @click="orderRefund()" class="cart-item-cancel" style="float:right">申请退款</div>
 			<!-- <div class="cart-item-call" style="float:right">联系卖家</div> -->
 		</div>

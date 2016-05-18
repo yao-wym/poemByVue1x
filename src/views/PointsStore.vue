@@ -4,10 +4,10 @@
   	<flex-scroll-view>
   	  <p class="owned-points">可用积分 {{ points }}</p>
       <div class="item-list">
-        <div class="item" v-for="item in itemList">
+        <div @click="buy(item.pgoods_id)" class="item" v-for="item in itemList">
           <div class="img-wrapper"><img src="{{item.pgoods_image_small}}" alt=""></div>
           <p>{{item.pgoods_name}}</p>
-          <p><span class="score-price">{{item.pgoods_points}}</span>积分<button @click="buy(item.pgoods_id)" :class="{'active': item.pgoods_show}">立即兑换</button></p>
+          <p><span class="score-price">{{item.pgoods_points}}</span>积分<button :class="{'active': item.pgoods_show}">立即兑换</button></p>
         </div>
       </div>
     </flex-scroll-view>
@@ -34,10 +34,11 @@
       height:4.5rem
   .score-price
     color: poem-red
+    padding: 3px 5px
   button
     background: #ccc
     color: #fff
-    width: 1.5rem;
+    width: auto;
     height: .5rem;
     font-size: .3rem;
     border: none;
@@ -90,7 +91,7 @@
         
       },
       buy(pgoods_id) {
-         var r=confirm('使用默认地址——收货人：'+this.address.true_name+"联系电话："+this.address.mob_phone+"详细地址："+this.address.address+"——您也可以点击取消选择其他地址购买")
+         var r=confirm('使用默认地址\r收货人：'+this.address.true_name+"\r联系电话："+this.address.mob_phone+"\r详细地址："+this.address.address+"\r您也可以点击'取消'选择其他地址购买")
           if (r==true)
           {
              $.poemPost(POINTS_BUY_API,{key:poem.getItem("key"),
@@ -107,7 +108,7 @@
           poemUI.toast(data.error);
           return;
         };
-        poemUI.toast('兑换成功');
+        alert('兑换成功，工作人员将尽快为您处理该订单，请耐心等候');
       }
     },
 

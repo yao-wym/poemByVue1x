@@ -13,7 +13,8 @@ module.exports = {
       { test: /\.styl$/, loader: "style!css!stylus" },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.html$/, loader: "html" },
-      {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}, // inline base64 URLs for <=8k images, direct URLs for the rest
+      // {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}, // inline base64 URLs for <=8k images, direct URLs for the rest
+      {test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'},
       {
         test: /\.vue$/,
         loader: 'vue'

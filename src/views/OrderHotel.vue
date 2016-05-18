@@ -50,7 +50,7 @@
     },
   methods:{
     getOrderList:function(){
-      $.poemGet(VR_ORDER_LIST_API,{key:poem.getItem('key'),'order_state':this.state}).done(this.getSuccess);
+      $.poemGet(VR_ORDER_LIST_API,{key:poem.getItem('key'),page:100,'order_state':this.state}).done(this.getSuccess);
     },
     getSuccess:function(res){
       this.orderList = res.order_list;
