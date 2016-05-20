@@ -61,7 +61,7 @@
 
     data() {
       return {
-        address: '我在马路边捡到一分钱',
+        address: '',
         phone: null,
         intro: '',
         allestabs: ['宽带上网', 'wifi覆盖', '停车场', '餐厅', '全天热水', '会议室', '健身房', '叫醒服务' ],
@@ -73,13 +73,32 @@
       getHotelDeepDetail() {
         $.poemGet(HOTEL_DETAIL_API,{'store_id':this.$route.params.id}).done(this.getHotelDeepDetailDone)
       },
-
+      getAddressDetail(info,that){
+         AMap.service('AMap.Geocoder',function(){//回调函数
+        //实例化Geocoder
+        geocoder = new AMap.Geocoder({
+        });
+        //TODO: 使用geocoder 对象完成相关功能
+                //逆地理编码
+        var lnglatXY=[info.store_location_lat, info.store_location_lng];//地图上所标点的坐标
+        geocoder.getAddress(lnglatXY, function(status, result) {
+            if (status === 'complete' && result.info === 'OK') {
+               //获得了有效的地址信息:
+               //即，result.regeocode.formattedAddress
+               that.address = result.regeocode.formattedAddress;
+            }else{
+               //获取地址失败
+            }
+        });  
+        })
+      },
       getHotelDeepDetailDone(data) {
         var info = data.store_info;
         this.phone = info.store_phone;
-        this.address = info.store_location_lat;
+        // this.address = info.store_location_lat;
         this.intro = info.store_description;
         this.estabs = [];
+        this.getAddressDetail(info,this);
         var store_zy = info.store_zy.split('');
         for(let i = 0; i < store_zy.length; i++){
           if (store_zy[i] == 1) {

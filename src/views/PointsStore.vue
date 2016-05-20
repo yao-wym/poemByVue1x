@@ -5,7 +5,7 @@
   	  <p class="owned-points">可用积分 {{ points }}</p>
       <div class="item-list">
         <div @click="buy(item.pgoods_id)" class="item" v-for="item in itemList">
-          <div class="img-wrapper"><img src="{{item.pgoods_image_small}}" alt=""></div>
+          <div class="img-wrapper"><img src="{{item.pgoods_image}}" alt=""></div>
           <p>{{item.pgoods_name}}</p>
           <p><span class="score-price">{{item.pgoods_points}}</span>积分<button :class="{'active': item.pgoods_show}">立即兑换</button></p>
         </div>
