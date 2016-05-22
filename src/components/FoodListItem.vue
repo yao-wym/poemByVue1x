@@ -1,14 +1,14 @@
 <template>
 	<li class="goods-item" style="padding:10px 20px">
-		<a style="overflow: hidden;display:flex" @click="buyGoods">
-			<img v-bind:src="food.goods_image_url" class="goods-img">
-			<div class="goods-info">
+		<a style="overflow: hidden;display:flex">
+			<img v-link="{path:'/Image?imageSrc='+food.goods_image_url}" v-bind:src="food.goods_image_url" class="goods-img">
+			<div class="goods-info" @click="buyGoods">
 				<div class="goods-name">{{food.goods_name}}</div>
 				<div style="margin-top:10px;color: orangered" class="goods-name">{{food.evaluation_good_star}}分</div>
 				<div style="margin-top:10px;color: rgb(40, 173, 40)" class="goods-name">{{food.evaluation_count}}人评价</div>
 				<div style="margin-top:10px" class="goods-name">{{food.goods_jingle}}</div>
 			</div>
-			<div>
+			<div @click="buyGoods">
 				<div style="color:red;font-size:0.4rem">¥{{food.goods_price}}</div>
 				<button style="float:right;margin-top:50px;color:white;">预定</button>
 			</div>

@@ -7,7 +7,7 @@
           <h1>{{ hotelName }}</h1>
             <div style="padding-left: 0">
               <div style="float:left;overflow: hidden;">时间：</div>
-              <div class="time-content" id="daterange-picker" style="width: 8rem" ></div>
+              <div class="time-content" id="daterange-picker" style="width: 8rem" >点击选择入住时间</div>
               <!-- <span id="dateCheckIn">{{ checkInTime }}</span>入住-<span id="dateCheckOut">{{ checkOutTime }}</span>
               离店
               <span class="day">{{ formInfo.days }}晚</span> -->
@@ -71,7 +71,7 @@
         return{
             key:poem.getItem('key'),
             goods_id:this.roomInfo.goods_id,
-            quantity:this.quantity,
+            quantity:this.quantity*this.days,
             rcb_pay:0,
             pd_pay:0,
             days:this.days,
@@ -150,7 +150,7 @@
           this.daterange = obj.value;
           this.checkInTime = obj.date1;
           this.checkOutTime = obj.date2;
-          this.days = parseInt($(".selected-days-num").text());
+          this.days = parseInt($(".selected-days-num").text())-1;
           $('#daterange-picker').data('dateRangePicker').close();
           $('#daterange-picker').html(this.daterange);
 

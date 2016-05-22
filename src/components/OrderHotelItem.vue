@@ -28,7 +28,7 @@
 			<span style="float:right">总共
 			<span>{{order.goods_num}}</span>
 			件合计¥
-			<span >{{parseFloat(order.goods_price)*parseInt(order.goods_num)*parseInt(order.days)}}</span>
+			<span >{{parseFloat(order.goods_price)*parseInt(order.goods_num)}}</span>
 			
 		</div>
 		<div v-if="order.order_state_text=='待付款'" class="cart-item-operate" style="overflow:hidden">

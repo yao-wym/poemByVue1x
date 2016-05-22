@@ -82,7 +82,7 @@
             </div>
             <div style="width:100%;text-align:left">
               <p>{{ goodsDetail.goods_info.goods_name }}</p>
-              <p><span style="color:red">¥{{ goodsDetail.goods_info.goods_marketprice }}</span></p>
+              <p><span style="color:red">¥{{ goodsDetail.goods_info.goods_price }}</span></p>
             </div>
           </div>
           <ul style="text-align:center;margin-top:1rem">
