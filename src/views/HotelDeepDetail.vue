@@ -84,6 +84,7 @@
         console.log(JSON.stringify(lnglatXY));
         geocoder.getAddress(lnglatXY, function(status, result) {
                console.log(JSON.stringify(result));
+               console.log(JSON.stringify(status));
             if (status === 'complete' && result.info === 'OK') {
                //获得了有效的地址信息:
                //即，result.regeocode.formattedAddress
