@@ -83,10 +83,10 @@
         var lnglatXY=[info.store_location_lat, info.store_location_lng];//地图上所标点的坐标
         console.log(JSON.stringify(lnglatXY));
         geocoder.getAddress(lnglatXY, function(status, result) {
+               console.log(JSON.stringify(result));
             if (status === 'complete' && result.info === 'OK') {
                //获得了有效的地址信息:
                //即，result.regeocode.formattedAddress
-               console.log(JSON.stringify(result));
                that.address = result.regeocode.formattedAddress;
             }else{
                //获取地址失败
