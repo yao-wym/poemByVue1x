@@ -68,16 +68,16 @@ module.exports = {
     addCloudLayer:function() {
         //加载云图层插件
         this.map.plugin('AMap.CloudDataLayer', function() {
-          console.log(1)
+          alert(1)
             var layerOptions = {
               clickable: true,
               query: {keywords: ''},
             };
-          console.log(2)
+          alert(2)
             this.cloudDataLayer2 = new AMap.CloudDataLayer('56a1d385305a2a32882907d0',layerOptions); 
-          console.log(3)
+          alert(3)
             this.cloudDataLayer2.setMap(this.map); 
-          console.log.log(4)
+          alert(4)
             alert(JSON.stringify(this.cloudDataLayer2));
             AMap.event.addListener(cloudDataLayer2, 'click', function(result) {
                 var clouddata = result.data;
