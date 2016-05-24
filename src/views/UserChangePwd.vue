@@ -3,7 +3,7 @@
 	<app-header title="修改密码"></app-header>
 	<flex-scroll-view>
        <div style="margin-top:2rem;text-align:center" class="find-container">
-		<div class="poem-input-box">
+		<div class="poem-input-box" style="padding:2px">
 			<div class="input-item">
 				<div class="icon-label">
 					<img src='../asset/images/user-green.png' style="width:30px;height: 30px"/>
@@ -59,6 +59,7 @@
 	font-size:.5rem
 	& .input-item
 		display:flex
+		padding:2px
 		& .icon-label
 			text-align:left
 			padding-left:10px
