@@ -112,7 +112,7 @@
     },
 
     route: {
-      data() {
+      data(transition) {
         transition.next({
           address: '',
           phone: null,
