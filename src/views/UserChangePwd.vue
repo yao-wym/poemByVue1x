@@ -2,7 +2,7 @@
 	<div class="flex-view" v-transition>
 	<app-header title="修改密码"></app-header>
 	<flex-scroll-view>
-       <div style="margin-top:2rem;text-align:center" class="find-container">
+       <div style="margin-top:2rem;text-align:center" class="change-container">
 		<div class="poem-input-box" style="padding:2px">
 			<div class="input-item">
 				<div class="icon-label">
@@ -55,8 +55,10 @@
 </template>
 
 <style lang="stylus" scoped>
-.find-container
+.change-container
 	font-size:.5rem
+	& .poem-input-box
+		border:none
 	& .input-item
 		display:flex
 		padding:2px
