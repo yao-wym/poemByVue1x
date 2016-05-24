@@ -113,6 +113,12 @@
 
     route: {
       data() {
+        transition.next({
+          address: '',
+          phone: null,
+          intro: '',
+          estabs: []
+        })
         this.getHotelDeepDetail();
       }
     }
