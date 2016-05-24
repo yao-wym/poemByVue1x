@@ -80,7 +80,7 @@
         });
         //TODO: 使用geocoder 对象完成相关功能
                 //逆地理编码
-        var lnglatXY=[info.store_location_lat, info.store_location_lng];//地图上所标点的坐标
+        var lnglatXY=[info.store_location_lng,info.store_location_lat];//地图上所标点的坐标
         console.log(JSON.stringify(lnglatXY));
         geocoder.getAddress(lnglatXY, function(status, result) {
                console.log(JSON.stringify(result));
