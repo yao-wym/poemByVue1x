@@ -76,7 +76,7 @@
       getAddressDetail(info,that){
          AMap.service('AMap.Geocoder',function(){//回调函数
         //实例化Geocoder
-        geocoder = new AMap.Geocoder({
+       var geocoder = new AMap.Geocoder({
         });
         //TODO: 使用geocoder 对象完成相关功能
                 //逆地理编码
