@@ -19,6 +19,7 @@ module.exports = {
       userLat:"",
       posLng:"",
       posLat:"",
+      cloudDataLayer2:""
     }
   },
   components: {
@@ -67,13 +68,18 @@ module.exports = {
     addCloudLayer:function() {
         //加载云图层插件
         this.map.plugin('AMap.CloudDataLayer', function() {
+          console.log(1)
             var layerOptions = {
-                clickable: true
+              clickable: true,
+              query: {keywords: ''},
             };
-            var cloudDataLayer = new AMap.CloudDataLayer('56a1d385305a2a32882907d0', layerOptions); //实例化云图层类
-            cloudDataLayer.setMap(this.map); //叠加云图层到地图
-
-            AMap.event.addListener(cloudDataLayer, 'click', function(result) {
+          console.log(2)
+            this.cloudDataLayer2 = new AMap.CloudDataLayer('56a1d385305a2a32882907d0',layerOptions); 
+          console.log(3)
+            this.cloudDataLayer2.setMap(this.map); 
+          console.log.log(4)
+            alert(JSON.stringify(this.cloudDataLayer2));
+            AMap.event.addListener(cloudDataLayer2, 'click', function(result) {
                 var clouddata = result.data;
                 var photo=[];
                 if(clouddata._image[0]){//如果有上传的图片
