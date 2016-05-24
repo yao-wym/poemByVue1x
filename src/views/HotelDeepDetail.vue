@@ -108,6 +108,7 @@
             this.estabs.push(this.allestabs[i]);
           }
         }
+        setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
       }
     },
 
