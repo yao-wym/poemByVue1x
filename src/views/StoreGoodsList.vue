@@ -74,6 +74,8 @@ module.exports = {
   route:{
     data(){
       this.storeName = this.$route.query.storeName;
+      this.curpage = 1;
+      this.techanList=[];
       this.getTechanList();
     }
   },
