@@ -1,12 +1,12 @@
 <template>
 	<div class="flex-view" v-transition>
-	<app-header search="搜索" :value="keyword" right-icon="user-icon"></app-header>
+	<app-header search='找美食.找酒店' right-label='搜索' right-link="search"></app-header>
   <flex-scroll-view>
     <ul id="search-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
-      <scenic-list-item v-if="searchType=='store'" v-for="scenic in searchList" :scenic="scenic" :index="$index">
+      <store-list-item v-if="searchType=='store'" v-for="store in searchList" :store="store" :index="$index">
         
-      </scenic-list-item>
+      </store-list-item>
       <goods-list-item v-if="searchType=='goods'" v-for="item in searchList" :item="item" :index="$index">
         
       </goods-list-item>
@@ -21,8 +21,8 @@
 module.exports = {
   replace: true,
   components: {
-    'scenic-list-item': function(resolve) {
-    	require(['../components/ScenicListItem.vue'], resolve);
+    'store-list-item': function(resolve) {
+    	require(['../components/StoreListItem.vue'], resolve);
     },
     'goods-list-item': function(resolve) {
       require(['../components/CollectGoodsItem.vue'], resolve);
@@ -43,12 +43,15 @@ module.exports = {
   route: {
     data: function (transition) {
         transition.next({
-          'keyword':this.$route.params.keyword,
-          'searchType':this.$route.params.searchType,
           'curpage' : 1,
           'searchList':[],
         })
-        this.getSearchList();
+        if(this.$route.params.keyword!=this.keyword||this.searchType!=this.$route.params.searchType){
+          this.searchType = this.$route.params.searchType,
+          this.keyword = this.$route.params.keyword;
+          this.getSearchList();
+        }
+        this.$broadcast("reSearch");
       }
   },
   data: function(){
@@ -92,6 +95,14 @@ module.exports = {
   },
   events:{
     'scrollEnd':function(msg){
+      this.getSearchList();
+    },
+    'search':function(msg){
+      // console.log(msg.keyword);
+      this.searchType = msg.searchType;
+      this.keyword = msg.keyword;
+      this.searchList = [];
+      this.curpage = 1;
       this.getSearchList();
     },
   }

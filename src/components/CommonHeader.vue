@@ -10,16 +10,16 @@
         {{leftLabel}}
     </div>
     <div class="header-center">
-      <div style="border-radius: 10px;background-color: white" v-if="search">
-        <select id="searchType" style="border: none;float: left;width:10%;height:60px;position:relative;right:-3px">
-          <option value="goods">商品</option>
-          <option value="store">店铺</option>
-      </select>
-      <input style="width:88%;border:none;border-radius: 0" type="text" value="{{value}}" v-model="keyword" @keyup.13="showSearch" id="search-input" placeholder="{{search}}"/>
+      <div style="border-radius: 10px;background-color: white;overflow:hidden" id='search-input'>
+        <span id="searchType" @click="selectSearchType=!selectSearchType" style="float:left;color:gray;font-size:.3rem;width:13%;text-align:center">{{searchTypeCN}}</span>
+        <input v-if="search" style="border:none;border-radius: 0;width:80%;" type="text" v-model="keyword" @keyup.13="showSearch" id="search-input"/>
       </div>
       <span v-if="title">{{title}}</span>
     </div>
-
+    <ul v-show="selectSearchType" style="padding:10px;position:absolute;left:1.6rem;width:1.6rem;text-align:center;top:1rem;background-color:rgba(255,255,255,0.7);font-size:16px;border-radius:5px">
+      <li @click="changeSearch('goods')" style='font-size:.4rem;padding:20px' value="goods">商品</li>
+      <li @click="changeSearch('store')" style='font-size:.4rem;padding:20px' value="store">店铺</li>
+    </ul>
     <div @click='rightClick()' class="header-right">
         <a>
           <span v-if="rightLabel">
@@ -36,19 +36,38 @@
 module.exports = {
 	data:function () {
     return { 
-      test: 123,
-      keyword:'',
-      value:''
+      keyword:this.$route.params.keyword,
+      selectSearchType:false,
+      searchType:'goods',
+      searchTypeCN:'商品'
      }
+  },
+  events:{
+    'reSearch':function(){
+      this.keyword = this.$route.params.keyword;
+      this.searchType = this.$route.params.searchType;
+      this.searchTypeCN = this.$route.params.searchType=='goods'?'商品':'店铺'
+    }
   },
 	props: ['title','leftLabel','rightLabel','leftLink','rightLink','leftIcon','rightIcon','search','value'],
   methods:{
+    changeSearch:function(type){
+      if(type=='store'){
+        this.selectSearchType=false;
+        this.searchType='store';
+        this.searchTypeCN='店铺'
+      }else{
+        this.selectSearchType=false;
+        this.searchType='goods';
+        this.searchTypeCN='商品'
+      }
+    },
     showSearch:function(){
       if(isEmpty(this.keyword)){
         this.keyword = " "
       }
       var param = {"keyword":this.keyword};
-      param['searchType'] = $("#searchType").val();
+      param['searchType'] = this.searchType;
       this.eventHandle('search',param);
     },
 
