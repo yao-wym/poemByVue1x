@@ -4,7 +4,12 @@
   <flex-scroll-view>
     <ul id="search-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
-      <scenic-list-item v-for="scenic in searchList" :scenic="scenic" :index="$index"></scenic-list-item>
+      <scenic-list-item v-if="searchType=='store'" v-for="scenic in searchList" :scenic="scenic" :index="$index">
+        
+      </scenic-list-item>
+      <goods-list-item v-if="searchType=='goods'" v-for="item in searchList" :item="item" :index="$index">
+        
+      </goods-list-item>
       <!-- </list-view> -->
     </ul>
 <!--     <return-top></return-top> -->
@@ -18,6 +23,9 @@ module.exports = {
   components: {
     'scenic-list-item': function(resolve) {
     	require(['../components/ScenicListItem.vue'], resolve);
+    },
+    'goods-list-item': function(resolve) {
+      require(['../components/CollectGoodsItem.vue'], resolve);
     },
     'list-view': function(resolve) {
       require(['../components/ListView.vue'], resolve);
@@ -35,27 +43,33 @@ module.exports = {
   route: {
     data: function (transition) {
         transition.next({
-          'keyword':this.$route.params.keyword
+          'keyword':this.$route.params.keyword,
+          'searchType':this.$route.params.searchType,
+          'curpage' : 1,
+          'searchList':[],
         })
         this.getSearchList();
       }
   },
   data: function(){
-  	var searchList = [];
-  	var curpage = 1; 
   	return {
-  		curpage : curpage,
-  		searchList:searchList,
+  		curpage : 1,
+  		searchList:[],
       keyword:""
   	}
   },
   methods:{
   	getSearchList:function(){
-  		$.getJSON(GOODS_SEARCH_API,{keyword:this.keyword,page:10,curpage:this.curpage}).done(this.getSearchListDone);
+      var searchApi = this.searchType=='goods'?GOODS_SEARCH_API:STORE_SEARCH_API;
+  		$.getJSON(searchApi,{keyword:this.keyword,page:20,curpage:this.curpage}).done(this.getSearchListDone);
   	},
   	getSearchListDone:function(res){
-      if(!isEmpty(res.datas.goods_list)){
-        this.searchList = this.searchList.concat(res.datas.goods_list);
+      if(!isEmpty(res.datas.goods_list)||!isEmpty(res.datas.store_list)){
+        if(this.searchType=='goods'){
+          this.searchList = this.searchList.concat(res.datas.goods_list);
+        }else{
+          this.searchList = this.searchList.concat(res.datas.store_list);
+        }
         this.curpage++;
         // this.$broadcast('refresh')
         this.$nextTick(function(){
@@ -80,31 +94,9 @@ module.exports = {
     'scrollEnd':function(msg){
       this.getSearchList();
     },
-    'conditionChange':function(msg){
-      $.getJSON(GOODS_SEARCH_API,{order:"desc",page:10,curpage:this.curpage}).done(this.getSearchListDone);
-    }
   }
 }
 </script>
 
 <style lang="stylus">
-	@import "../main.styl"
-// px2rem(name, px){
-//     name: px/75 
-// }
-.goods-img
-	width:2rem
-	height:2rem
-	float:left
-	margin-right:0.3rem
-
-.goods-info
-	overflow:hidden
-.goods-item
-	 background-color: #eee; 
-	 overflow:auto; 
-	 resize:horizontal;
-	
-
-
 </style>

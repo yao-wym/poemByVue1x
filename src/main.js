@@ -20,7 +20,6 @@ import OrderTechanView from './views/OrderTechan.vue'
 
 // import AddressAddView from './views/AddressAdd.vue'
 
-// import SearchView from './views/Search.vue'
 // import MapView from './views/MapView.vue'
 
 
@@ -125,10 +124,12 @@ router.map({
       require(['./Views/UserReg.vue'], resolve)
     }
   },
-  // '/search/:keyword': {
-  //   name:'search',
-  //   component: SearchView
-  // },
+  '/search/:keyword/:searchType': {
+    name:'search',
+   component:function (resolve) {
+      require(['./Views/Search.vue'], resolve)
+    }
+  },
   '/TechanOrderForm': {
     name:'techanOrderForm',
     component: TechanOrderFormView

@@ -23,6 +23,7 @@ var ADDR_EDIT_API = HOST_API+'act=member_address&op=address_edit';
 var SCENIC_LIST_API = HOST_API+'act=shop';
 
 var GOODS_SEARCH_API = HOST_API+'act=goods&op=goods_list';
+var STORE_SEARCH_API = HOST_API+'act=shop&op=shop_search';
 
 var TECHAN_LIST_API = HOST_API+'act=goods&op=goods_list&page=10';
 var TECHAN_DETAIL_API = HOST_API+'act=goods&op=goods_list&gc_id=1';

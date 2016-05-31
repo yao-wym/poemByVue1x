@@ -10,7 +10,13 @@
         {{leftLabel}}
     </div>
     <div class="header-center">
-      <input type="text" value="{{value}}" v-model="keyword" @keyup.13="showSearch" id="search-input" placeholder="{{search}}" v-if="search"/>
+      <div style="border-radius: 10px;background-color: white" v-if="search">
+        <select id="searchType" style="border: none;float: left;width:10%;height:60px;position:relative;right:-3px">
+          <option value="goods">商品</option>
+          <option value="store">店铺</option>
+      </select>
+      <input style="width:88%;border:none;border-radius: 0" type="text" value="{{value}}" v-model="keyword" @keyup.13="showSearch" id="search-input" placeholder="{{search}}"/>
+      </div>
       <span v-if="title">{{title}}</span>
     </div>
 
@@ -38,11 +44,12 @@ module.exports = {
 	props: ['title','leftLabel','rightLabel','leftLink','rightLink','leftIcon','rightIcon','search','value'],
   methods:{
     showSearch:function(){
-      // this.$route.router.go({name:'search'});
       if(isEmpty(this.keyword)){
         this.keyword = " "
       }
-      this.eventHandle('search',{keyword:this.keyword});
+      var param = {"keyword":this.keyword};
+      param['searchType'] = $("#searchType").val();
+      this.eventHandle('search',param);
     },
 
     rightClick:function(){
@@ -59,6 +66,10 @@ module.exports = {
       if(eventTarget.slice(0,1)=='#'){
         location.href = eventTarget
       }else{
+        if(eventTarget == 'search'&&$.isEmpty(msg)){
+          this.showSearch();
+          return;
+        }
         this.$dispatch(eventTarget,msg)
       }
     }
