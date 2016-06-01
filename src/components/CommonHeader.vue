@@ -10,9 +10,9 @@
         {{leftLabel}}
     </div>
     <div class="header-center">
-      <div style="border-radius: 10px;background-color: white;overflow:hidden" id='search-input'>
+      <div v-if="search" style="border-radius: 10px;background-color: white;overflow:hidden" id='search-input'>
         <span id="searchType" @click="selectSearchType=!selectSearchType" style="float:left;color:gray;font-size:.3rem;width:13%;text-align:center">{{searchTypeCN}}</span>
-        <input v-if="search" style="border:none;border-radius: 0;width:80%;" type="text" v-model="keyword" @keyup.13="showSearch" id="search-input"/>
+        <input style="border:none;border-radius: 0;width:80%;" type="text" v-model="keyword" @keyup.13="showSearch" id="search-input"/>
       </div>
       <span v-if="title">{{title}}</span>
     </div>
