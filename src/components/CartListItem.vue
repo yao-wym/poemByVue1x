@@ -75,10 +75,12 @@ module.exports = {
 			}
 	    },
 	    minusGoods:function(index){
-	    	if(this.cart[index].goods_num>1)
-	    	this.cart[index].goods_num--;
-	    	if(this.cart[index].goods_num==0){
-	    		this.delete(this.cart[index].cart_id);
+	    	if(this.cart[index].goods_num>0)
+	    	if(this.cart[index].goods_num==1){
+	    		var r=confirm('确认删除?')
+	          	if (r==true){
+	             	this.delete(this.cart[index].cart_id);
+	          	}
 	    	}
 	    	this.sum = 0;
 	   		for(var i=0;i<this.cart.length;i++){

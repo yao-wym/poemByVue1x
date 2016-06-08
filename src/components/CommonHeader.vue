@@ -19,6 +19,8 @@
     <ul v-show="selectSearchType" style="padding:10px;position:absolute;left:1.6rem;width:1.6rem;text-align:center;top:1rem;background-color:rgba(255,255,255,0.7);font-size:16px;border-radius:5px">
       <li @click="changeSearch('goods')" style='font-size:.4rem;padding:20px' value="goods">商品</li>
       <li @click="changeSearch('store')" style='font-size:.4rem;padding:20px' value="store">店铺</li>
+      <li @click="changeSearch('hotel')" style='font-size:.4rem;padding:20px' value="store">酒店</li>
+      <li @click="changeSearch('scenic')" style='font-size:.4rem;padding:20px' value="store">景点</li>
     </ul>
     <div @click='rightClick()' class="header-right">
         <a>
@@ -56,10 +58,18 @@ module.exports = {
         this.selectSearchType=false;
         this.searchType='store';
         this.searchTypeCN='店铺'
-      }else{
+      }else if(type=='goods'){
         this.selectSearchType=false;
         this.searchType='goods';
         this.searchTypeCN='商品'
+      }else if(type=='hotel'){
+        this.selectSearchType=false;
+        this.searchType='hotel';
+        this.searchTypeCN='酒店'
+      }else if(type=='scenic'){
+        this.selectSearchType=false;
+        this.searchType='scenic';
+        this.searchTypeCN='景点'
       }
     },
     showSearch:function(){

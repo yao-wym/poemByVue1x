@@ -37,6 +37,11 @@
           <p>详情</p>
           <span>></span>
         </a>
+        <a class="link-line" href="tel:{{storeInfo.store_phone}}">
+          <img class="small-icon" src="../asset/images/phone-red.png" alt="">
+          <p>电话：{{storeInfo.store_phone}}</p>
+          <span>></span>
+        </a>
       </div>
       <div class="section">
         <div class="link-line">
@@ -44,9 +49,9 @@
           <p>票价</p>
         </div>
         <div class="ticket-price" v-for="ticketPrice in ticketPrices">
-          <div class="price-kind" @click="ctrlOrderDetail($index)">
-            <img style="width:1.8rem;height:1.8rem" src="{{ticketPrice.goods_image_url}}">
-            <div class="ticket-name" style="margin-left:15px">
+          <div class="price-kind">
+            <img @click="ctrlOrderDetail($index)" style="width:1.8rem;height:1.8rem" src="{{ticketPrice.goods_image_url}}">
+            <div  @click="bookTicket($index)" class="ticket-name" style="margin-left:15px">
               <div>
                 {{ ticketPrice.goods_name }}
               </div>
@@ -54,10 +59,10 @@
                 {{ ticketPrice.goods_jingle }}
               </div>
             </div>
-            <p class="price" style="color:orangered">
+            <p @click="bookTicket($index)" class="price" style="color:orangered">
                 ¥{{ ticketPrice.goods_price }}
             </p>
-            <div class="arrow">
+            <div @click="bookTicket($index)" class="arrow">
               <i></i>
             </div>
           </div>
@@ -67,7 +72,7 @@
                 <a v-link="{path:'/Image?imageSrc='+photo}"> <img v-bind:src="photo"></a>
               </div>
             </div>
-            <button @click="bookTicket($index)" class="order-button">预定</button>
+            <!-- <button @click="bookTicket($index)" class="order-button">预定</button> -->
           </div>
         </div>
       </div>

@@ -92,14 +92,11 @@
       },
       buy(pgoods_id) {
          var r=confirm('使用默认地址\r收货人：'+this.address.true_name+"\r联系电话："+this.address.mob_phone+"\r详细地址："+this.address.address+"\r您也可以点击'取消'选择其他地址购买")
-          if (r==true)
-          {
+          if (r==true){
              $.poemPost(POINTS_BUY_API,{key:poem.getItem("key"),
                 pgoods_id: pgoods_id,
                 quantity: 1,}).done(this.buyDone);
-          }
-          else
-          {
+          }else{
             this.$route.router.go({path:"/AddressList?action=chooseAddr&refer="+location.hash})
           }
       },

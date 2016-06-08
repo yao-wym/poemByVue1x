@@ -4,7 +4,7 @@
   <flex-scroll-view>
     <ul id="search-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
-      <store-list-item v-if="searchType=='store'" v-for="store in searchList" :store="store" :index="$index">
+      <store-list-item v-if="searchType!='goods'&&storeHash[searchType].indexOf(store['sc_id'])!=-1" v-for="store in searchList" :store="store" :index="$index">
         
       </store-list-item>
       <goods-list-item v-if="searchType=='goods'" v-for="item in searchList" :item="item" :index="$index">
@@ -58,7 +58,8 @@ module.exports = {
   	return {
   		curpage : 1,
   		searchList:[],
-      keyword:""
+      keyword:"",
+      storeHash:{'store':['11'],'hotel':['2','12'],'scenic':['3']}
   	}
   },
   methods:{

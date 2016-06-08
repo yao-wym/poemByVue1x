@@ -24,11 +24,16 @@
   },
   ready:function(){
     // $.fn.poemGet(CART_LIST_API,{'key':});
-    this.getCartList();
+    
   },
   data:function(){
     return{
       cartList:[]
+    }
+  },
+  route:{
+    data:function(){
+      this.getCartList();
     }
   },
   events:{
