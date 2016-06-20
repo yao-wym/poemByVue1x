@@ -232,6 +232,12 @@ router.map({
       require(['./Views/StoreGoodsList.vue'], resolve)
     }
   },
+  '/TripPlanList/:id': {
+    // component: StoreGoodsView
+    component:function (resolve) {
+      require(['./Views/TripPlanList.vue'], resolve)
+    }
+  },
   // '/app_header': {
   //   // component: ItemView
   // },

@@ -13,11 +13,11 @@
         </div>
       </div>
     </a>
-    <a v-link="{path:'/MapView?title=周边'}">
+    <a v-link="{path:'/TripPlanList/246?storeName=线路套餐'}">
       <div style="background-color: rgb(127,204,229);margin-top: 8px">
         <div class="logo">
           <img src="../asset/images/home-map.png">
-          <div>地图周边</div>
+          <div>线路套餐</div>
         </div>
       </div>
     </a>
