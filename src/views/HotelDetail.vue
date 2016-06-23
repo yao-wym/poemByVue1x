@@ -83,13 +83,21 @@
                 <div class="room-img">
                 <img @click="ctrlRoomDetail($index)" v-bind:src="room.goods_image_url">
                 </div>
-                <div  @click="bookRoom($index)" class="room-info">
+                <template v-if="room.g_showprice!=='0'">
+                  <div @click="bookRoom($index)" class="room-info">
                   <p>{{room.goods_name}}</p>
                   <p>{{room.goods_jingle}}</p>
                 </div>
-                <div  @click="bookRoom($index)" class="room-price">
+                <div @click="bookRoom($index)" class="room-price">
                   <span>¥</span><span style="color:red;font-size:.4rem">{{room.goods_price}}</span><span>起</span>
                 </div>
+                </template>
+                <template v-if="room.g_showprice==='0'">
+                  <div class="room-info">
+                  <p>{{room.goods_name}}</p>
+                  <p>{{room.goods_jingle}}</p>
+                </div>
+                </template>
                   <div class="arrow">
                   <i></i>
                 </div>

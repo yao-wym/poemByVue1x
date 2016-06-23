@@ -2,9 +2,9 @@
 	<div class="flex-view" v-transition>
 	<app-header :title="storeName"></app-header>
   <flex-scroll-view>
-    <ul id="techan-list-view" style="font-size: 0.3rem">
+    <ul id="trip-list-view" style="font-size: 0.3rem">
       <!-- <list-view> -->
-      <techan-list-item v-for="techan in techanList" :techan="techan" :index="$index"></techan-list-item>
+      <trip-list-item v-for="trip in tripList" :trip="trip" :index="$index"></trip-list-item>
       <!-- </list-view> -->
     </ul>
 <!--     <return-top></return-top> -->
@@ -18,11 +18,8 @@
 module.exports = {
   replace: true,
   components: {
-    'techan-list-item': function(resolve) {
-    	require(['../components/techanListItem.vue'], resolve);
-    },
-    'list-view': function(resolve) {
-      require(['../components/ListView.vue'], resolve);
+    'trip-list-item': function(resolve) {
+    	require(['../components/tripListItem.vue'], resolve);
     },
     'flex-scroll-view': function(resolve) {
       require(['../components/FlexScrollView.vue'], resolve);
@@ -41,19 +38,19 @@ module.exports = {
   	return {
   		curpage : 1,
       pageNum : 1,
-  		techanList:[],
+  		tripList:[],
       storeName:''
   	}
   },
   methods:{
-  	getTechanList:function(){
-  		$.getJSON(STORE_GOODS_API,{'store_id':this.$route.params.id,'page':10,'curpage':this.curpage}).done(this.getTechanListDone);
+  	getTripList:function(){
+  		$.getJSON(STORE_GOODS_API,{'store_id':this.$route.params.id,'page':10,'curpage':this.curpage}).done(this.getTripListDone);
   	},
-  	getTechanListDone:function(res){
+  	getTripListDone:function(res){
   		console.log(JSON.stringify(res));
       if(!isEmpty(res.datas.goods_list)){
         this.pageNum = res.page_total
-        this.techanList = this.techanList.concat(res.datas.goods_list);
+        this.tripList = this.tripList.concat(res.datas.goods_list);
         this.curpage++;
         this.$nextTick(function(){
           //this.$broadcast('refresh');
@@ -75,8 +72,8 @@ module.exports = {
     data(){
       this.storeName = this.$route.query.storeName;
       this.curpage = 1;
-      this.techanList=[];
-      this.getTechanList();
+      this.tripList=[];
+      this.getTripList();
     }
   },
   events:{
@@ -85,7 +82,7 @@ module.exports = {
         poemUI.toast('没有更多了');
         return;
       }else{
-        this.getTechanList();
+        this.getTripList();
       }
     }
   }
@@ -94,22 +91,4 @@ module.exports = {
 
 <style lang="stylus">
 	@import "../main.styl"
-// px2rem(name, px){
-//     name: px/75 
-// }
-.goods-img
-	width:2rem
-	height:2rem
-	float:left
-	margin-right:0.3rem
-
-.goods-info
-	overflow:hidden
-.goods-item
-	 background-color: #eee; 
-	 overflow:auto; 
-	 resize:horizontal;
-	
-
-
 </style>

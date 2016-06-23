@@ -59,7 +59,7 @@
         this.$nextTick(function(){
           this.$broadcast('refresh');
         });
-        // setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),1000)
+        setInterval((function(that){return function(){that.$broadcast('refresh');}})(this),2000)
       }
     },
     route:{

@@ -259,6 +259,12 @@ router.map({
       require(['./Views/FoodDetail.vue'], resolve)
     }
   },
+  '/TripDetail/:id': {
+    // component: FoodDetail
+    component:function (resolve) {
+      require(['./Views/TripDetail.vue'], resolve)
+    }
+  },
   '/Setting': {
     component:function (resolve) {
       require(['./Views/Setting.vue'], resolve)

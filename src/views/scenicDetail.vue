@@ -51,6 +51,7 @@
         <div class="ticket-price" v-for="ticketPrice in ticketPrices">
           <div class="price-kind">
             <img @click="ctrlOrderDetail($index)" style="width:1.8rem;height:1.8rem" src="{{ticketPrice.goods_image_url}}">
+            <template v-if="ticketPrice.g_showprice!=='0'">
             <div  @click="bookTicket($index)" class="ticket-name" style="margin-left:15px">
               <div>
                 {{ ticketPrice.goods_name }}
@@ -65,6 +66,20 @@
             <div @click="bookTicket($index)" class="arrow">
               <i></i>
             </div>
+            </template>
+            <template v-if="ticketPrice.g_showprice==='0'">
+            <div  class="ticket-name" style="margin-left:15px">
+              <div>
+                {{ ticketPrice.goods_name }}
+              </div>
+              <div style="margin-top:10px">
+                {{ ticketPrice.goods_jingle }}
+              </div>
+            </div>
+            <div class="arrow">
+              <i></i>
+            </div>
+            </template>
           </div>
           <div v-show="orderDetailShow[$index]" class="order-detail">
             <div class="gallery">

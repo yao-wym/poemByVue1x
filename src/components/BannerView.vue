@@ -6,7 +6,12 @@
 					<div style="background-image:url({{item}});height:{{bannerHeight}}" class="painting giotto"></div>
 				</div>
 	        </div>
-	        <div default="true" id="banner" style="background-color: white;width:{{slideList.length*10+'rem'}}" class="banner-content" v-else>
+	        <div v-if="imgItemArr" default="true" id="banner" style="background-color: white;width:{{imgItemArr.length*10+'rem'}}" class="banner-content" v-else>
+				<div @click='showDetail($index)' v-for="item in imgItemArr" :item="item"  class="slide">
+					<div style="background-image:url({{item.image}})" class="painting giotto"></div>
+				</div>
+	        </div>
+	        <div v-if="!imgItemArr&&!imgArr" default="true" id="banner" style="background-color: white;width:{{slideList.length*10+'rem'}}" class="banner-content" >
 				<div @click='showDetail($index)' v-for="item in slideList" :item="item"  class="slide">
 					<div style="background-image:url({{item.image}})" class="painting giotto"></div>
 				</div>
@@ -122,12 +127,16 @@ export default {
 			}
 		}
 	},
-	props:['imgArr','bannerHeight','isAuto'],
+	props:['imgArr','imgItemArr','bannerHeight','isAuto'],
 	methods:{
 		initPage:function(res){
 			this.slideList = res.adv_list.item
 		},
 		showDetail:function(index){
+			if(!$.isEmpty(this.imgItemArr)){
+				this.$route.router.go({path:"/TripDetail/"+this.imgItemArr[index].data});
+				return;
+			}
 			if($.isEmpty(this.slideList[index].type)||$.isEmpty(this.slideList[index].data)){
 				return;
 			}
@@ -140,7 +149,11 @@ export default {
 	ready:function(){
 		if(!$.isEmpty(this.imgArr)){
 			this.slideList = this.imgArr;
-		}else{
+		}
+		else if(this.imgItemArr!=undefined){
+			this.slideList = this.imgItemArr;
+		}
+		else{
 			$.poemGet(ADV_API).done(this.initPage);
 		}
 		setTimeout((function(that){return function(){loaded();}})(this),500);
@@ -149,7 +162,12 @@ export default {
 		data:function(transition){
 			transition.next({
         	});
-			this.slideList = this.imgArr;
+			if(this.imgArr!=undefined){
+				this.slideList = this.imgArr;
+			}
+			else if(this.imgItemArr!=undefined){
+				this.slideList = this.imgItemArr;
+			}
 		},
 	    canReuse:function(transition){
 	      return false
