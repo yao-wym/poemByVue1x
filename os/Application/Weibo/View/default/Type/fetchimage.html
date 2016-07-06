@@ -1,0 +1,113 @@
+    <p class="word-wrap">{$weibo.content}</p>
+    <div class=""  style="width: 433px;" >
+       <div class="my-simple-gallery photos" itemscope>
+            <switch name="img_num">
+            <case value="1">
+                <volist name="weibo['weibo_data']['image']" id="vo">
+                    <figure itemscope style="display:inline-block">
+                    <a href="{$vo.big}" itemprop="contentUrl" data-size="{$vo.size}" title="{:L('_CLICK_TO_VIEW_BIGGER_')}"><img src="{$vo.small}" itemprop="thumbnail" alt="Image description" style="margin-right: 7px;margin-bottom: 7px;max-height: 433px;max-width: 433px"/></a>
+                    </figure>
+                </volist>
+            </case>
+            <case value="2">
+                <volist name="weibo['weibo_data']['image']" id="vo">
+                    <figure itemscope width="209" height="209" style="display:inline-block">
+                        <a href="{$vo.big}" itemprop="contentUrl" data-size="{$vo.size}" title="{:L('_CLICK_TO_VIEW_BIGGER_')}"><img src="{$vo.small}" itemprop="thumbnail" alt="Image description" width="209" height="209" style="margin-right: 7px;margin-bottom: 7px;"/></a>
+                    </figure>
+                </volist>
+            </case>
+            <case value="3">
+                <volist name="weibo['weibo_data']['image']" id="vo">
+                    <figure itemscope width="137" height="137" style="display:inline-block">
+                        <a href="{$vo.big}" itemprop="contentUrl" data-size="{$vo.size}" title="{:L('_CLICK_TO_VIEW_BIGGER_')}"><img src="{$vo.small}" itemprop="thumbnail" alt="Image description" width="137" height="137" style="margin-right: 7px;margin-bottom: 7px;"/></a>
+                    </figure>
+                </volist>
+            </case>
+            <case value="4">
+                <volist name="weibo['weibo_data']['image']" id="vo">
+                    <figure itemscope width="209" height="209" style="display:inline-block">
+                        <a href="{$vo.big}" itemprop="contentUrl" data-size="{$vo.size}" title="{:L('_CLICK_TO_VIEW_BIGGER_')}"><img src="{$vo.small}" itemprop="thumbnail" alt="Image description" width="209" height="209" style="margin-right: 7px;margin-bottom: 7px;"/></a>
+                    </figure>
+                </volist>
+            </case>
+            <default/>
+                <volist name="weibo['weibo_data']['image']" id="vo">
+                    <figure itemscope width="137" height="137" style="display:inline-block">
+                        <a href="{$vo.big}" itemprop="contentUrl" data-size="{$vo.size}" title="{:L('_CLICK_TO_VIEW_BIGGER_')}"><img src="{$vo.small}" itemprop="thumbnail" alt="Image description" width="137" height="137" style="margin-right: 7px;margin-bottom: 7px;"/></a>
+                    </figure>
+                </volist>
+        </switch>
+        </div>
+
+        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+            <!-- Background of PhotoSwipe.
+                 It's a separate element, as animating opacity is faster than rgba(). -->
+            <div class="pswp__bg"></div>
+
+            <!-- Slides wrapper with overflow:hidden. -->
+            <div class="pswp__scroll-wrap">
+
+                <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+                <div class="pswp__container">
+                    <!-- don't modify these 3 pswp__item elements, data is added later on -->
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                    <div class="pswp__item"></div>
+                </div>
+
+                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                <div class="pswp__ui pswp__ui--hidden">
+
+                    <div class="pswp__top-bar">
+
+                        <!--  Controls are self-explanatory. Order can be changed. -->
+
+                        <div class="pswp__counter"></div>
+
+                        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                        <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                        <!-- element will get class pswp__preloader--active when preloader is running -->
+                        <div class="pswp__preloader">
+                            <div class="pswp__preloader__icn">
+                                <div class="pswp__preloader__cut">
+                                    <div class="pswp__preloader__donut"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                        <div class="pswp__share-tooltip"></div>
+                    </div>
+
+                    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                    </button>
+
+                    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                    </button>
+
+                    <div class="pswp__caption">
+                        <div class="pswp__caption__center"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        $('.pswp__button--share').click(function(){
+            $('.pswp__share-tooltip>a').not('.pswp__share--download').remove();
+            $('.pswp__share-tooltip>a').html('下载图片');
+        })
+    </script>

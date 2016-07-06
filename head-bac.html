@@ -1,0 +1,72 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{:hook('syncMeta')}
+
+<include file="Public/seo"/>
+
+<link href="__ZUI__/css/zui.css" rel="stylesheet">
+
+<link href="__ZUI__/css/zui-theme.css" rel="stylesheet">
+<link href="__PUBLIC__/css/core.css" rel="stylesheet"/>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/js/ext/magnific/magnific-popup.css"/>
+<script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/com/com.functions.js"></script>
+
+<script type="text/javascript" src="__PUBLIC__/js/core.js"></script>
+<script src="__PUBLIC__/js.php?f=js/jquery-2.0.3.min.js,js/com/com.functions.js,js/core.js,js/com/com.toast.class.js,js/com/com.ucard.js"></script>
+
+<meta charset="utf-8">
+<title>灰姑娘整形测评网</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="灰姑娘整形测评网_致力为求美者提供整形美容医疗机构测评；全国超3万整形术后会员客观点评，筛选整形医院、对比整形专家技术/整形项目价格、查找整形术后案例。">
+<meta name="keywords" content="整形网,灰姑娘整形测评网,整形测评网,">
+<link rel="shortcut icon" href="/yiliaoimages/favico.ico"/>
+<link rel="bookmark" href="/yiliao/images/favico.ico"/>
+<link rel="stylesheet" href="/yiliao/css/style.css" type="text/css" >
+<link rel="stylesheet" href="/yiliao/css/header.css" type="text/css">
+<link rel="stylesheet" href="/yiliao/css/list_experience.css" type="text/css">
+<script src="/yiliao/js/jquery-1.11.3.min.js"></script>
+<script src="/yiliao/js/jquery.lazyload.min.js"></script>
+<script type="text/javascript" src="/yiliao/js/weather.js"></script>
+<script type="text/javascript" src="/yiliao/js/jquery.SuperSlide.2.1.1.js"></script>
+<script src="/yiliao/js/myjs.js" ></script>
+
+<block name="style"><!--Style--></block>
+<!--合并前的js-->
+<include file="Public/var"/>
+
+<!-- Bootstrap库 -->
+
+<php>$js[]=urlencode('/static/bootstrap/js/bootstrap.min.js');</php>
+
+<!-- &lt;!&ndash; 其他库 &ndash;&gt; -->
+<script src="__STATIC__/qtip/jquery.qtip.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Core/js/ext/slimscroll/jquery.slimscroll.min.js"></script>
+<script type="text/javascript" src="__STATIC__/jquery.iframe-transport.js"></script>
+
+<!--CNZZ广告管家，可自行更改-->
+<!--<script type='text/javascript' src='http://js.adm.cnzz.net/js/abase.js'></script>-->
+<!--CNZZ广告管家，可自行更改end-->
+<!-- 自定义js -->
+<!--<script src="__PUBLIC__/js.php?get={:implode(',',$js)}"></script>-->
+
+
+<script>
+
+    //全局内容的定义
+    var _ROOT_ = "__ROOT__";
+    var MID = "{:is_login()}";
+    var MODULE_NAME="<php>echo MODULE_NAME;</php>";
+    var ACTION_NAME="<php>echo ACTION_NAME;</php>";
+    var CONTROLLER_NAME ="<php>echo CONTROLLER_NAME;</php>";
+    var initNum = "{:modC('WEIBO_NUM',140,'WEIBO')}";
+    function adjust_navbar(){
+        $('#sub_nav').css('top',$('#nav_bar').height());
+        $('#main-container').css('padding-top',$('#nav_bar').height()+$('#sub_nav').height()+20)
+    }
+</script>
+
+<audio id="music" src="" autoplay="autoplay"></audio>
+<!-- 页面header钩子，一般用于加载插件CSS文件和代码 -->
+{:hook('pageHeader')}

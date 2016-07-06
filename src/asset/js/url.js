@@ -92,4 +92,6 @@ var VR_ORDER_REFUND = HOST_API+"act=member_vr_order&op=order_refund";
 var GOODS_ORDER_REFUND = HOST_API+"act=member_order&op=order_refund";
 
 var ARTICLE_SLIDE_API = HOST_API+"act=index&op=special&special_id=3";
+
+var TRAVEL_COMMENT_LIST_API = HOST_API+"act=cms_article&op=comment_list";
 var client = 'ios'
