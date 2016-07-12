@@ -5,16 +5,16 @@
       <div class="section">
         <h2>景点详情</h2>
         <img :src="{{ scenicImg }}" alt="">
-        <p>{{ scenicDetail }}</p>
+        <p>{{{ scenicDetail }}}</p>
       </div>
       <div class="section">
         <h2>温馨提示</h2>
-        <p>{{ notice }}</p>
+        <p>{{{ notice }}}</p>
       </div>
       <div class="section">
         <h2>交通与到达</h2>
         <img :src="{{ mapImg }}" alt="">
-        <p>{{ transportation }}</p>
+        <p>{{{ transportation }}}</p>
       </div>
     </flex-scroll-view>
   </div>

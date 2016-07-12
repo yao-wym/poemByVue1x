@@ -20,10 +20,12 @@
         <p>{{ storeInfo.store_zy }}</p>
       </div>
       <div class="section">
-        <a href="#/Comments/{{id}}" class="link-line">
-          <img class="small-icon" src="../asset/images/pinglun.png" alt="">
-          <p>评论</p>
-          <span>></span>
+        <a href="#/Comments/{{id}}">
+          <div style="width:96%" class="link-line">
+            <img class="small-icon" src="../asset/images/pinglun.png" alt="">
+            <p>评论</p>
+            <span>></span>
+          </div>
         </a>
         <a @click="showDaohang">
           <div class="link-line">
