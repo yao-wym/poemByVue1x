@@ -9,8 +9,7 @@
     </ul>
 <!--     <return-top></return-top> -->
   </flex-scroll-view>
-
-<!-- 	<filter-tab :filter-items="['默认排序','价格从低到高','价格从高到低','销量从高到低','评价从高到低']" :order-items="['默认排序','传统酒店','牧家乐']"></filter-tab> -->
+  <filter-tab :filter-items="[{'word':'线路套餐','op':'goods_list','gc_id':'1123'},{'word':'旅游套餐','op':'goods_list','gc_id':'1124'}]" :order-items="[{'word':'销量','key':'1','order':'2'},{'word':'浏览量','key':'2','order':'2'},{'word':'价格从低到高','order':'1','key':'3'},{'word':'评价从低到高','order':'1','key':'4'},{'word':'评价从高到低','order':'2','key':'4'}]"></filter-tab>
 </div>
 </template>
 
@@ -39,12 +38,17 @@ module.exports = {
   		curpage : 1,
       pageNum : 1,
   		tripList:[],
-      storeName:''
+      storeName:'',
+      condition:{
+        "store_id":this.$route.params.id,
+        "curpage":1,
+        "page":20
+      }
   	}
   },
   methods:{
   	getTripList:function(){
-  		$.getJSON(STORE_GOODS_API,{'store_id':this.$route.params.id,'page':10,'curpage':this.curpage}).done(this.getTripListDone);
+  		$.getJSON(STORE_GOODS_API,this.condition).done(this.getTripListDone);
   	},
   	getTripListDone:function(res){
   		console.log(JSON.stringify(res));
@@ -84,6 +88,12 @@ module.exports = {
       }else{
         this.getTripList();
       }
+    },
+    'conditionChange':function(condition){
+      this.condition.curpage = 1;
+      this.tripList = [];
+      $.extend(this.condition,condition);
+      $.getJSON(STORE_GOODS_API,this.condition).done(this.getTripListDone);
     }
   }
 }
