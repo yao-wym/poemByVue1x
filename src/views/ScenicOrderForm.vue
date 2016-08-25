@@ -26,6 +26,9 @@
           <div>
             兑换方式：{{ exchangeWay }}
           </div>
+          <div v-link="{path:'/CouponList'}">
+            使用优惠券:<span id="coupon-used">{{couponUsed.value}}</span> <span style="float:right">></span>
+          </div>
         </div>
         <h2 class="person-info"><img class="small-icon" src="../asset/images/user-green.png" alt="">取票人信息</h2>
         <div class="section">
@@ -44,12 +47,12 @@
 
     </flex-scroll-view>
     <div class="footer">
-      <div class="price">订单金额：<span>{{ (goodsInfo.goodsPrice*quantity).toFixed(2) }}</span></div>
+      <div class="price">订单金额：<span>{{ charge }}</span></div>
       <div class="submit-btn" @click="submitOrder()">提交订单</div>
     </div>
   </div>
 </template>
-<script>
+†<script>
   module.exports = {
     components: {
       'flex-scroll-view': function(resolve) {
@@ -70,8 +73,20 @@
           days:1,
           buyer_msg:'',
           contact:this.contact,
+          coupon_id:this.couponUsed.id,
           buyer_phone:this.buyer_phone
         };
+      },
+      charge:function(){
+        if(this.couponUsed)
+          var charge = (this.goodsInfo.goodsPrice*this.quantity).toFixed(2)-this.couponUsed.value;
+        else
+          var charge = (this.goodsInfo.goodsPrice*this.quantity).toFixed(2);
+        if(charge>0){
+          return charge;
+        }else{
+          return 0;
+        }
       }
     },
     data() {
@@ -86,12 +101,18 @@
         price: '',
         exchangeWay: '兑换码',
         personName: '',
-        contactWay: ''
+        contactWay: '',
       }
     },
     route:{
       data(){
         this.goodsInfo = $.parseJSON(this.$route.query.goodsInfo);
+        if(localStorage.getItem('coupon')){
+          this.couponUsed = JSON.parse(localStorage.getItem('coupon'));
+        }else{
+          this.couponUsed = "";
+        }
+        // document.getElementById("coupon-used").innerTEXT = this.couponUsed.value;
       }
     },
     methods: {
@@ -120,6 +141,7 @@
         if(!$.isEmpty(res.error)){
           poemUI.toast(res.error)
         }else{
+          localStorage.setItem('coupon','');
           poemUI.toast('订单提交成功');
           this.$route.router.go({name:'orderhotel'});
         }

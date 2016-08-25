@@ -97,6 +97,13 @@ router.map({
           require(['./Views/AddressAdd.vue'], resolve)
       }
     },  
+  '/CouponList':{
+    name:'couponList',
+    // component:AddressAddView
+    component:function (resolve) {
+        require(['./Views/CouponList.vue'], resolve)
+    }
+  },  
   'About': {
     component:function (resolve) {
       require(['./Views/About.vue'], resolve)
@@ -330,7 +337,13 @@ router.map({
 router.beforeEach(function () {
   window.scrollTo(0, 0)
 })
-
+Vue.filter('datetime', function (value, formatString) {
+        if(value<1000000000000){
+            value*=1000;
+        }
+        formatString = formatString || 'YYYY-MM-DD HH:mm:ss';
+        return moment(value).format(formatString);
+    });
 router.redirect({
   '/': '/index/home'
 })

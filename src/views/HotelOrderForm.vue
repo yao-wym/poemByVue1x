@@ -41,6 +41,9 @@
           <div>联系方式
             <input v-model="buyer_phone" type="text">
             <img src="../asset/images/phone-device.png" alt=""></div>
+          <div v-link="{path:'/CouponList'}">
+            使用优惠券:<span id="coupon-used">{{couponUsed.value}}</span> <span style="float:right">></span>
+          </div>
         </div>
          <!--  <div class="notice">
             <h2>温馨提示：</h2>
@@ -74,6 +77,7 @@
             quantity:this.quantity*this.days,
             rcb_pay:0,
             pd_pay:0,
+            coupon_id:this.couponUsed.id,
             days:this.days,
             buyer_msg:this.days+'晚|'+this.daterange+'|'+this.contact,
             contact:this.contact,
@@ -81,11 +85,16 @@
         }
       },
       orderPrice:function(){
-        return this.quantity*this.roomInfo.goods_price*this.days.toFixed(2)
+        if(this.couponUsed){
+          return this.quantity*this.roomInfo.goods_price*this.days.toFixed(2)-this.couponUsed.value>0?this.quantity*this.roomInfo.goods_price*this.days.toFixed(2)-this.couponUsed.value:0;
+        }else{
+          return this.quantity*this.roomInfo.goods_price*this.days.toFixed(2);
+        }
       }
     },
     data() {
       return {
+        couponUsed:'',
         days:1,
         daterange:'',
         roomInfo:{},
@@ -130,6 +139,7 @@
         if(!$.isEmpty(res.error)){
           poemUI.toast(res.error)
         }else{
+          localStorage.setItem('coupon','');
           poemUI.toast('订单提交成功');
           this.$route.router.go({name:'orderhotel'});
         }
@@ -175,10 +185,11 @@
     route: {
       data: function (transition) {
         // alert(JSON.stringify(this.$route.params));
-        transition.next({
-            // 'hotelName':'111'
-        })
-        
+        if(localStorage.getItem('coupon')){
+          this.couponUsed = JSON.parse(localStorage.getItem('coupon'));
+        }else{
+          this.couponUsed = "";
+        }
         this.roomInfo = JSON.parse(this.$route.query.roomInfo);
         this.hotelName = this.$route.query.hotelName;
     },

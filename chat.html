@@ -1,0 +1,20 @@
+<!--[if lt IE 9]>
+<script src="https://g.alicdn.com/aliww/ww/json/json.js" charset="utf-8"></script>
+<![endif]-->
+<!-- 自动适配移动端与pc端 -->
+<script src="https://g.alicdn.com/aliww/??h5.openim.sdk/1.0.6/scripts/wsdk.js,h5.openim.kit/0.3.3/scripts/kit.js" charset="utf-8"></script>
+<script>
+    var ywId = location.href.split("touid=")[1];
+    window.onload = function(){
+      // 全屏展示
+      WKIT.init({
+        uid: localStorage.getItem('ywid'),
+        appkey: 23426023,
+        credential: localStorage.getItem('ywpwd'),
+        touid: ywId,
+        logo: 'http://img.alicdn.com/tps/i3/TB12LD9IFXXXXb3XpXXSyFWJXXX-82-82.png',
+        pluginUrl: 'http://www.taobao.com/market/seller/openim/plugindemo.php',
+        sendMsgToCustomService: true
+      });
+    }
+</script>

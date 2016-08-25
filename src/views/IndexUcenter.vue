@@ -55,15 +55,15 @@
               <i></i>
               </div>
             </a></div>
-         <!--  <div class="li-label"><a href="">
+          <div class="li-label"><a v-link="{path:'/CouponList'}">
               <div class="icon">
                 <img src="../asset/images/invite-friends.png">
               </div>
-              <div class="title">邀请好友</div>
+              <div class="title">优惠券</div>
               <div class="arrow">
               <i></i>
               </div>
-            </a></div> -->
+            </a></div>
             <div class="li-label"><a v-link="{path:'/PointsDetail'}">
               <div class="icon">
                 <img src="../asset/images/score-detail.png">
@@ -104,6 +104,7 @@
               <i></i>
               </div>
             </a></div>
+            
         </section>
 
         <section class="li-section" style="margin-top: 15px">

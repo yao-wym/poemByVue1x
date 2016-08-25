@@ -35,6 +35,10 @@
           <span style="color:rgb(81, 211, 17)">图文详情</span>
           <span class="right">></span>
         </a>
+        <a class="link-line" @click="showChat()">
+          <span style="color:skyblue">在线客服</span>
+          <span class="right">></span>
+        </a>
         <a class="link-line" v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id+'?storeName='+goodsDetail.store_info.store_name}">
           <div style="margin-top: 10px;height: 1.5rem;line-height: 1.5rem;display:inline-block;vertical-align:middle">
             <img style="margin-top: 10px;border-radius: 50%;width: 1rem" src="{{ goodsDetail.store_info.avatar }}" alt="">
@@ -168,6 +172,9 @@ module.exports = {
         }
       });
     },
+    showChat:function(){
+      location.href="/chat.html?touid="+this.ywId;
+    },
     getGoodsDetail:function(){
       $.poemGet(GOODS_DETAIL_API,{'goods_id':this.goodsId}).done(this.getDone);
     },
@@ -177,7 +184,7 @@ module.exports = {
         this.goBack();
         return;
       }
-
+      this.ywId = res.store_info.ywId;
       this.goodsDetail = res;
       // this.goodsType = res.spec_list[Object.keys(res['spec_list'])[0]];
       this.foodImgArr = res.goods_image;
@@ -199,6 +206,7 @@ module.exports = {
       bgImg:'',
       storeName: '',
       foodImgArr:[],
+      ywId : ''
     }
   }
 }

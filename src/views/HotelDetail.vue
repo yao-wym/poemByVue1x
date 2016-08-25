@@ -50,6 +50,16 @@
                 <i></i>
               </div>
             </a></div>
+            <div class="li-label">
+            <a @click="showChat()">
+              <div class="icon">
+                <img src="../asset/images/help-suggest.png">
+              </div>
+              <div style="color:skyblue" class="title">在线客服</div>
+                <div class="arrow">
+                <i></i>
+              </div>
+            </a></div>
               <div class="li-label">
              <a v-link="{path:'/FoodList/'+this.$route.params.hotelId}">
               <div class="icon">
@@ -132,7 +142,8 @@ module.exports = {
       'roomList':[],
       'HotelImgArr':[],
       'roomDetailShow':{},
-      'userLoc':''
+      'userLoc':'',
+      'ywId':''
     }
   },
   methods:{
@@ -145,6 +156,9 @@ module.exports = {
       }else{
         poemUI.toast('收藏成功');
       }
+    },
+    showChat(){
+      location.href="/chat.html?touid="+this.ywId;
     },
     ctrlRoomDetail(index) {
         // this.roomDetailShow[index] = (this.roomDetailShow[index]+1)%2;
@@ -201,6 +215,7 @@ module.exports = {
         this.hotelName = res.store_info.store_name;
         this.hotelLoc = res.store_info.store_location_lat+','+res.store_info.store_location_lng;
         this.bgImg = res.store_info.store_label;
+        this.ywId = res.store_info.ywId;
         this.roomList = res.good_list;
         this.roomDetailShow = new Array(this.roomList.length);
         for(var i=0;i<this.roomList.length;i++){

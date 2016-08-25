@@ -74,7 +74,7 @@ module.exports = {
         this.$nextTick(function(){
           //this.$broadcast('refresh');
         });
-        setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),500)
+        setTimeout((function(that){return function(){that.$broadcast('refresh')}})(this),10)
       }
       // if(res.hasmore == false){
       //   this.$off('scrollEnd')

@@ -34,6 +34,11 @@
           <span>></span>
         </div>
         </a>
+          <a class="link-line" @click="showChat()">
+          <img class="small-icon" src="../asset/images/help-suggest.png" alt="">
+          <p>在线客服</p>
+          <span>></span>
+        </a>
         <a class="link-line" href="#/ScenicDeepDetail/{{id}}">
           <img class="small-icon" src="../asset/images/pic-yellow.png" alt="">
           <p>详情</p>
@@ -118,7 +123,8 @@
         orderDetailShow: [0, 0, 0],
         scenicLoc:'',
         userLoc:'',
-        ScenicImgArr:[]
+        ScenicImgArr:[],
+        ywId : ''
       }
     },
     methods: {
@@ -131,6 +137,9 @@
         }else{
           poemUI.toast('收藏成功');
         }
+      },
+      showChat(){
+        location.href="/chat.html?touid="+this.ywId;
       },
       ctrlOrderDetail(index) {
         let newArr = this.deepClone(this.orderDetailShow);
@@ -175,6 +184,7 @@
       initPage(data) {
         console.log(data);
         this.storeInfo = data.store_info;
+        this.ywId = data.store_info.ywId;
         this.scenicLoc = data.store_info.store_location_lat+','+data.store_info.store_location_lng;
         this.storeName = data.store_info.store_name;
         // this.gallery = data.goods_image;

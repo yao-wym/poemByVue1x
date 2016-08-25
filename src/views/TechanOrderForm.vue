@@ -45,6 +45,10 @@
               <button @click="addTechanCount">+</button>
             </div>
           </div>
+
+      <!--   <div v-link="{path:'/CouponList'}">
+            使用优惠券:<span id="coupon-used">{{couponUsed.value}}</span> <span style="float:right">></span>
+          </div> -->
           <div>配送方式
             <div class="right">
               快递(免运费)
@@ -77,6 +81,7 @@
     },
     data() {
       return {
+        couponUsed:'',
         goodsId:'',
         goodsDetail:"",
         goodsBuyList:{},
@@ -162,6 +167,7 @@
     },
     route: {
       data: function (transition) {
+        // this.couponUsed = JSON.parse(localStorage.getItem('coupon'));
         if(this.$route.query['cart']!=undefined){
           this.goodsBuyList = JSON.parse(this.$route.query['cart']);
           this.cartCount = 0;
@@ -178,6 +184,7 @@
         if(!$.isEmpty(poem.getObj('chosenAddr'))){
           this.address = poem.getObj('chosenAddr')
         }
+        this.cartCount=this.cartCount-this.couponUsed.value>0?this.cartCount-this.couponUsed.value:0
         // alert(JSON.stringify(this.$route.params));
         // transition.next({
         //     // 'techanName':'111'

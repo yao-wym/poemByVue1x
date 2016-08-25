@@ -64,6 +64,8 @@ module.exports = {
   	 		}else{
   	 			poem.saveItem('username',res.username);
   	 			poem.saveItem('key',res.key);
+  	 			poem.saveItem('ywid',res.ywId);
+  	 			poem.saveItem('ywpwd',res.ywPwd);
   	 			this.$route.router.go('/index/ucenter');
   	 		}
   	 	}
