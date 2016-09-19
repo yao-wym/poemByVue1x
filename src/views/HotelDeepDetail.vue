@@ -41,7 +41,7 @@
           <h2 class="yellow">介绍</h2>
         </div>
         <div>
-          <p>{{ intro }}</p>
+          <p>{{{ intro }}}</p>
         </div>
       </div>
     </flex-scroll-view>
