@@ -40,7 +40,7 @@ module.exports = {
   		tripList:[],
       storeName:'',
       condition:{
-        "store_id":this.$route.params.id,
+        // "store_id":this.$route.params.id,
         "curpage":1,
         "page":20
       }
@@ -48,7 +48,7 @@ module.exports = {
   },
   methods:{
   	getTripList:function(){
-  		$.getJSON(STORE_GOODS_API,this.condition).done(this.getTripListDone);
+  		$.getJSON("http://123.56.136.248/app/index.php?act=goods&op=goods_list&gc_id=1122",this.condition).done(this.getTripListDone);
   	},
   	getTripListDone:function(res){
   		console.log(JSON.stringify(res));

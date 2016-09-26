@@ -363,7 +363,6 @@ label-height=1.2rem
     & .hotel-room-img-list
       display:inline-block
       padding 10px 0
-      height :2.2rem
       overflow hidden
       & div
         width:25%

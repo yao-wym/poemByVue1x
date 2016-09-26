@@ -17,6 +17,7 @@
     window.onload = function(){
       // 全屏展示
       WKIT.init({
+        onBack: goback,
         uid: uid,
         appkey: 23426023, 
         credential: localStorage.getItem('ywpwd'),
@@ -25,6 +26,9 @@
         pluginUrl: 'http://www.taobao.com/market/seller/openim/plugindemo.php',
         sendMsgToCustomService: true
       });
+    }
+    function goback(){
+      history.go(-1);
     }
 </script>
 </head>
