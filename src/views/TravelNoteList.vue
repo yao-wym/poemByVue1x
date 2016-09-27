@@ -3,7 +3,7 @@
   	<flex-scroll-view>
       <app-header :title="title" :left-label="leftLabel" :right-label="rightLabel" :left-link="leftLink" :right-link="rightLink" :left-icon="leftIcon" :right-icon="rightIcon"></app-header>
       <div style="height:auto;width: 100%">
-        <banner banner-height="3rem" :img-item-arr="articleImgArr"></banner>
+        <banner banner-height="3.5rem" :img-item-arr="articleImgArr"></banner>
       </div>
       <ul style="margin-top:50px">
         <li class="article" v-for="article in articleList">

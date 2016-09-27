@@ -34,7 +34,8 @@
     font-size: .5rem
     font-weight: normal
     text-align: center
-  
+  p
+    font-size:30px !important;
 </style>
 <script>
   module.exports = {
