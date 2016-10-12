@@ -184,7 +184,10 @@
         if(!$.isEmpty(poem.getObj('chosenAddr'))){
           this.address = poem.getObj('chosenAddr')
         }
-        this.cartCount=this.cartCount-this.couponUsed.value>0?this.cartCount-this.couponUsed.value:0
+        if(this.couponUse){
+          this.cartCount=this.cartCount-this.couponUsed.value>0?this.cartCount-this.couponUsed.value:0
+        }
+        
         // alert(JSON.stringify(this.$route.params));
         // transition.next({
         //     // 'techanName':'111'
