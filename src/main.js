@@ -352,4 +352,12 @@ var height = document.body.clientHeight;
 var width = document.body.clientWidth;
 appView.setAttribute('style','height:'+height+"px;width:"+width+"px;overflow:hidden")
 
-router.start(App, '#app')
+router.start(App, '#app');
+if(localStorage.getItem('check_app')!=1){
+    localStorage.setItem('check_app',1);
+    var r=confirm("去下载最新app")
+    if (r==true)
+    {
+      location.href='http://a.app.qq.com/o/simple.jsp?pkgname=com.tianheng.poemandtravel';
+    }
+}

@@ -140,6 +140,13 @@
       submitDone(res){
         if(!$.isEmpty(res.error)){
           poemUI.toast(res.error)
+          if(res.error=='请登录'||res.error=='请登陆'){
+            var r=confirm("请先登录")
+            if (r==true)
+            {
+              location.href='#Login';
+            }
+          }
         }else{
           localStorage.setItem('coupon','');
           poemUI.toast('订单提交成功');

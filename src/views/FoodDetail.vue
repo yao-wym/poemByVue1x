@@ -49,7 +49,7 @@
         </a>
       <p class="contact">
         <a v-if="{{ goodsDetail.store_info.store_phone }}" href="tel:{{ goodsDetail.store_info.store_phone }}">
-        <a @click="toast('暂无商家电话')" v-else>
+        <a  @click="showChat()" v-else>
         <img style="width: .5rem;position: relative;top:5px;margin-right:10px" src="../asset/images/contacter-green.png" alt="">
         <span>联系客服</span></a>    
         <a v-link="{path:'/StoreGoodsList/'+goodsDetail.store_info.store_id+'?storeName='+goodsDetail.store_info.store_name}">
@@ -167,6 +167,13 @@ module.exports = {
       $.poemPost(CART_ADD_API,{'key':poem.getItem('key'),'goods_id':this.goodsId,'quantity':this.quantity}).done(function(res){
         if(res.error){
           poemUI.toast(res.error);
+          if(res.error=='请登录'||res.error=='请登陆'){
+            var r=confirm("请先登录")
+            if (r==true)
+            {
+              location.href='#Login';
+            }
+          }
         }else{
           poemUI.toast('添加成功');
         }
