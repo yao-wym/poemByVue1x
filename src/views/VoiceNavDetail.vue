@@ -12,7 +12,7 @@
         </div>
       </header>
       <div style="height:94px;text-align:center;padding:0" class="link-line">
-        <audio style="-webkit-transform:scale(2);margin-top:35px" controls="controls" src="{{guideDetail.voiceurl}}">
+        <audio style="margin-top:35px" controls="controls" src="{{guideDetail.voiceurl}}">
         </audio>
       </div>
       <div class="container">
@@ -20,8 +20,12 @@
          {{ guideDetail.title }}
         </div>
         <div class="link-line">
-          <div style="margin-bottom:10px">景点简介:</div>
+          <div style="margin-bottom:10px">文字简介:</div>
           <span style="color:#1b1b1b">{{ guideDetail.content }}</span>
+        </div>
+        <div class="link-line">
+          <div style="margin-bottom:10px">景点类型:</div>
+          <span style="color:#1b1b1b">{{ guideDetail.type }}</span>
         </div>
         <div class="link-line">
           <div style="margin-bottom:10px">开放时间:</div>

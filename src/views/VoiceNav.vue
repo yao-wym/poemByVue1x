@@ -1,6 +1,6 @@
 <template v-transition>
 <div class="flex-view" v-transition>
-<app-header title="景区景点"></app-header>
+<app-header title="导游导航"></app-header>
   <div class="header-tab" style="display:flex">
     <div v-for="type in voiceNavType" class="header-tab-item" v-bind:class="{active: !$index}">{{type}}</div>
   </div>
