@@ -126,6 +126,16 @@ router.map({
       require(['./Views/ImageView.vue'], resolve)
     }
   },
+  '/VoiceNav': {
+    component:function (resolve) {
+      require(['./Views/VoiceNav.vue'], resolve)
+    }
+  },
+  '/VoiceNavDetail/:id': {
+    component:function (resolve) {
+      require(['./Views/VoiceNavDetail.vue'], resolve)
+    }
+  },
   '/Reg': {
     component:function (resolve) {
       require(['./Views/UserReg.vue'], resolve)

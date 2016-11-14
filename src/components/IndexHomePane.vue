@@ -3,7 +3,7 @@
   <div style="height:auto;width: 100%">
     <banner banner-height="3.2rem"></banner>
 </div>
-<div class="pane" style="margin-top:0.55rem">
+<div class="pane" style="margin-top:0.55rem;position:relative">
   <div class="pane-left">
     <a v-link="{path:'/HotelList'}">
       <div style="background-color: rgb(234,99,94)">
@@ -22,6 +22,9 @@
       </div>
     </a>
   </div>
+  <a v-link="{path:'/VoiceNav'}" style="overflow:hidden">
+    <div style="width:2.5rem;height:2.5rem;background:url('/src/asset/images/yuyindaohang.png');position:absolute;top:4.7rem;left:3.6rem;z-index:3;background-size:100%"></div>
+  </a>
   <div class="pane-right">
     <a v-link="{path:'/ScenicList'}">
       <div style="background-color: rgb(141,194,30)">

@@ -58,6 +58,9 @@
             <input name="contact" type="text">
           </div>
         </div>
+      <!--   <div v-link="{path:'/CouponList'}">
+            使用优惠券:<span id="coupon-used">{{couponUsed.value}}</span> <span style="float:right">></span>
+          </div> -->
       </div>
     </flex-scroll-view>
       <div class="footer" v-if="goodsDetail!=''">
@@ -127,7 +130,8 @@
      
       submitSuccess1:function(res){
           if(!$.isEmpty(res.error)){
-            poemUI.toast(res.error)
+            poemUI.toast(res.error);
+            location.href='#Login';
           }else{
             this.submitOrder2();
           }
@@ -167,6 +171,11 @@
     },
     route: {
       data: function (transition) {
+        if(localStorage.getItem('coupon')){
+          this.couponUsed = JSON.parse(localStorage.getItem('coupon'));
+        }else{
+          this.couponUsed = "";
+        }
         // this.couponUsed = JSON.parse(localStorage.getItem('coupon'));
         if(this.$route.query['cart']!=undefined){
           this.goodsBuyList = JSON.parse(this.$route.query['cart']);

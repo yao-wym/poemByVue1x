@@ -95,4 +95,9 @@ var ARTICLE_SLIDE_API = HOST_API+"act=index&op=special&special_id=3";
 
 var TRAVEL_COMMENT_LIST_API = HOST_API+"act=cms_article&op=comment_list";
 var COUPON_LIST_API = HOST_API+"act=member_coupon&op=couponlist";
+    
+var DAOHANG_LIST_API = HOST_API+"act=guide&op=guide_list";
+
+
+var DAOHANG_TYPE_API = HOST_API+"act=guide&op=getType";
 var client = 'ios'

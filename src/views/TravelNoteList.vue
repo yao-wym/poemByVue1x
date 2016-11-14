@@ -64,7 +64,6 @@
   .info
     display: flex
     font-size: .25rem
-    
 </style>
 <script>
   module.exports = {
