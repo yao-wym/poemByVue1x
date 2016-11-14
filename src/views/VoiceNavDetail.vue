@@ -12,7 +12,7 @@
         </div>
       </header>
       <div style="height:94px;text-align:center;padding:0" class="link-line">
-        <audio style="margin-top:12px;width:600px;height:75px" controls="controls" src="{{guideDetail.voiceurl}}">
+        <audio style="margin-top:10px;width:600px;height:75px" controls="controls" src="{{guideDetail.voiceurl}}">
         </audio>
       </div>
       <div class="container">
