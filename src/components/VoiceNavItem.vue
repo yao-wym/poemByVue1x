@@ -6,7 +6,7 @@
             </div>
             <div class="article-detail">
               <h4>{{ voice.title }}</h4>
-              <p style="height:1.5rem">{{ voice.content }}</p>
+              <p style="height:1.8rem">{{ voice.content }}</p>
             </div>
           </a>
         </li>
