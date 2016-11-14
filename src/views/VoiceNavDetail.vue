@@ -12,7 +12,7 @@
         </div>
       </header>
       <div style="height:94px;text-align:center;padding:0" class="link-line">
-        <audio style="margin-top:15px;width:600px;height:64px" controls="controls" src="{{guideDetail.voiceurl}}">
+        <audio style="margin-top:5px;width:600px;height:70px" controls="controls" src="{{guideDetail.voiceurl}}">
         </audio>
       </div>
       <div class="container">
@@ -80,9 +80,9 @@ module.exports = {
         if(guideList[key]['id'] == this.$route.params.id){
           this.guideDetail = guideList[key];
           this.bannerImg = guideList[key]['img'].split(";");
-          return;
         }
       }
+      setTimeout((function(that){return function(){that.$broadcast('refresh');}})(this),500)
     },
   }
 }
