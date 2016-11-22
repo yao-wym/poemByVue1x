@@ -84,6 +84,6 @@
     text-align:center
     border:solid 1px #ccc
     padding:15px 20px
-    & .active
+    &.active
       border-bottom:solid 5px #439f9f
 </style>
