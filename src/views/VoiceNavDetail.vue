@@ -11,25 +11,25 @@
             <!-- <img style="margin:0 5px" src="../asset/images/share-white.png"> -->
         </div>
       </header>
-      <div style="height:94px;text-align:center;padding:0" class="link-line">
-        <audio style="margin-top:10px;width:600px;height:75px" controls="controls" src="{{guideDetail.voiceurl}}">
+      <div style="height:115px;text-align:center;padding:0" class="link-line">
+        <audio style="margin-top:10px;width:600px;height:95px" controls="controls" src="{{guideDetail.voiceurl}}">
         </audio>
       </div>
       <div class="container">
-        <div style="color:#1b1b1b" class="link-line">
+        <div style="color:#1b1b1b;font-size:0.4rem;" class="link-line">
          {{ guideDetail.title }}
         </div>
         <div class="link-line">
-          <div style="margin-bottom:10px">文字简介:</div>
-          <span style="color:#1b1b1b">{{ guideDetail.content }}</span>
+          <div style="font-size:0.4rem;margin-bottom:10px">文字简介:</div>
+          <span style="font-size:0.4rem;color:#1b1b1b">{{ guideDetail.content }}</span>
         </div>
         <div class="link-line">
-          <div style="margin-bottom:10px">景点类型:</div>
-          <span style="color:#1b1b1b">{{ guideDetail.type }}</span>
+          <div style="font-size:0.4rem;margin-bottom:10px">景点类型:</div>
+          <span style="font-size:0.4rem;color:#1b1b1b">{{ guideDetail.type }}</span>
         </div>
         <div class="link-line">
-          <div style="margin-bottom:10px">开放时间:</div>
-          <span style="color:#1b1b1b">{{ guideDetail.otime }}</span>
+          <div style="font-size:0.4rem;margin-bottom:10px">开放时间:</div>
+          <span style="font-size:0.4rem;color:#1b1b1b">{{ guideDetail.otime }}</span>
         </div>
     </div>
     </flex-scroll-view>
@@ -172,7 +172,7 @@ module.exports = {
       height: .8rem;
       line-height: .8rem
       background: transparent;
-      font-size: .2rem;
+      font-size: .4rem;
       border: 1px solid line-gray
       border-radius: .3rem
       width: 44%

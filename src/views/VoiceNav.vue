@@ -1,10 +1,10 @@
 <template v-transition>
 <div class="flex-view" v-transition>
-<app-header title="导游导航"></app-header>
-  <div class="header-tab" style="display:flex">
-    <div v-for="type in voiceNavType" class="header-tab-item" v-bind:class="{active: !$index}">{{type}}</div>
-  </div>
+  <app-header title="导游导航"></app-header>
   <flex-scroll-view>
+    <div class="header-tab" style="display:flex">
+      <div v-for="type in voiceNavType" class="header-tab-item" v-bind:class="{active: !$index}">{{type}}</div>
+    </div>
     <ul id="voice-nav-view" style="font-size: 0.3rem;">
       <voice-nav-item v-for="voice in voiceNavList" :voice="voice" v-if="voice['type'] == curType" :state="state" :index="$index">
       </voice-nav-item>
@@ -20,7 +20,9 @@
   components: {
     'voice-nav-item': require('../components/VoiceNavItem.vue'),
     'flex-scroll-view': require('../components/FlexScrollView.vue'),
-    'app-header': require('../components/CommonHeader.vue'),
+     'app-header': function(resolve) {
+        require(['../components/CommonHeader.vue'], resolve);
+      }
   },
   data:function(){
     return {
@@ -82,6 +84,6 @@
     text-align:center
     border:solid 1px #ccc
     padding:15px 20px
-    &.active
+    & .active
       border-bottom:solid 5px #439f9f
 </style>
